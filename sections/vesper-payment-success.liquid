@@ -1,0 +1,331 @@
+{{ 'vesper-payment-success.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Vesper payment success / order confirmation page
+  (templates/page.payment-success.json).
+
+  Shopify hosts the post-checkout "Thank you" page itself and it can't be edited
+  from a theme file, so this is the themed equivalent: point a payment gateway's
+  return URL (or a checkout redirect) at /pages/payment-success and the order
+  number carried in the query string is picked up and displayed. Everything else
+  is editable from the theme editor.
+
+  Ported from vesper_vue/src/views/OrderConfirmationView.vue.
+{%- endcomment -%}
+
+{%- liquid
+  assign steps = section.blocks | where: 'type', 'next_step'
+  assign primary_link = section.settings.primary_link | default: routes.all_products_collection_url
+  assign order_param = section.settings.order_param | default: 'order_number'
+  assign support_phone = section.settings.support_phone | remove: ' '
+  assign support_whatsapp = section.settings.support_whatsapp | remove: ' ' | remove: '+'
+-%}
+
+<section
+  class="v-payment-success v-section"
+  data-payment-success
+  data-order-param="{{ order_param }}"
+>
+  <div class="v-container">
+    <div class="v-payment-success__card v-card">
+      <span class="v-payment-success__icon" aria-hidden="true">
+        {% render 'vesper-icons', icon: 'check' %}
+      </span>
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="v-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      <h1 class="v-payment-success__title">{{ section.settings.heading }}</h1>
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="v-payment-success__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+
+      {%- comment -%} Filled in by the script below when the URL carries an order number {%- endcomment -%}
+      <div class="v-payment-success__order" data-order-box hidden>
+        <span class="v-payment-success__order-label">{{ section.settings.order_label }}</span>
+        <span class="v-payment-success__order-value" data-order-value></span>
+      </div>
+
+      {%- if section.settings.note != blank -%}
+        <p class="v-payment-success__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+
+      <div class="v-payment-success__actions">
+        <a class="v-btn v-btn--primary v-btn--lg" href="{{ primary_link }}">{{ section.settings.primary_label }}</a>
+
+        {%- if section.settings.secondary_label != blank and section.settings.secondary_link != blank -%}
+          <a class="v-btn v-btn--outline v-btn--lg" href="{{ section.settings.secondary_link }}">
+            {{ section.settings.secondary_label }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.support_label != blank and section.settings.support_link != blank -%}
+          <a class="v-btn v-btn--ghost v-btn--lg" href="{{ section.settings.support_link }}">
+            {{ section.settings.support_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if steps.size > 0 -%}
+      <div class="v-payment-success__steps-wrap">
+        <h2 class="v-payment-success__steps-title">{{ section.settings.steps_heading }}</h2>
+
+        <ol class="v-payment-success__steps">
+          {%- for block in steps -%}
+            <li class="v-payment-success__step v-card" data-reveal {{ block.shopify_attributes }}>
+              <span class="v-payment-success__step-icon" aria-hidden="true">
+                {% render 'vesper-icons', icon: block.settings.icon %}
+              </span>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.text }}</p>
+            </li>
+          {%- endfor -%}
+        </ol>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.help_text != blank -%}
+      <div class="v-payment-success__help v-card" data-reveal>
+        <div>
+          <h2>{{ section.settings.help_heading }}</h2>
+          <p>{{ section.settings.help_text }}</p>
+        </div>
+
+        <div class="v-payment-success__help-actions">
+          {%- if support_phone != blank -%}
+            <a class="v-btn v-btn--outline" href="tel:{{ support_phone }}">
+              {% render 'vesper-icons', icon: 'phone' %}
+              {{ section.settings.support_phone }}
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.support_email != blank -%}
+            <a class="v-btn v-btn--outline" href="mailto:{{ section.settings.support_email }}">
+              {% render 'vesper-icons', icon: 'mail' %}
+              {{ section.settings.support_email }}
+            </a>
+          {%- endif -%}
+
+          {%- if support_whatsapp != blank -%}
+            <a class="v-btn v-btn--outline" href="https://wa.me/{{ support_whatsapp }}" target="_blank" rel="noopener">
+              {% render 'vesper-icons', icon: 'whatsapp' %}
+              WhatsApp
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% javascript %}
+  /*
+   * Display the order number carried in the query string. Which parameter to
+   * read is configurable from the theme editor; the common gateway/Shopify
+   * spellings are accepted as fallbacks. The block stays hidden when nothing
+   * is passed, so the page is still correct without a redirect.
+   */
+  (function () {
+    var ORDER_PARAM_FALLBACKS = ['order_number', 'order', 'orderNumber', 'number'];
+
+    function init() {
+      var root = document.querySelector('[data-payment-success]');
+      if (!root) return;
+
+      var box = root.querySelector('[data-order-box]');
+      var value = root.querySelector('[data-order-value]');
+      if (!box || !value) return;
+
+      var params = new URLSearchParams(window.location.search);
+      var names = [root.dataset.orderParam].concat(ORDER_PARAM_FALLBACKS);
+
+      for (var i = 0; i < names.length; i++) {
+        if (!names[i]) continue;
+
+        var orderNumber = params.get(names[i]);
+        if (!orderNumber) continue;
+
+        value.textContent = orderNumber;
+        box.hidden = false;
+        return;
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Vesper payment success",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Confirmation"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Order confirmed"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Payment successful"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Thank you for your purchase. We've received your payment and your order is on its way to being prepared."
+    },
+    {
+      "type": "text",
+      "id": "order_label",
+      "label": "Order number label",
+      "default": "Order number"
+    },
+    {
+      "type": "text",
+      "id": "order_param",
+      "label": "Order number URL parameter",
+      "info": "Query parameter read from the page URL, e.g. ?order_number=1001. Common alternatives are checked automatically.",
+      "default": "order_number"
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Note",
+      "default": "A confirmation email with your full order details is on its way. Keep your order number handy for any enquiries."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary label",
+      "default": "Continue shopping"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary link",
+      "info": "Defaults to the all products collection"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary label",
+      "default": "Track your order"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary link",
+      "info": "Link to your customer account or order status page. Hidden when empty."
+    },
+    {
+      "type": "text",
+      "id": "support_label",
+      "label": "Support label",
+      "default": "Contact support"
+    },
+    {
+      "type": "url",
+      "id": "support_link",
+      "label": "Support link",
+      "info": "Hidden when empty."
+    },
+    {
+      "type": "header",
+      "content": "Next steps"
+    },
+    {
+      "type": "text",
+      "id": "steps_heading",
+      "label": "Heading",
+      "default": "What happens next"
+    },
+    {
+      "type": "header",
+      "content": "Help"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Heading",
+      "default": "Need a hand with your order?"
+    },
+    {
+      "type": "textarea",
+      "id": "help_text",
+      "label": "Text",
+      "default": "Our Australian support team can help with delivery questions, invoices or product setup."
+    },
+    {
+      "type": "text",
+      "id": "support_phone",
+      "label": "Phone",
+      "default": "+61 448 290 926"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Email",
+      "default": "market@vesperinno.com"
+    },
+    {
+      "type": "text",
+      "id": "support_whatsapp",
+      "label": "WhatsApp number",
+      "info": "Digits only, including the country code",
+      "default": "61448290926"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "next_step",
+      "name": "Next step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "truck", "label": "Delivery truck" },
+            { "value": "mail", "label": "Envelope" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "headset", "label": "Headset" },
+            { "value": "wrench", "label": "Wrench" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "cart", "label": "Cart" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

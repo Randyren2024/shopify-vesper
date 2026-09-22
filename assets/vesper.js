@@ -502,8 +502,12 @@
         });
     },
 
+    /* /cart/change.js validates `id` against \A\d+\z (or a line item key), and
+       a JSON *number* fails that check with a 400 — it has to be sent as a
+       string. /cart/add.js and /cart/update.js accept numbers, this one
+       does not. */
     change: function (variantId, quantity) {
-      return Cart.request('change', { id: Number(variantId), quantity: quantity })
+      return Cart.request('change', { id: String(variantId), quantity: quantity })
         .then(function (cart) {
           Cart.state = cart;
           Cart.render();

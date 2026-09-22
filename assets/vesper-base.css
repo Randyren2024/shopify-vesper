@@ -368,11 +368,19 @@ button {
   color: #e65100;
 }
 
-/* ---------- Header ---------- */
-.v-header {
+/* ---------- Header ----------
+   Sticky has to live on the section wrapper, not on .v-header. critical.css
+   makes every .shopify-section a grid container, so the header (a grid item)
+   is the full height of its wrapper — and a sticky element can only travel
+   within its containing block. Pinning the wrapper instead lets it stick for
+   the whole page. */
+.shopify-section.vesper-header-section {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.v-header {
   width: 100%;
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
@@ -386,6 +394,7 @@ button {
   justify-content: space-between;
   gap: 12px;
   width: 100%;
+  height: var(--vesper-header-height);
   max-width: var(--vesper-container);
   margin-inline: auto;
   padding: 12px 16px;
@@ -416,9 +425,12 @@ button {
   flex-shrink: 0;
 }
 
+/* The header height is fixed, so cap the logo: without this a tall logo
+   (width is fixed, height is auto) would bleed out of the 72px bar. */
 .v-header__logo img {
   width: 120px;
   height: auto;
+  max-height: 44px;
   object-fit: contain;
 }
 
