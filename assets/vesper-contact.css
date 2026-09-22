@@ -1,0 +1,433 @@
+/* ==========================================================================
+   Vesper — Contact page (ported from vesper_vue/src/views/ContactView.vue)
+   ========================================================================== */
+
+.vesper-contact__lead-wrap {
+  background: linear-gradient(180deg, var(--vesper-bg), #ffffff);
+  padding-block: clamp(24px, 4vw, 40px) 0;
+}
+
+.vesper-contact__lead {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--vesper-font-title);
+  font-size: clamp(24px, 3.4vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Contact information cards ---------- */
+.vesper-contact .contact-info-section {
+  background: #f8f9fa;
+}
+
+.vesper-contact .contact-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.vesper-contact .contact-card {
+  padding: 24px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vesper-contact .contact-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.vesper-contact .contact-icon--phone {
+  background: linear-gradient(135deg, #91d5ff, #69c0ff);
+}
+
+.vesper-contact .contact-icon--email {
+  background: linear-gradient(135deg, #ffd666, #ffc53d);
+}
+
+.vesper-contact .contact-icon--whatsapp {
+  background: linear-gradient(135deg, #b7eb8f, #95de64);
+}
+
+.vesper-contact .contact-icon--location {
+  background: linear-gradient(135deg, #d3adf7, #b37feb);
+}
+
+.vesper-contact .contact-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.vesper-contact .contact-card-content {
+  font-size: 18px;
+  color: #444;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.vesper-contact .contact-action-btn {
+  margin-top: auto;
+}
+
+.vesper-contact .contact-card-subtext {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0 0;
+}
+
+/* ---------- Contact form ---------- */
+.vesper-contact .contact-form-section {
+  background: #ffffff;
+}
+
+.vesper-contact .form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 50px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.vesper-contact .form-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.vesper-contact .form-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.vesper-contact .form-subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vesper-contact .form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.vesper-contact .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+
+.vesper-contact .form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.vesper-contact .submit-btn {
+  min-width: 250px;
+}
+
+.vesper-contact .form-success {
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  color: #237804;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.vesper-contact .form-errors {
+  background: #fff1f0;
+  border: 1px solid #ffa39e;
+  color: #a8071a;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+
+.vesper-contact .form-errors ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+/* ---------- Global network ---------- */
+.vesper-contact .global-map-section {
+  background: #f8f9fa;
+}
+
+.vesper-contact .world-map-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.vesper-contact .map-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.vesper-contact .map-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.vesper-contact .map-subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vesper-contact .map-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+
+.vesper-contact .map-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 320px;
+  background-color: #eef6ef;
+  background-image:
+    linear-gradient(rgba(46, 125, 50, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 125, 50, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.vesper-contact .map-canvas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(76, 175, 80, 0.1), transparent 62%);
+  pointer-events: none;
+}
+
+.vesper-contact .map-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.vesper-contact .map-pin__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.vesper-contact .map-pin--high .map-pin__dot {
+  background: #2e7d32;
+}
+
+.vesper-contact .map-pin--mid .map-pin__dot {
+  background: #4caf50;
+}
+
+.vesper-contact .map-pin--low .map-pin__dot {
+  background: #8bc34a;
+}
+
+.vesper-contact .map-pin__label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1b5e20;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+  padding: 1px 4px;
+  line-height: 1.4;
+}
+
+.vesper-contact .map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.vesper-contact .legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.vesper-contact .legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.vesper-contact .legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  flex: none;
+}
+
+.vesper-contact .legend-label {
+  font-size: 14px;
+  color: #444;
+}
+
+.vesper-contact .map-countries {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.vesper-contact .map-country {
+  border: 1px solid var(--vesper-border);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.vesper-contact .map-country__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-family: var(--vesper-font-title);
+  font-weight: 600;
+  color: #2c3e50;
+  list-style: none;
+}
+
+.vesper-contact .map-country__summary::-webkit-details-marker {
+  display: none;
+}
+
+.vesper-contact .map-country[open] .map-country__summary {
+  border-bottom: 1px solid var(--vesper-border);
+}
+
+.vesper-contact .map-country__count {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+}
+
+.vesper-contact .map-country__body {
+  padding: 12px 16px;
+}
+
+.vesper-contact .detail-item {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.vesper-contact .detail-item:last-child {
+  margin-bottom: 0;
+}
+
+.vesper-contact .detail-label {
+  font-weight: 600;
+  color: #444;
+  flex: none;
+}
+
+.vesper-contact .detail-value {
+  color: #666;
+}
+
+.vesper-contact .map-description {
+  max-width: 800px;
+  margin: 40px auto 0;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .vesper-contact .contact-cards {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+  }
+
+  .vesper-contact .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .vesper-contact .form-container {
+    padding: 30px 20px;
+  }
+
+  .vesper-contact .map-legend {
+    position: static;
+    margin-top: 16px;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 576px) {
+  .vesper-contact .contact-cards {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+  }
+
+  .vesper-contact .contact-card {
+    padding: 20px;
+  }
+
+  .vesper-contact .contact-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .vesper-contact .contact-card-title {
+    font-size: 16px;
+  }
+
+  .vesper-contact .contact-card-content {
+    font-size: 14px;
+  }
+
+  .vesper-contact .submit-btn {
+    min-width: 100%;
+  }
+
+  .vesper-contact .map-canvas {
+    aspect-ratio: 1.4 / 1;
+  }
+}

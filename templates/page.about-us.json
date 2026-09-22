@@ -1,0 +1,138 @@
+{
+  "sections": {
+    "about": {
+      "type": "vesper-about",
+      "settings": {},
+      "blocks": {
+        "journey-1": {
+          "type": "journey_item",
+          "settings": {
+            "year": "2015-2018",
+            "title": "DJI Intelligent Perception System Team",
+            "description": "Core member, pioneered mass production of 8,000 units/day. DJI held 90% market share in consumer and agricultural drones.",
+            "logo_asset": "dji_logo.webp"
+          }
+        },
+        "journey-2": {
+          "type": "journey_item",
+          "settings": {
+            "year": "2018-2022",
+            "title": "Alibaba DAMO Academy",
+            "description": "Architect for robotics team, reported to Professor Tan Ping (3D vision expert). Focused on spatial intelligence and robotics technologies.",
+            "logo_asset": "alibaba_damo_academy_logo.webp"
+          }
+        },
+        "journey-3": {
+          "type": "journey_item",
+          "settings": {
+            "year": "2022",
+            "title": "Robotic Lawn Mower Company",
+            "description": "Co-founded company with investment from Mr. Lei Jun (Xiaomi) and Mr. Zeng Liqing (Tencent). Achieved successful mass production and overseas export.",
+            "logo_asset": "xiaomi_logo.webp"
+          }
+        },
+        "journey-4": {
+          "type": "journey_item",
+          "settings": {
+            "year": "2024",
+            "title": "Vesper AgriTech",
+            "description": "Extended expertise to large-scale agriculture. Partnered with Australia-China Agricultural Association. Established product matrix including agricultural robots and lawn mowers.",
+            "logo_asset": "logo.webp"
+          }
+        },
+        "team-1": {
+          "type": "team_member",
+          "settings": {
+            "photo_asset": "mr-gan-founder.webp",
+            "photo_alt": "Mr. Gan - Founder & CEO of Vesper AgriTech",
+            "name": "Mr. Gan",
+            "position": "Founder & CEO",
+            "bio": "<p>Top-tier expert in the drone and robotics industry with over 15 years of deep experience. Former core member of DJI's intelligent perception system team and architect at Alibaba DAMO Academy.</p><p>Led industry-first mass production of 8,000 units/day at DJI and co-founded a robotic lawn mower company that secured investment from Mr. Lei Jun (Xiaomi) and Mr. Zeng Liqing (Tencent).</p>"
+          }
+        },
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "icon": "⚡",
+            "title": "Technical Excellence",
+            "description": "Maintaining the highest standards in product selection and technical validation, ensuring every solution meets rigorous quality benchmarks."
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "icon": "🤝",
+            "title": "Customer Partnership",
+            "description": "Viewing clients as long-term partners, providing comprehensive support from product selection to after-sales service."
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "icon": "📊",
+            "title": "Market Intelligence",
+            "description": "Deep understanding of both Chinese manufacturing capabilities and global market needs for optimal product-market fit."
+          }
+        },
+        "value-4": {
+          "type": "value",
+          "settings": {
+            "icon": "🌏",
+            "title": "Localized Service",
+            "description": "Building deep, localized service systems to truly serve global customers with complete solutions, not just products."
+          }
+        },
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "icon": "🌱",
+            "title": "10+ Years Experience",
+            "description": "Deep expertise in agricultural technology, continuously innovating since 2014."
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "icon": "🚜",
+            "title": "Multiple Product Lines",
+            "description": "Comprehensive solutions covering precision agriculture, autonomous robots, and smart farming systems."
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "icon": "🇦🇺",
+            "title": "Australia Market",
+            "description": "Headquartered in Australia, serving customers across Oceania and globally."
+          }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": {
+            "icon": "🤝",
+            "title": "Global Partners",
+            "description": "Strong partnerships with leading international investors and distribution networks."
+          }
+        }
+      },
+      "block_order": [
+        "journey-1",
+        "journey-2",
+        "journey-3",
+        "journey-4",
+        "team-1",
+        "value-1",
+        "value-2",
+        "value-3",
+        "value-4",
+        "stat-1",
+        "stat-2",
+        "stat-3",
+        "stat-4"
+      ]
+    }
+  },
+  "order": [
+    "about"
+  ]
+}

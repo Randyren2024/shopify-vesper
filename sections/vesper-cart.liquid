@@ -1,0 +1,128 @@
+{%- comment -%}
+  Vesper cart page.
+  Layout ported from vesper_vue/src/views/CartView.vue (+ CartDrawer.vue line items).
+  Uses the native Shopify cart object and a regular POST form so it works without
+  JavaScript; assets/vesper.js upgrades the quantity controls to Ajax when available.
+{%- endcomment -%}
+
+{{ 'vesper-cart.css' | asset_url | stylesheet_tag }}
+
+<section class="v-section v-cart-page" data-cart-page>
+  <div class="v-container">
+    <h1 class="v-cart-page__title">Shopping Cart</h1>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="v-cart-page__empty v-card">
+        {% render 'vesper-icons', icon: 'cart' %}
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything to your cart yet.</p>
+        <a class="v-btn v-btn--primary v-btn--lg" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+      </div>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="v-cart-page__form">
+        <div class="v-cart-page__grid">
+          <div class="v-cart-page__items v-card">
+            <ul class="v-cart-lines">
+              {%- for item in cart.items -%}
+                <li class="v-cart-line">
+                  {%- if item.image -%}
+                    {{ item.image | image_url: width: 400 | image_tag: class: 'v-cart-line__img', alt: item.product.title, loading: 'lazy' }}
+                  {%- endif -%}
+
+                  <div>
+                    <p class="v-cart-line__title">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </p>
+
+                    {%- unless item.variant.title == 'Default Title' -%}
+                      <p class="v-cart-line__variant">{{ item.variant.title }}</p>
+                    {%- endunless -%}
+
+                    <p class="v-cart-page__unit-price">{{ item.final_price | money }}</p>
+                  </div>
+
+                  <div class="v-cart-page__qty" data-qty>
+                    <div class="v-qty">
+                      <button
+                        type="button"
+                        data-cart-change="{{ item.variant.id }}"
+                        data-qty-value="{{ item.quantity | minus: 1 }}"
+                        aria-label="Decrease quantity"
+                      >
+                        {% render 'vesper-icons', icon: 'minus' %}
+                      </button>
+                      <input
+                        type="number"
+                        name="updates[]"
+                        min="0"
+                        value="{{ item.quantity }}"
+                        data-cart-input="{{ item.variant.id }}"
+                        aria-label="Quantity for {{ item.product.title | escape }}"
+                      >
+                      <button
+                        type="button"
+                        data-cart-change="{{ item.variant.id }}"
+                        data-qty-value="{{ item.quantity | plus: 1 }}"
+                        aria-label="Increase quantity"
+                      >
+                        {% render 'vesper-icons', icon: 'plus' %}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="v-cart-page__line-actions">
+                    <div class="v-cart-line__price">{{ item.final_line_price | money }}</div>
+                    <a
+                      class="v-cart-page__remove"
+                      href="{{ item.url_to_remove }}"
+                      aria-label="Remove {{ item.product.title | escape }}"
+                    >
+                      Remove
+                    </a>
+                  </div>
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            <div class="v-cart-page__update">
+              <button type="submit" name="update" class="v-btn v-btn--ghost">Update cart</button>
+            </div>
+          </div>
+
+          <aside class="v-cart-page__summary v-card">
+            <div class="v-cart-summary">
+              <span>Subtotal</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+            <div class="v-cart-page__row">
+              <span>Shipping</span>
+              <span>Calculated at checkout</span>
+            </div>
+
+            <p class="v-cart-note">Taxes and shipping calculated at checkout.</p>
+
+            <div class="v-cart-page__total">
+              <span>Total</span>
+              <span>{{ cart.total_price | money }}</span>
+            </div>
+
+            <a class="v-btn v-btn--primary v-btn--block v-btn--lg" href="{{ routes.cart_url }}/checkout">
+              Proceed to Checkout
+            </a>
+            <a class="v-btn v-btn--ghost v-btn--block" href="{{ routes.all_products_collection_url }}">
+              Continue Shopping
+            </a>
+          </aside>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

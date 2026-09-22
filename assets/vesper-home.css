@@ -1,0 +1,477 @@
+/* ==========================================================================
+   Vesper AgriTech — home page styles
+   Ported from vesper_vue/src/views/HomeView.vue (+ ProductCard / SolutionCard)
+   All selectors are namespaced with `vhome-` to avoid clashing with other pages.
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.vhome-hero {
+  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+  padding-block: clamp(40px, 5vw, 80px);
+  scroll-margin-top: 100px;
+}
+
+.vhome-hero__content {
+  text-align: center;
+  margin-bottom: clamp(40px, 5vw, 60px);
+}
+
+.vhome-hero__title {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: clamp(16px, 2vw, 24px);
+}
+
+.vhome-hero__subtitle {
+  font-size: clamp(16px, 1.5vw, 18px);
+  color: #666;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto clamp(24px, 3vw, 40px);
+}
+
+.vhome-hero__actions {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 16px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ---------- Hero carousel (fading info + media) ---------- */
+.vhome-carousel {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+
+.vhome-carousel__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.vhome-carousel__panel {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  animation: vhome-fade-in 0.4s ease;
+}
+
+.vhome-carousel__panel.is-active {
+  display: flex;
+}
+
+@keyframes vhome-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.vhome-carousel__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.vhome-carousel__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+  background: #fff;
+  color: #2c3e50;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.vhome-carousel__control:hover {
+  background: #52c41a;
+  border-color: #52c41a;
+  color: #fff;
+}
+
+.vhome-carousel__dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vhome-carousel__dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #d9d9d9;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.vhome-carousel__dot.is-active {
+  background: #52c41a;
+  transform: scale(1.25);
+}
+
+.vhome-carousel__media {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background: #f5f7fa;
+  aspect-ratio: 1 / 1;
+}
+
+.vhome-carousel__media:focus-visible {
+  outline: 3px solid #52c41a;
+  outline-offset: 3px;
+}
+
+.vhome-carousel__image {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.vhome-carousel__image.is-active {
+  display: block;
+  animation: vhome-fade-in 0.6s ease;
+}
+
+.vhome-carousel__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vhome-carousel__play {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.vhome-carousel__play:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.vhome-slide__tag {
+  display: inline-block;
+  background: rgba(82, 196, 26, 0.95);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: 600;
+}
+
+.vhome-slide__title {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.vhome-slide__desc {
+  font-size: clamp(16px, 1.5vw, 18px);
+  color: #666;
+  line-height: 1.6;
+  margin: 0 0 8px;
+}
+
+/* ---------- Section heading ---------- */
+.vhome-section-head {
+  margin-bottom: clamp(32px, 4vw, 48px);
+}
+
+.vhome-section-head h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: clamp(12px, 1.5vw, 16px);
+}
+
+.vhome-section-head p {
+  font-size: clamp(16px, 1.5vw, 18px);
+  color: #666;
+}
+
+/* ---------- Shared grids ---------- */
+.vhome-grid {
+  display: grid;
+  gap: clamp(20px, 2.5vw, 24px);
+}
+
+.vhome-grid--solutions {
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+}
+
+.vhome-grid--products {
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: clamp(24px, 3vw, 32px);
+}
+
+/* ---------- Solution (category) cards ---------- */
+.vhome-solution-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  color: inherit;
+}
+
+.vhome-solution-card:hover {
+  color: inherit;
+}
+
+.vhome-solution-card__cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f5f7fa;
+}
+
+.vhome-solution-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.vhome-solution-card:hover .vhome-solution-card__cover img {
+  transform: scale(1.1);
+}
+
+.vhome-solution-card__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vhome-solution-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.vhome-solution-card__desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+/* ---------- Featured product cards ---------- */
+.vhome-products {
+  background: #f8f9fa;
+}
+
+.vhome-product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.vhome-product-card__cover {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f5f7fa;
+}
+
+.vhome-product-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.vhome-product-card:hover .vhome-product-card__cover img {
+  transform: scale(1.1);
+}
+
+.vhome-product-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 20px 16px;
+}
+
+.vhome-product-card__title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.vhome-product-card__title a {
+  color: #2c3e50;
+}
+
+.vhome-product-card__title a:hover {
+  color: var(--vesper-primary);
+}
+
+.vhome-product-card__desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.vhome-product-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.vhome-product-card__actions .v-btn {
+  flex: 1;
+}
+
+/* ---------- Our Values ---------- */
+.vhome-values {
+  background: #ffffff;
+}
+
+.vhome-values__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.vhome-value-card {
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 12px;
+  background: #f8f9fa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vhome-value-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.vhome-value-card__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.vhome-value-card__icon--1 {
+  background: linear-gradient(135deg, #b7eb8f, #95de64);
+}
+
+.vhome-value-card__icon--2 {
+  background: linear-gradient(135deg, #91d5ff, #69c0ff);
+}
+
+.vhome-value-card__icon--3 {
+  background: linear-gradient(135deg, #ffd666, #ffc53d);
+}
+
+.vhome-value-card__icon--4 {
+  background: linear-gradient(135deg, #d3adf7, #b37feb);
+}
+
+.vhome-value-card__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 12px;
+}
+
+.vhome-value-card__desc {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .vhome-carousel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .vhome-carousel__media {
+    order: -1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .vhome-carousel__info {
+    text-align: center;
+    align-items: center;
+  }
+
+  .vhome-carousel__panel {
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .vhome-hero__title {
+    font-size: 36px;
+  }
+
+  .vhome-hero__subtitle {
+    font-size: 16px;
+  }
+
+  .vhome-section-head h2 {
+    font-size: 28px;
+  }
+
+  .vhome-values__grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .vhome-carousel__media {
+    border-radius: 12px;
+  }
+}

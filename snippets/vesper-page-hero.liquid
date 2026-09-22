@@ -1,0 +1,31 @@
+{%- comment -%}
+  Shared page hero used by the inner pages (about, support, legal, solutions…).
+
+  Usage:
+    {% render 'vesper-page-hero',
+       title: 'About Us',
+       subtitle: 'Building the future of farming',
+       breadcrumb: 'About Us' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign hero_title = title | default: page.title
+  assign hero_subtitle = subtitle
+  assign hero_breadcrumb = breadcrumb | default: hero_title
+-%}
+
+<section class="v-page-hero" data-reveal>
+  <div class="v-container">
+    <nav class="v-breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ hero_breadcrumb }}</span>
+    </nav>
+
+    <h1 class="v-page-hero__title">{{ hero_title }}</h1>
+
+    {%- if hero_subtitle != blank -%}
+      <p class="v-page-hero__subtitle">{{ hero_subtitle }}</p>
+    {%- endif -%}
+  </div>
+</section>

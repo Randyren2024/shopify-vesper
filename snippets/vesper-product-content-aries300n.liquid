@@ -1,0 +1,147 @@
+{%- comment -%}
+  Vesper product rich content — Aries300N (Orchard Spraying Robot).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'Aries300N' -%}
+{%- assign vpd_name = name | default: 'Orchard Spraying Robot' -%}
+
+{%- capture aries300n_g1 -%}
+Dimensions=2200 × 1200 × 1000 mm
+Weight=450 kg
+Tank Capacity=300 L
+Spray Width=3–10 m
+Atomization=100–500 μm
+Nozzles=6–8
+Power=Hybrid (Gasoline-Electric)
+Runtime=8 hours
+Charging Time=3 hours
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'aries300n-autonomous-operation-goodbye-to-manual-driving.png' | asset_url }}" alt="Autonomous Operation, Goodbye to Manual Driving" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Autonomous Operation, Goodbye to Manual Driving</h3>
+          <p class="vpd-learn-card__desc">Fully autonomous navigation with GNSS guidance and obstacle avoidance eliminates the need for skilled operators, ensuring consistent spraying patterns orchard-wide.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'aries300n-robust-design-stable-performance-1.png' | asset_url }}" alt="Robust Design, Stable Performance" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Robust Design, Stable Performance</h3>
+          <p class="vpd-learn-card__desc">Heavy-duty chassis with all-terrain capability handles steep orchard slopes and uneven ground, maintaining stable spraying performance in challenging conditions.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'aries300n-reliable-operation-cost-effective-efficiency.png' | asset_url }}" alt="Reliable Operation, Cost-Effective Efficiency" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Reliable Operation, Cost-Effective Efficiency</h3>
+          <p class="vpd-learn-card__desc">Hybrid power system ensures full-day operation without refueling, while air-assisted spraying technology delivers uniform coverage with minimal chemical waste.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'aries300n-flexible-mode-switching.png' | asset_url }}" alt="Flexible Mode Switching" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Flexible Mode Switching</h3>
+          <p class="vpd-learn-card__desc">Seamlessly switch between fully autonomous, remote-controlled, and manual driving modes to adapt to different orchard layouts, tree spacing, and spray requirements.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="Aries300N Specifications" aria-selected="true" role="tab">Aries300N Specifications</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Aries300N Specifications" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = aries300n_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What type of equipment is Aries300N and where is it best used?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Aries300N is an intelligent tracked orchard spraying robot that integrates GNSS navigation and autonomous driving. It is ideal for precision spraying in standardized orchards, vineyards, and forestry operations where consistent coverage and reduced labor are critical.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>How does Aries300N ensure precision spraying and effective coverage?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Aries300N uses a pressure-sending and air-assisted dual spraying system, with 6–8 nozzles producing atomization between 100–500 μm. It achieves a spray width of 3–10 meters, ensuring thorough coverage across diverse orchard layouts and tree spacings.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What control modes does Aries300N support? Can it be managed remotely?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Aries300N supports fully autonomous, remote-controlled, and manual driving modes. Operators can monitor and adjust spraying parameters, track progress, and switch modes remotely, giving maximum flexibility for different operational requirements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">You May Also Like</h2>
+    <div class="vpd-related__grid">
+      <a class="vpd-related-card" href="/products/taurus80e">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-80e-1.webp' | asset_url }}" alt="Taurus80E Smart Lawn Mowing Robot" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">Taurus80E Smart Lawn Mowing Robot</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'Autonomous Electric Mowing Robot for Professional Operations. 24/7 working capability with slope handling and low noise operation.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

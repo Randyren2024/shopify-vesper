@@ -1,0 +1,244 @@
+{%- comment -%}
+  Vesper product rich content — S1 4WD 50° (Remote Control Lawn Mower — 119% Slope, Grip Tread).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'S1 4WD 50°' -%}
+{%- assign vpd_name = name | default: 'Remote Control Lawn Mower — 119% Slope (Grip Tread)' -%}
+
+{%- capture s1_4wd_50_g1 -%}
+Max Slope=50° (119% Grade)
+Obstacle Clearance=10 cm
+Cutting Width=53 cm (21")
+Peak Cutting Power=1985 W
+Cutting Torque=8.13 N·m
+Max Tall Grass Cut=130 cm
+Top Speed=1.5 m/s
+Cutting Efficiency=2000 ㎡/hr (3× coverage)
+{%- endcapture -%}
+
+{%- capture s1_4wd_50_g2 -%}
+Battery=56V automotive-grade LiFePO₄
+Battery Capacity=12Ah (3000 ㎡) / 18Ah (4500 ㎡)
+Cycle Life=1500+ cycles (3× industry average)
+Runtime (12Ah)=Up to 1.5 hours
+Runtime (18Ah)=Up to 2.25 hours
+Charging Time (600W)=~70 min (12Ah) / ~90 min (18Ah)
+Drive=4-Motor AWD, 4× independent brushless, 1000W traction output
+Control=FOC torque control, electronic braking, 5ms response
+{%- endcapture -%}
+
+{%- capture s1_4wd_50_g3 -%}
+Chassis=High-clearance aluminum alloy (aircraft-grade)
+Deck Material=DC06 deep-draw stamped steel
+Tires=12mm non-directional tread teeth, semi-solid TPU
+Weight=64 kg
+Remote Control=DJI-grade, 5ms response, 400m range
+Safety=4 ultrasonic sensors + front bumper, tilt/roll auto-stop
+Vacuum Suction=931 CFM, 70 L collection bag
+Modes=Discharge, Mulch, Bag, Leaf Shredding Vacuum
+Warranty=24-month (main unit, remote, battery)
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vesper-remote.webp' | asset_url }}" alt="All-Wheel Beast Drive" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">All-Wheel Beast Drive</h3>
+          <p class="vpd-learn-card__desc">4-Motor AWD with 4× independent brushless motors delivers 1000W of traction output. Combined with 12mm grip-tread tires, the S1 4WD maintains grip on 50° slopes, wet grass, and loose soil — terrain that defeats walk-behind and ride-on mowers.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vesper-tall-grass.webp' | asset_url }}" alt="1985W Peak Cutting Power" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">1985W Peak Cutting Power</h3>
+          <p class="vpd-learn-card__desc">8.13 N·m of cutting torque chews through 1.3 m tall grass, wet matted patches, and tough weeds without stalling. The high-lift blade creates strong airflow that stands grass up for a clean, even cut on the first pass.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vesper-vacuum.webp' | asset_url }}" alt="Multi-Season Yard Care" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Multi-Season Yard Care</h3>
+          <p class="vpd-learn-card__desc">Switch between Discharge, Mulch, Bag, and the 931 CFM leaf-shredding vacuum. The 70 L collection bag turns autumn leaves into fine mulch in one pass — replace the rake, blower, and chipper with a single machine.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vesper-aluminum.webp' | asset_url }}" alt="Engineered Like a Tank" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Engineered Like a Tank</h3>
+          <p class="vpd-learn-card__desc">Aircraft-grade aluminum chassis paired with DC06 deep-draw stamped steel deck stands up to commercial-duty use. Modular, service-friendly design — replace blades, batteries, and key parts in minutes with no specialized tools.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vesper-no-rtk.webp' | asset_url }}" alt="Ready in Seconds" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Ready in Seconds</h3>
+          <p class="vpd-learn-card__desc">No RTK base station to set up, no app to pair, no fuel to mix. Pick up the DJI-grade remote and the S1 connects in under 5 seconds. Mow from up to 400 m away — from the porch, the shade, or the office window.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vesper-local-repair.webp' | asset_url }}" alt="Local AU Support" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Local AU Support</h3>
+          <p class="vpd-learn-card__desc">Local repair hubs in NSW and Victoria, 2-year warranty on the main unit, remote, and battery, and 30-day return policy. Vesper AU is engineered by former DJI experts and supported by a local team that responds within 2 business days.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="Performance" aria-selected="true" role="tab">Performance</button>
+          <button type="button" class="v-tabs__tab" data-tab="Power &amp; Battery" aria-selected="false" role="tab">Power &amp; Battery</button>
+          <button type="button" class="v-tabs__tab" data-tab="Build &amp; Safety" aria-selected="false" role="tab">Build &amp; Safety</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Performance" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = s1_4wd_50_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Power &amp; Battery" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = s1_4wd_50_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Build &amp; Safety" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = s1_4wd_50_g3 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the difference between the 50° Grip Tread and 40° Wide Wheel editions?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Both use the same 4-Motor AWD platform, 53 cm deck, and 1985W peak power. The 50° Grip Tread edition uses aggressive tread tires for maximum slope climbing on 50° (119% grade) terrain. The 40° Wide Wheel edition uses wider TPU tires for a larger contact patch — preferred for soft soil, mud, and customers who want extra stability.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>How long does the battery last and what is the maximum mowing area?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Powered by 56V LiFePO₄ batteries with 1500 cycles — 3× the industry average. The 18Ah battery runs up to 2h 15m and covers up to 4500 ㎡ per charge. The 12Ah runs up to 1h 30m and covers 3000 ㎡. Charging from a 600W charger takes ~90 min (18Ah) and ~70 min (12Ah).</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What safety features protect the operator and bystanders?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The S1 has 4 ultrasonic sensors that detect obstacles, people, and pets — slowing or stopping the machine and blades on approach. A front bumper adds an impact buffer. Tilt and roll-over sensors automatically stop the blades if the unit tips beyond a safe angle.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Is it controlled only by a remote, and how far does it reach?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Yes — operated entirely by the included remote control. Signal range reaches up to 400 m. For large areas, one-touch straight-line and one-touch turning functions are available. For safety and visual range, 100 m is the recommended working distance.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What mowing modes are available?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Three primary modes: Mulching (cuts clippings into fine fragments that fertilize the lawn), Bagging (collects clippings in a rear bag for easy disposal), and Rear Discharge (expels clippings out the back for quick cleanup). The 4-in-1 add-on adds the leaf-shredding vacuum.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What maintenance does the S1 require?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Routine maintenance is limited to blade replacement and machine cleaning. There is no oil, no spark plugs, no fuel filter. LiFePO₄ batteries need only a top-up charge every 3 months during long-term storage to stay above 70%.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">You May Also Like</h2>
+    <div class="vpd-related__grid">
+      <a class="vpd-related-card" href="/products/vesper-s1-4wd-40">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-vesper-s1-4wd-40.webp' | asset_url }}" alt="S1 4WD 40° Remote Control Lawn Mower — 85% Slope (Wide Wheel)" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">S1 4WD 40° Remote Control Lawn Mower — 85% Slope (Wide Wheel)</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'The S1 4WD Wide Wheel Edition climbs 40° (85% Grade) slopes with a wider TPU contact patch and bold straight-tread pattern for stronger grip on steeper lawns, damp grass, and soft ground. Same 4-Motor AWD platform, 21" deck, 1985W peak cutting power, and 3.94" obstacle clearance as the 50° — with the sweet-spot tire for everyday steep terrain.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,245 @@
+{%- comment -%}
+  Vesper legal page — Terms & Conditions.
+  Copy ported verbatim from vesper_vue/src/views/TermsView.vue
+{%- endcomment -%}
+
+{{ 'vesper-legal.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'Terms & Conditions',
+   subtitle: 'Please read these terms carefully before using our services',
+   breadcrumb: 'Terms & Conditions' %}
+
+<section class="v-section v-section--tight v-legal">
+  <div class="v-container v-legal__grid">
+    <aside class="v-legal__toc">
+      <h3 class="v-legal__toc-title">Contents</h3>
+      <ul class="v-legal__toc-list">
+        <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+        <li><a href="#eligibility">2. Eligibility</a></li>
+        <li><a href="#products-services">3. Products &amp; Services</a></li>
+        <li><a href="#user-accounts">4. User Accounts</a></li>
+        <li><a href="#intellectual-property">5. Intellectual Property</a></li>
+        <li><a href="#user-conduct">6. User Conduct</a></li>
+        <li><a href="#disclaimer">7. Disclaimer</a></li>
+        <li><a href="#limitation-liability">8. Limitation of Liability</a></li>
+        <li><a href="#indemnification">9. Indemnification</a></li>
+        <li><a href="#termination">10. Termination</a></li>
+        <li><a href="#governing-law">11. Governing Law</a></li>
+        <li><a href="#contact-us">12. Contact Us</a></li>
+      </ul>
+    </aside>
+
+    <div class="v-legal__main">
+      <div id="acceptance" class="v-legal__block">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing or using Vesper AgriTech's website, products, or services, you agree to be bound by these
+          Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not access or use our services.
+        </p>
+        <p>
+          <strong>Last Updated:</strong> {{ 'now' | date: '%B %-d, %Y' }}
+        </p>
+      </div>
+
+      <div id="eligibility" class="v-legal__block">
+        <h2>2. Eligibility</h2>
+        <p>To use our services, you must:</p>
+        <ul>
+          <li>Be at least 16 years old, or the age of majority in your jurisdiction</li>
+          <li>Have the legal capacity to enter into binding contracts</li>
+          <li>Not be prohibited from receiving our services under applicable law</li>
+        </ul>
+        <p>
+          By using our services, you represent that you meet these eligibility requirements.
+        </p>
+      </div>
+
+      <div id="products-services" class="v-legal__block">
+        <h2>3. Products &amp; Services</h2>
+        <h3>Product Descriptions</h3>
+        <p>
+          We strive to provide accurate product descriptions, specifications, and pricing.
+          However, we do not warrant that product descriptions, images, or pricing are accurate,
+          complete, or current. Errors will be corrected when discovered.
+        </p>
+        <h3>Orders and Pricing</h3>
+        <p>
+          All orders are subject to acceptance. Prices are subject to change without notice.
+          We reserve the right to refuse or cancel any order for any reason.
+        </p>
+        <h3>Payment</h3>
+        <p>
+          Payment terms are specified at the time of purchase. We accept various payment methods
+          as listed on our website.
+        </p>
+        <h3>Shipping &amp; Delivery</h3>
+        <p>
+          Shipping times are estimates and may vary. Risk of loss passes to you upon delivery
+          to the carrier.
+        </p>
+      </div>
+
+      <div id="user-accounts" class="v-legal__block">
+        <h2>4. User Accounts</h2>
+        <h3>Account Registration</h3>
+        <p>
+          Some services require account registration. You agree to provide accurate and complete
+          information and to keep your information updated.
+        </p>
+        <h3>Account Security</h3>
+        <p>You are responsible for:</p>
+        <ul>
+          <li>Maintaining the confidentiality of your account credentials</li>
+          <li>All activities that occur under your account</li>
+          <li>Notifying us immediately of any unauthorized access</li>
+        </ul>
+        <p>
+          We are not liable for any losses caused by unauthorized account access.
+        </p>
+        <h3>Account Termination</h3>
+        <p>
+          We reserve the right to terminate accounts that violate these Terms or for any other
+          reason at our sole discretion.
+        </p>
+      </div>
+
+      <div id="intellectual-property" class="v-legal__block">
+        <h2>5. Intellectual Property</h2>
+        <h3>Ownership</h3>
+        <p>
+          All content on our website, including text, graphics, logos, images, software, and other
+          materials, is owned by Vesper AgriTech or our licensors and is protected by copyright,
+          trademark, and other intellectual property laws.
+        </p>
+        <h3>Restrictions</h3>
+        <p>You may not:</p>
+        <ul>
+          <li>Copy, modify, or distribute our content without permission</li>
+          <li>Use our trademarks without authorization</li>
+          <li>Reproduce our products or designs</li>
+          <li>Remove proprietary notices</li>
+        </ul>
+        <p class="v-legal__alert">
+          <strong>Allowed Use:</strong> You may view and print content for personal, non-commercial use only.
+        </p>
+      </div>
+
+      <div id="user-conduct" class="v-legal__block">
+        <h2>6. User Conduct</h2>
+        <p>When using our services, you agree NOT to:</p>
+        <ul>
+          <li>Violate any applicable laws or regulations</li>
+          <li>Infringe on intellectual property rights</li>
+          <li>Transmit harmful, offensive, or unlawful content</li>
+          <li>Attempt to gain unauthorized access to our systems</li>
+          <li>Interfere with the proper operation of our services</li>
+          <li>Share false or misleading information</li>
+          <li>Harass, abuse, or harm others</li>
+        </ul>
+        <p>
+          Violation of these rules may result in termination of your access and potential legal action.
+        </p>
+      </div>
+
+      <div id="disclaimer" class="v-legal__block">
+        <h2>7. Disclaimer</h2>
+        <p>
+          <strong>OUR SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE."</strong>
+        </p>
+        <p>We do not warrant that:</p>
+        <ul>
+          <li>Our services will be uninterrupted or error-free</li>
+          <li>Our products will meet your expectations</li>
+          <li>Our website is free of viruses or other harmful components</li>
+        </ul>
+        <p>
+          We make no warranties, express or implied, regarding our services, products, or this website,
+          including any warranties of merchantability, fitness for a particular purpose, or non-infringement.
+        </p>
+      </div>
+
+      <div id="limitation-liability" class="v-legal__block">
+        <h2>8. Limitation of Liability</h2>
+        <p>
+          To the maximum extent permitted by law, Vesper AgriTech shall not be liable for:
+        </p>
+        <ul>
+          <li>Indirect, incidental, consequential, or punitive damages</li>
+          <li>Loss of profits, revenue, data, or business opportunities</li>
+          <li>Damages arising from your use or inability to use our services</li>
+          <li>Damages arising from unauthorized access to your data</li>
+        </ul>
+        <p>
+          Our total liability for any claims arising from these Terms shall not exceed the amount
+          you paid for the specific product or service giving rise to the claim.
+        </p>
+      </div>
+
+      <div id="indemnification" class="v-legal__block">
+        <h2>9. Indemnification</h2>
+        <p>
+          You agree to indemnify, defend, and hold harmless Vesper AgriTech and its officers, directors,
+          employees, and agents from any claims, damages, losses, liabilities, costs, or expenses
+          (including reasonable attorneys' fees) arising from:
+        </p>
+        <ul>
+          <li>Your violation of these Terms</li>
+          <li>Your misuse of our services or products</li>
+          <li>Your infringement of any third-party rights</li>
+          <li>Your submission of inaccurate information</li>
+        </ul>
+      </div>
+
+      <div id="termination" class="v-legal__block">
+        <h2>10. Termination</h2>
+        <h3>Termination by You</h3>
+        <p>You may stop using our services at any time.</p>
+        <h3>Termination by Us</h3>
+        <p>We may terminate or suspend your access if you:</p>
+        <ul>
+          <li>Violate these Terms</li>
+          <li>Fail to pay for products or services</li>
+          <li>Engage in unlawful behavior</li>
+          <li>Provide inaccurate information</li>
+        </ul>
+        <p>Upon termination, you must stop using our services and destroy any copies of our content.</p>
+      </div>
+
+      <div id="governing-law" class="v-legal__block">
+        <h2>11. Governing Law &amp; Dispute Resolution</h2>
+        <h3>Governing Law</h3>
+        <p>These Terms are governed by the laws of Australia, without regard to conflict of law principles.</p>
+        <h3>Dispute Resolution</h3>
+        <p>
+          Any disputes arising from these Terms will first be resolved through good-faith negotiation.
+          If resolution cannot be reached, disputes will be submitted to binding arbitration
+          under Australian law.
+        </p>
+        <p>
+          Nothing in this section prevents us from seeking injunctive relief in a court of competent jurisdiction.
+        </p>
+      </div>
+
+      <div id="contact-us" class="v-legal__block">
+        <h2>12. Contact Us</h2>
+        <p>If you have questions about these Terms, please contact us:</p>
+        <div class="v-legal__contact">
+          <p><strong>Vesper AgriTech</strong></p>
+          <p>📧 Email: market@vesperinno.com</p>
+          <p>📞 Phone: +61 448 290 926</p>
+          <p>📍 Location: Australia</p>
+          <a class="v-btn v-btn--primary" href="/pages/contact-us">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Terms and conditions",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

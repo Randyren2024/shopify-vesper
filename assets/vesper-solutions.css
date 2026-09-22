@@ -1,0 +1,149 @@
+/*
+ * Solutions page styles.
+ * Ported from src/views/SolutionsView.vue (scoped styles).
+ * Loaded by sections/vesper-solutions-hero.liquid.
+ */
+
+/* ---------- Hero ---------- */
+.v-solutions-hero .v-page-hero {
+  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+}
+
+.v-solutions-hero .v-page-hero__title {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Category groups ---------- */
+.v-solutions-groups {
+  padding-block: clamp(48px, 6vw, 60px);
+  background: var(--vesper-bg);
+}
+
+.v-solutions-group + .v-solutions-group {
+  margin-top: 60px;
+}
+
+.v-solutions-group__head {
+  max-width: 760px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.v-solutions-group__title {
+  margin: 0 0 12px;
+  color: var(--vesper-text);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.v-solutions-group__desc {
+  margin: 0;
+  color: var(--vesper-text-secondary);
+  font-size: 16px;
+}
+
+.v-solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 24px;
+}
+
+/* ---------- Solution card ---------- */
+.v-solution-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.v-solution-card__media {
+  display: block;
+  height: 200px;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.v-solution-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.v-solution-card:hover .v-solution-card__img {
+  transform: scale(1.06);
+}
+
+.v-solution-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.v-solution-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.v-solution-card__title a {
+  color: var(--vesper-text);
+  text-decoration: none;
+}
+
+.v-solution-card__title a:hover {
+  color: var(--vesper-primary);
+}
+
+.v-solution-card__desc {
+  margin: 0;
+  color: var(--vesper-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ---------- CTA ---------- */
+.v-solutions-cta {
+  padding: clamp(56px, 7vw, 80px) 0;
+  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  color: #fff;
+  text-align: center;
+}
+
+.v-solutions-cta h2 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: clamp(26px, 3.4vw, 32px);
+  font-weight: 700;
+}
+
+.v-solutions-cta p {
+  margin: 0 0 32px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.v-solutions-cta .v-btn {
+  background: #fff;
+  border-color: transparent;
+  color: #2e7d32;
+}
+
+.v-solutions-cta .v-btn:hover {
+  background: #fff;
+  border-color: transparent;
+  color: #2e7d32;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .v-solutions-group__title {
+    font-size: 24px;
+  }
+}

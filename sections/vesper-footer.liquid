@@ -1,0 +1,347 @@
+{%- comment -%}
+  Vesper footer — ported from src/components/Footer.vue
+  Desktop: 5 columns. Mobile: the two link columns collapse into an accordion.
+
+  Link columns are block driven so the link set ships with the theme and does
+  not depend on menus configured in the Shopify admin.
+{%- endcomment -%}
+
+{%- liquid
+  assign footer_logo = section.settings.logo | default: settings.vesper_logo
+  assign whatsapp = section.settings.whatsapp_number | default: settings.vesper_whatsapp_number
+  assign quick_links = section.blocks | where: 'type', 'quick_link'
+  assign legal_links = section.blocks | where: 'type', 'legal_link'
+-%}
+
+<footer class="v-footer" role="contentinfo">
+  <div class="v-footer__grid">
+    <div class="v-footer__col">
+      {%- if footer_logo != blank -%}
+        {{ footer_logo | image_url: width: 300 | image_tag: class: 'v-footer__logo', widths: '150, 300', alt: shop.name, loading: 'lazy' }}
+      {%- else -%}
+        <span class="v-footer__title">{{ shop.name }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <p class="v-footer__desc">{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="v-footer__col v-footer__col--collapsible">
+      <h3 class="v-footer__title">{{ section.settings.quick_links_title }}</h3>
+      {%- for block in quick_links -%}
+        <a class="v-footer__link" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+          {{ block.settings.title }}
+        </a>
+      {%- endfor -%}
+    </div>
+
+    <div class="v-footer__col v-footer__col--collapsible">
+      <h3 class="v-footer__title">{{ section.settings.legal_title }}</h3>
+      {%- for block in legal_links -%}
+        <a class="v-footer__link" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+          {{ block.settings.title }}
+        </a>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Mobile-only accordion replacing the two columns above {%- endcomment -%}
+    <div class="v-footer__accordion">
+      <div class="v-accordion" data-accordion>
+        <div class="v-accordion__item" data-open="false">
+          <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+            <span>{{ section.settings.quick_links_title }}</span>
+            {% render 'vesper-icons', icon: 'chevron-down' %}
+          </button>
+          <div class="v-accordion__panel">
+            {%- for block in quick_links -%}
+              <a class="v-footer__link" href="{{ block.settings.link | default: '#' }}">{{ block.settings.title }}</a>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <div class="v-accordion__item" data-open="false">
+          <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+            <span>{{ section.settings.legal_title }}</span>
+            {% render 'vesper-icons', icon: 'chevron-down' %}
+          </button>
+          <div class="v-accordion__panel">
+            {%- for block in legal_links -%}
+              <a class="v-footer__link" href="{{ block.settings.link | default: '#' }}">{{ block.settings.title }}</a>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="v-footer__col">
+      <h3 class="v-footer__title">{{ section.settings.contact_title }}</h3>
+      {%- if section.settings.email != blank -%}
+        <a class="v-footer__link" href="mailto:{{ section.settings.email }}">
+          {% render 'vesper-icons', icon: 'mail' %}
+          <span>{{ section.settings.email }}</span>
+        </a>
+      {%- endif -%}
+      {%- if section.settings.phone != blank -%}
+        <a class="v-footer__link" href="tel:{{ section.settings.phone | remove: ' ' }}">
+          {% render 'vesper-icons', icon: 'phone' %}
+          <span>{{ section.settings.phone }}</span>
+        </a>
+      {%- endif -%}
+      {%- if section.settings.address != blank -%}
+        <p class="v-footer__text">
+          {% render 'vesper-icons', icon: 'map-pin' %}
+          {{ section.settings.address }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    <div class="v-footer__col">
+      <h3 class="v-footer__title">{{ section.settings.follow_title }}</h3>
+      {%- if section.settings.linkedin_url != blank -%}
+        <a class="v-footer__link" href="{{ section.settings.linkedin_url }}" target="_blank" rel="noopener">
+          {% render 'vesper-icons', icon: 'linkedin' %}
+          <span>LinkedIn</span>
+        </a>
+      {%- endif -%}
+      {%- if section.settings.show_whatsapp and whatsapp != blank -%}
+        <a class="v-footer__link" href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener">
+          {% render 'vesper-icons', icon: 'whatsapp' %}
+          <span>WhatsApp</span>
+        </a>
+      {%- endif -%}
+
+      {%- comment -%}
+        Official Shopify account component. Customers stay on the storefront: the
+        avatar opens an account sheet offering passwordless, Shop and social
+        (Google / Facebook) sign-in, plus links to orders and profile. Falls back
+        to the hosted sign-in page for legacy customer accounts.
+      {%- endcomment -%}
+      {%- if section.settings.show_account and shop.customer_accounts_enabled -%}
+        <div class="v-footer__account">
+          <shopify-account menu="customer-account-main-menu"></shopify-account>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="v-footer__bottom">
+    <p>
+      {{ section.settings.copyright_prefix }}
+      {{ 'now' | date: '%Y' }}
+      {{ section.settings.copyright_holder }}
+    </p>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .v-footer__account {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  .v-footer__account shopify-account {
+    --shopify-account-signed-in-avatar-size: 40px;
+    --shopify-account-signed-in-avatar-color-background: #52c41a;
+    --shopify-account-signed-in-avatar-color-text: #fff;
+  }
+
+  .v-footer__account shopify-account::part(signed-out-avatar) {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .v-footer__accordion {
+    display: none;
+  }
+
+  @media (max-width: 992px) {
+    .v-footer__accordion {
+      display: block;
+      width: 100%;
+    }
+
+    .v-footer__accordion .v-accordion {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .v-footer__accordion .v-accordion__item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .v-footer__accordion .v-accordion__trigger {
+      justify-content: center;
+      color: #fff;
+      padding: 14px 0;
+    }
+
+    .v-footer__accordion .v-accordion__panel {
+      text-align: center;
+    }
+
+    .v-footer__accordion .v-footer__link {
+      justify-content: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Vesper footer",
+  "tag": "div",
+  "class": "vesper-footer-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Brand description",
+      "default": "Committed to advancing agricultural modernization through technological innovation, achieving sustainable agricultural production"
+    },
+    {
+      "type": "header",
+      "content": "Link columns"
+    },
+    {
+      "type": "text",
+      "id": "quick_links_title",
+      "label": "Quick links heading",
+      "default": "Quick Links"
+    },
+    {
+      "type": "text",
+      "id": "legal_title",
+      "label": "Legal heading",
+      "default": "Legal"
+    },
+    {
+      "type": "header",
+      "content": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact heading",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "market@vesperinno.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "+61 448 290 926"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "Australia"
+    },
+    {
+      "type": "header",
+      "content": "Social"
+    },
+    {
+      "type": "text",
+      "id": "follow_title",
+      "label": "Follow heading",
+      "default": "Follow Us"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_whatsapp",
+      "label": "Show WhatsApp link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number (digits only)",
+      "default": "61448290926"
+    },
+    {
+      "type": "header",
+      "content": "Account"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account component",
+      "info": "Adds Shopify's shopify-account component. Requires customer accounts to be enabled; Google / Facebook sign-in is offered once connected in Settings > Customer accounts.",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_prefix",
+      "label": "Prefix",
+      "default": "Copyright©"
+    },
+    {
+      "type": "text",
+      "id": "copyright_holder",
+      "label": "Copyright holder",
+      "default": "Shenzhen Vesper Inno Technology Co., Ltd All Rights Reserved"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "quick_link",
+      "name": "Quick link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "legal_link",
+      "name": "Legal link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

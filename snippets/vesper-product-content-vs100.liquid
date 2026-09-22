@@ -1,0 +1,186 @@
+{%- comment -%}
+  Vesper product rich content — VS100 (Spray Control System).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'VS100' -%}
+{%- assign vpd_name = name | default: 'Spray Control System' -%}
+
+{%- capture vs100_g1 -%}
+Size=Φ 152 × 62.2 mm
+Weight=≤ 400 g
+GPS=L1/L2/L5
+BDS=B1/B2/B3
+GLONASS=L1/L2/L3
+GALILEO=E1/E5a/E5b/E6
+QZSS=L1/L2/L5/L6
+IRNSS=L5
+L-Band=Supported
+{%- endcapture -%}
+
+{%- capture vs100_g2 -%}
+Display=10.1 inch
+IP Rating=IP67
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-precision-spraying-with-section-control-4.png' | asset_url }}" alt="Precision Spraying With Section Control" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Precision Spraying With Section Control</h3>
+          <p class="vpd-learn-card__desc">Up to 16 individually controlled sections ensure precise chemical application, automatically shutting off in overlap zones to prevent waste and crop damage.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-visualized-operation-interface.png' | asset_url }}" alt="Visualized Operation Interface" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Visualized Operation Interface</h3>
+          <p class="vpd-learn-card__desc">Real-time display of spray pressure, flow rate, coverage area, and section status on an intuitive touchscreen interface for complete operational awareness.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-reapplication-control.png' | asset_url }}" alt="Reapplication Control" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Reapplication Control</h3>
+          <p class="vpd-learn-card__desc">Smart tracking prevents double-spraying of previously treated areas, saving chemicals and protecting crops from over-application damage.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-precision-spraying-with-section-control-3.png' | asset_url }}" alt="High Compatibility and Easy Expansion" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">High Compatibility and Easy Expansion</h3>
+          <p class="vpd-learn-card__desc">Works with major sprayer brands and ISOBUS-compatible equipment. Modular design supports future upgrades to meet evolving precision agriculture needs.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-row-crops.png' | asset_url }}" alt="Row Crops" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Row Crops</h3>
+          <p class="vpd-learn-card__desc">Optimized for row crop applications including corn, soybeans, cotton, and wheat, with precise nozzle control matched to row spacing.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-specialty-crops.png' | asset_url }}" alt="Specialty Crops" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Specialty Crops</h3>
+          <p class="vpd-learn-card__desc">Adaptable spraying parameters for specialty crops including vineyards, orchards, and vegetable production, ensuring appropriate coverage for each crop type.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-large-scale-farms.png' | asset_url }}" alt="Large-Scale Farms" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Large-Scale Farms</h3>
+          <p class="vpd-learn-card__desc">Designed for high-efficiency operations across large acreages, with automated documentation and reporting for regulatory compliance and farm management.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'vs100-environmental-protection-projects.png' | asset_url }}" alt="Environmental Protection Projects" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Environmental Protection Projects</h3>
+          <p class="vpd-learn-card__desc">Precision application reduces chemical drift and runoff, supporting sustainable farming practices and environmental stewardship goals.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="GNSS Antenna" aria-selected="true" role="tab">GNSS Antenna</button>
+          <button type="button" class="v-tabs__tab" data-tab="Tablet Display" aria-selected="false" role="tab">Tablet Display</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="GNSS Antenna" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = vs100_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Tablet Display" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = vs100_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the VS100 and what are its core functions?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The VS100 is an intelligent spray control system that integrates GNSS positioning, sensors, and electromechanical-hydraulic control. It enables precision section control, automatic flow adjustment based on vehicle speed, and real-time monitoring of spraying parameters for efficient crop protection.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>How does the VS100 achieve precise spraying? What is its accuracy?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">VS100 uses a closed-loop control algorithm to adjust spray flow based on vehicle speed and GNSS position. It maintains flow deviation within ±2% and supports up to 16 independent sections, ensuring precise application with minimal overlap or missed areas.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>How does the VS100 help reduce chemical usage and protect the environment?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">VS100 supports automatic section control and intelligent reapplication prevention, eliminating overlaps and skips. This minimizes pesticide waste and environmental impact while ensuring complete crop coverage. Real-time data logging supports regulatory compliance and sustainable farming practices.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>

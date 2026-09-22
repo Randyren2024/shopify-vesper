@@ -1,0 +1,67 @@
+{%- comment -%}
+  Vesper 404 page (templates/404.json). The Vue app has no equivalent screen,
+  so this is a short, friendly fallback built from the shared Vesper classes.
+{%- endcomment -%}
+
+<section class="v-section v-404">
+  <div class="v-container">
+    <div class="v-404__inner v-card">
+      <p class="v-eyebrow">Error 404</p>
+      <h1 class="v-404__title">Page not found</h1>
+      <p class="v-404__text">
+        The page you are looking for doesn't exist or has been moved. Let's get you back on track.
+      </p>
+
+      <div class="v-404__actions">
+        <a class="v-btn v-btn--primary v-btn--lg" href="{{ routes.root_url }}">Back to Home</a>
+        <a class="v-btn v-btn--outline v-btn--lg" href="{{ routes.all_products_collection_url }}">Browse Products</a>
+        <a class="v-btn v-btn--ghost v-btn--lg" href="{{ routes.cart_url }}">View Cart</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.v-404__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 32px;
+  text-align: center;
+}
+
+.v-404__title {
+  margin: 0 0 12px;
+  font-size: clamp(26px, 4vw, 38px);
+}
+
+.v-404__text {
+  margin: 0 auto 28px;
+  max-width: 460px;
+  color: var(--vesper-text-secondary);
+}
+
+.v-404__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 576px) {
+  .v-404__inner {
+    padding: 40px 20px;
+  }
+
+  .v-404__actions {
+    flex-direction: column;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "404 page",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

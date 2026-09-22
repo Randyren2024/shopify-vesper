@@ -1,0 +1,41 @@
+{{ 'vesper-solutions.css' | asset_url | stylesheet_tag }}
+
+<div class="v-solutions-hero">
+  {%- render 'vesper-page-hero',
+    title: section.settings.title,
+    subtitle: section.settings.subtitle,
+    breadcrumb: section.settings.breadcrumb -%}
+</div>
+
+{% schema %}
+{
+  "name": "Solutions hero",
+  "tag": "div",
+  "class": "vesper-solutions-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Solutions"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Comprehensive agricultural technology solutions for modern farming"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb",
+      "label": "Breadcrumb label",
+      "default": "Solutions"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Solutions hero"
+    }
+  ]
+}
+{% endschema %}

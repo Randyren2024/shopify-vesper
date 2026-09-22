@@ -1,0 +1,115 @@
+{{ 'vesper-products.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Collection template — same layout as the hand-authored
+  "Products & Solutions" page: gradient hero, sticky category tab bar,
+  card grid, closing CTA.
+
+  The difference is the data source. The grid is driven by
+  `collection.products`, so newly published products appear automatically,
+  and the tab bar links to the real collections instead of filtering
+  in-page with ?category=.
+{%- endcomment -%}
+
+{%- liquid
+  assign category_handles = 'lawn-mower|precision-agriculture|precision-spraying|land-leveling|machine-control' | split: '|'
+-%}
+
+<div class="v-products-hero">
+  {%- render 'vesper-page-hero',
+    title: collection.title,
+    subtitle: collection.description,
+    breadcrumb: collection.title -%}
+</div>
+
+<section class="v-products-filter">
+  <div class="v-container">
+    <nav class="v-products-filter__tabs" aria-label="Product categories">
+      <a
+        class="v-products-filter__tab{% if collection.handle == 'all' %} is-active{% endif %}"
+        href="{{ routes.all_products_collection_url }}"
+      >
+        All
+      </a>
+
+      {%- for category_handle in category_handles -%}
+        {%- assign category = collections[category_handle] -%}
+        {%- if category -%}
+          <a
+            class="v-products-filter__tab{% if collection.handle == category_handle %} is-active{% endif %}"
+            href="{{ category.url }}"
+          >
+            {{ category.title }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+  </div>
+</section>
+
+<section class="v-products-grid">
+  <div class="v-container">
+    {%- paginate collection.products by 24 -%}
+      <div class="v-products-grid__inner" data-filter="all">
+        {%- for product in collection.products -%}
+          {%- render 'vesper-product-card', product: product -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="v-pagination" aria-label="Pagination">
+          {%- if paginate.previous -%}
+            <a class="v-btn v-btn--ghost v-btn--sm" href="{{ paginate.previous.url }}">&larr; Previous</a>
+          {%- endif -%}
+
+          <span class="v-pagination__info">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+
+          {%- if paginate.next -%}
+            <a class="v-btn v-btn--ghost v-btn--sm" href="{{ paginate.next.url }}">Next &rarr;</a>
+          {%- endif -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{%- if collection.products_count > 0 -%}
+  <section class="v-products-cta">
+    <div class="v-container">
+      <h2>Ready to Transform Your Farming?</h2>
+      <p>Contact us today for a personalized demonstration or quote</p>
+      <div class="v-products-cta__actions">
+        <button type="button" class="v-btn v-btn--lg v-products-cta__primary" data-request-demo>Request a Demo</button>
+        <a class="v-btn v-btn--lg v-products-cta__outline" href="/pages/contact-us">Contact Us</a>
+      </div>
+    </div>
+  </section>
+{%- else -%}
+  <section class="v-products-empty">
+    <div class="v-container">
+      <p class="v-products-empty__text">No products found in this collection</p>
+      <a class="v-btn v-btn--primary" href="{{ routes.all_products_collection_url }}">View All Products</a>
+    </div>
+  </section>
+{%- endif -%}
+
+{% stylesheet %}
+  .v-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .v-pagination__info {
+    color: var(--vesper-text-secondary);
+    font-size: 14px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:general.collection",
+  "settings": []
+}
+{% endschema %}

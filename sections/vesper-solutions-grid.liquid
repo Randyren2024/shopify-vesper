@@ -1,0 +1,79 @@
+{%- comment -%}
+  Solutions — one group per product category, each with its own card grid.
+  Ported from src/views/SolutionsView.vue (categories + getProductsByCategory).
+
+  Product data is repeated here as parallel Liquid string arrays (the same
+  strategy as sections/vesper-products-grid.liquid) so this section is
+  self-contained. Groups without any product are skipped.
+{%- endcomment -%}
+
+{%- liquid
+  assign category_ids = 'lawn-mower|precision-agriculture|precision-spraying|land-leveling|machine-control' | split: '|'
+  assign category_names = 'Lawn Mower|Precision Agriculture|Precision Agriculture Solutions|Land Leveling System|Machine Control' | split: '|'
+  assign category_descriptions = 'Remote control robotic lawn mowers for steep slopes and large lawns|Advanced auto-steering systems including AF718, AF305, and ISOBUS terminal|Precision spraying solutions including VS100 Spray Control System|GPS-controlled land leveling systems for sustainable agriculture|Intelligent guidance systems for construction and mining equipment' | split: '|'
+
+  assign product_ids = 'af718|af305|isobus|vs100|w20|aries300n|taurus80e|egs101' | split: '|'
+  assign product_codes = 'AF718|AF305|ISOBUS|VS100|W20|Aries300N|Taurus80E|EGS101' | split: '|'
+  assign product_names = 'Autosteering System|Automated Steering System|Terminal|Spray Control System|Land Leveling System|Orchard Spraying Robot|Smart Lawn Mowing Robot|Intelligent Excavator Guidance System' | split: '|'
+  assign product_categories = 'precision-agriculture|precision-agriculture|precision-agriculture|precision-spraying|land-leveling|agricultural-robotics|agricultural-robotics|machine-control' | split: '|'
+  assign product_images = 'products-af718-main.png|products-af305-main.png|products-isobus-main.png|products-vs100-main.png|products-w20-main.png|products-aries300n-main.png|products-80e-1.webp|products-egs101-main.png' | split: '|'
+  assign product_descriptions = 'The AF718 is Vesper&#39;s next-generation high-performance autosteering system. Powered by an advanced computing platform, it significantly enhances accuracy and efficiency across diverse farming operations.|AF305 delivers high accuracy, smart path planning, and broad equipment compatibility to boost field efficiency and simplify operations.|Empower your implements with a certified ISOBUS terminal featuring a 12.1" sunlight-readable touchscreen, built-in high-precision GNSS guidance, and seamless compatibility with major agricultural equipment.|VS100 offers 98% spraying accuracy, GNSS-based flow control, section automation, and ISOBUS support for efficient, traceable crop protection.|W20 delivers ≤2.5 cm leveling accuracy with terrain compensation — ideal for farming, reclamation, and site preparation.|Aries300N Smart Sprayer delivers GNSS-guided, hybrid spraying for orchards. Ensures full coverage, cuts labor, and works smarter with Vesper.|Autonomous Electric Mowing Robot for Professional Operations. 24/7 working capability with slope handling and low noise operation.|EGS101 Grade Control System delivers real-time excavator guidance with grading accuracy within 3 cm — ideal for trenching, slopes, and land leveling.' | split: '|'
+-%}
+
+<div class="v-solutions-groups">
+  <div class="v-container">
+    {%- for category_id in category_ids -%}
+      {%- assign ci = forloop.index0 -%}
+
+      {%- assign group_count = 0 -%}
+      {%- for cat in product_categories -%}
+        {%- if cat == category_id -%}{%- assign group_count = group_count | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+
+      {%- if group_count > 0 -%}
+        <section class="v-solutions-group">
+          <header class="v-solutions-group__head" data-reveal>
+            <h2 class="v-solutions-group__title">{{ category_names[ci] }}</h2>
+            <p class="v-solutions-group__desc">{{ category_descriptions[ci] }}</p>
+          </header>
+
+          <div class="v-solutions-grid">
+            {%- for pid in product_ids -%}
+              {%- assign i = forloop.index0 -%}
+              {%- if product_categories[i] == category_id -%}
+                {%- render 'vesper-solution-card',
+                  id: pid,
+                  code: product_codes[i],
+                  name: product_names[i],
+                  description: product_descriptions[i],
+                  image: product_images[i] -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<section class="v-solutions-cta">
+  <div class="v-container">
+    <h2>Need a Custom Solution?</h2>
+    <p>Contact us to discuss your specific agricultural needs</p>
+    <a class="v-btn v-btn--lg" href="/pages/contact-us">Contact Us</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Solutions grid",
+  "tag": "div",
+  "class": "vesper-solutions-grid-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Solutions grid"
+    }
+  ]
+}
+{% endschema %}

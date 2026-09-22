@@ -1,0 +1,278 @@
+{{ 'vesper-support.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'Support',
+   subtitle: "We're here to help with any questions or issues",
+   breadcrumb: 'Support' %}
+
+{%- liquid
+  assign support_cards = section.blocks | where: 'type', 'support_card'
+  assign service_points = section.blocks | where: 'type', 'service_point'
+  assign warranty_items = section.blocks | where: 'type', 'warranty'
+-%}
+
+<div class="vesper-support">
+  <div class="vesper-support__lead-wrap">
+    <div class="v-container">
+      <p class="vesper-support__lead" data-reveal>Technical Support</p>
+    </div>
+  </div>
+
+  {%- comment -%} Support channels {%- endcomment -%}
+  <section class="support-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.support_heading }}</h2>
+        <p>{{ section.settings.support_subtitle }}</p>
+      </div>
+
+      <div class="support-cards">
+        {%- for block in support_cards -%}
+          <div class="support-card v-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
+            <div class="support-icon">{{ block.settings.icon }}</div>
+            <h3>{{ block.settings.title }}</h3>
+            <p class="support-phone">{{ block.settings.value }}</p>
+
+            {%- case block.settings.action_type -%}
+              {%- when 'tel' -%}
+                <a class="v-btn v-btn--primary v-btn--lg v-btn--block" href="tel:{{ block.settings.action_value | remove: ' ' }}">{{ block.settings.action_label }}</a>
+              {%- when 'mailto' -%}
+                <a class="v-btn v-btn--primary v-btn--lg v-btn--block" href="mailto:{{ block.settings.action_value }}?subject=Technical Support Request">{{ block.settings.action_label }}</a>
+              {%- when 'whatsapp' -%}
+                <a class="v-btn v-btn--primary v-btn--lg v-btn--block" href="https://wa.me/{{ block.settings.action_value }}?text={{ 'Hello! I need support with Vesper AgriTech products.' | url_encode }}" target="_blank" rel="noopener">{{ block.settings.action_label }}</a>
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Operating hours & services {%- endcomment -%}
+  <section class="hours-section v-section">
+    <div class="v-container">
+      <div class="hours-grid">
+        <div class="hours-card" data-reveal>
+          <span class="hours-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h3>Operating Hours</h3>
+          <div class="hours-info">
+            <p><strong>Australia Time Zone:</strong> AEST/AEDT (UTC+10/+11)</p>
+            <p><strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM</p>
+            <p><strong>Weekend:</strong> By appointment</p>
+          </div>
+        </div>
+
+        <div class="hours-card" data-reveal>
+          <span class="hours-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" stroke="currentColor" stroke-width="1.7"/>
+            </svg>
+          </span>
+          <h3>Services Available</h3>
+          <div class="hours-info">
+            <p>✅ On-site Demonstrations</p>
+            <p>✅ Remote Technical Support</p>
+            <p>✅ Remote Diagnostics</p>
+            <p>✅ Emergency Response</p>
+            <p>✅ Software Updates</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Local service points {%- endcomment -%}
+  <section class="service-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.service_heading }}</h2>
+        <p>{{ section.settings.service_subtitle }}</p>
+      </div>
+
+      <div class="service-grid">
+        {%- for block in service_points -%}
+          <div class="service-card v-card" data-reveal {{ block.shopify_attributes }}>
+            <span class="service-icon">{% render 'vesper-icons', icon: 'map-pin' %}</span>
+            <h3>{{ block.settings.city }}</h3>
+            <p>{{ block.settings.role }}</p>
+            <p class="service-desc">{{ block.settings.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Warranty & support accordion {%- endcomment -%}
+  <section class="warranty-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.warranty_heading }}</h2>
+        <p>{{ section.settings.warranty_subtitle }}</p>
+      </div>
+
+      <div class="warranty-content">
+        <div class="v-accordion" data-accordion>
+          {%- for block in warranty_items -%}
+            <div class="v-accordion__item" data-open="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>
+              <button
+                type="button"
+                class="v-accordion__trigger"
+                data-accordion-trigger
+                aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}"
+              >
+                <span>{{ block.settings.title }}</span>
+                {% render 'vesper-icons', icon: 'chevron-down' %}
+              </button>
+              <div class="v-accordion__panel">
+                {{ block.settings.body }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Vesper support",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Support channels"
+    },
+    {
+      "type": "text",
+      "id": "support_heading",
+      "label": "Heading",
+      "default": "Get Support"
+    },
+    {
+      "type": "text",
+      "id": "support_subtitle",
+      "label": "Subtitle",
+      "default": "Choose your preferred way to reach us"
+    },
+    {
+      "type": "header",
+      "content": "Local service points"
+    },
+    {
+      "type": "text",
+      "id": "service_heading",
+      "label": "Heading",
+      "default": "Local Service Points"
+    },
+    {
+      "type": "text",
+      "id": "service_subtitle",
+      "label": "Subtitle",
+      "default": "Authorised service centres and partners across Australia"
+    },
+    {
+      "type": "header",
+      "content": "Warranty"
+    },
+    {
+      "type": "text",
+      "id": "warranty_heading",
+      "label": "Heading",
+      "default": "Warranty & Support"
+    },
+    {
+      "type": "text",
+      "id": "warranty_subtitle",
+      "label": "Subtitle",
+      "default": "Information about our warranty policies"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "support_card",
+      "name": "Support card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value"
+        },
+        {
+          "type": "select",
+          "id": "action_type",
+          "label": "Action",
+          "options": [
+            { "value": "tel", "label": "Phone call" },
+            { "value": "mailto", "label": "Email" },
+            { "value": "whatsapp", "label": "WhatsApp" }
+          ],
+          "default": "tel"
+        },
+        {
+          "type": "text",
+          "id": "action_value",
+          "label": "Action value",
+          "info": "Phone number or email address"
+        },
+        {
+          "type": "text",
+          "id": "action_label",
+          "label": "Action label"
+        }
+      ]
+    },
+    {
+      "type": "service_point",
+      "name": "Service point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "city",
+          "label": "City"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "warranty",
+      "name": "Warranty panel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

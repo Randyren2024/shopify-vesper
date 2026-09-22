@@ -1,0 +1,221 @@
+{%- comment -%}
+  Vesper header
+  Navigation is driven entirely by the "Menu" link list setting (Navigation → Menus in the
+  Shopify admin). A top-level item with child links renders as a dropdown; items without
+  children render as plain links. Dropdown icons are matched to the collection handle.
+{%- endcomment -%}
+
+{%- liquid
+  assign demo_number = section.settings.whatsapp_number | default: settings.vesper_whatsapp_number
+  assign demo_message = 'Hello! I would like to request a demo of Vesper AgriTech products.'
+  assign logo_image = section.settings.logo | default: settings.vesper_logo
+  assign menu = section.settings.menu
+-%}
+
+<header class="v-header" role="banner">
+  <div class="v-header__inner">
+    <button
+      type="button"
+      class="v-header__burger"
+      data-drawer-open="vesper-menu-drawer"
+      aria-label="Open menu"
+      aria-controls="vesper-menu-drawer"
+    >
+      {% render 'vesper-icons', icon: 'menu' %}
+    </button>
+
+    <a class="v-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {%- if logo_image != blank -%}
+        {{ logo_image | image_url: width: 360 | image_tag: widths: '180, 240, 360', alt: shop.name, loading: 'eager' }}
+      {%- else -%}
+        <span class="v-header__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="v-header__nav" aria-label="Main">
+      {%- for link in menu.links -%}
+        {%- if link.links.size > 0 -%}
+          <div class="v-nav__dropdown" data-nav-dropdown data-open="false">
+            <button type="button" class="v-nav__link" aria-expanded="false" aria-haspopup="true">
+              {{ link.title }}
+              {% render 'vesper-icons', icon: 'chevron-down' %}
+            </button>
+
+            <ul class="v-nav__menu">
+              {%- for child in link.links -%}
+                {%- assign child_icon = child.object.handle | default: child.url | split: '/' | last -%}
+                <li>
+                  <a href="{{ child.url }}" {% if child.active %}aria-current="page"{% endif %}>
+                    {% render 'vesper-icons', icon: child_icon %}
+                    <span>{{ child.title }}</span>
+                  </a>
+                </li>
+              {%- endfor -%}
+
+              <li class="v-nav__menu-sep" role="presentation"></li>
+              <li>
+                <a class="v-nav__view-all" href="{{ section.settings.view_all_link | default: routes.all_products_collection_url }}">
+                  View All →
+                </a>
+              </li>
+            </ul>
+          </div>
+        {%- else -%}
+          <a
+            class="v-nav__link"
+            href="{{ link.url }}"
+            {% if link.active %}aria-current="page"{% endif %}
+          >
+            {{ link.title }}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+
+    <div class="v-header__actions">
+      <button
+        type="button"
+        class="v-header__cart"
+        data-drawer-open="vesper-cart-drawer"
+        aria-label="Open cart"
+        aria-controls="vesper-cart-drawer"
+      >
+        {% render 'vesper-icons', icon: 'cart' %}
+        <span class="v-header__cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>
+          {{ cart.item_count }}
+        </span>
+      </button>
+
+      {%- if section.settings.show_demo_button -%}
+        <button
+          type="button"
+          class="v-btn v-header__demo"
+          data-request-demo
+          data-whatsapp="{{ demo_number }}"
+          data-message="{{ demo_message }}"
+        >
+          {{ section.settings.demo_label | default: 'Request Demo' }}
+        </button>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile navigation drawer {%- endcomment -%}
+<div class="v-drawer" id="vesper-menu-drawer" data-open="false" data-return-focus="[data-drawer-open='vesper-menu-drawer']">
+  <div class="v-drawer__overlay" data-drawer-close></div>
+
+  <div class="v-drawer__panel v-drawer__panel--left" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="v-drawer__head">
+      {%- if logo_image != blank -%}
+        {{ logo_image | image_url: width: 280 | image_tag: widths: '140, 280', alt: shop.name, loading: 'lazy' }}
+      {%- else -%}
+        <span class="v-header__logo-text">{{ shop.name }}</span>
+      {%- endif -%}
+      <button type="button" class="v-drawer__close" data-drawer-close aria-label="Close menu">
+        {% render 'vesper-icons', icon: 'close' %}
+      </button>
+    </div>
+
+    <div class="v-drawer__body">
+      <ul class="v-mobile-nav">
+        {%- for link in menu.links -%}
+          {%- liquid
+            # Shopify menus cannot carry icons, so map the link target to the icon set.
+            if link.url == routes.root_url
+              assign top_icon = 'home'
+            else
+              assign top_icon = link.object.handle | default: link.url | split: '/' | last
+              case top_icon
+                when 'contact'
+                  assign top_icon = 'phone'
+                when 'about-us'
+                  assign top_icon = 'users'
+                else
+                  assign top_icon = 'grid'
+              endcase
+            endif
+          -%}
+          <li>
+            <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+              {% render 'vesper-icons', icon: top_icon %}
+              <span>{{ link.title }}</span>
+            </a>
+
+            {%- if link.links.size > 0 -%}
+              <ul class="v-mobile-nav__sub">
+                {%- for child in link.links -%}
+                  <li>
+                    <a href="{{ child.url }}" {% if child.active %}aria-current="page"{% endif %}>
+                      {{ child.title }}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+
+    {%- if section.settings.show_demo_button -%}
+      <div class="v-drawer__foot">
+        <button
+          type="button"
+          class="v-btn v-btn--primary v-btn--block v-btn--lg"
+          data-request-demo
+          data-whatsapp="{{ demo_number }}"
+          data-message="{{ demo_message }}"
+        >
+          {{ section.settings.demo_label | default: 'Request Demo' }}
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Vesper header",
+  "tag": "div",
+  "class": "vesper-header-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "Drives the whole navigation. Items with child links become dropdowns.",
+      "default": "main-menu"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "Products \"View All\" link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_demo_button",
+      "label": "Show Request Demo button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "demo_label",
+      "label": "Request Demo label",
+      "default": "Request Demo"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number (digits only)",
+      "info": "Falls back to the theme setting when empty.",
+      "default": "61448290926"
+    }
+  ]
+}
+{% endschema %}

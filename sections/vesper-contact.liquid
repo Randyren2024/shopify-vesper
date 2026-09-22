@@ -1,0 +1,431 @@
+{{ 'vesper-contact.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'Contact Us',
+   subtitle: 'Connect with our team for agricultural technology solutions',
+   breadcrumb: 'Contact Us' %}
+
+{%- liquid
+  assign contact_cards = section.blocks | where: 'type', 'contact_card'
+  assign dealers = section.blocks | where: 'type', 'dealer'
+-%}
+
+<div class="vesper-contact">
+  <div class="vesper-contact__lead-wrap">
+    <div class="v-container">
+      <p class="vesper-contact__lead" data-reveal>Get In Touch</p>
+    </div>
+  </div>
+
+  {%- comment -%} Contact information cards {%- endcomment -%}
+  <section class="contact-info-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.info_heading }}</h2>
+        <p>{{ section.settings.info_subtitle }}</p>
+      </div>
+
+      <div class="contact-cards">
+        {%- for block in contact_cards -%}
+          <div class="contact-card v-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
+            <div class="contact-icon contact-icon--{{ block.settings.tone }}">
+              <span>{{ block.settings.icon }}</span>
+            </div>
+            <h3 class="contact-card-title">{{ block.settings.title }}</h3>
+            <p class="contact-card-content">{{ block.settings.content }}</p>
+
+            {%- case block.settings.action_type -%}
+              {%- when 'tel' -%}
+                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="tel:{{ block.settings.action_value | remove: ' ' }}">{{ block.settings.action_label }}</a>
+              {%- when 'mailto' -%}
+                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="mailto:{{ block.settings.action_value }}">{{ block.settings.action_label }}</a>
+              {%- when 'whatsapp' -%}
+                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="https://wa.me/{{ block.settings.action_value }}?text={{ 'Hello! I would like to get in touch with Vesper AgriTech.' | url_encode }}" target="_blank" rel="noopener">{{ block.settings.action_label }}</a>
+            {%- endcase -%}
+
+            {%- if block.settings.subtext != blank -%}
+              <p class="contact-card-subtext">{{ block.settings.subtext }}</p>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Contact form (native Shopify contact form) {%- endcomment -%}
+  <section class="contact-form-section v-section">
+    <div class="v-container">
+      <div class="form-container">
+        <div class="form-header" data-reveal>
+          <h2 class="form-title">{{ section.settings.form_heading }}</h2>
+          <p class="form-subtitle">{{ section.settings.form_subtitle }}</p>
+        </div>
+
+        {%- form 'contact' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="form-success" role="status">{{ section.settings.form_success }}</p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="form-errors" role="alert">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+
+          <div class="form-content">
+            <div class="form-row">
+              <div class="v-field">
+                <label class="v-field__label" for="contact-name">Full Name *</label>
+                <input
+                  id="contact-name"
+                  class="v-input"
+                  type="text"
+                  name="contact[name]"
+                  value="{{ form.name }}"
+                  placeholder="Enter your full name"
+                  required
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="contact-email">Email Address *</label>
+                <input
+                  id="contact-email"
+                  class="v-input"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  placeholder="Enter your email address"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="v-field">
+                <label class="v-field__label" for="contact-phone">Phone Number</label>
+                <input
+                  id="contact-phone"
+                  class="v-input"
+                  type="tel"
+                  name="contact[phone]"
+                  value="{{ form.phone }}"
+                  placeholder="Enter your phone number"
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="contact-product">Product Interest</label>
+                <select id="contact-product" class="v-select" name="contact[product]">
+                  <option value="">Select a product or category</option>
+                  <optgroup label="Lawn Mower">
+                    <option value="S1 4WD 50° - Remote Control Lawn Mower — 119% Slope (Grip Tread)">S1 4WD 50° - Remote Control Lawn Mower — 119% Slope (Grip Tread)</option>
+                    <option value="S1 4WD 40° - Remote Control Lawn Mower — 85% Slope (Wide Wheel)">S1 4WD 40° - Remote Control Lawn Mower — 85% Slope (Wide Wheel)</option>
+                  </optgroup>
+                  <optgroup label="Precision Agriculture">
+                    <option value="AF718 - Autosteering System">AF718 - Autosteering System</option>
+                    <option value="AF305 - Automated Steering System">AF305 - Automated Steering System</option>
+                    <option value="ISOBUS - Terminal">ISOBUS - Terminal</option>
+                  </optgroup>
+                  <optgroup label="Precision Agriculture Solutions">
+                    <option value="VS100 - Spray Control System">VS100 - Spray Control System</option>
+                  </optgroup>
+                  <optgroup label="Land Leveling System">
+                    <option value="W20 - Land Leveling System">W20 - Land Leveling System</option>
+                  </optgroup>
+                  <optgroup label="Machine Control">
+                    <option value="EGS101 - Intelligent Excavator Guidance System">EGS101 - Intelligent Excavator Guidance System</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+
+            <div class="v-field">
+              <label class="v-field__label" for="contact-message">Message *</label>
+              <textarea
+                id="contact-message"
+                class="v-textarea"
+                name="contact[body]"
+                rows="6"
+                placeholder="Tell us about your needs or questions..."
+                required
+              >{{ form.body }}</textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="v-btn v-btn--primary v-btn--lg submit-btn">Send message</button>
+            </div>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Global dealer network {%- endcomment -%}
+  <section class="global-map-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.map_heading }}</h2>
+        <p>{{ section.settings.map_subtitle }}</p>
+      </div>
+
+      <div class="world-map-container">
+        <div class="map-header" data-reveal>
+          <h3 class="map-title">{{ section.settings.map_title }}</h3>
+          <p class="map-subtitle">{{ section.settings.map_inner_subtitle }}</p>
+        </div>
+
+        <div class="map-wrapper" data-reveal>
+          <div class="map-canvas" role="img" aria-label="{{ section.settings.map_title | escape }}">
+            {%- for block in dealers -%}
+              {%- assign dealer_count = block.settings.dealer_count | plus: 0 -%}
+              {%- assign lat_num = block.settings.lat | times: 1.0 -%}
+              {%- assign lng_num = block.settings.lng | times: 1.0 -%}
+              {%- assign pin_x = lng_num | plus: 180.0 | times: 100 | divided_by: 360.0 | round: 2 -%}
+              {%- assign pin_y = 90.0 | minus: lat_num | times: 100 | divided_by: 180.0 | round: 2 -%}
+              {%- if dealer_count >= 8 -%}
+                {%- assign pin_tone = 'high' -%}
+              {%- elsif dealer_count >= 4 -%}
+                {%- assign pin_tone = 'mid' -%}
+              {%- else -%}
+                {%- assign pin_tone = 'low' -%}
+              {%- endif -%}
+              <span class="map-pin map-pin--{{ pin_tone }}" style="left: {{ pin_x }}%; top: {{ pin_y }}%;">
+                <span class="map-pin__dot"></span>
+                <span class="map-pin__label">{{ block.settings.country_code }}</span>
+              </span>
+            {%- endfor -%}
+          </div>
+
+          <div class="map-legend">
+            <div class="legend-item">
+              <span class="legend-color" style="background-color: #2e7d32;"></span>
+              <span class="legend-label">High Density (8+ dealers)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background-color: #4caf50;"></span>
+              <span class="legend-label">Medium Density (4-7 dealers)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color" style="background-color: #8bc34a;"></span>
+              <span class="legend-label">Low Density (1-3 dealers)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-countries">
+          {%- for block in dealers -%}
+            {%- assign dealer_count = block.settings.dealer_count | plus: 0 -%}
+            <details class="map-country" {{ block.shopify_attributes }}>
+              <summary class="map-country__summary">
+                <span class="map-country__name">{{ block.settings.country_name }}</span>
+                <span class="map-country__count">{{ block.settings.dealer_count }}{% if dealer_count == 1 %} dealer{% else %} dealers{% endif %}</span>
+              </summary>
+              <div class="map-country__body">
+                <p class="detail-item">
+                  <span class="detail-label">Dealers:</span>
+                  <span class="detail-value">{{ block.settings.dealer_count }}</span>
+                </p>
+                <p class="detail-item">
+                  <span class="detail-label">Coverage:</span>
+                  <span class="detail-value">{{ block.settings.city }}</span>
+                </p>
+                <p class="detail-item">
+                  <span class="detail-label">Description:</span>
+                  <span class="detail-value">{{ block.settings.description }}</span>
+                </p>
+              </div>
+            </details>
+          {%- endfor -%}
+        </div>
+
+        <div class="map-description">
+          <p>{{ section.settings.map_description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Vesper contact",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact information"
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Heading",
+      "default": "Contact Information"
+    },
+    {
+      "type": "text",
+      "id": "info_subtitle",
+      "label": "Subtitle",
+      "default": "Reach out to us through any of these channels"
+    },
+    {
+      "type": "header",
+      "content": "Contact form"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Heading",
+      "default": "Send Us a Message"
+    },
+    {
+      "type": "textarea",
+      "id": "form_subtitle",
+      "label": "Subtitle",
+      "default": "Fill out the form below and we'll get back to you as soon as possible"
+    },
+    {
+      "type": "text",
+      "id": "form_success",
+      "label": "Success message",
+      "default": "Thanks! Your message has been sent. We'll get back to you as soon as possible."
+    },
+    {
+      "type": "header",
+      "content": "Global network"
+    },
+    {
+      "type": "text",
+      "id": "map_heading",
+      "label": "Heading",
+      "default": "Our Global Presence"
+    },
+    {
+      "type": "text",
+      "id": "map_subtitle",
+      "label": "Subtitle",
+      "default": "Vesper AgriTech dealers and partners worldwide"
+    },
+    {
+      "type": "text",
+      "id": "map_title",
+      "label": "Map heading",
+      "default": "Global Distribution Network"
+    },
+    {
+      "type": "text",
+      "id": "map_inner_subtitle",
+      "label": "Map subtitle",
+      "default": "Click on any country to see dealer information"
+    },
+    {
+      "type": "textarea",
+      "id": "map_description",
+      "label": "Description",
+      "default": "Vesper AgriTech has established a global network of dealers and partners across major agricultural markets. Our distribution network ensures that farmers and agricultural businesses worldwide have access to our advanced technology solutions with local support and service."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact_card",
+      "name": "Contact card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)"
+        },
+        {
+          "type": "select",
+          "id": "tone",
+          "label": "Icon colour",
+          "options": [
+            { "value": "phone", "label": "Blue" },
+            { "value": "email", "label": "Yellow" },
+            { "value": "whatsapp", "label": "Green" },
+            { "value": "location", "label": "Purple" }
+          ],
+          "default": "phone"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Content"
+        },
+        {
+          "type": "select",
+          "id": "action_type",
+          "label": "Action",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "tel", "label": "Phone call" },
+            { "value": "mailto", "label": "Email" },
+            { "value": "whatsapp", "label": "WhatsApp" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "action_value",
+          "label": "Action value",
+          "info": "Phone number or email address"
+        },
+        {
+          "type": "text",
+          "id": "action_label",
+          "label": "Action label"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext"
+        }
+      ]
+    },
+    {
+      "type": "dealer",
+      "name": "Dealer location",
+      "settings": [
+        {
+          "type": "text",
+          "id": "country_code",
+          "label": "Country code",
+          "info": "Two-letter code shown on the map, e.g. AU"
+        },
+        {
+          "type": "text",
+          "id": "country_name",
+          "label": "Country"
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "City"
+        },
+        {
+          "type": "text",
+          "id": "dealer_count",
+          "label": "Dealer count"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "lat",
+          "label": "Latitude"
+        },
+        {
+          "type": "text",
+          "id": "lng",
+          "label": "Longitude"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

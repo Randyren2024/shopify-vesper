@@ -1,0 +1,109 @@
+{%- comment -%}
+  Product card — ported from the <a-card> markup used in
+  src/views/ProductsSolutionsView.vue (and ProductCard.vue).
+
+  Two ways to use it:
+
+  1. Dynamic — pass a Shopify product object (used by the collection
+     template, so new products show up automatically):
+       {% render 'vesper-product-card', product: product %}
+
+  2. Static — pass the parallel-array fields of the hand-authored
+     Products & Solutions grid:
+       {% render 'vesper-product-card',
+          id: pid,
+          code: product_codes[i],
+          name: product_names[i],
+          description: product_descriptions[i],
+          category: product_categories[i],
+          category_name: product_category_names[i],
+          image: product_images[i],
+          bestseller: p_best,
+          is_new: p_new,
+          price: product_prices[i],
+          tagline: product_taglines[i] %}
+{%- endcomment -%}
+
+{%- liquid
+  if product
+    assign card_url = product.url
+    assign card_title = product.title
+    assign card_desc = product.description | strip_html | truncatewords: 24
+    assign card_category = product.type
+    assign card_category_label = product.type
+    assign card_price = product.price
+  else
+    assign card_url = '/products/' | append: id
+    assign card_title = code | append: ' ' | append: name
+    assign card_desc = description
+    assign card_category = category
+    assign card_category_label = category_name
+    assign card_price = price
+  endif
+-%}
+
+<article
+  class="v-product-card v-card v-card-hover"
+  data-category="{{ card_category }}"
+  data-price="{{ card_price }}"
+  {%- unless product %}
+  data-tagline="{{ tagline | escape }}"
+  {%- endunless %}
+  data-reveal
+>
+  <a class="v-product-card__media" href="{{ card_url }}" aria-label="{{ card_title | escape }}">
+    {%- if product -%}
+      {%- if product.featured_image -%}
+        {{
+          product.featured_image
+          | image_url: width: 800
+          | image_tag: class: 'v-product-card__img', widths: '320, 480, 640, 800', alt: card_title, loading: 'lazy', decoding: 'async'
+        }}
+      {%- endif -%}
+    {%- else -%}
+      <img
+        class="v-product-card__img"
+        src="{{ image | asset_url }}"
+        alt="{{ card_title | escape }}"
+        loading="lazy"
+        decoding="async"
+      >
+    {%- endif -%}
+    {%- if bestseller or is_new -%}
+      <span class="v-product-card__badges">
+        {%- if bestseller -%}
+          <span class="v-product-card__badge v-product-card__badge--best">Best Seller</span>
+        {%- endif -%}
+        {%- if is_new -%}
+          <span class="v-product-card__badge v-product-card__badge--new">New</span>
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+  </a>
+
+  <div class="v-product-card__body">
+    <h3 class="v-product-card__title">
+      <a href="{{ card_url }}">{{ card_title }}</a>
+    </h3>
+
+    {%- if card_desc != blank -%}
+      <p class="v-product-card__desc">{{ card_desc }}</p>
+    {%- endif -%}
+
+    {%- if card_category_label != blank -%}
+      <span class="v-product-card__category v-badge">{{ card_category_label }}</span>
+    {%- endif -%}
+
+    <div class="v-product-card__actions">
+      <a class="v-btn v-btn--primary v-btn--sm" href="{{ card_url }}">Learn More</a>
+      <button
+        type="button"
+        class="v-btn v-btn--ghost v-btn--sm"
+        data-request-demo
+        data-message="Hello! I'm interested in getting a quote for the {{ card_title | escape }}. Could you please provide more information?"
+      >
+        Get Quote
+      </button>
+    </div>
+  </div>
+</article>

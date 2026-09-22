@@ -1,0 +1,77 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "vesper-footer",
+      "blocks": {
+        "quick-products": {
+          "type": "quick_link",
+          "settings": {
+            "title": "Products & Solutions",
+            "link": "/pages/products-solutions"
+          }
+        },
+        "quick-about": {
+          "type": "quick_link",
+          "settings": {
+            "title": "About Us",
+            "link": "/pages/about-us"
+          }
+        },
+        "quick-contact": {
+          "type": "quick_link",
+          "settings": {
+            "title": "Contact Us",
+            "link": "/pages/contact-us"
+          }
+        },
+        "quick-support": {
+          "type": "quick_link",
+          "settings": {
+            "title": "Support",
+            "link": "/pages/support"
+          }
+        },
+        "legal-privacy": {
+          "type": "legal_link",
+          "settings": {
+            "title": "Privacy Policy",
+            "link": "/pages/privacy-policy"
+          }
+        },
+        "legal-terms": {
+          "type": "legal_link",
+          "settings": {
+            "title": "Terms & Conditions",
+            "link": "/pages/terms-conditions"
+          }
+        }
+      },
+      "block_order": [
+        "quick-products",
+        "quick-about",
+        "quick-contact",
+        "quick-support",
+        "legal-privacy",
+        "legal-terms"
+      ],
+      "settings": {
+        "description": "Committed to advancing agricultural modernization through technological innovation, achieving sustainable agricultural production",
+        "quick_links_title": "Quick Links",
+        "legal_title": "Legal",
+        "contact_title": "Contact Us",
+        "email": "market@vesperinno.com",
+        "phone": "+61 448 290 926",
+        "address": "Australia",
+        "follow_title": "Follow Us",
+        "linkedin_url": "https://www.linkedin.com/in/alan-gan-vesperinno/",
+        "show_whatsapp": true,
+        "whatsapp_number": "61448290926",
+        "copyright_prefix": "Copyright©",
+        "copyright_holder": "Shenzhen Vesper Inno Technology Co., Ltd All Rights Reserved"
+      }
+    }
+  },
+  "order": ["footer"]
+}

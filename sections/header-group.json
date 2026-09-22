@@ -1,0 +1,17 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header": {
+      "type": "vesper-header",
+      "settings": {
+        "menu": "vesper-main-menu",
+        "view_all_link": "/collections/all",
+        "show_demo_button": true,
+        "demo_label": "Request Demo",
+        "whatsapp_number": "61448290926"
+      }
+    }
+  },
+  "order": ["header"]
+}

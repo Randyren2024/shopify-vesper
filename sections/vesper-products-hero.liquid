@@ -1,0 +1,41 @@
+{{ 'vesper-products.css' | asset_url | stylesheet_tag }}
+
+<div class="v-products-hero">
+  {%- render 'vesper-page-hero',
+    title: section.settings.title,
+    subtitle: section.settings.subtitle,
+    breadcrumb: section.settings.breadcrumb -%}
+</div>
+
+{% schema %}
+{
+  "name": "Products hero",
+  "tag": "div",
+  "class": "vesper-products-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Products & Solutions"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Advanced agricultural technology solutions for modern farming. From precision steering to autonomous robots, we deliver efficiency and reliability."
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb",
+      "label": "Breadcrumb label",
+      "default": "Products & Solutions"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products hero"
+    }
+  ]
+}
+{% endschema %}

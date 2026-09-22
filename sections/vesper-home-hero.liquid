@@ -1,0 +1,172 @@
+{{ 'vesper-home.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Home hero — ported from HomeView.vue `.hero-section`.
+  The carousel mirrors the Vue behaviour: fading slides, dot navigation,
+  prev/next buttons, a play/pause toggle and a 5s autoplay, all driven by
+  assets/vesper.js (`bindFadeCarousel`). Content works without JavaScript.
+{%- endcomment -%}
+
+<section class="vhome-hero">
+  <div class="v-container vhome-hero__content" data-reveal>
+    <h1 class="vhome-hero__title gradient-text">{{ section.settings.heading }}</h1>
+    <p class="vhome-hero__subtitle">{{ section.settings.subheading }}</p>
+    <div class="vhome-hero__actions">
+      <a
+        class="v-btn v-btn--primary v-btn--lg"
+        href="{{ section.settings.cta_link | default: '/pages/products-solutions' }}"
+      >
+        {{ section.settings.cta_label }}
+      </a>
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="v-container vhome-carousel" data-fade-carousel data-reveal>
+      <div class="vhome-carousel__info">
+        {%- for block in section.blocks -%}
+          <div
+            class="vhome-carousel__panel{% if forloop.first %} is-active{% endif %}"
+            data-fade-panel
+            {{ block.shopify_attributes }}
+          >
+            <span class="vhome-slide__tag">{{ block.settings.tag }}</span>
+            <h2 class="vhome-slide__title">{{ block.settings.title }}</h2>
+            <p class="vhome-slide__desc">{{ block.settings.description }}</p>
+            <a class="v-btn v-btn--primary" href="{{ block.settings.link | default: '/collections/all' }}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">
+              Learn More
+            </a>
+          </div>
+        {%- endfor -%}
+
+        <div class="vhome-carousel__controls">
+          <button type="button" class="vhome-carousel__control" data-carousel-prev aria-label="Previous slide">
+            <span aria-hidden="true">&lsaquo;</span>
+          </button>
+          <div class="vhome-carousel__dots" role="tablist" aria-label="Product slides">
+            {%- for block in section.blocks -%}
+              <button
+                type="button"
+                class="vhome-carousel__dot{% if forloop.first %} is-active{% endif %}"
+                role="tab"
+                data-carousel-dot="{{ forloop.index0 }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-label="{{ block.settings.title | default: 'Slide' | escape }}"
+              ></button>
+            {%- endfor -%}
+          </div>
+          <button type="button" class="vhome-carousel__control" data-carousel-next aria-label="Next slide">
+            <span aria-hidden="true">&rsaquo;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="vhome-carousel__media" data-fade-region tabindex="0" role="region" aria-label="Product showcase carousel">
+        {%- for block in section.blocks -%}
+          <div
+            class="vhome-carousel__image{% if forloop.first %} is-active{% endif %}"
+            data-fade-image="{{ forloop.index0 }}"
+          >
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag: widths: '480, 720, 960, 1200', alt: block.settings.title, loading: 'lazy'
+              }}
+            {%- elsif block.settings.image_asset != blank -%}
+              <img
+                src="{{ block.settings.image_asset | asset_url }}"
+                alt="{{ block.settings.title | escape }}"
+                width="1200"
+                height="1200"
+                loading="lazy"
+              >
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+        <button
+          type="button"
+          class="vhome-carousel__play"
+          data-carousel-toggle
+          aria-label="Pause slideshow"
+          aria-pressed="true"
+        >
+          <span data-carousel-toggle-icon aria-hidden="true">&#10074;&#10074;</span>
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Vesper home hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Smart Agriculture, Precision Future"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Vesper AgriTech provides advanced agricultural technology solutions, enhancing farming efficiency and sustainability through intelligent technology"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Explore Products & Solutions"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "Vesper S1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback asset filename",
+          "info": "Theme asset filename, e.g. products-af718.webp"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6
+}
+{% endschema %}

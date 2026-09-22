@@ -1,0 +1,34 @@
+{% style %}
+  {% # Loads all font variations with display: swap %}
+  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+
+  :root {
+    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
+    --font-primary--style: {{ settings.type_primary_font.style }};
+    --font-primary--weight: {{ settings.type_primary_font.weight }};
+    --page-width: {{ settings.max_page_width }};
+    --page-margin: {{ settings.min_page_margin }}px;
+    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+
+    {% # Vesper brand tokens %}
+    --vesper-primary: {{ settings.vesper_primary_color }};
+    --vesper-primary-light: {{ settings.vesper_primary_light_color }};
+    --vesper-primary-dark: {{ settings.vesper_primary_dark_color }};
+    --vesper-secondary: {{ settings.vesper_secondary_color }};
+    --vesper-accent: {{ settings.vesper_accent_color }};
+    --vesper-text: {{ settings.vesper_text_color }};
+    --vesper-text-secondary: {{ settings.vesper_text_secondary_color }};
+    --vesper-border: {{ settings.vesper_border_color }};
+    --vesper-bg: {{ settings.vesper_background_color }};
+    --vesper-footer-bg: {{ settings.vesper_footer_background_color }};
+
+    --gradient-primary: linear-gradient(135deg, {{ settings.vesper_primary_color }}, {{ settings.vesper_primary_light_color }});
+
+    {% # Keeps critical.css and any Shopify-native UI in sync with the brand %}
+    --color-background: {{ settings.vesper_background_color }};
+    --color-foreground: {{ settings.vesper_text_color }};
+  }
+{% endstyle %}

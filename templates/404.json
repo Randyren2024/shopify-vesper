@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "vesper-404",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

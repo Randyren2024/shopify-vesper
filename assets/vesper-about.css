@@ -1,0 +1,473 @@
+/* ==========================================================================
+   Vesper — About page (ported from vesper_vue/src/views/AboutView.vue)
+   ========================================================================== */
+
+.vesper-about__lead-wrap {
+  background: linear-gradient(180deg, var(--vesper-bg), #ffffff);
+  padding-block: clamp(24px, 4vw, 40px) 0;
+}
+
+.vesper-about__lead {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--vesper-font-title);
+  font-size: clamp(24px, 3.4vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Introduction ---------- */
+.vesper-about .intro-section {
+  background: #f8f9fa;
+}
+
+.vesper-about .intro-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.vesper-about .intro-text {
+  flex: 1 1 320px;
+  min-width: 300px;
+}
+
+.vesper-about .intro-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.vesper-about .intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+.vesper-about .intro-image {
+  flex: 1 1 320px;
+  min-width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.vesper-about .intro-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* ---------- Journey timeline ---------- */
+.vesper-about .timeline-section {
+  background: #ffffff;
+}
+
+.vesper-about .timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vesper-about .timeline::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #52c41a;
+}
+
+.vesper-about .timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 100px;
+}
+
+.vesper-about .timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.vesper-about .timeline-logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80px;
+  height: 80px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1;
+  padding-bottom: 20px;
+}
+
+.vesper-about .timeline-logo img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.vesper-about .timeline-logo .v-icon {
+  width: 30px;
+  height: 30px;
+  color: #95a5a6;
+}
+
+.vesper-about .timeline-year {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 20px;
+  background: linear-gradient(to top, #f6ffed, #d9f7be);
+  color: #237804;
+  border-radius: 0 0 40px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #b7eb8f;
+}
+
+.vesper-about .timeline-content {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #52c41a;
+}
+
+.vesper-about .timeline-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.vesper-about .timeline-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+/* ---------- Leadership team ---------- */
+.vesper-about .team-section {
+  background: #f8f9fa;
+}
+
+.vesper-about .team-grid {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vesper-about .team-card {
+  overflow: hidden;
+}
+
+.vesper-about .team-image {
+  height: 400px;
+  overflow: hidden;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vesper-about .team-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  padding: 20px;
+}
+
+.vesper-about .team-info {
+  padding: 40px;
+}
+
+.vesper-about .team-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.vesper-about .team-position {
+  font-size: 18px;
+  color: #52c41a;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.vesper-about .team-bio {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.vesper-about .team-bio p {
+  margin-bottom: 15px;
+}
+
+.vesper-about .team-bio p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Values ---------- */
+.vesper-about .values-section {
+  background: #ffffff;
+}
+
+.vesper-about .values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.vesper-about .value-card {
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 12px;
+  background: #f8f9fa;
+}
+
+.vesper-about .value-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.vesper-about .value-1 {
+  background: linear-gradient(135deg, #b7eb8f, #95de64);
+}
+
+.vesper-about .value-2 {
+  background: linear-gradient(135deg, #91d5ff, #69c0ff);
+}
+
+.vesper-about .value-3 {
+  background: linear-gradient(135deg, #ffd666, #ffc53d);
+}
+
+.vesper-about .value-4 {
+  background: linear-gradient(135deg, #d3adf7, #b37feb);
+}
+
+.vesper-about .value-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.vesper-about .value-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+/* ---------- Statistics ---------- */
+.vesper-about .stats-section {
+  background: #f8f9fa;
+}
+
+.vesper-about .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.vesper-about .stat-card {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.vesper-about .stat-icon {
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.vesper-about .stat-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.vesper-about .stat-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------- Contact CTA ---------- */
+.vesper-about .contact-section {
+  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+}
+
+.vesper-about .contact-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 60px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(82, 196, 26, 0.1);
+}
+
+.vesper-about .contact-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.vesper-about .contact-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+  margin: 0 auto 40px;
+  max-width: 600px;
+}
+
+.vesper-about .contact-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.vesper-about .contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.vesper-about .contact-detail {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+  .vesper-about .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .vesper-about .intro-content {
+    flex-direction: column;
+  }
+
+  .vesper-about .timeline::before {
+    left: 25px;
+  }
+
+  .vesper-about .timeline-item {
+    padding-left: 70px;
+  }
+
+  .vesper-about .timeline-logo {
+    width: 50px;
+    height: 50px;
+    padding-bottom: 12px;
+  }
+
+  .vesper-about .timeline-logo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .vesper-about .timeline-logo .v-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .vesper-about .timeline-year {
+    width: 50px;
+    height: 12px;
+    font-size: 9px;
+    border-radius: 0 0 25px 25px;
+  }
+
+  .vesper-about .team-image {
+    height: 200px;
+  }
+
+  .vesper-about .stats-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .vesper-about .stat-card {
+    padding: 24px 16px;
+  }
+
+  .vesper-about .contact-content {
+    padding: 40px 24px;
+    border-radius: 16px;
+  }
+
+  .vesper-about .contact-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vesper-about .contact-actions .v-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .vesper-about .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vesper-about .stats-grid {
+    gap: 30px;
+  }
+
+  .vesper-about .contact-content {
+    padding: 32px 20px;
+    border-radius: 12px;
+  }
+
+  .vesper-about .contact-title {
+    font-size: 28px;
+  }
+
+  .vesper-about .contact-description {
+    font-size: 16px;
+  }
+}

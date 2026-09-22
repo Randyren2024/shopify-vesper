@@ -1,0 +1,268 @@
+/*
+ * Products & Solutions page styles.
+ * Ported from src/views/ProductsSolutionsView.vue (scoped styles).
+ * Loaded by sections/vesper-products-hero.liquid.
+ */
+
+/* ---------- Hero ---------- */
+.v-products-hero .v-page-hero {
+  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+}
+
+.v-products-hero .v-page-hero__title {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Category filter ---------- */
+.v-products-filter {
+  position: sticky;
+  top: var(--vesper-header-height);
+  z-index: 50;
+  padding-block: 20px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.v-products-filter__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.v-products-filter__tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border: 1px solid var(--vesper-border);
+  border-radius: 20px;
+  background: #fff;
+  color: var(--vesper-text);
+  font-family: var(--vesper-font-title);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.v-products-filter__tab:hover {
+  border-color: var(--vesper-primary);
+  color: var(--vesper-primary);
+}
+
+.v-products-filter__tab.is-active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* ---------- Grid ---------- */
+.v-products-grid {
+  padding-block: clamp(32px, 4vw, 48px) clamp(40px, 5vw, 64px);
+  background: var(--vesper-bg);
+}
+
+.v-products-grid__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: 24px;
+}
+
+/* Server-side filter: the active category is written to data-filter by Liquid.
+   Cards that do not belong to it are hidden with pure CSS. */
+.v-products-grid__inner[data-filter='lawn-mower'] .v-product-card:not([data-category='lawn-mower']),
+.v-products-grid__inner[data-filter='precision-agriculture'] .v-product-card:not([data-category='precision-agriculture']),
+.v-products-grid__inner[data-filter='precision-spraying'] .v-product-card:not([data-category='precision-spraying']),
+.v-products-grid__inner[data-filter='land-leveling'] .v-product-card:not([data-category='land-leveling']),
+.v-products-grid__inner[data-filter='machine-control'] .v-product-card:not([data-category='machine-control']) {
+  display: none;
+}
+
+/* ---------- Product card ---------- */
+.v-product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.v-product-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.v-product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.v-product-card:hover .v-product-card__img {
+  transform: scale(1.1);
+}
+
+.v-product-card__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.v-product-card__badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.v-product-card__badge--best {
+  background: #faad14;
+}
+
+.v-product-card__badge--new {
+  background: #52c41a;
+}
+
+.v-product-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.v-product-card__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.v-product-card__title a {
+  color: var(--vesper-text);
+  text-decoration: none;
+}
+
+.v-product-card__title a:hover {
+  color: var(--vesper-primary);
+}
+
+.v-product-card__desc {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  color: var(--vesper-text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.v-product-card__category {
+  align-self: flex-start;
+  font-size: 11px;
+}
+
+.v-product-card__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.v-product-card__actions .v-btn {
+  flex: 1;
+}
+
+/* ---------- Empty state ---------- */
+.v-products-empty {
+  padding: 60px 0;
+  background: var(--vesper-bg);
+  text-align: center;
+}
+
+.v-products-empty__text {
+  margin: 0 0 20px;
+  color: var(--vesper-text-secondary);
+  font-size: 16px;
+}
+
+/* ---------- CTA ---------- */
+.v-products-cta {
+  padding: clamp(40px, 5vw, 60px) 0;
+  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  color: #fff;
+  text-align: center;
+}
+
+.v-products-cta h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+}
+
+.v-products-cta p {
+  margin: 0 0 24px;
+  font-size: clamp(16px, 1.3vw, 18px);
+  opacity: 0.9;
+}
+
+.v-products-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.v-products-cta .v-products-cta__primary {
+  background: #fff;
+  color: #2e7d32;
+  border-color: transparent;
+}
+
+.v-products-cta .v-products-cta__primary:hover {
+  background: #fff;
+  color: #2e7d32;
+  border-color: transparent;
+}
+
+.v-products-cta .v-products-cta__outline {
+  background: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.v-products-cta .v-products-cta__outline:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .v-products-filter {
+    position: static;
+  }
+
+  .v-products-filter__tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .v-products-filter__tab {
+    flex: 0 0 auto;
+  }
+}

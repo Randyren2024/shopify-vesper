@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "vesper-cart",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

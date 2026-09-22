@@ -1,0 +1,182 @@
+{%- comment -%}
+  Vesper product rich content — AF305 (Automated Steering System).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'AF305' -%}
+{%- assign vpd_name = name | default: 'Automated Steering System' -%}
+
+{%- capture af305_g1 -%}
+RTK Accuracy (RMS)=Horizontal: 8 mm + 1 ppm, Vertical: 15 mm + 1 ppm
+Initialization Time=<5 s (typical), <10 s (reliable)
+Constellation=BDS, GPS, GLONASS, Galileo, QZSS, SBAS, L-Band
+{%- endcapture -%}
+
+{%- capture af305_g2 -%}
+Screen=10.1 inches, 1280×800, 750 nits
+System=8-core, 2 GHz, 6 GB RAM, 64 GB storage
+Electrical=Power Consumption ≤ 12 W, DC 7–36V
+Protection=IP67
+Operating Temp=–20°C to +70°C
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af305-easy-to-use.png' | asset_url }}" alt="Easy To Use" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Easy To Use</h3>
+          <p class="vpd-learn-card__desc">The AF305 is designed for simplicity — quick 20-minute setup with intuitive controls that minimize operator training time and get you into the field faster.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af305-automated-and-smart-control-1.png' | asset_url }}" alt="Automated and Smart Control" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Automated and Smart Control</h3>
+          <p class="vpd-learn-card__desc">Self-developed control algorithm with high-torque motor delivers precise automated steering, reducing operator fatigue and improving field efficiency.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af305-extensive-isobus-compatibility-1.png' | asset_url }}" alt="Extensive (ISOBUS) Compatibility" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Extensive (ISOBUS) Compatibility</h3>
+          <p class="vpd-learn-card__desc">Full ISOBUS compliance enables seamless communication between the AF305 terminal and a wide range of agricultural implements and tractor brands.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af305-ppp-ar.jpg' | asset_url }}" alt="Advanced Correction Services" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Advanced Correction Services</h3>
+          <p class="vpd-learn-card__desc">Supports satellite-based and ground-based differential corrections with full AllyLink Service compatibility for dynamic centimeter-level accuracy worldwide.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af305-worry-free-autosteering-1.png' | asset_url }}" alt="Worry-Free Autosteering" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Worry-Free Autosteering</h3>
+          <p class="vpd-learn-card__desc">Built-in terrain compensation, obstacle detection, and intelligent path planning ensure precise, safe operation even in complex field conditions.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="GNSS Receiver" aria-selected="true" role="tab">GNSS Receiver</button>
+          <button type="button" class="v-tabs__tab" data-tab="Tablet Display" aria-selected="false" role="tab">Tablet Display</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="GNSS Receiver" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = af305_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Tablet Display" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = af305_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Does this system support satellite differential mode for high accuracy without an internet connection?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Yes, this feature is available. Our receivers can be equipped with different models of GNSS boards, one of which can support broadcasting differential corrections via satellite, achieving accuracy similar to network or radio base station corrections even without internet connectivity.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Does the system support ISOBUS?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Yes. Vesper has obtained AEF certification. The system supports UT and TC (Task Control). Note: The TC function requires a paid activation, while the UT function is available for free.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Does the system have terrain compensation for operating on sloped land?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Yes. The GNSS receiver is equipped with a high-precision gyroscope for accurate attitude measurement, and the software includes a slope correction function to compensate for terrain variations during operation.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">You May Also Like</h2>
+    <div class="vpd-related__grid">
+      <a class="vpd-related-card" href="/products/af718">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-af718-main.png' | asset_url }}" alt="AF718 Autosteering System" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">AF718 Autosteering System</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = "The AF718 is Vesper's next-generation high-performance autosteering system. Powered by an advanced computing platform, it significantly enhances accuracy and efficiency across diverse farming operations." -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+      <a class="vpd-related-card" href="/products/isobus">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-isobus-main.png' | asset_url }}" alt="ISOBUS Terminal" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">ISOBUS Terminal</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'Empower your implements with a certified ISOBUS terminal featuring a 12.1" sunlight-readable touchscreen, built-in high-precision GNSS guidance, and seamless compatibility with major agricultural equipment.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

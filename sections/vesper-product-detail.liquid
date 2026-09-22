@@ -1,0 +1,487 @@
+{{ 'vesper-product.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Vesper product detail page — ported from
+  vesper_vue/src/views/ProductDetailView.vue.
+
+  The commerce column (price / variants / quantity / add to cart) is driven by
+  the native Shopify `product` object. Everything else (tagline, feature
+  badges, why/features accordion, specs, FAQ, learn-more cards, applications,
+  related products) is static content dispatched per handle below.
+
+  Rich content for each handle lives in snippets/vesper-product-content-*.liquid
+  and is pulled in with an explicit `case` because `render` needs a literal
+  snippet name and cannot take a variable.
+{%- endcomment -%}
+
+{%- liquid
+  assign vpd_code = ''
+  assign vpd_name = ''
+  assign vpd_category_name = ''
+  assign vpd_category_id = ''
+  assign vpd_tagline = ''
+  assign vpd_badges = ''
+  assign vpd_why = ''
+  assign vpd_features = ''
+  assign vpd_image = ''
+  assign vpd_price_text = ''
+  assign vpd_best = 'false'
+  assign vpd_new = 'false'
+
+  case product.handle
+    when 'vesper-s1-4wd-50'
+      assign vpd_code = 'S1 4WD 50°'
+      assign vpd_name = 'Remote Control Lawn Mower — 119% Slope (Grip Tread)'
+      assign vpd_category_name = 'Lawn Mower'
+      assign vpd_category_id = 'lawn-mower'
+      assign vpd_tagline = 'Remember the joy of RC cars as a kid? We brought that feeling back to your lawn.'
+      assign vpd_badges = 'COLLABORATIVE|EFFICIENT|STABLE|PREMIUM|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'All-Wheel Beast Drive tackles 50° (119% Grade) slopes — where other mowers stall, the S1 4WD keeps climbing|10 cm obstacle clearance plus aggressive grip tread tires crush tree roots, exposed rocks, and uneven ground without losing momentum|1985W peak cutting power with 8.13 N·m torque chews through 1.3 m tall, matted, wet grass without bogging down|Multi-season yard care: discharge, mulch, bag, and a 931 CFM leaf-shredding vacuum — replaces mower, rake, and blower in one machine|No RTK setup, no app pairing, no fuel — pick up the remote and mow in seconds, from up to 400 m away|Engineered by former DJI experts, built with aircraft-grade aluminum body and DC06 deep-draw steel deck for years of heavy use'
+      assign vpd_features = '50° (119%) slope, 10 cm obstacle clearance|53 cm deck, 1985W peak cutting power|2000 ㎡/h coverage (3× faster)|Runtime up to 2.25h (18Ah) / 1.5h (12Ah)|Discharge, Mulch, Bag + Leaf-Shredding Vacuum|4-Motor AWD, FOC torque control, 5ms response'
+      assign vpd_image = 'products-vesper-s1-4wd-50.webp'
+      assign vpd_price_text = '$2,499.00'
+      assign vpd_best = 'true'
+      assign vpd_new = 'true'
+    when 'vesper-s1-4wd-40'
+      assign vpd_code = 'S1 4WD 40°'
+      assign vpd_name = 'Remote Control Lawn Mower — 85% Slope (Wide Wheel)'
+      assign vpd_category_name = 'Lawn Mower'
+      assign vpd_category_id = 'lawn-mower'
+      assign vpd_tagline = 'Remember the joy of RC cars as a kid? We brought that feeling back to your lawn.'
+      assign vpd_badges = 'COLLABORATIVE|EFFICIENT|STABLE|PREMIUM|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'Wide TPU tread tires deliver a wider contact patch and puncture-free durability — added stability on 40° (85% Grade) slopes without sacrificing agility|10 cm obstacle clearance plus 4-Motor AWD crushes exposed tree roots, rocks, and uneven ground without losing momentum|1985W peak cutting power with 8.13 N·m torque chews through 1.3 m tall, matted, wet grass on the first pass|Multi-season yard care: 4-in-1 mode (discharge, mulch, bag, vacuum) replaces the mower, rake, and blower in one machine|No RTK setup, no app pairing, no fuel — pick up the DJI-grade remote and mow in seconds from up to 400 m away|Aircraft-grade aluminum body, DC06 deep-draw steel deck, and modular design for years of commercial-duty mowing'
+      assign vpd_features = '40° (85%) slope, 10 cm obstacle clearance|53 cm deck, 1985W peak cutting power|2000 ㎡/h coverage, 3× faster|Runtime up to 2.25h (18Ah) / 1.5h (12Ah)|Wide TPU Tread Wheels for max grip|Discharge, Mulch, Bag + Leaf-Shredding Vacuum'
+      assign vpd_image = 'products-vesper-s1-4wd-40.webp'
+      assign vpd_price_text = '$1,999.00'
+      assign vpd_best = 'true'
+      assign vpd_new = 'true'
+    when 'af718'
+      assign vpd_code = 'AF718'
+      assign vpd_name = 'Autosteering System'
+      assign vpd_category_name = 'Precision Agriculture'
+      assign vpd_category_id = 'precision-agriculture'
+      assign vpd_tagline = 'AF718 Frontier — Pioneering the Future of Smart Farming'
+      assign vpd_badges = 'COLLABORATIVE|EFFICIENT|STABLE|SECURE|ACCURATE|COMPATIBLE|UPGRADABLE'
+      assign vpd_why = 'High-performance processor and robust motor system support heavy-duty work and long-duration continuous operation|AI expansion interfaces enable seamless integration of advanced intelligent algorithms and modules|High-precision navigation with automatic path planning and real-time obstacle adjustment|Complete precision agriculture ecosystem supporting spraying, seeding, fertilizing, and more|Multi-machine collaboration enables synchronized operations across multiple vehicles in the same field|Centered on the AF718, supports diverse functions and flexible application across different farmland environments'
+      assign vpd_features = 'COLLABORATIVE|EFFICIENT|STABLE|SECURE|ACCURATE|COMPATIBLE|UPGRADABLE'
+      assign vpd_image = 'products-af718-main.png'
+      assign vpd_price_text = '$3,499.00'
+      assign vpd_best = 'true'
+      assign vpd_new = 'true'
+    when 'af305'
+      assign vpd_code = 'AF305'
+      assign vpd_name = 'Automated Steering System'
+      assign vpd_category_name = 'Precision Agriculture'
+      assign vpd_category_id = 'precision-agriculture'
+      assign vpd_tagline = 'An Advanced Steering Solution for Precision Agriculture'
+      assign vpd_badges = 'EFFICIENT|STABLE|PREMIUM|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'The AF305 Automated Steering System uses a high-torque motor control design, combined with a self-developed control algorithm, achieving ±2.5 cm pass-to-pass accuracy|Supports multiple vehicle types with easy 20-minute installation and setup|ISOBUS-compatible for seamless integration with agricultural implements|Advanced correction services provide reliable positioning even in challenging environments|Worry-free autosteering with terrain compensation and intelligent path planning'
+      assign vpd_features = 'Advanced GNSS positioning|Auto-steering control|Easy installation (20 min setup)|ISOBUS compatible|Terrain compensation|±2.5 cm accuracy'
+      assign vpd_image = 'products-af305-main.png'
+      assign vpd_price_text = '$2,199.00'
+      assign vpd_best = 'true'
+    when 'isobus'
+      assign vpd_code = 'ISOBUS'
+      assign vpd_name = 'Terminal'
+      assign vpd_category_name = 'Precision Agriculture'
+      assign vpd_category_id = 'precision-agriculture'
+      assign vpd_tagline = 'A one-stop ISOBUS solution for smart implements — fully compatible with mainstream agricultural equipment'
+      assign vpd_badges = 'EFFICIENT|STABLE|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'One-stop ISOBUS solution fully compatible with mainstream agricultural equipment, empowering universal terminal operations across mixed-brand fleets|12.1-inch high-brightness touchscreen provides clear visibility even in direct sunlight, with intuitive interface for reduced operator training|Built-in high-precision GNSS guidance eliminates the need for separate navigation displays|AEF-certified ISOBUS compliance ensures reliable UT and TC functionality with any ISOBUS-compatible implement|Highly expandable — supports future upgrades and integration with precision agriculture ecosystem'
+      assign vpd_features = 'AEF certified|ISOBUS compliant|Multi-brand compatibility|UT and TC support|Built-in GNSS guidance|12.1" sunlight-readable touchscreen'
+      assign vpd_image = 'products-isobus-main.png'
+      assign vpd_price_text = '$1,299.00'
+    when 'vs100'
+      assign vpd_code = 'VS100'
+      assign vpd_name = 'Spray Control System'
+      assign vpd_category_name = 'Precision Agriculture Solutions'
+      assign vpd_category_id = 'precision-spraying'
+      assign vpd_tagline = 'The VS100 Smart Spray Control System utilizes advanced satellite navigation to deliver precise pest and weed management'
+      assign vpd_badges = 'EFFICIENT|STABLE|PREMIUM|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'Utilizes advanced satellite navigation and control technology to deliver precise pest and weed management, reducing chemical waste by up to 15%|Section control with up to 16 individual sections ensures precise application, eliminating overlaps and skips even in irregularly shaped fields|Visualized operation interface provides real-time spray data including pressure, flow rate, and coverage maps for complete traceability|High compatibility with major sprayer brands and ISOBUS implements, with easy expansion for additional precision agriculture functions|Reapplication control prevents double-spraying of treated areas, saving chemicals and protecting crop health'
+      assign vpd_features = 'Precision spraying|Section control (up to 16 sections)|Flow rate monitoring|98% accuracy|Real-time monitoring|ISOBUS support|GNSS-based flow control'
+      assign vpd_image = 'products-vs100-main.png'
+      assign vpd_price_text = '$4,999.00'
+      assign vpd_best = 'true'
+    when 'w20'
+      assign vpd_code = 'W20'
+      assign vpd_name = 'Land Leveling System'
+      assign vpd_category_name = 'Land Leveling System'
+      assign vpd_category_id = 'land-leveling'
+      assign vpd_tagline = 'The W20 is a GNSS-based smart land leveling system designed to replace inefficient manual methods'
+      assign vpd_badges = 'STABLE PERFORMANCE|USER-FRIENDLY DESIGN|UPGRADED ALGORITHMS|SMART OPERATION|QUICK HEIGHT CALIBRATION|TERRAIN SURVEY & DESIGN'
+      assign vpd_why = 'Developed by Vesper, the W20 Intelligent GNSS Land Leveling System is a high-precision alternative to traditional laser leveling|Compatible with land levelers, scrapers, bulldozers, and graders, offering precise guidance and automated blade control for optimal performance|Minimizes operator fatigue and skill requirements, ensuring accurate results in farmland leveling and paddy field transformation|Ideal for land reclamation, site preparation, and roadbed work where high surface flatness is essential|Improves soil moisture retention, enables precise irrigation, and reduces input waste for significantly enhanced field productivity'
+      assign vpd_features = 'STABLE PERFORMANCE|USER-FRIENDLY DESIGN|UPGRADED ALGORITHMS|SMART OPERATION|QUICK HEIGHT CALIBRATION|TERRAIN SURVEY & DESIGN'
+      assign vpd_image = 'products-w20-main.png'
+      assign vpd_price_text = '$8,999.00'
+    when 'aries300n'
+      assign vpd_code = 'Aries300N'
+      assign vpd_name = 'Orchard Spraying Robot'
+      assign vpd_category_name = 'Agricultural Robots'
+      assign vpd_category_id = 'agricultural-robotics'
+      assign vpd_tagline = 'A hybrid-powered orchard spraying robot combining GNSS navigation, autonomous driving, and obstacle avoidance'
+      assign vpd_badges = 'EFFICIENT|STABLE|PREMIUM|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'Combines GNSS navigation, autonomous driving, obstacle avoidance, and intelligent operation — goodbye to manual driving in orchards|Robust design with stable performance in challenging terrain, slopes, and dense orchard environments|Reliable operation with cost-effective efficiency — reduces labor costs by up to 60% compared to manual spraying|Flexible mode switching between autonomous and manual operation for diverse orchard layouts and spray requirements|Hybrid gasoline-electric power system enables extended runtime up to 8 hours with 300L tank capacity'
+      assign vpd_features = 'Autonomous navigation|Hybrid power (Gasoline-Electric)|Air-assisted spraying|Night mode operation|3-10m spray width|GNSS-guided precision'
+      assign vpd_image = 'products-aries300n-main.png'
+      assign vpd_price_text = '$5,999.00'
+      assign vpd_best = 'true'
+    when 'taurus80e'
+      assign vpd_code = 'Taurus80E'
+      assign vpd_name = 'Smart Lawn Mowing Robot'
+      assign vpd_category_name = 'Agricultural Robots'
+      assign vpd_category_id = 'agricultural-robotics'
+      assign vpd_tagline = 'Autonomous Electric Mowing for Professional Operations'
+      assign vpd_badges = 'EFFICIENT|STABLE|PREMIUM|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'High-precision centimeter-level positioning for maximum field efficiency|Robust hardware platform engineered for harsh agricultural environments|Intelligent automation reduces operator fatigue and human errors|Seamless OTA updates keep your system future-proof'
+      assign vpd_features = 'Autonomous navigation|Electric powered (48V Lithium)|Low noise operation|24/7 working|Slope capability'
+      assign vpd_image = 'products-80e-1.webp'
+      assign vpd_price_text = '$3,999.00'
+      assign vpd_best = 'true'
+    when 'egs101'
+      assign vpd_code = 'EGS101'
+      assign vpd_name = 'Intelligent Excavator Guidance System'
+      assign vpd_category_name = 'Machine Control'
+      assign vpd_category_id = 'machine-control'
+      assign vpd_tagline = 'Works seamlessly with a wide range of excavator models, providing precise real-time guidance for digging and grading'
+      assign vpd_badges = 'EFFICIENT|STABLE|ACCURATE|UPGRADABLE'
+      assign vpd_why = 'Works seamlessly with a wide range of excavator models, providing precise real-time guidance for digging depth control and slope matching|Combines GNSS and laser sensors for accurate 2D and 3D grade control in all working conditions|Reduces over-digging by up to 80%, saving time on backfill and material costs|Intuitive 7-inch display shows real-time bucket position relative to target grade, eliminating the need for grade checkers|Quick installation and calibration — move the system between machines in under 30 minutes'
+      assign vpd_features = 'Grade control|Depth display|Slope matching|2D/3D control|GNSS + Laser sensors|±3 cm accuracy'
+      assign vpd_image = 'products-egs101-main.png'
+      assign vpd_price_text = '$2,499.00'
+  endcase
+
+  assign vpd_whatsapp = section.settings.whatsapp_number | default: settings.vesper_whatsapp_number
+  assign vpd_share_url = shop.url
+  if product != blank
+    assign vpd_share_url = shop.url | append: product.url
+  endif
+  assign vpd_share_title = vpd_code | append: ' ' | append: vpd_name
+  assign vpd_alt = vpd_code | append: ' ' | append: vpd_name
+-%}
+
+<div class="vpd-page">
+  {%- if vpd_code != blank -%}
+    <div class="vpd-breadcrumb">
+      <div class="v-container">
+        <nav class="v-breadcrumb" aria-label="Breadcrumb">
+          <a href="{{ routes.root_url }}">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/pages/products-solutions">Products &amp; Solutions</a>
+          <span aria-hidden="true">/</span>
+          <a href="/pages/products-solutions?category={{ vpd_category_id }}">{{ vpd_category_name }}</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{{ vpd_code }}</span>
+        </nav>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <section class="vpd-hero">
+    <div class="v-container">
+      <div class="vpd-hero__container">
+        <div class="vpd-gallery" data-reveal="left">
+          {%- if product == blank -%}
+            <img class="vpd-gallery__image" src="{{ vpd_image | asset_url }}" alt="{{ vpd_alt | escape }}" loading="eager">
+          {%- elsif product.images.size > 1 -%}
+            <div class="v-carousel vpd-gallery__carousel" data-carousel>
+              <div class="v-carousel__track" data-carousel-track>
+                {%- for image in product.images -%}
+                  <div class="v-carousel__slide">
+                    <img
+                      class="vpd-gallery__image"
+                      src="{{ image | image_url: width: 1200 }}"
+                      alt="{{ image.alt | default: vpd_alt | escape }}"
+                      width="{{ image.width }}"
+                      height="{{ image.height }}"
+                      {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %}>
+                  </div>
+                {%- endfor -%}
+              </div>
+              <div class="v-carousel__nav">
+                <button type="button" class="v-carousel__btn" data-carousel-prev aria-label="Previous image">
+                  {%- render 'vesper-icons', icon: 'chevron-left' -%}
+                </button>
+                <button type="button" class="v-carousel__btn" data-carousel-next aria-label="Next image">
+                  {%- render 'vesper-icons', icon: 'chevron-right' -%}
+                </button>
+              </div>
+
+              <div class="vpd-thumbs">
+                {%- for image in product.images -%}
+                  <button
+                    type="button"
+                    class="vpd-thumb{% if forloop.first %} is-active{% endif %}"
+                    data-carousel-thumb="{{ forloop.index0 }}"
+                    aria-label="Show image {{ forloop.index }}"
+                  >
+                    <img
+                      src="{{ image | image_url: width: 200 }}"
+                      alt=""
+                      width="{{ image.width }}"
+                      height="{{ image.height }}"
+                      loading="lazy">
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- elsif product.featured_image != blank -%}
+            <img
+              class="vpd-gallery__image"
+              src="{{ product.featured_image | image_url: width: 1200 }}"
+              alt="{{ product.featured_image.alt | default: vpd_alt | escape }}"
+              width="{{ product.featured_image.width }}"
+              height="{{ product.featured_image.height }}"
+              loading="eager">
+          {%- else -%}
+            <img class="vpd-gallery__image" src="{{ vpd_image | asset_url }}" alt="{{ vpd_alt | escape }}" loading="eager">
+          {%- endif -%}
+
+          {%- if vpd_code != blank -%}
+            <div class="vpd-badges">
+              <span class="vpd-stock-badge vpd-stock-badge--in">In Stock</span>
+              {%- if vpd_best == 'true' -%}
+                <span class="vpd-stock-badge vpd-stock-badge--best">Best Seller</span>
+              {%- endif -%}
+              {%- if vpd_new == 'true' -%}
+                <span class="vpd-stock-badge vpd-stock-badge--new">New Release</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_share and vpd_code != blank -%}
+            <div class="vpd-share">
+              <span class="vpd-share__label">Share:</span>
+              <a class="vpd-share__btn" href="https://twitter.com/intent/tweet?url={{ vpd_share_url | url_encode }}&amp;text={{ vpd_share_title | url_encode }}" target="_blank" rel="noopener" aria-label="Share on Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.6.8-2.5 1a3.9 3.9 0 0 0-6.7 3.6A11.1 11.1 0 0 1 4.1 4.8a3.9 3.9 0 0 0 1.2 5.2c-.6 0-1.2-.2-1.7-.5v.1c0 1.9 1.3 3.5 3.1 3.8-.6.2-1.2.2-1.8.1.5 1.6 2 2.7 3.6 2.8A7.9 7.9 0 0 1 2 18.8a11 11 0 0 0 6 1.8c7.2 0 11.2-6 11.2-11.2v-.5c.8-.6 1.4-1.3 1.8-2z"/></svg>
+              </a>
+              <a class="vpd-share__btn" href="https://www.facebook.com/sharer/sharer.php?u={{ vpd_share_url | url_encode }}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.4V13h2.2v8z"/></svg>
+              </a>
+              <a class="vpd-share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ vpd_share_url | url_encode }}" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+                {%- render 'vesper-icons', icon: 'linkedin' -%}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="vpd-info" data-reveal="right">
+          {%- if vpd_code != blank -%}
+            <div class="vpd-category">
+              <a href="/pages/products-solutions?category={{ vpd_category_id }}">{{ vpd_category_name }}</a>
+            </div>
+            <h1 class="vpd-title">{{ vpd_code }} {{ vpd_name }}</h1>
+            <p class="vpd-tagline">{{ vpd_tagline }}</p>
+
+            <div class="vpd-feature-badges">
+              {%- assign vpd_badge_items = vpd_badges | split: '|' -%}
+              {%- for badge in vpd_badge_items -%}
+                <span class="vpd-feature-badge">{{ badge }}</span>
+              {%- endfor -%}
+            </div>
+
+            <div class="v-accordion vpd-accordion" data-accordion>
+              <div class="v-accordion__item" data-open="false">
+                <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+                  <span>Why You'll Choose It</span>
+                  {%- render 'vesper-icons', icon: 'chevron-down' -%}
+                </button>
+                <div class="v-accordion__panel">
+                  <ul class="vpd-check-list">
+                    {%- assign vpd_why_items = vpd_why | split: '|' -%}
+                    {%- for reason in vpd_why_items -%}
+                      <li>{% render 'vesper-icons', icon: 'check' %}<span>{{ reason }}</span></li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+              <div class="v-accordion__item" data-open="false">
+                <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+                  <span>Features</span>
+                  {%- render 'vesper-icons', icon: 'chevron-down' -%}
+                </button>
+                <div class="v-accordion__panel">
+                  <ul class="vpd-check-list">
+                    {%- assign vpd_feature_items = vpd_features | split: '|' -%}
+                    {%- for feature in vpd_feature_items -%}
+                      <li>{% render 'vesper-icons', icon: 'check' %}<span>{{ feature }}</span></li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="vpd-cta-buttons">
+              <button type="button" class="v-btn v-btn--pill-primary v-btn--lg" data-request-demo data-whatsapp="{{ vpd_whatsapp }}" data-message="Hello! I would like to request a demo of the {{ vpd_code }} {{ vpd_name }}.">
+                {%- render 'vesper-icons', icon: 'phone' -%}
+                <span>Request a Demo</span>
+              </button>
+              <button type="button" class="v-btn v-btn--pill v-btn--lg" data-request-demo data-whatsapp="{{ vpd_whatsapp }}" data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">
+                {%- render 'vesper-icons', icon: 'whatsapp' -%}
+                <span>Get a Quote</span>
+              </button>
+            </div>
+          {%- endif -%}
+
+          {%- liquid
+            assign vpd_variant = nil
+            if product != blank
+              assign vpd_variant = product.selected_or_first_available_variant
+            endif
+          -%}
+
+          <div class="vpd-ecommerce">
+            {%- if vpd_variant == nil -%}
+              <div class="vpd-price-section">
+                <span class="vpd-price-current">{{ vpd_price_text }}</span>
+                <span class="vpd-price-stock vpd-price-stock--out">Coming soon</span>
+              </div>
+              <button type="button" class="v-btn v-btn--primary v-btn--block v-btn--lg vpd-add-to-cart" disabled>Coming soon</button>
+            {%- else -%}
+              <form data-product-form class="vpd-form">
+                <div class="vpd-price-section">
+                  <span class="vpd-price-current" data-variant-price>{{ vpd_variant.price | money }}</span>
+                  <span class="vpd-price-compare" data-variant-compare {% unless vpd_variant.compare_at_price > vpd_variant.price %}hidden{% endunless %}>
+                    {%- if vpd_variant.compare_at_price > vpd_variant.price -%}{{ vpd_variant.compare_at_price | money }}{%- endif -%}
+                  </span>
+                  <span class="vpd-price-stock{% unless vpd_variant.available %} vpd-price-stock--out{% endunless %}" data-variant-stock>
+                    {%- if vpd_variant.available -%}In stock{%- else -%}Out of Stock{%- endif -%}
+                  </span>
+                </div>
+
+                {%- unless vpd_variant.available -%}
+                  <div class="vpd-out-of-stock">
+                    <p>This product is currently unavailable. Please contact us for more information or to join the waitlist.</p>
+                  </div>
+                {%- endunless -%}
+
+                {%- if product.variants.size > 1 -%}
+                  <div class="vpd-variant-selector">
+                    <label class="vpd-variant-label" for="vpd-variant-{{ section.id }}">Configuration:</label>
+                    <select id="vpd-variant-{{ section.id }}" class="v-select" data-variant-picker>
+                      {%- for variant in product.variants -%}
+                        <option
+                          value="{{ variant.id }}"
+                          data-price="{{ variant.price | money | strip_html | escape }}"
+                          data-available="{{ variant.available }}"
+                          data-stock-label="{% if variant.available %}In stock{% else %}Out of Stock{% endif %}"
+                          {% if variant.compare_at_price > variant.price %}data-compare="{{ variant.compare_at_price | money | strip_html | escape }}"{% endif %}
+                          {% if variant == vpd_variant %}selected{% endif %}>{{ variant.title }}</option>
+                      {%- endfor -%}
+                    </select>
+                  </div>
+                {%- endif -%}
+
+                <div class="vpd-quantity">
+                  <label class="vpd-quantity-label" for="vpd-qty-{{ section.id }}">Quantity:</label>
+                  <div class="vpd-qty" data-qty>
+                    <div class="v-qty">
+                      <button type="button" data-qty-step="-1" aria-label="Decrease quantity">
+                        {%- render 'vesper-icons', icon: 'minus' -%}
+                      </button>
+                      <input id="vpd-qty-{{ section.id }}" type="number" name="quantity" value="1" min="1" aria-label="Quantity">
+                      <button type="button" data-qty-step="1" aria-label="Increase quantity">
+                        {%- render 'vesper-icons', icon: 'plus' -%}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <input type="hidden" name="id" value="{{ vpd_variant.id }}">
+                <button
+                  type="submit"
+                  class="v-btn v-btn--primary v-btn--block v-btn--lg vpd-add-to-cart"
+                  data-add-to-cart
+                  data-add-label="Add to Cart — {{ vpd_variant.price | money | strip_html | escape }}"
+                  {% unless vpd_variant.available %}disabled{% endunless %}>
+                  {%- render 'vesper-icons', icon: 'cart' -%}
+                  <span>Add to Cart — {{ vpd_variant.price | money }}</span>
+                </button>
+              </form>
+            {%- endif -%}
+          </div>
+
+          {%- if vpd_code != blank -%}
+            <div class="vpd-support-links">
+              <a class="vpd-support-link" href="#specifications">
+                {%- render 'vesper-icons', icon: 'grid' -%}
+                <span>View Specifications</span>
+              </a>
+              <a class="vpd-support-link" href="/pages/contact-us">
+                {%- render 'vesper-icons', icon: 'phone' -%}
+                <span>Contact Us</span>
+              </a>
+              <a class="vpd-support-link" href="/pages/support">
+                {%- render 'vesper-icons', icon: 'headset' -%}
+                <span>Product Support</span>
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- case product.handle -%}
+    {%- when 'vesper-s1-4wd-50' -%}
+      {% render 'vesper-product-content-vesper-s1-4wd-50', code: 'S1 4WD 50°', name: 'Remote Control Lawn Mower — 119% Slope (Grip Tread)' %}
+    {%- when 'vesper-s1-4wd-40' -%}
+      {% render 'vesper-product-content-vesper-s1-4wd-40', code: 'S1 4WD 40°', name: 'Remote Control Lawn Mower — 85% Slope (Wide Wheel)' %}
+    {%- when 'af718' -%}
+      {% render 'vesper-product-content-af718', code: 'AF718', name: 'Autosteering System' %}
+    {%- when 'af305' -%}
+      {% render 'vesper-product-content-af305', code: 'AF305', name: 'Automated Steering System' %}
+    {%- when 'isobus' -%}
+      {% render 'vesper-product-content-isobus', code: 'ISOBUS', name: 'Terminal' %}
+    {%- when 'vs100' -%}
+      {% render 'vesper-product-content-vs100', code: 'VS100', name: 'Spray Control System' %}
+    {%- when 'w20' -%}
+      {% render 'vesper-product-content-w20', code: 'W20', name: 'Land Leveling System' %}
+    {%- when 'aries300n' -%}
+      {% render 'vesper-product-content-aries300n', code: 'Aries300N', name: 'Orchard Spraying Robot' %}
+    {%- when 'taurus80e' -%}
+      {% render 'vesper-product-content-taurus80e', code: 'Taurus80E', name: 'Smart Lawn Mowing Robot' %}
+    {%- when 'egs101' -%}
+      {% render 'vesper-product-content-egs101', code: 'EGS101', name: 'Intelligent Excavator Guidance System' %}
+  {%- endcase -%}
+
+  {%- if vpd_code != blank -%}
+    <section class="vpd-cta-section">
+      <div class="vpd-cta-inner">
+        <h2>Interested in {{ vpd_code }} {{ vpd_name }}?</h2>
+        <p>Contact us today for more information or request a demo</p>
+        <div class="vpd-cta-actions">
+          <button type="button" class="v-btn v-btn--pill-primary v-btn--lg" data-request-demo data-whatsapp="{{ vpd_whatsapp }}" data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">
+            {%- render 'vesper-icons', icon: 'whatsapp' -%}
+            <span>Get A Quote</span>
+          </button>
+          <a class="v-btn v-btn--lg vpd-cta-contact" href="/pages/contact-us">
+            <span>Contact Us</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Vesper product detail",
+  "tag": "section",
+  "class": "vesper-product-detail-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number (digits only)",
+      "default": "61448290926"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share buttons",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

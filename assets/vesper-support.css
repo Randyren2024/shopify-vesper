@@ -1,0 +1,191 @@
+/* ==========================================================================
+   Vesper — Support page (ported from vesper_vue/src/views/SupportView.vue)
+   ========================================================================== */
+
+.vesper-support {
+  background: #f8f9fa;
+}
+
+.vesper-support__lead-wrap {
+  background: linear-gradient(180deg, var(--vesper-bg), #ffffff);
+  padding-block: clamp(24px, 4vw, 40px) 0;
+}
+
+.vesper-support__lead {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--vesper-font-title);
+  font-size: clamp(24px, 3.4vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Support channels ---------- */
+.vesper-support .support-section {
+  background: #ffffff;
+}
+
+.vesper-support .support-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.vesper-support .support-card {
+  padding: 32px;
+  text-align: center;
+}
+
+.vesper-support .support-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.vesper-support .support-icon {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.vesper-support .support-phone {
+  font-size: 24px;
+  font-weight: 700;
+  color: #52c41a;
+  margin-bottom: 20px;
+}
+
+/* ---------- Operating hours & services ---------- */
+.vesper-support .hours-section {
+  background: linear-gradient(135deg, #1a1a2e, #2c3e50);
+}
+
+.vesper-support .hours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.vesper-support .hours-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+}
+
+.vesper-support .hours-icon {
+  display: inline-flex;
+  margin-bottom: 16px;
+}
+
+.vesper-support .hours-icon svg {
+  width: 48px;
+  height: 48px;
+  color: #52c41a;
+}
+
+.vesper-support .hours-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.vesper-support .hours-info {
+  text-align: left;
+}
+
+.vesper-support .hours-info p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.vesper-support .hours-info p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Local service points ---------- */
+.vesper-support .service-section {
+  background: #ffffff;
+}
+
+.vesper-support .service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.vesper-support .service-card {
+  padding: 24px;
+  text-align: center;
+}
+
+.vesper-support .service-icon {
+  display: inline-flex;
+  margin-bottom: 12px;
+}
+
+.vesper-support .service-icon .v-icon {
+  width: 36px;
+  height: 36px;
+  color: #52c41a;
+}
+
+.vesper-support .service-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.vesper-support .service-card p {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.vesper-support .service-desc {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #999;
+}
+
+/* ---------- Warranty ---------- */
+.vesper-support .warranty-section {
+  background: #f8f9fa;
+}
+
+.vesper-support .warranty-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.vesper-support .warranty-content .v-accordion {
+  border-top: 1px solid var(--vesper-border);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .vesper-support .hours-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vesper-support .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .vesper-support .service-grid {
+    grid-template-columns: 1fr;
+  }
+}

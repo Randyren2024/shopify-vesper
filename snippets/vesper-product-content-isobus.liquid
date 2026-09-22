@@ -1,0 +1,214 @@
+{%- comment -%}
+  Vesper product rich content — ISOBUS (Terminal).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'ISOBUS' -%}
+{%- assign vpd_name = name | default: 'Terminal' -%}
+
+{%- capture isobus_g1 -%}
+Display=12.1 inches, 1280×800, 750 nits
+Weight=≤ 1.75 kg
+Ingress Protection=IP67
+Operating Temp=–20°C to +70°C
+System=8-core, 2 GHz, 2 GB RAM, 32 GB Storage, Android 12.0
+Power Consumption=≤ 12.0 W
+Supply Voltage=DC 7–36 V
+{%- endcapture -%}
+
+{%- capture isobus_g2 -%}
+Serial=RS232 ×2, RS485 ×1
+CAN=CAN ×2
+USB=USB 2.0 ×1
+Digital I/O=DI ×2, DO ×2
+Power Output=12V DC OUT ×1
+Camera Input=4 channels (analog)
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-12.1-high-brightness-touchscreen.jpg' | asset_url }}" alt="12.1 inch High-Brightness Touchscreen" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">12.1" High-Brightness Touchscreen</h3>
+          <p class="vpd-learn-card__desc">Large sunlight-readable display ensures operators can clearly view implement data, guidance lines, and controls in all lighting conditions.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-flexible-isobus-compatibility.jpg' | asset_url }}" alt="Flexible ISOBUS Compatibility" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Flexible ISOBUS Compatibility</h3>
+          <p class="vpd-learn-card__desc">Works seamlessly with ISOBUS-compatible implements from all major manufacturers, eliminating brand lock-in and simplifying mixed-fleet management.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-free-integrated-guidance.jpg' | asset_url }}" alt="Free Integrated Guidance" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Free Integrated Guidance</h3>
+          <p class="vpd-learn-card__desc">Built-in GNSS guidance provides navigation capabilities without the need for additional hardware, reducing total system cost and installation complexity.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-highly-expandable.jpg' | asset_url }}" alt="Highly Expandable" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Highly Expandable</h3>
+          <p class="vpd-learn-card__desc">Modular design supports future upgrades including section control, variable rate application, and integration with the Vesper precision agriculture ecosystem.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-tillage-and-soil-preparation-1.png' | asset_url }}" alt="Tillage and Soil Preparation" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Tillage and Soil Preparation</h3>
+          <p class="vpd-learn-card__desc">Optimize tillage operations with precise implement tracking and automated section control for consistent soil preparation across the field.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-precision-planting.png' | asset_url }}" alt="Accurate Planting" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Accurate Planting</h3>
+          <p class="vpd-learn-card__desc">Achieve uniform seed spacing and depth control with ISOBUS-enabled planters, reducing seed waste and maximizing emergence rates.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-efficient-spraying.png' | asset_url }}" alt="Precise Spraying" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Precise Spraying</h3>
+          <p class="vpd-learn-card__desc">Enable precision spraying with automatic section control, reducing chemical overlap and ensuring consistent application across the entire field.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'isobus-harvesting.png' | asset_url }}" alt="Efficient Harvesting" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Efficient Harvesting</h3>
+          <p class="vpd-learn-card__desc">Monitor yield data, moisture levels, and harvesting parameters in real time for data-driven decision making and optimized harvest operations.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="T120 Tablet" aria-selected="true" role="tab">T120 Tablet</button>
+          <button type="button" class="v-tabs__tab" data-tab="Data Interfaces" aria-selected="false" role="tab">Data Interfaces</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="T120 Tablet" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = isobus_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Data Interfaces" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = isobus_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the core function of the ISOBUS system, and what problems does it solve in agriculture?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">ISOBUS (ISO 11783) standardizes communication between tractors and implements from different manufacturers. It enables interoperability, unified display and control through a single in-cab terminal, eliminating the need for multiple proprietary monitors and simplifying operator workflow.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What visualization controls does the ISOBUS VT/UT function provide?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The VT (Virtual Terminal) or UT (Universal Terminal) displays and controls the implement interface inside the cab. It automatically detects connected ISOBUS-compatible implements and provides a standardized user interface for monitoring and controlling implement functions.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the role of the Task Controller (TC) module in ISOBUS-based operations?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The Task Controller (TC) enables automated documentation and variable rate application by managing task data exchange between the farm management system and the implement. It records as-applied maps, tracks job progress, and supports prescription-based variable rate control.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">You May Also Like</h2>
+    <div class="vpd-related__grid">
+      <a class="vpd-related-card" href="/products/af718">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-af718-main.png' | asset_url }}" alt="AF718 Autosteering System" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">AF718 Autosteering System</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = "The AF718 is Vesper's next-generation high-performance autosteering system. Powered by an advanced computing platform, it significantly enhances accuracy and efficiency across diverse farming operations." -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+      <a class="vpd-related-card" href="/products/af305">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-af305-main.png' | asset_url }}" alt="AF305 Automated Steering System" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">AF305 Automated Steering System</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'AF305 delivers high accuracy, smart path planning, and broad equipment compatibility to boost field efficiency and simplify operations.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

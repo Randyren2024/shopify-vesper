@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Vesper — cart page
+   Ported from vesper_vue/src/views/CartView.vue + components/CartDrawer.vue
+   Reuses the cart line / quantity classes from vesper-base.css.
+   ========================================================================== */
+
+.v-cart-page__title {
+  margin: 0 0 32px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--vesper-text);
+}
+
+/* ---------- Empty state ---------- */
+.v-cart-page__empty {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.v-cart-page__empty .v-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  color: #d9d9d9;
+}
+
+.v-cart-page__empty h2 {
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+.v-cart-page__empty p {
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: var(--vesper-text-secondary);
+}
+
+/* ---------- Layout ---------- */
+.v-cart-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  align-items: start;
+}
+
+.v-cart-page__items {
+  padding: 24px;
+}
+
+.v-cart-page__summary {
+  position: sticky;
+  top: calc(var(--vesper-header-height, 72px) + 24px);
+  padding: 24px;
+}
+
+/* ---------- Line items ---------- */
+.v-cart-page .v-cart-line {
+  grid-template-columns: 100px minmax(0, 1fr) auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.v-cart-page .v-cart-line__img {
+  width: 100px;
+  height: 100px;
+}
+
+.v-cart-page .v-cart-line__variant {
+  margin-bottom: 4px;
+}
+
+.v-cart-page__unit-price {
+  margin: 0;
+  font-size: 14px;
+  color: var(--vesper-text-secondary);
+}
+
+.v-cart-page .v-cart-line__price {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.v-cart-page__line-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.v-cart-page__remove {
+  font-size: 13px;
+  color: var(--vesper-text-secondary);
+  text-decoration: underline;
+}
+
+.v-cart-page__remove:hover {
+  color: #e53935;
+}
+
+.v-cart-page__update {
+  margin-top: 20px;
+}
+
+/* ---------- Summary ---------- */
+.v-cart-page__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--vesper-text-secondary);
+}
+
+.v-cart-page__total {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 2px solid #f0f0f0;
+  font-family: var(--vesper-font-title);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--vesper-text);
+}
+
+.v-cart-page__summary .v-btn {
+  margin-top: 12px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+  .v-cart-page__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .v-cart-page__summary {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .v-cart-page__title {
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+
+  .v-cart-page__items {
+    padding: 16px;
+  }
+
+  .v-cart-page__empty {
+    padding: 56px 16px;
+  }
+
+  .v-cart-page .v-cart-line {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .v-cart-page .v-cart-line__img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .v-cart-page .v-cart-line__title {
+    font-size: 14px;
+  }
+
+  .v-cart-page .v-cart-line__variant,
+  .v-cart-page__unit-price {
+    font-size: 12px;
+  }
+
+  .v-cart-page__qty,
+  .v-cart-page__line-actions {
+    grid-column: 2;
+    align-items: flex-start;
+  }
+
+  .v-cart-page__qty {
+    margin-top: 8px;
+  }
+
+  .v-cart-page .v-cart-line__price {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .v-cart-page__total {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .v-cart-page .v-cart-line {
+    grid-template-columns: 60px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .v-cart-page .v-cart-line__img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .v-cart-page .v-cart-line__title {
+    font-size: 13px;
+  }
+}

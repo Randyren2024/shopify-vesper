@@ -1,0 +1,68 @@
+{%- comment -%}
+  Our Values — ported from HomeView.vue `.values-section` (valueItems array).
+{%- endcomment -%}
+
+<section class="vhome-values v-section">
+  <div class="v-container">
+    <div class="v-section-head vhome-section-head" data-reveal>
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="vhome-values__grid">
+      {%- for block in section.blocks -%}
+        <div class="vhome-value-card" data-reveal {{ block.shopify_attributes }}>
+          <div class="vhome-value-card__icon vhome-value-card__icon--{{ forloop.index }}">{{ block.settings.icon }}</div>
+          <h3 class="vhome-value-card__title">{{ block.settings.title }}</h3>
+          <p class="vhome-value-card__desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vesper home values",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Our Values"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "What drives us forward"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "⚡"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Technical Excellence"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}

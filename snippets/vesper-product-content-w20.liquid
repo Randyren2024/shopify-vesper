@@ -1,0 +1,228 @@
+{%- comment -%}
+  Vesper product rich content — W20 (Land Leveling System).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'W20' -%}
+{%- assign vpd_name = name | default: 'Land Leveling System' -%}
+
+{%- capture w20_g1 -%}
+Display=10.1 inches, 1280×800, 750 nits, 10-point multi-touch
+Physical Buttons=4
+System=8-core, 2 GHz, 2 GB RAM, 32 GB storage, Android 12.0
+Communication=CAN ×2, RS232 ×2, RS485 ×1
+Connectivity=4G (Dual SIM), Wi-Fi, Bluetooth, GNSS
+{%- endcapture -%}
+
+{%- capture w20_g2 -%}
+GPS=L1/L2/L5
+BDS=B1/B2/B3
+GLONASS=L1/L2/L3
+GALILEO=E1/E5a/E5b/E6
+QZSS=L1/L2/L5/L6
+IRNSS=L5
+SBAS=L1/L5
+L-Band=Supported
+{%- endcapture -%}
+
+{%- capture w20_g3 -%}
+Model=NMC101
+Communication=CAN ×1
+Operating Voltage=DC 12V (9–36V)
+Signal Inputs=2 analog inputs (0–5V)
+Control Outputs=2 switch signal outputs (PWM supported)
+Output Power=≤ 40 W
+Protection Rating=IP67
+Operating Temp=–20°C to +60°C
+Storage Temp=–40°C to +70°C
+Dimensions=81 × 112 × 33 mm
+Weight=~320 g
+{%- endcapture -%}
+
+{%- capture w20_g4 -%}
+Model=NMC114
+Communication=RS232 ×1, RS485 ×1, CAN ×2
+Power Supply=DC 12V (6–36V), Max 12A @ 12V
+Control Outputs=8 channels (PWM supported)
+Signal Inputs=8 channels (voltage/current/resistance)
+Output Power=≤ 144 W
+Protection Rating=IP67
+Operating Temp=–20°C to +60°C
+Storage Temp=–40°C to +70°C
+Dimensions=138 × 119 × 37 mm
+Weight=~237 g
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'w20_cards-efficient-3d-land-leveling-made-simple-1.png' | asset_url }}" alt="Efficient 3D Land Leveling Made Simple" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Efficient 3D Land Leveling Made Simple</h3>
+          <p class="vpd-learn-card__desc">Advanced 3D terrain modeling enables automated grading plans that transform uneven fields into precisely leveled surfaces with minimal operator input.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'w20_cards-intelligent-soil-unloading-to-reduce-costs.png' | asset_url }}" alt="Intelligent Soil Unloading to Reduce Costs" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Intelligent Soil Unloading to Reduce Costs</h3>
+          <p class="vpd-learn-card__desc">Smart algorithms calculate optimal soil cut-and-fill volumes, minimizing machine passes and reducing fuel consumption and operational costs.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'w20_cards-multiple-slope-modes-for-easy-operation.png' | asset_url }}" alt="Multiple Slope Modes for Easy Operation" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Multiple Slope Modes for Easy Operation</h3>
+          <p class="vpd-learn-card__desc">Pre-configured slope templates for common field types — flat plane, single slope, and dual slope — make setup fast and operation intuitive.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'w20_cards-highly-adaptable-for-diverse-applications.png' | asset_url }}" alt="Highly Adaptable for Diverse Applications" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Highly Adaptable for Diverse Applications</h3>
+          <p class="vpd-learn-card__desc">From paddy field transformation to large-scale land reclamation and construction site preparation, the W20 adapts to varied terrain and project requirements.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'w20_cards-strong-signal-wide-coverage.png' | asset_url }}" alt="Strong Signal, Wide Coverage" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Strong Signal, Wide Coverage</h3>
+          <p class="vpd-learn-card__desc">Multi-constellation GNSS receiver with dual antenna design ensures stable positioning even in challenging environments with partial sky obstruction.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="Tablet" aria-selected="true" role="tab">Tablet</button>
+          <button type="button" class="v-tabs__tab" data-tab="GNSS Antenna" aria-selected="false" role="tab">GNSS Antenna</button>
+          <button type="button" class="v-tabs__tab" data-tab="Single-Control Controller (NMC101)" aria-selected="false" role="tab">Single-Control Controller (NMC101)</button>
+          <button type="button" class="v-tabs__tab" data-tab="Dual/Multiple-Control Controller (NMC114)" aria-selected="false" role="tab">Dual/Multiple-Control Controller (NMC114)</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Tablet" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = w20_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="GNSS Antenna" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = w20_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Single-Control Controller (NMC101)" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = w20_g3 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Dual/Multiple-Control Controller (NMC114)" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = w20_g4 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the W20 system and what agricultural problems does it solve?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The W20 is a GNSS-based smart land leveling system designed to replace inefficient manual methods. It improves soil moisture retention, enables precise irrigation, reduces input waste, and significantly enhances field productivity and leveling efficiency.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the leveling accuracy of the W20 and can it handle complex terrain?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">W20 uses dynamic compensation and RTK-based positioning to achieve ≤2.5 cm accuracy in both horizontal and slope modes. It automatically detects terrain elevation and adjusts in real time, ensuring uniform leveling across complex terrains.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>How user-friendly is the W20 system? Is it easy to operate?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">W20 features an intuitive touchscreen interface and supports multiple control methods including remote handsets and physical buttons. The hardware is easy to install and disassemble, rated IP67 for durability in tough outdoor conditions.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the difference between the single control version and the dual control version?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The single control version is only suitable for shovels with one control cylinder. The dual control version is suitable for shovels with up to two control cylinders.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>

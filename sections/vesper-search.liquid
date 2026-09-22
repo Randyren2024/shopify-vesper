@@ -1,0 +1,281 @@
+{%- comment -%}
+  Vesper search results page. Renders products, articles and pages returned by the
+  native Shopify search endpoint (templates/search.json).
+{%- endcomment -%}
+
+{%- liquid
+  if search.performed and search.terms != blank
+    assign search_subtitle = 'Results for "' | append: search.terms | append: '"'
+  else
+    assign search_subtitle = 'Find products, articles and pages across the Vesper AgriTech site.'
+  endif
+-%}
+
+{% render 'vesper-page-hero', title: 'Search', subtitle: search_subtitle, breadcrumb: 'Search' %}
+
+<section class="v-section v-section--tight v-search">
+  <div class="v-container">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="v-search__form">
+      <label class="v-field__label" for="vesper-search-input">Search</label>
+      <div class="v-search__bar">
+        <input
+          type="search"
+          id="vesper-search-input"
+          class="v-input"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search products, articles and pages"
+        >
+        <input type="hidden" name="type" value="product,article,page">
+        <input type="hidden" name="options[prefix]" value="last">
+        <button type="submit" class="v-btn v-btn--primary">Search</button>
+      </div>
+    </form>
+
+    {%- if search.performed -%}
+      {%- paginate search.results by 12 -%}
+        {%- if search.results_count == 0 -%}
+          <div class="v-search__empty v-card">
+            {% render 'vesper-icons', icon: 'search' %}
+            <h2>No results found</h2>
+            <p>
+              We couldn't find any results for &ldquo;{{ search.terms | escape }}&rdquo;.
+              Try a different keyword or browse all products.
+            </p>
+            <a class="v-btn v-btn--primary" href="{{ routes.all_products_collection_url }}">Browse products</a>
+          </div>
+        {%- else -%}
+          <p class="v-search__count">
+            {{ search.results_count }}
+            {%- if search.results_count == 1 %} result{% else %} results{% endif %} for
+            &ldquo;{{ search.terms | escape }}&rdquo;
+          </p>
+
+          <ul class="v-search__grid">
+            {%- for item in search.results -%}
+              {%- case item.object_type -%}
+                {%- when 'product' -%}
+                  <li class="v-search__item">
+                    <a class="v-card v-card-hover v-search-card" href="{{ item.url }}">
+                      <div class="v-search-card__media">
+                        {%- if item.featured_image -%}
+                          {{ item.featured_image | image_url: width: 600 | image_tag: class: 'v-search-card__img', alt: item.title, loading: 'lazy' }}
+                        {%- endif -%}
+                      </div>
+                      <div class="v-search-card__body">
+                        <span class="v-badge">Product</span>
+                        <h3 class="v-search-card__title">{{ item.title }}</h3>
+                        <p class="v-search-card__price">
+                          {{ item.price | money }}
+                          {%- if item.compare_at_price > item.price -%}
+                            <span class="v-search-card__price-compare">{{ item.compare_at_price | money }}</span>
+                          {%- endif -%}
+                        </p>
+                      </div>
+                    </a>
+                  </li>
+
+                {%- when 'article' -%}
+                  <li class="v-search__item">
+                    <a class="v-card v-card-hover v-search-card" href="{{ item.url }}">
+                      <div class="v-search-card__media">
+                        {%- if item.image -%}
+                          {{ item.image | image_url: width: 600 | image_tag: class: 'v-search-card__img', alt: item.title, loading: 'lazy' }}
+                        {%- endif -%}
+                      </div>
+                      <div class="v-search-card__body">
+                        <span class="v-badge">Article</span>
+                        <h3 class="v-search-card__title">{{ item.title }}</h3>
+                        <p class="v-search-card__excerpt">{{ item.excerpt_or_content | strip_html | truncate: 140 }}</p>
+                      </div>
+                    </a>
+                  </li>
+
+                {%- else -%}
+                  <li class="v-search__item">
+                    <a class="v-card v-card-hover v-search-card" href="{{ item.url }}">
+                      <div class="v-search-card__body">
+                        <span class="v-badge">Page</span>
+                        <h3 class="v-search-card__title">{{ item.title }}</h3>
+                        <p class="v-search-card__excerpt">{{ item.content | strip_html | truncate: 140 }}</p>
+                      </div>
+                    </a>
+                  </li>
+              {%- endcase -%}
+            {%- endfor -%}
+          </ul>
+
+          {%- if paginate.pages > 1 -%}
+            <nav class="v-search__pagination" aria-label="Pagination">
+              {{ paginate | default_pagination }}
+            </nav>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- else -%}
+      <div class="v-search__empty v-card">
+        {% render 'vesper-icons', icon: 'search' %}
+        <h2>Search our site</h2>
+        <p>Enter a keyword above to search products, articles and pages.</p>
+        <a class="v-btn v-btn--primary" href="{{ routes.all_products_collection_url }}">Browse all products</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+.v-search__form {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+
+.v-search__bar {
+  display: flex;
+  gap: 10px;
+}
+
+.v-search__bar .v-input {
+  min-width: 0;
+}
+
+.v-search__bar .v-btn {
+  flex: none;
+}
+
+.v-search__count {
+  margin-bottom: 24px;
+  font-size: 15px;
+  color: var(--vesper-text-secondary);
+}
+
+.v-search__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.v-search-card {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  color: inherit;
+}
+
+.v-search-card__media {
+  aspect-ratio: 4 / 3;
+  background: var(--vesper-bg);
+}
+
+.v-search-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.v-search-card__body {
+  padding: 18px;
+}
+
+.v-search-card__title {
+  margin: 10px 0 6px;
+  font-size: 17px;
+  color: var(--vesper-text);
+}
+
+.v-search-card__price {
+  margin: 0;
+  font-family: var(--vesper-font-title);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vesper-primary);
+}
+
+.v-search-card__price-compare {
+  margin-left: 8px;
+  font-weight: 500;
+  color: var(--vesper-text-secondary);
+  text-decoration: line-through;
+}
+
+.v-search-card__excerpt {
+  margin: 0;
+  font-size: 14px;
+  color: var(--vesper-text-secondary);
+}
+
+.v-search__empty {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.v-search__empty .v-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 16px;
+  color: #cfd8dc;
+}
+
+.v-search__empty h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.v-search__empty p {
+  margin-bottom: 24px;
+  color: var(--vesper-text-secondary);
+}
+
+.v-search__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.v-search__pagination a,
+.v-search__pagination .page,
+.v-search__pagination .current {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--vesper-border);
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vesper-text);
+}
+
+.v-search__pagination .current,
+.v-search__pagination a:hover {
+  border-color: var(--vesper-primary);
+  color: var(--vesper-primary);
+}
+
+@media (max-width: 576px) {
+  .v-search__bar {
+    flex-direction: column;
+  }
+
+  .v-search__bar .v-btn {
+    width: 100%;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Search results",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

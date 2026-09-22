@@ -1,0 +1,144 @@
+{%- comment -%}
+  Vesper product rich content — Taurus80E (Smart Lawn Mowing Robot).
+  Static content ported from vesper_vue/src/data/products.ts.
+  This product has no learnMoreCards / faqs of its own, so the Learn More
+  section mirrors the ProductDetailView.vue default fallback set.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'Taurus80E' -%}
+{%- assign vpd_name = name | default: 'Smart Lawn Mowing Robot' -%}
+
+{%- capture taurus80e_g1 -%}
+Cutting Width=800 mm
+Speed=0-6 km/h
+Runtime=8 hours
+{%- endcapture -%}
+
+{%- capture taurus80e_g2 -%}
+Power=48V Lithium
+Charging Time=3 hours
+Runtime=8 hours
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ '3u9a0093.webp' | asset_url }}" alt="Powerful Hardware Platform" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Powerful Hardware Platform</h3>
+          <p class="vpd-learn-card__desc">Equipped with a next-generation high-performance GNSS receiver featuring strong signal tracking, enhanced anti-interference, and fast convergence. The 12.1-inch high-brightness tablet with increased RAM/ROM delivers a smoother, more responsive user experience.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'harvest-1543064.webp' | asset_url }}" alt="Future-Ready AI Expansion" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Future-Ready AI Expansion</h3>
+          <p class="vpd-learn-card__desc">Supports AI Visual Guidance (AN-V100) for real-time crop boundary detection and autonomous row following without pre-set AB lines. Modular design allows for easy upgrades as new AI capabilities emerge.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'agriculture-6502282.webp' | asset_url }}" alt="Seamless Data Integration and Transfer" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Seamless Data Integration and Transfer</h3>
+          <p class="vpd-learn-card__desc">Built-in 4G/WiFi connectivity enables automatic job data synchronization between vehicles and the cloud platform. Share field boundaries, guidance lines, and task reports across your entire fleet.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'pexels-nc-farm-bureau-mark-2889442.webp' | asset_url }}" alt="Smarter Navigation and Operation" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Smarter Navigation &amp; Operation</h3>
+          <p class="vpd-learn-card__desc">Intuitive touch interface with high-brightness display ensures clear visibility even in direct sunlight. Paddle controls and alert indicators allow quick operation in rough field conditions.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'pexels-nc-farm-bureau-mark-26256448.webp' | asset_url }}" alt="Collaborative Machine Operations" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Collaborative Machine Operations</h3>
+          <p class="vpd-learn-card__desc">Multi-machine collaboration support enables synchronized operations across multiple vehicles in the same field. Track real-time progress, share waypoints, and optimize fleet efficiency.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'sunrise-8218442.webp' | asset_url }}" alt="One System, Multiple Scenarios" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">One System, Multiple Scenarios</h3>
+          <p class="vpd-learn-card__desc">From plowing and planting to spraying and harvesting, the AF718 adapts to diverse farming applications. Support for implement guidance (±1.5 cm pass-to-pass accuracy) further extends its versatility.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="Performance" aria-selected="true" role="tab">Performance</button>
+          <button type="button" class="v-tabs__tab" data-tab="Battery" aria-selected="false" role="tab">Battery</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Performance" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = taurus80e_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Battery" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = taurus80e_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">You May Also Like</h2>
+    <div class="vpd-related__grid">
+      <a class="vpd-related-card" href="/products/aries300n">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-aries300n-main.png' | asset_url }}" alt="Aries300N Orchard Spraying Robot" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">Aries300N Orchard Spraying Robot</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'Aries300N Smart Sprayer delivers GNSS-guided, hybrid spraying for orchards. Ensures full coverage, cuts labor, and works smarter with Vesper.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

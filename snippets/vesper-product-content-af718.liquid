@@ -1,0 +1,277 @@
+{%- comment -%}
+  Vesper product rich content — AF718 (Autosteering System).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'AF718' -%}
+{%- assign vpd_name = name | default: 'Autosteering System' -%}
+
+{%- capture af718_g1 -%}
+Satellite Positioning Frequencies=BDS: B1I, B2I, B3I, B1C, B2a, B2b; GPS: L1C/A, L2P(Y)/L2C, L5; GLONASS: G1, G2; Galileo: E1, E5a, E5b, E6; QZSS: L1, L2, L5; L-Band: Supported
+Differential Corrections=Satellite-Based and Ground-Based, full AllyLink Service compatibility
+Radio Protocols=TRIMATLK, TRIMMARK3, TRANSEOT, SP, CSS and other mainstream protocols
+Ingress Protection=IP67
+{%- endcapture -%}
+
+{%- capture af718_g2 -%}
+Screen=12.1 inches
+Resolution=1280 × 800
+Brightness=750 nits
+RAM & ROM=6 + 64GB
+{%- endcapture -%}
+
+{%- capture af718_g3 -%}
+Type=High-torque electric motor
+Control Angle=±40°
+Working Speed=0-50 km/h
+Operating Temp=-20°C to 70°C
+Power Supply=12V DC
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af718-powerful-hardware-platform-1.png' | asset_url }}" alt="Powerful Hardware Platform" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Powerful Hardware Platform</h3>
+          <p class="vpd-learn-card__desc">Equipped with a high-performance processor and robust motor system, the AF718 supports heavy-duty work and long-duration continuous operation. Its powerful hardware not only ensures stability but also provides a solid foundation for future upgrades and multi-machine collaboration.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af718-future-ready-ai-expansion.png' | asset_url }}" alt="Future-Ready AI Expansion" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Future-Ready AI Expansion</h3>
+          <p class="vpd-learn-card__desc">The device comes with AI expansion interfaces, enabling seamless integration of advanced intelligent algorithms and modules. Whether for optimizing multi-machine coordination, monitoring crop health, or providing automated decision support, the AF718 is ready to upgrade to meet the evolving demands of modern agriculture.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af718-seamless-data-integration-and-transfer.png' | asset_url }}" alt="Seamless Data Integration and Transfer" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Seamless Data Integration and Transfer</h3>
+          <p class="vpd-learn-card__desc">The Vesper software ecosystem enables smooth data exchange across AIAgripro, AIFarm, and AIFMS. It maintains compatibility with other major brands and also supports integration with the xFarm platform, helping users meet agricultural subsidy compliance requirements.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af718-smarter-navigation-operation.png' | asset_url }}" alt="Smarter Navigation &amp; Operation" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Smarter Navigation &amp; Operation</h3>
+          <p class="vpd-learn-card__desc">With high-precision navigation and intelligent operation algorithms, the AF718 can automatically plan paths, accurately identify work areas, and adjust in real time. Even in complex terrains or obstacle-dense environments, it ensures precise, safe, and efficient operations.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af718-collaborative-machine-operations.png' | asset_url }}" alt="Collaborative Machine Operations" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Collaborative Machine Operations</h3>
+          <p class="vpd-learn-card__desc">Moving beyond traditional standalone work, it enables multiple tractors and machines to operate collaboratively in the field. Tasks, progress, and work paths are shared in real time, and even without network connectivity, vehicles can exchange data seamlessly, ensuring smooth coordination and stronger team performance.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'af718-one-system-multiple-scenarios.png' | asset_url }}" alt="One System, Multiple Scenarios" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">One System, Multiple Scenarios</h3>
+          <p class="vpd-learn-card__desc">Centered on the AF718, Vesper has built a complete precision agriculture ecosystem. With this core hardware as the foundation, the system supports diverse functions such as spraying, seeding, and fertilizing, and can be flexibly applied across different farmland environments and operational scenarios.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Core Applications</h2>
+    <div class="v-carousel vpd-app-carousel" data-carousel>
+      <div class="v-carousel__track" data-carousel-track>
+        <div class="v-carousel__slide">
+          <div class="vpd-app-card">
+            <div class="vpd-app-card__icon"><img class="vpd-app-card__img" src="{{ 'af718-multi-machine-collaboration-1.png' | asset_url }}" alt="Multi-Machine Collaboration" loading="lazy"></div>
+            <h3>Multi-Machine Collaboration</h3>
+          </div>
+        </div>
+        <div class="v-carousel__slide">
+          <div class="vpd-app-card">
+            <div class="vpd-app-card__icon"><img class="vpd-app-card__img" src="{{ 'af718-smart-path-planning-1.png' | asset_url }}" alt="Smart Path Planning" loading="lazy"></div>
+            <h3>Smart Path Planning</h3>
+          </div>
+        </div>
+        <div class="v-carousel__slide">
+          <div class="vpd-app-card">
+            <div class="vpd-app-card__icon"><img class="vpd-app-card__img" src="{{ 'af718-ai-visual-guidance-1.png' | asset_url }}" alt="AI Visual Guidance" loading="lazy"></div>
+            <h3>AI Visual Guidance</h3>
+          </div>
+        </div>
+        <div class="v-carousel__slide">
+          <div class="vpd-app-card">
+            <div class="vpd-app-card__icon"><img class="vpd-app-card__img" src="{{ 'af718-implement-guidance-1.png' | asset_url }}" alt="Implement Guidance" loading="lazy"></div>
+            <h3>Implement Guidance</h3>
+          </div>
+        </div>
+        <div class="v-carousel__slide">
+          <div class="vpd-app-card">
+            <div class="vpd-app-card__icon">{% render 'vesper-icons', icon: 'grid' %}</div>
+            <h3>Auto-Steering Control</h3>
+          </div>
+        </div>
+        <div class="v-carousel__slide">
+          <div class="vpd-app-card">
+            <div class="vpd-app-card__icon">{% render 'vesper-icons', icon: 'grid' %}</div>
+            <h3>Fleet Management</h3>
+          </div>
+        </div>
+      </div>
+      <div class="v-carousel__nav">
+        <button type="button" class="v-carousel__btn" data-carousel-prev aria-label="Previous application">
+          {%- render 'vesper-icons', icon: 'chevron-left' -%}
+        </button>
+        <button type="button" class="v-carousel__btn" data-carousel-next aria-label="Next application">
+          {%- render 'vesper-icons', icon: 'chevron-right' -%}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="GNSS Receiver" aria-selected="true" role="tab">GNSS Receiver</button>
+          <button type="button" class="v-tabs__tab" data-tab="Tablet Display" aria-selected="false" role="tab">Tablet Display</button>
+          <button type="button" class="v-tabs__tab" data-tab="Motor" aria-selected="false" role="tab">Motor</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="GNSS Receiver" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = af718_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Tablet Display" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = af718_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Motor" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = af718_g3 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What vehicles is AF718 compatible with?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">AF718 is compatible with most agricultural tractors and heavy machinery including John Deere, Case IH, New Holland, and other major brands. It supports diverse farming applications from plowing to harvesting.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Does it require internet connectivity?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">No, AF718 uses GNSS satellite positioning and does not require internet for basic operation. Multi-machine collaboration can even exchange data without network connectivity.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What satellite systems does AF718 support?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">AF718 supports BDS (B1I/B2I/B3I/B1C/B2a/B2b), GPS (L1C/A/L2P/L2C/L5), GLONASS (G1/G2), Galileo (E1/E5a/E5b/E6), QZSS (L1/L2/L5), and L-Band.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Can AF718 be upgraded with AI features?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Yes, AF718 comes with AI expansion interfaces enabling seamless integration of advanced intelligent algorithms. The AN-V100 AI Visual Guidance module supports real-time crop boundary detection and autonomous row following.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">You May Also Like</h2>
+    <div class="vpd-related__grid">
+      <a class="vpd-related-card" href="/products/af305">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-af305-main.png' | asset_url }}" alt="AF305 Automated Steering System" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">AF305 Automated Steering System</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'AF305 delivers high accuracy, smart path planning, and broad equipment compatibility to boost field efficiency and simplify operations.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+      <a class="vpd-related-card" href="/products/isobus">
+        <div class="vpd-related-card__cover">
+          <img src="{{ 'products-isobus-main.png' | asset_url }}" alt="ISOBUS Terminal" loading="lazy">
+        </div>
+        <div class="vpd-related-card__body">
+          <h3 class="vpd-related-card__title">ISOBUS Terminal</h3>
+          <p class="vpd-related-card__desc">{%- assign rel_desc = 'Empower your implements with a certified ISOBUS terminal featuring a 12.1" sunlight-readable touchscreen, built-in high-precision GNSS guidance, and seamless compatibility with major agricultural equipment.' -%}{{ rel_desc | slice: 0, 60 }}...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

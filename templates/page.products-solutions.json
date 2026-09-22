@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "hero": {
+      "type": "vesper-products-hero",
+      "settings": {}
+    },
+    "grid": {
+      "type": "vesper-products-grid",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "grid"
+  ]
+}

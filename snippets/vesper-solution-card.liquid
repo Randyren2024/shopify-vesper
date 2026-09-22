@@ -1,0 +1,37 @@
+{%- comment -%}
+  Solution card — ported from the <a-card> markup used per category in
+  src/views/SolutionsView.vue.
+
+  Usage (inside a category loop):
+    {% render 'vesper-solution-card',
+       id: pid,
+       code: product_codes[i],
+       name: product_names[i],
+       description: product_descriptions[i],
+       image: product_images[i] %}
+{%- endcomment -%}
+
+{%- liquid
+  assign card_url = '/products/' | append: id
+  assign card_alt = code | append: ' ' | append: name
+  assign excerpt = description | slice: 0, 80 | append: '...'
+-%}
+
+<article class="v-solution-card v-card v-card-hover" data-reveal>
+  <a class="v-solution-card__media" href="{{ card_url }}" aria-label="{{ card_alt | escape }}">
+    <img
+      class="v-solution-card__img"
+      src="{{ image | asset_url }}"
+      alt="{{ card_alt | escape }}"
+      loading="lazy"
+      decoding="async"
+    >
+  </a>
+
+  <div class="v-solution-card__body">
+    <h3 class="v-solution-card__title">
+      <a href="{{ card_url }}">{{ code }} {{ name }}</a>
+    </h3>
+    <p class="v-solution-card__desc">{{ excerpt }}</p>
+  </div>
+</article>

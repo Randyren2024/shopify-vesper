@@ -1,0 +1,206 @@
+{
+  "sections": {
+    "vesper-home-hero": {
+      "type": "vesper-home-hero",
+      "settings": {
+        "heading": "Smart Agriculture, Precision Future",
+        "subheading": "Vesper AgriTech provides advanced agricultural technology solutions, enhancing farming efficiency and sustainability through intelligent technology",
+        "cta_label": "Explore Products & Solutions",
+        "cta_link": "/pages/products-solutions"
+      },
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "tag": "Vesper S1",
+            "title": "Slope Lawn Mower — 50°",
+            "description": "Remote-controlled 4WD with grip-tread tires conquers 50° (119% grade) slopes. 1985W peak power, 53cm deck, leaf-shredding vacuum.",
+            "link": "/products/vesper-s1-4wd-50",
+            "image_asset": "products-vesper-s1-4wd-50.webp"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "tag": "Vesper S1",
+            "title": "Slope Lawn Mower — 40°",
+            "description": "Wide TPU-tire 4WD climbs 40° (85% grade) slopes with extra grip on soft soil, mud, and wet grass. Same 1985W cutting platform.",
+            "link": "/products/vesper-s1-4wd-40",
+            "image_asset": "products-vesper-s1-4wd-40.webp"
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "tag": "AF718",
+            "title": "Autosteering System",
+            "description": "High-performance autosteering with ±2.5 cm accuracy for precision agriculture",
+            "link": "/products/af718",
+            "image_asset": "products-af718.webp"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3"
+      ]
+    },
+    "vesper-home-categories": {
+      "type": "vesper-home-categories",
+      "settings": {
+        "title": "Products & Solutions",
+        "subtitle": "Comprehensive technical support for modern agriculture"
+      },
+      "blocks": {
+        "category-1": {
+          "type": "category",
+          "settings": {
+            "title": "Lawn Mower",
+            "description": "Remote control robotic lawn mowers for steep slopes and large lawns",
+            "link": "/pages/products-solutions?category=lawn-mower",
+            "image_asset": "categories-lawn-mower.webp"
+          }
+        },
+        "category-2": {
+          "type": "category",
+          "settings": {
+            "title": "Precision Agriculture",
+            "description": "Advanced auto-steering systems including AF718, AF305, and ISOBUS terminal",
+            "link": "/pages/products-solutions?category=precision-agriculture",
+            "image_asset": "pexels-nc-farm-bureau-mark-26256448.webp"
+          }
+        },
+        "category-3": {
+          "type": "category",
+          "settings": {
+            "title": "Precision Agriculture Solutions",
+            "description": "Precision spraying solutions including VS100 Spray Control System",
+            "link": "/pages/products-solutions?category=precision-spraying",
+            "image_asset": "agriculture-6502282.webp"
+          }
+        },
+        "category-4": {
+          "type": "category",
+          "settings": {
+            "title": "Land Leveling System",
+            "description": "GPS-controlled land leveling systems for sustainable agriculture",
+            "link": "/pages/products-solutions?category=land-leveling",
+            "image_asset": "pexels-wolfgang-weiser-467045605-34239949.webp"
+          }
+        },
+        "category-5": {
+          "type": "category",
+          "settings": {
+            "title": "Machine Control",
+            "description": "Intelligent guidance systems for construction and mining equipment",
+            "link": "/pages/products-solutions?category=machine-control",
+            "image_asset": "pexels-vladimirsrajber-18431208.webp"
+          }
+        }
+      },
+      "block_order": [
+        "category-1",
+        "category-2",
+        "category-3",
+        "category-4",
+        "category-5"
+      ]
+    },
+    "vesper-home-featured-products": {
+      "type": "vesper-home-featured-products",
+      "settings": {
+        "title": "Featured Products",
+        "subtitle": "Leading agricultural technology equipment",
+        "whatsapp_number": "61448290926"
+      },
+      "blocks": {
+        "product-1": {
+          "type": "product",
+          "settings": {
+            "title": "Remote Control Lawn Mower — 119% Slope (Grip Tread)",
+            "description": "Sit on your porch. Grab the controller. Watch the S1 4WD conquer 50° (119% Grade) slopes while you stay cool in the shade. 3.94\" obstacle clearance, 1000W traction, and a 21\" deck with 1985W peak cutting power — the S1 rips through 51\" tall grass, wet patches, and dense weeds that defeat every other mower. From the first spring mow to the last fall cleanup: discharge, mulch, bag, and a 931 CFM leaf-shredding vacuum with 70 L collection bag.",
+            "link": "/products/vesper-s1-4wd-50",
+            "image_asset": "products-vesper-s1-4wd-50.webp"
+          }
+        },
+        "product-2": {
+          "type": "product",
+          "settings": {
+            "title": "Remote Control Lawn Mower — 85% Slope (Wide Wheel)",
+            "description": "The S1 4WD Wide Wheel Edition climbs 40° (85% Grade) slopes with a wider TPU contact patch and bold straight-tread pattern for stronger grip on steeper lawns, damp grass, and soft ground. Same 4-Motor AWD platform, 21\" deck, 1985W peak cutting power, and 3.94\" obstacle clearance as the 50° — with the sweet-spot tire for everyday steep terrain.",
+            "link": "/products/vesper-s1-4wd-40",
+            "image_asset": "products-vesper-s1-4wd-40.webp"
+          }
+        },
+        "product-3": {
+          "type": "product",
+          "settings": {
+            "title": "Autosteering System",
+            "description": "The AF718 is Vesper's next-generation high-performance autosteering system. Powered by an advanced computing platform, it significantly enhances accuracy and efficiency across diverse farming operations.",
+            "link": "/products/af718",
+            "image_asset": "products-af718-main.png"
+          }
+        }
+      },
+      "block_order": [
+        "product-1",
+        "product-2",
+        "product-3"
+      ]
+    },
+    "vesper-home-values": {
+      "type": "vesper-home-values",
+      "settings": {
+        "title": "Our Values",
+        "subtitle": "What drives us forward"
+      },
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "icon": "⚡",
+            "title": "Technical Excellence",
+            "description": "Maintaining the highest standards in product selection and technical validation, ensuring every solution meets rigorous quality benchmarks."
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "icon": "🤝",
+            "title": "Customer Partnership",
+            "description": "Viewing clients as long-term partners, providing comprehensive support from product selection to after-sales service."
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "icon": "📊",
+            "title": "Market Intelligence",
+            "description": "Deep understanding of both Chinese manufacturing capabilities and global market needs for optimal product-market fit."
+          }
+        },
+        "value-4": {
+          "type": "value",
+          "settings": {
+            "icon": "🌏",
+            "title": "Localized Service",
+            "description": "Building deep, localized service systems to truly serve global customers with complete solutions, not just products."
+          }
+        }
+      },
+      "block_order": [
+        "value-1",
+        "value-2",
+        "value-3",
+        "value-4"
+      ]
+    }
+  },
+  "order": [
+    "vesper-home-hero",
+    "vesper-home-categories",
+    "vesper-home-featured-products",
+    "vesper-home-values"
+  ]
+}

@@ -1,0 +1,103 @@
+{%- comment -%}
+  Products & Solutions categories — ported from HomeView.vue `.solutions-section`
+  (source data: `categories` in src/data/products.ts).
+{%- endcomment -%}
+
+<section class="vhome-categories v-section">
+  <div class="v-container">
+    <div class="v-section-head vhome-section-head" data-reveal>
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="vhome-grid vhome-grid--solutions">
+      {%- for block in section.blocks -%}
+        <a
+          class="v-card v-card-hover vhome-solution-card"
+          href="{{ block.settings.link }}"
+          data-reveal
+          {{ block.shopify_attributes }}
+        >
+          <div class="vhome-solution-card__cover">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 800
+                | image_tag: widths: '300, 450, 600, 800', alt: block.settings.title, loading: 'lazy'
+              }}
+            {%- elsif block.settings.image_asset != blank -%}
+              <img
+                src="{{ block.settings.image_asset | asset_url }}"
+                alt="{{ block.settings.title | escape }}"
+                width="800"
+                height="450"
+                loading="lazy"
+              >
+            {%- endif -%}
+          </div>
+
+          <div class="vhome-solution-card__body">
+            <h3 class="vhome-solution-card__title">{{ block.settings.title }}</h3>
+            <p class="vhome-solution-card__desc">{{ block.settings.description }}</p>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vesper home categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Products & Solutions"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Comprehensive technical support for modern agriculture"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Precision Agriculture"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback asset filename",
+          "info": "Theme asset filename, e.g. categories-lawn-mower.webp"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

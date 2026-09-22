@@ -1,0 +1,103 @@
+{%- comment -%}
+  Vesper cart drawer. The initial state is server rendered; afterwards
+  assets/vesper.js re-renders it from the Shopify Ajax Cart API.
+{%- endcomment -%}
+
+<div
+  class="v-drawer"
+  id="vesper-cart-drawer"
+  data-open="false"
+  data-return-focus="[data-drawer-open='vesper-cart-drawer']"
+>
+  <div class="v-drawer__overlay" data-drawer-close></div>
+
+  <div class="v-drawer__panel v-drawer__panel--right" role="dialog" aria-modal="true" aria-label="Cart">
+    <div class="v-drawer__head">
+      <h2 class="v-drawer__title">Your Cart</h2>
+      <button type="button" class="v-drawer__close" data-drawer-close aria-label="Close cart">
+        {% render 'vesper-icons', icon: 'close' %}
+      </button>
+    </div>
+
+    <div class="v-drawer__body" data-cart-drawer-body>
+      {%- if cart.item_count == 0 -%}
+        <div class="v-cart-empty">
+          {% render 'vesper-icons', icon: 'cart' %}
+          <p>Your cart is empty.</p>
+          <a class="v-btn v-btn--primary" href="{{ routes.all_products_collection_url }}">Continue shopping</a>
+        </div>
+      {%- else -%}
+        <ul class="v-cart-lines">
+          {%- for item in cart.items -%}
+            <li class="v-cart-line">
+              {%- if item.image -%}
+                {{ item.image | image_url: width: 200 | image_tag: class: 'v-cart-line__img', alt: item.product.title, loading: 'lazy' }}
+              {%- endif -%}
+
+              <div>
+                <p class="v-cart-line__title">
+                  <a href="{{ item.url }}">{{ item.product.title }}</a>
+                </p>
+
+                {%- unless item.variant.title == 'Default Title' -%}
+                  <p class="v-cart-line__variant">{{ item.variant.title }}</p>
+                {%- endunless -%}
+
+                <div class="v-qty">
+                  <button
+                    type="button"
+                    data-cart-change="{{ item.variant.id }}"
+                    data-qty-value="{{ item.quantity | minus: 1 }}"
+                    aria-label="Decrease quantity"
+                  >
+                    {% render 'vesper-icons', icon: 'minus' %}
+                  </button>
+                  <input
+                    type="number"
+                    min="0"
+                    value="{{ item.quantity }}"
+                    data-cart-input="{{ item.variant.id }}"
+                    aria-label="Quantity"
+                  >
+                  <button
+                    type="button"
+                    data-cart-change="{{ item.variant.id }}"
+                    data-qty-value="{{ item.quantity | plus: 1 }}"
+                    aria-label="Increase quantity"
+                  >
+                    {% render 'vesper-icons', icon: 'plus' %}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <div class="v-cart-line__price">{{ item.final_line_price | money }}</div>
+                <button
+                  type="button"
+                  class="v-cart-line__remove"
+                  data-cart-change="{{ item.variant.id }}"
+                  data-qty-value="0"
+                  aria-label="Remove {{ item.product.title | escape }}"
+                >
+                  {% render 'vesper-icons', icon: 'close' %}
+                </button>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="v-drawer__foot" data-cart-drawer-foot>
+      {%- if cart.item_count > 0 -%}
+        <div class="v-cart-summary">
+          <span>Subtotal</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <p class="v-cart-note">Taxes and shipping calculated at checkout.</p>
+        <a class="v-btn v-btn--primary v-btn--block v-btn--lg" href="{{ routes.cart_url }}/checkout">Checkout</a>
+        <a class="v-btn v-btn--ghost v-btn--block" style="margin-top:10px" href="{{ routes.cart_url }}">View cart</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

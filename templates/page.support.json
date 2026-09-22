@@ -1,0 +1,119 @@
+{
+  "sections": {
+    "support": {
+      "type": "vesper-support",
+      "settings": {},
+      "blocks": {
+        "support-phone": {
+          "type": "support_card",
+          "settings": {
+            "icon": "📞",
+            "title": "Phone Support",
+            "value": "+61 448 290 926",
+            "action_type": "tel",
+            "action_value": "+61448290926",
+            "action_label": "Call Now"
+          }
+        },
+        "support-whatsapp": {
+          "type": "support_card",
+          "settings": {
+            "icon": "💬",
+            "title": "WhatsApp",
+            "value": "+61 448 290 926",
+            "action_type": "whatsapp",
+            "action_value": "61448290926",
+            "action_label": "Message on WhatsApp"
+          }
+        },
+        "support-email": {
+          "type": "support_card",
+          "settings": {
+            "icon": "📧",
+            "title": "Email Support",
+            "value": "market@vesperinno.com",
+            "action_type": "mailto",
+            "action_value": "market@vesperinno.com",
+            "action_label": "Send Email"
+          }
+        },
+        "service-1": {
+          "type": "service_point",
+          "settings": {
+            "city": "Sydney, NSW",
+            "role": "Main Service Center",
+            "description": "Full diagnostics, repairs, and parts"
+          }
+        },
+        "service-2": {
+          "type": "service_point",
+          "settings": {
+            "city": "Melbourne, VIC",
+            "role": "Authorised Partner",
+            "description": "Sales and basic service"
+          }
+        },
+        "service-3": {
+          "type": "service_point",
+          "settings": {
+            "city": "Perth, WA",
+            "role": "Authorised Partner",
+            "description": "Sales and basic service"
+          }
+        },
+        "service-4": {
+          "type": "service_point",
+          "settings": {
+            "city": "Brisbane, QLD",
+            "role": "Authorised Partner",
+            "description": "Sales and basic service"
+          }
+        },
+        "warranty-1": {
+          "type": "warranty",
+          "settings": {
+            "title": "Standard Warranty",
+            "body": "<p>All Vesper AgriTech products come with a standard 12-month warranty covering manufacturing defects. The warranty period starts from the date of purchase.</p>"
+          }
+        },
+        "warranty-2": {
+          "type": "warranty",
+          "settings": {
+            "title": "Extended Warranty",
+            "body": "<p>Extended warranty options are available for purchase. Contact us for more information about extended warranty plans.</p>"
+          }
+        },
+        "warranty-3": {
+          "type": "warranty",
+          "settings": {
+            "title": "Warranty Claim Process",
+            "body": "<p>1. Contact our support team with your purchase details</p><p>2. Describe the issue you're experiencing</p><p>3. Our team will guide you through the troubleshooting process</p><p>4. If replacement is needed, we'll arrange for a replacement unit or repair</p>"
+          }
+        },
+        "warranty-4": {
+          "type": "warranty",
+          "settings": {
+            "title": "Spare Parts & Accessories",
+            "body": "<p>Spare parts are available for all our products. Lead time is typically 3-7 business days within Australia. Contact us for specific part availability and pricing.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "support-phone",
+        "support-whatsapp",
+        "support-email",
+        "service-1",
+        "service-2",
+        "service-3",
+        "service-4",
+        "warranty-1",
+        "warranty-2",
+        "warranty-3",
+        "warranty-4"
+      ]
+    }
+  },
+  "order": [
+    "support"
+  ]
+}

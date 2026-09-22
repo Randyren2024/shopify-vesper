@@ -1,0 +1,159 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Vesper AgriTech",
+    "theme_version": "1.0.0",
+    "theme_author": "Vesper",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "vesper_logo",
+        "label": "Logo"
+      },
+      {
+        "type": "text",
+        "id": "vesper_whatsapp_number",
+        "label": "WhatsApp number (digits only)",
+        "default": "61448290926"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "vesper_primary_color",
+        "label": "Primary",
+        "default": "#2e7d32"
+      },
+      {
+        "type": "color",
+        "id": "vesper_primary_light_color",
+        "label": "Primary light",
+        "default": "#4caf50"
+      },
+      {
+        "type": "color",
+        "id": "vesper_primary_dark_color",
+        "label": "Primary dark",
+        "default": "#1b5e20"
+      },
+      {
+        "type": "color",
+        "id": "vesper_secondary_color",
+        "label": "Secondary",
+        "default": "#2196f3"
+      },
+      {
+        "type": "color",
+        "id": "vesper_accent_color",
+        "label": "Accent",
+        "default": "#ff9800"
+      },
+      {
+        "type": "color",
+        "id": "vesper_text_color",
+        "label": "Text",
+        "default": "#2c3e50"
+      },
+      {
+        "type": "color",
+        "id": "vesper_text_secondary_color",
+        "label": "Text secondary",
+        "default": "#666666"
+      },
+      {
+        "type": "color",
+        "id": "vesper_border_color",
+        "label": "Border",
+        "default": "#e8e8e8"
+      },
+      {
+        "type": "color",
+        "id": "vesper_background_color",
+        "label": "Page background",
+        "default": "#f8f9fa"
+      },
+      {
+        "type": "color",
+        "id": "vesper_footer_background_color",
+        "label": "Footer background",
+        "default": "#1a1a2e"
+      }
+    ]
+  },
+  {
+    "name": "t:general.typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:general.fonts"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_primary_font",
+        "default": "work_sans_n4",
+        "label": "t:general.primary"
+      }
+    ]
+  },
+  {
+    "name": "t:general.layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "max_page_width",
+        "label": "t:labels.page_width",
+        "options": [
+          {
+            "value": "90rem",
+            "label": "t:options.page_width.narrow"
+          },
+          {
+            "value": "110rem",
+            "label": "t:options.page_width.wide"
+          }
+        ],
+        "default": "110rem"
+      },
+      {
+        "type": "range",
+        "id": "min_page_margin",
+        "min": 10,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:labels.page_margin",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "input_corner_radius",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "t:labels.input_corner_radius",
+        "default": 8
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "default": "#f8f9fa",
+        "label": "t:labels.background"
+      },
+      {
+        "type": "color",
+        "id": "foreground_color",
+        "default": "#2c3e50",
+        "label": "t:labels.foreground"
+      }
+    ]
+  }
+]

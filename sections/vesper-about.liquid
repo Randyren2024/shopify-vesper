@@ -1,0 +1,426 @@
+{{ 'vesper-about.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'About Us',
+   subtitle: 'Your trusted partner for advanced agricultural robotics solutions',
+   breadcrumb: 'About Us' %}
+
+{%- liquid
+  assign journey_items = section.blocks | where: 'type', 'journey_item'
+  assign team_members = section.blocks | where: 'type', 'team_member'
+  assign value_items = section.blocks | where: 'type', 'value'
+  assign stat_items = section.blocks | where: 'type', 'stat'
+-%}
+
+<div class="vesper-about">
+  <div class="vesper-about__lead-wrap">
+    <div class="v-container">
+      <p class="vesper-about__lead" data-reveal>Bridging China's Intelligent Hardware Technology with Australia Agriculture</p>
+    </div>
+  </div>
+
+  {%- comment -%} Company introduction {%- endcomment -%}
+  <section class="intro-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.intro_heading }}</h2>
+        <p>{{ section.settings.intro_subtitle }}</p>
+      </div>
+
+      <div class="intro-content">
+        <div class="intro-text" data-reveal="left">
+          {{ section.settings.intro_body }}
+        </div>
+
+        {%- if section.settings.intro_image != blank -%}
+          <div class="intro-image" data-reveal="right">
+            <img
+              src="{{ section.settings.intro_image | asset_url }}"
+              alt="{{ section.settings.intro_image_alt | escape }}"
+              loading="lazy"
+            >
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Company journey timeline {%- endcomment -%}
+  <section class="timeline-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.journey_heading }}</h2>
+        <p>{{ section.settings.journey_subtitle }}</p>
+      </div>
+
+      <div class="timeline">
+        {%- for block in journey_items -%}
+          <div class="timeline-item" data-reveal {{ block.shopify_attributes }}>
+            <div class="timeline-logo">
+              {%- if block.settings.logo_asset != blank -%}
+                <img
+                  src="{{ block.settings.logo_asset | asset_url }}"
+                  alt="{{ block.settings.title | escape }}"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {% render 'vesper-icons', icon: 'grid' %}
+              {%- endif -%}
+            </div>
+            <div class="timeline-year">{{ block.settings.year }}</div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">{{ block.settings.title }}</h3>
+              <p class="timeline-description">{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Leadership team {%- endcomment -%}
+  <section class="team-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.team_heading }}</h2>
+        <p>{{ section.settings.team_subtitle }}</p>
+      </div>
+
+      <div class="team-grid">
+        {%- for block in team_members -%}
+          <div class="team-card v-card" data-reveal {{ block.shopify_attributes }}>
+            {%- if block.settings.photo_asset != blank -%}
+              <div class="team-image">
+                <img
+                  src="{{ block.settings.photo_asset | asset_url }}"
+                  alt="{{ block.settings.photo_alt | escape }}"
+                  loading="lazy"
+                >
+              </div>
+            {%- endif -%}
+            <div class="team-info">
+              <h3 class="team-name">{{ block.settings.name }}</h3>
+              <p class="team-position">{{ block.settings.position }}</p>
+              <div class="team-bio">{{ block.settings.bio }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Core values {%- endcomment -%}
+  <section class="values-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.values_heading }}</h2>
+        <p>{{ section.settings.values_subtitle }}</p>
+      </div>
+
+      <div class="values-grid">
+        {%- for block in value_items -%}
+          <div class="value-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
+            <div class="value-icon value-{{ forloop.index }}">{{ block.settings.icon }}</div>
+            <h3 class="value-title">{{ block.settings.title }}</h3>
+            <p class="value-description">{{ block.settings.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Statistics {%- endcomment -%}
+  <section class="stats-section v-section">
+    <div class="v-container">
+      <div class="v-section-head" data-reveal>
+        <h2 class="gradient-text-secondary">{{ section.settings.stats_heading }}</h2>
+        <p>{{ section.settings.stats_subtitle }}</p>
+      </div>
+
+      <div class="stats-grid">
+        {%- for block in stat_items -%}
+          <div class="stat-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
+            <div class="stat-icon">{{ block.settings.icon }}</div>
+            <h3 class="stat-title">{{ block.settings.title }}</h3>
+            <p class="stat-description">{{ block.settings.description }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Contact CTA {%- endcomment -%}
+  <section class="contact-section v-section">
+    <div class="v-container">
+      <div class="contact-content" data-reveal>
+        <h2 class="contact-title">{{ section.settings.cta_heading }}</h2>
+        <p class="contact-description">{{ section.settings.cta_description }}</p>
+
+        <div class="contact-actions">
+          <a class="v-btn v-btn--primary v-btn--lg" href="/pages/contact-us">{{ section.settings.contact_button_label }}</a>
+          <button
+            type="button"
+            class="v-btn v-btn--outline v-btn--lg"
+            data-request-demo
+            data-whatsapp="{{ section.settings.whatsapp_number }}"
+            data-message="{{ section.settings.demo_message | escape }}"
+          >{{ section.settings.demo_label }}</button>
+        </div>
+
+        <div class="contact-info">
+          <p class="contact-detail">📧 market@vesperinno.com</p>
+          <p class="contact-detail">📞 +61 448 290 926</p>
+          <p class="contact-detail">📍 Australia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Vesper about",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "text",
+      "id": "intro_heading",
+      "label": "Heading",
+      "default": "About Vesper AgriTech"
+    },
+    {
+      "type": "text",
+      "id": "intro_subtitle",
+      "label": "Subtitle",
+      "default": "Building the bridge between technology and agriculture"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_body",
+      "label": "Body",
+      "default": "<p>Vesper AgriTech is committed to building an efficient bridge between China's intelligent hardware technology and the local needs of Australia. With deep expertise accumulated from residential scenarios to large-scale agriculture, we provide comprehensive product solutions and services for the Australian market.</p><p>Based in Australia with strong connections to China's technology ecosystem, we leverage our full-chain capabilities—spanning R&D, mass production, and overseas service systems—to deliver cutting-edge agricultural robotics solutions that enhance efficiency and sustainability.</p>"
+    },
+    {
+      "type": "text",
+      "id": "intro_image",
+      "label": "Image asset filename",
+      "default": "agriculture-6502282.webp"
+    },
+    {
+      "type": "text",
+      "id": "intro_image_alt",
+      "label": "Image alt text",
+      "default": "Agricultural Technology"
+    },
+    {
+      "type": "header",
+      "content": "Journey"
+    },
+    {
+      "type": "text",
+      "id": "journey_heading",
+      "label": "Heading",
+      "default": "Our Journey"
+    },
+    {
+      "type": "text",
+      "id": "journey_subtitle",
+      "label": "Subtitle",
+      "default": "From drones to agricultural robotics"
+    },
+    {
+      "type": "header",
+      "content": "Team"
+    },
+    {
+      "type": "text",
+      "id": "team_heading",
+      "label": "Heading",
+      "default": "Leadership Team"
+    },
+    {
+      "type": "text",
+      "id": "team_subtitle",
+      "label": "Subtitle",
+      "default": "Expertise driving innovation"
+    },
+    {
+      "type": "header",
+      "content": "Values"
+    },
+    {
+      "type": "text",
+      "id": "values_heading",
+      "label": "Heading",
+      "default": "Our Values"
+    },
+    {
+      "type": "text",
+      "id": "values_subtitle",
+      "label": "Subtitle",
+      "default": "What drives us forward"
+    },
+    {
+      "type": "header",
+      "content": "Statistics"
+    },
+    {
+      "type": "text",
+      "id": "stats_heading",
+      "label": "Heading",
+      "default": "Why Choose Us"
+    },
+    {
+      "type": "text",
+      "id": "stats_subtitle",
+      "label": "Subtitle",
+      "default": "Our proven track record"
+    },
+    {
+      "type": "header",
+      "content": "Contact CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "Heading",
+      "default": "Ready to Transform Your Agriculture?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_description",
+      "label": "Description",
+      "default": "Whether you need agricultural robots, intelligent navigation systems, or customized solutions, our team is ready to help you find the perfect technology for your needs."
+    },
+    {
+      "type": "text",
+      "id": "contact_button_label",
+      "label": "Contact button label",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number (digits only)",
+      "default": "61448290926"
+    },
+    {
+      "type": "text",
+      "id": "demo_message",
+      "label": "Demo WhatsApp message",
+      "default": "Hello! I would like to request a demo of Vesper AgriTech products."
+    },
+    {
+      "type": "text",
+      "id": "demo_label",
+      "label": "Demo button label",
+      "default": "Request Demo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "journey_item",
+      "name": "Journey item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "logo_asset",
+          "label": "Logo asset filename",
+          "info": "Filename inside the theme assets folder, e.g. logo.svg"
+        }
+      ]
+    },
+    {
+      "type": "team_member",
+      "name": "Team member",
+      "settings": [
+        {
+          "type": "text",
+          "id": "photo_asset",
+          "label": "Photo asset filename"
+        },
+        {
+          "type": "text",
+          "id": "photo_alt",
+          "label": "Photo alt text"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "position",
+          "label": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "bio",
+          "label": "Bio"
+        }
+      ]
+    },
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

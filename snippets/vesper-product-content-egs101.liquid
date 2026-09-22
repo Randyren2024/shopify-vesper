@@ -1,0 +1,116 @@
+{%- comment -%}
+  Vesper product rich content — EGS101 (Intelligent Excavator Guidance System).
+  Static content ported from vesper_vue/src/data/products.ts.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'EGS101' -%}
+{%- assign vpd_name = name | default: 'Intelligent Excavator Guidance System' -%}
+
+{%- capture egs101_g1 -%}
+Display=7 inch, 1280×800
+Protection=IP67
+Power Supply=DC 12V/24V
+Operating Temp=–20°C to +70°C
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'egs101-land-leveling.png' | asset_url }}" alt="Land Leveling" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Land Leveling</h3>
+          <p class="vpd-learn-card__desc">Achieve precise finish grades for building pads, parking lots, and agricultural land with real-time guidance that eliminates guesswork and reduces rework.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'egs101-1012-scaled.png' | asset_url }}" alt="Straight-Line Guidance" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Straight-Line Guidance</h3>
+          <p class="vpd-learn-card__desc">Maintain accurate trench alignment for utility installation, drainage ditches, and foundation excavation with visual guidance indicators on the in-cab display.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          <img src="{{ 'egs101-slope-grading.png' | asset_url }}" alt="Slope Grading" loading="lazy">
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Slope Grading</h3>
+          <p class="vpd-learn-card__desc">Precisely cut slopes for embankments, waterways, and road shoulders with automated depth control that matches the target slope in real time.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="Tablet Display" aria-selected="true" role="tab">Tablet Display</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Tablet Display" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = egs101_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More About Specifications →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the EGS101 and what is its main purpose?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">EGS101 is an intelligent grade control system for excavators, designed to monitor bucket elevation, slope, and orientation in real time. It is widely used for precision excavation tasks requiring accurate depth and slope control, such as trenching, grading, and foundation work.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What is the grading accuracy of the EGS101, and how is it achieved?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">EGS101 achieves a grading accuracy within ±2.5 cm. It uses dual-frequency GNSS (supporting GPS, BeiDou, GLONASS) combined with high-sensitivity IMU sensors to provide real-time bucket position and orientation data, enabling precise depth and slope control.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What are the typical application scenarios for EGS101?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">EGS101 is ideal for trenching, land leveling, canal/road/pond slope grading, and embankment construction. It ensures surface uniformity, enhances construction quality, and significantly reduces the need for manual grade checking and rework.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">Learn More →</button>
+    </div>
+  </div>
+</section>

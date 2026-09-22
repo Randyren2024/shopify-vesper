@@ -1,0 +1,50 @@
+<!doctype html>
+<html
+  lang="{{ request.locale.iso_code }}"
+  data-shop-url="{{ routes.root_url | remove_last: '/' }}"
+  data-money-format="{{ shop.money_format | strip_html | escape }}"
+  data-whatsapp="{{ settings.vesper_whatsapp_number }}"
+>
+  <head>
+    {% # Inlined CSS variables %}
+    {% render 'css-variables' %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.vesper_primary_color }}">
+
+    {% # Fonts — mirrors the Google Fonts stack used by the Vue app %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap"
+    >
+
+    {% # Critical CSS then the Vesper design system %}
+    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'vesper-base.css' | asset_url | stylesheet_tag }}
+
+    {% # Social, title, etc. %}
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="vesper-theme template-{{ template.name | handle }}">
+    {% sections 'header-group' %}
+
+    <main id="MainContent" class="v-main" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% render 'vesper-cart-drawer' %}
+
+    <div class="v-toast-stack" data-vesper-toasts aria-live="polite"></div>
+
+    <script src="{{ 'vesper.js' | asset_url }}" defer></script>
+  </body>
+</html>
