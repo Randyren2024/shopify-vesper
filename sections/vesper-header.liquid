@@ -73,6 +73,12 @@
     </nav>
 
     <div class="v-header__actions">
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="v-header__account" href="{{ routes.account_url }}" aria-label="Account">
+          {% render 'vesper-icons', icon: 'user' %}
+        </a>
+      {%- endif -%}
+
       <button
         type="button"
         class="v-header__cart"

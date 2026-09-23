@@ -540,7 +540,8 @@ button {
   flex-shrink: 0;
 }
 
-.v-header__cart {
+.v-header__cart,
+.v-header__account {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -554,12 +555,14 @@ button {
   transition: all 0.3s ease;
 }
 
-.v-header__cart:hover {
+.v-header__cart:hover,
+.v-header__account:hover {
   color: var(--vesper-primary);
   background: rgba(46, 125, 50, 0.08);
 }
 
-.v-header__cart .v-icon {
+.v-header__cart .v-icon,
+.v-header__account .v-icon {
   width: 22px;
   height: 22px;
 }
