@@ -1,0 +1,370 @@
+{{ 'vesper-booking.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: section.settings.hero_title,
+   subtitle: section.settings.hero_subtitle,
+   breadcrumb: section.settings.hero_title %}
+
+{%- comment -%}
+  Equipment options are pulled from the catalogue so the dropdown stays in sync
+  with the store rather than being hard-coded. Note that Liquid caps a product
+  list at 50 items, which is plenty for this catalogue size.
+{%- endcomment -%}
+{%- liquid
+  assign service_blocks = section.blocks | where: 'type', 'service'
+  assign step_blocks = section.blocks | where: 'type', 'step'
+  assign today = 'now' | date: '%Y-%m-%d'
+  assign all_products = collections.all.products
+  assign product_types = all_products | map: 'type' | uniq
+-%}
+
+<div class="vesper-booking">
+  <section class="v-section">
+    <div class="v-container">
+      {%- if section.settings.lead != blank -%}
+        <p class="booking-lead" data-reveal>{{ section.settings.lead }}</p>
+      {%- endif -%}
+
+      <div class="booking-layout">
+        <div class="booking-form-card" data-reveal>
+          <div class="booking-form-head">
+            <h2>{{ section.settings.form_heading }}</h2>
+            {%- if section.settings.form_subtitle != blank -%}
+              <p>{{ section.settings.form_subtitle }}</p>
+            {%- endif -%}
+          </div>
+
+          {%- form 'contact' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="booking-success" role="status">{{ section.settings.form_success }}</p>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <div class="booking-errors" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
+
+            <div class="booking-row">
+              <div class="v-field">
+                <label class="v-field__label" for="booking-name">Full name *</label>
+                <input
+                  id="booking-name"
+                  class="v-input"
+                  type="text"
+                  name="contact[name]"
+                  value="{{ form.name }}"
+                  autocomplete="name"
+                  placeholder="Your full name"
+                  required
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="booking-email">Email *</label>
+                <input
+                  id="booking-email"
+                  class="v-input"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="booking-row">
+              <div class="v-field">
+                <label class="v-field__label" for="booking-phone">Phone *</label>
+                <input
+                  id="booking-phone"
+                  class="v-input"
+                  type="tel"
+                  name="contact[phone]"
+                  value="{{ form.phone }}"
+                  autocomplete="tel"
+                  placeholder="Best number to reach you"
+                  required
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="booking-company">Farm / company</label>
+                <input
+                  id="booking-company"
+                  class="v-input"
+                  type="text"
+                  name="contact[company]"
+                  autocomplete="organization"
+                  placeholder="Optional"
+                >
+              </div>
+            </div>
+
+            <div class="v-field">
+              <label class="v-field__label" for="booking-equipment">Equipment of interest</label>
+              <select id="booking-equipment" class="v-select" name="contact[equipment]">
+                <option value="">Select a machine or system</option>
+                {%- for type in product_types -%}
+                  <optgroup label="{{ type | default: 'Other equipment' }}">
+                    {%- for product in all_products -%}
+                      {%- if product.type == type -%}
+                        <option value="{{ product.title | escape }}">{{ product.title }}</option>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </optgroup>
+                {%- endfor -%}
+                <option value="Not sure yet — need advice">Not sure yet — need advice</option>
+              </select>
+            </div>
+
+            {%- if service_blocks.size > 0 -%}
+              <fieldset class="booking-fieldset">
+                <legend class="v-field__label">What do you need? *</legend>
+                <div class="booking-choices">
+                  {%- for block in service_blocks -%}
+                    <label class="booking-choice" {{ block.shopify_attributes }}>
+                      <input
+                        type="radio"
+                        name="contact[service]"
+                        value="{{ block.settings.label | escape }}"
+                        {% if forloop.first %}checked{% endif %}
+                        required
+                      >
+                      <span>{{ block.settings.label }}</span>
+                    </label>
+                  {%- endfor -%}
+                </div>
+              </fieldset>
+            {%- endif -%}
+
+            <div class="booking-row">
+              <div class="v-field">
+                <label class="v-field__label" for="booking-date">Preferred date</label>
+                <input id="booking-date" class="v-input" type="date" name="contact[preferred_date]" min="{{ today }}">
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="booking-time">Preferred time</label>
+                <select id="booking-time" class="v-select" name="contact[preferred_time]">
+                  <option value="">Any time</option>
+                  <option value="Morning (9:00-12:00)">Morning (9:00-12:00)</option>
+                  <option value="Afternoon (12:00-17:00)">Afternoon (12:00-17:00)</option>
+                  <option value="Evening (17:00-19:00)">Evening (17:00-19:00)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="v-field">
+              <label class="v-field__label" for="booking-location">Site / property address</label>
+              <input
+                id="booking-location"
+                class="v-input"
+                type="text"
+                name="contact[location]"
+                placeholder="Where should we meet you?"
+              >
+            </div>
+
+            <div class="v-field">
+              <label class="v-field__label" for="booking-notes">Notes</label>
+              <textarea
+                id="booking-notes"
+                class="v-textarea"
+                name="contact[body]"
+                rows="5"
+                placeholder="Terrain, slope, area size, or anything else we should know"
+              >{{ form.body }}</textarea>
+            </div>
+
+            <div class="booking-actions">
+              <button type="submit" class="v-btn v-btn--primary v-btn--lg">
+                {{ section.settings.submit_label }}
+              </button>
+            </div>
+          {%- endform -%}
+        </div>
+
+        <aside class="booking-side">
+          {%- if step_blocks.size > 0 -%}
+            <div class="booking-side-card" data-reveal>
+              <h3>{{ section.settings.steps_heading }}</h3>
+              <ol class="booking-steps">
+                {%- for block in step_blocks -%}
+                  <li {{ block.shopify_attributes }}>
+                    <span class="booking-step-index">{{ forloop.index }}</span>
+                    <span class="booking-step-body">
+                      <strong>{{ block.settings.title }}</strong>
+                      {%- if block.settings.description != blank -%}
+                        <span>{{ block.settings.description }}</span>
+                      {%- endif -%}
+                    </span>
+                  </li>
+                {%- endfor -%}
+              </ol>
+            </div>
+          {%- endif -%}
+
+          <div class="booking-side-card booking-side-card--help" data-reveal>
+            <h3>{{ section.settings.help_heading }}</h3>
+            {%- if section.settings.help_text != blank -%}
+              <p>{{ section.settings.help_text }}</p>
+            {%- endif -%}
+
+            <div class="booking-help-actions">
+              {%- if section.settings.phone != blank -%}
+                <a class="v-btn v-btn--primary v-btn--sm" href="tel:{{ section.settings.phone | remove: ' ' }}">
+                  {{ section.settings.phone }}
+                </a>
+              {%- endif -%}
+
+              {%- if section.settings.whatsapp != blank -%}
+                <a
+                  class="v-btn v-btn--ghost v-btn--sm"
+                  href="https://wa.me/{{ section.settings.whatsapp }}?text={{ section.settings.whatsapp_message | url_encode }}"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  WhatsApp
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Vesper booking",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero title",
+      "default": "Book a Demo"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtitle",
+      "label": "Hero subtitle",
+      "default": "See our mowing and agri-tech equipment in action — on your land, on your schedule."
+    },
+    {
+      "type": "header",
+      "content": "Intro"
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Intro text",
+      "default": "Tell us what you need and where you are. Our team confirms a time within one business day."
+    },
+    {
+      "type": "header",
+      "content": "Booking form"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Request an appointment"
+    },
+    {
+      "type": "textarea",
+      "id": "form_subtitle",
+      "label": "Form subtitle",
+      "default": "Fill in the details below and we'll come back to you with a confirmed time."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Request booking"
+    },
+    {
+      "type": "textarea",
+      "id": "form_success",
+      "label": "Success message",
+      "default": "Thanks! Your booking request has been received. We'll contact you within one business day to confirm."
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "text",
+      "id": "steps_heading",
+      "label": "Steps heading",
+      "default": "What happens next"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Help heading",
+      "default": "Prefer to talk?"
+    },
+    {
+      "type": "textarea",
+      "id": "help_text",
+      "label": "Help text",
+      "default": "Call or message us directly and we'll book you in."
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "+61 448 290 926"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp",
+      "label": "WhatsApp number (digits only)",
+      "default": "61448290926"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_message",
+      "label": "WhatsApp message",
+      "default": "Hello! I would like to book a demo of Vesper equipment."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service option",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Product demo"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "Next step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

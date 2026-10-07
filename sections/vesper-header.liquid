@@ -8,6 +8,7 @@
 {%- liquid
   assign demo_number = section.settings.whatsapp_number | default: settings.vesper_whatsapp_number
   assign demo_message = 'Hello! I would like to request a demo of Vesper AgriTech products.'
+  assign demo_link = section.settings.demo_link
   assign logo_image = section.settings.logo | default: settings.vesper_logo
   assign menu = section.settings.menu
 -%}
@@ -93,15 +94,21 @@
       </button>
 
       {%- if section.settings.show_demo_button -%}
-        <button
-          type="button"
-          class="v-btn v-header__demo"
-          data-request-demo
-          data-whatsapp="{{ demo_number }}"
-          data-message="{{ demo_message }}"
-        >
-          {{ section.settings.demo_label | default: 'Request Demo' }}
-        </button>
+        {%- if demo_link != blank -%}
+          <a class="v-btn v-header__demo" href="{{ demo_link }}">
+            {{ section.settings.demo_label | default: 'Request Demo' }}
+          </a>
+        {%- else -%}
+          <button
+            type="button"
+            class="v-btn v-header__demo"
+            data-request-demo
+            data-whatsapp="{{ demo_number }}"
+            data-message="{{ demo_message }}"
+          >
+            {{ section.settings.demo_label | default: 'Request Demo' }}
+          </button>
+        {%- endif -%}
       {%- endif -%}
     </div>
   </div>
@@ -166,15 +173,21 @@
 
     {%- if section.settings.show_demo_button -%}
       <div class="v-drawer__foot">
-        <button
-          type="button"
-          class="v-btn v-btn--primary v-btn--block v-btn--lg"
-          data-request-demo
-          data-whatsapp="{{ demo_number }}"
-          data-message="{{ demo_message }}"
-        >
-          {{ section.settings.demo_label | default: 'Request Demo' }}
-        </button>
+        {%- if demo_link != blank -%}
+          <a class="v-btn v-btn--primary v-btn--block v-btn--lg" href="{{ demo_link }}">
+            {{ section.settings.demo_label | default: 'Request Demo' }}
+          </a>
+        {%- else -%}
+          <button
+            type="button"
+            class="v-btn v-btn--primary v-btn--block v-btn--lg"
+            data-request-demo
+            data-whatsapp="{{ demo_number }}"
+            data-message="{{ demo_message }}"
+          >
+            {{ section.settings.demo_label | default: 'Request Demo' }}
+          </button>
+        {%- endif -%}
       </div>
     {%- endif -%}
   </div>
@@ -214,6 +227,13 @@
       "id": "demo_label",
       "label": "Request Demo label",
       "default": "Request Demo"
+    },
+    {
+      "type": "url",
+      "id": "demo_link",
+      "label": "Request Demo link",
+      "info": "Point this at the booking page. When empty, the button opens WhatsApp instead.",
+      "default": "/pages/book-a-demo"
     },
     {
       "type": "text",
