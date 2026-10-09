@@ -1,0 +1,258 @@
+<footer class="py-12" style="background: rgb(17, 17, 16); border-top: 1px solid rgba(255, 255, 255, 0.06);">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <img
+          alt="{{ shop.name | escape }}"
+          src="{{ 'vesper-logo-white.svg' | asset_url }}"
+          width="557"
+          height="83"
+          style="height: 28px; width: auto; display: block;"
+        >
+
+        <p
+          class="mb-4"
+          style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.4); line-height: 1.6;"
+        >{{ section.settings.tagline }}</p>
+
+        <div class="flex gap-5">
+          {%- for i in (1..3) -%}
+            {%- case i -%}
+              {%- when 1 -%}
+                {%- assign social = section.settings.social_1 -%}
+                {%- assign social_url = 'https://www.tiktok.com/@vesper.inno2020?_r=1&_t=ZS-955nk6Azn5Z' -%}
+              {%- when 2 -%}
+                {%- assign social = section.settings.social_2 -%}
+                {%- assign social_url = 'https://www.linkedin.com/company/vesperinno' -%}
+              {%- when 3 -%}
+                {%- assign social = section.settings.social_3 -%}
+                {%- assign social_url = 'https://www.facebook.com/share/1JWNgbRVk2/?mibextid=wwXIfr' -%}
+            {%- endcase -%}
+
+            {%- if social != blank -%}
+              <a
+                href="{{ social_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-[rgba(248,247,244,0.7)] transition-colors"
+                style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.3); cursor: pointer;"
+              >{{ social }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div>
+        <div
+          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+        >{{ section.settings.products_heading }}</div>
+
+        {%- assign items = section.settings.products_items | newline_to_br | split: '<br />' -%}
+
+        {%- for item in items -%}
+          {%- if item != blank -%}
+            <div
+              class="hover:text-[rgba(248,247,244,0.8)] cursor-pointer transition-colors"
+              style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+            >{{ item | strip }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div>
+        <div
+          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+        >{{ section.settings.company_heading }}</div>
+
+        {%- assign items = section.settings.company_items | newline_to_br | split: '<br />' -%}
+
+        {%- for item in items -%}
+          {%- if item != blank -%}
+            <div
+              class="hover:text-[rgba(248,247,244,0.8)] cursor-pointer transition-colors"
+              style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+            >{{ item | strip }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div>
+        <div
+          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+        >{{ section.settings.contact_heading }}</div>
+
+        {%- assign items = section.settings.contact_items | newline_to_br | split: '<br />' -%}
+
+        {%- for item in items -%}
+          {%- if item != blank -%}
+            <div
+              class="hover:text-[rgba(248,247,244,0.8)] cursor-pointer transition-colors"
+              style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+            >{{ item | strip }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div
+      class="pt-6 flex flex-col sm:flex-row justify-between gap-3"
+      style="border-top: 1px solid rgba(255, 255, 255, 0.06);"
+    >
+      <div
+        style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
+      >{{ section.settings.copyright }}</div>
+
+      <div class="flex gap-6">
+        {%- if section.settings.legal_1 != blank -%}
+          <a
+            href="{{ shop.privacy_policy.url }}"
+            class="hover:text-[rgba(248,247,244,0.5)] transition-colors"
+            style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
+          >{{ section.settings.legal_1 }}</a>
+        {%- endif -%}
+
+        {%- if section.settings.legal_2 != blank -%}
+          <a
+            href="{{ shop.terms_of_service.url }}"
+            class="hover:text-[rgba(248,247,244,0.5)] transition-colors"
+            style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
+          >{{ section.settings.legal_2 }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{%- if section.settings.mobile_cta_label != blank -%}
+  <div class="fixed bottom-0 left-0 right-0 z-40 md:hidden">
+    <a
+      href="{{ section.settings.mobile_cta_link }}"
+      style="display: flex; align-items: center; justify-content: center; background: rgb(17, 17, 16); color: rgb(248, 247, 244); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; padding: 15px 0px; text-transform: uppercase;"
+    >{{ section.settings.mobile_cta_label }}</a>
+  </div>
+
+  <div class="h-14 md:h-0"></div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "info": "Line breaks are allowed",
+      "default": "Smart robotics for Australian homes.<br>3 Read street, Templestowe VIC 3106"
+    },
+    {
+      "type": "text",
+      "id": "social_1",
+      "label": "Social link 1",
+      "default": "TikTok"
+    },
+    {
+      "type": "text",
+      "id": "social_2",
+      "label": "Social link 2",
+      "default": "Instagram"
+    },
+    {
+      "type": "text",
+      "id": "social_3",
+      "label": "Social link 3",
+      "default": "Facebook"
+    },
+    {
+      "type": "header",
+      "content": "Column: products"
+    },
+    {
+      "type": "text",
+      "id": "products_heading",
+      "label": "Heading",
+      "default": "Products"
+    },
+    {
+      "type": "textarea",
+      "id": "products_items",
+      "label": "Items",
+      "info": "One per line",
+      "default": "Lawn Mowers\nPool Robots\nVacuums"
+    },
+    {
+      "type": "header",
+      "content": "Column: company"
+    },
+    {
+      "type": "text",
+      "id": "company_heading",
+      "label": "Heading",
+      "default": "Company"
+    },
+    {
+      "type": "textarea",
+      "id": "company_items",
+      "label": "Items",
+      "info": "One per line",
+      "default": "Why Vesper\nHow It Works\nFAQ"
+    },
+    {
+      "type": "header",
+      "content": "Column: contact"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Heading",
+      "default": "Contact"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_items",
+      "label": "Items",
+      "info": "One per line",
+      "default": "3 Read street, Templestowe VIC 3106\nJade@vesperrobot.au\n+61 448290926"
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright",
+      "default": "© 2026 Vesper Robot Mowers Pty. Ltd. All rights reserved."
+    },
+    {
+      "type": "text",
+      "id": "legal_1",
+      "label": "Legal link 1",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "legal_2",
+      "label": "Legal link 2",
+      "default": "Terms of Service"
+    },
+    {
+      "type": "header",
+      "content": "Mobile sticky button"
+    },
+    {
+      "type": "text",
+      "id": "mobile_cta_label",
+      "label": "Button label",
+      "default": "BOOK A DEMO"
+    },
+    {
+      "type": "text",
+      "id": "mobile_cta_link",
+      "label": "Button link",
+      "info": "A URL or an anchor such as #demo",
+      "default": "#demo"
+    }
+  ]
+}
+{% endschema %}

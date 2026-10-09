@@ -1,50 +1,91 @@
 <!doctype html>
-<html
-  lang="{{ request.locale.iso_code }}"
-  data-shop-url="{{ routes.root_url | remove_last: '/' }}"
-  data-money-format="{{ shop.money_format | strip_html | escape }}"
-  data-whatsapp="{{ settings.vesper_whatsapp_number }}"
->
+<html lang="{{ request.locale.iso_code }}">
   <head>
-    {% # Inlined CSS variables %}
-    {% render 'css-variables' %}
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="{{ settings.vesper_primary_color }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f7f4">
 
-    {% # Fonts — mirrors the Google Fonts stack used by the Vue app %}
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 96, height: 96 }}">
+    {%- endif -%}
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap"
-    >
 
-    {% # Critical CSS then the Vesper design system %}
-    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'vesper-base.css' | asset_url | stylesheet_tag }}
+    {%- if template.name == 'index' -%}
+      {%- comment -%}
+        Home page — Vesper Robot landing page (ported from vesper-robot-theme).
+        Keeps the compiled landing bundle and the Barlow font stack.
+      {%- endcomment -%}
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap"
+      >
 
-    {% # Social, title, etc. %}
-    {% render 'meta-tags' %}
+      <title>
+        {{ page_title }}
+        {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+        {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+        {%- unless page_title contains 'Vesper Robot' %} &ndash; Vesper Robot{% endunless -%}
+      </title>
+
+      {%- if page_description -%}
+        <meta name="description" content="{{ page_description | escape }}">
+      {%- endif -%}
+      <link rel="canonical" href="{{ canonical_url }}">
+
+      {{ 'vesper-robot.css' | asset_url | stylesheet_tag }}
+      {{ 'vesper-core.css' | asset_url | stylesheet_tag }}
+    {%- else -%}
+      {%- comment -%}
+        All other templates — Vesper AgriTech theme (ported from theme/).
+      {%- endcomment -%}
+      {% render 'css-variables' %}
+
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap"
+      >
+
+      {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+      {{ 'vesper-base.css' | asset_url | stylesheet_tag }}
+
+      {% render 'meta-tags' %}
+    {%- endif -%}
 
     {{ content_for_header }}
   </head>
 
-  <body class="vesper-theme template-{{ template.name | handle }}">
-    {% sections 'header-group' %}
+  {%- if template.name == 'index' -%}
+    <body>
+      <a class="v-visually-hidden" href="#main-content">{{ 'accessibility.skip_to_content' | t }}</a>
 
-    <main id="MainContent" class="v-main" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+      {% sections 'header-group' %}
 
-    {% sections 'footer-group' %}
+      <main id="main-content">
+        {{ content_for_layout }}
+      </main>
 
-    {% render 'vesper-cart-drawer' %}
+      {% sections 'footer-group' %}
 
-    <div class="v-toast-stack" data-vesper-toasts aria-live="polite"></div>
+      <script src="{{ 'vesper-robot.js' | asset_url }}" defer></script>
+      <script src="{{ 'vesper-core.js' | asset_url }}" defer></script>
+    </body>
+  {%- else -%}
+    <body class="vesper-theme template-{{ template.name | handle }}">
+      {% sections 'agri-header-group' %}
 
-    <script src="{{ 'vesper.js' | asset_url }}" defer></script>
-  </body>
+      <main id="MainContent" class="v-main" role="main" tabindex="-1">
+        {{ content_for_layout }}
+      </main>
+
+      {% sections 'agri-footer-group' %}
+
+      {% render 'vesper-cart-drawer' %}
+
+      <div class="v-toast-stack" data-vesper-toasts aria-live="polite"></div>
+
+      <script src="{{ 'vesper.js' | asset_url }}" defer></script>
+    </body>
+  {%- endif -%}
 </html>

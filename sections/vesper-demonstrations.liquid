@@ -1,0 +1,102 @@
+<section class="py-0 relative overflow-hidden" style="background: rgb(17, 17, 16);">
+  <div class="max-w-7xl mx-auto px-6 py-24 md:py-32 relative z-10">
+    <p
+      class="uppercase mb-8"
+      style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+    >{{ section.settings.eyebrow }}</p>
+
+    <h2
+      class="text-[48px] md:text-[72px] uppercase tracking-tight mb-5 max-w-xl"
+      style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(248, 247, 244); line-height: 1;"
+    >{{ section.settings.heading }}</h2>
+
+    <p
+      class="mb-12"
+      style="font-family: Barlow, sans-serif; font-size: 17px; color: rgba(248, 247, 244, 0.5); line-height: 1.6; max-width: 420px;"
+    >{{ section.settings.body }}</p>
+
+    {%- if section.settings.button_label != blank -%}
+      <a
+        href="{{ section.settings.button_link }}"
+        class="hover:bg-[#2D5A2D] transition-colors uppercase"
+        style="background: rgb(30, 61, 30); color: rgb(248, 247, 244); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; padding: 14px 28px; display: inline-block;"
+      >{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+
+  <div class="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block">
+    <img
+      alt="{{ section.settings.image_alt | escape }}"
+      class="w-full h-full object-cover opacity-40"
+      src="{{ 'banner.jpg' | asset_url }}"
+      width="1190"
+      height="696"
+      style="object-position: {{ section.settings.image_position }};"
+    >
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(to right, rgb(17, 17, 16) 0%, transparent 50%);"
+    ></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Live demonstrations",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Live Demonstrations"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Line breaks are allowed",
+      "default": "Don't Choose<br>From a Screen."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Visit our Melbourne East showroom. See the robots work in person. Ask our team anything."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Book a Free Demo"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "A URL or an anchor such as #demo",
+      "default": "#demo"
+    },
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Vesper robot in action"
+    },
+    {
+      "type": "text",
+      "id": "image_position",
+      "label": "Image object-position",
+      "default": "30% center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Live demonstrations"
+    }
+  ]
+}
+{% endschema %}

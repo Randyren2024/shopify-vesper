@@ -1,0 +1,77 @@
+<section class="py-24 md:py-32" style="background: rgb(248, 247, 244);">
+  <div class="max-w-7xl mx-auto px-6">
+    <p
+      class="uppercase mb-10"
+      style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+    >{{ section.settings.eyebrow }}</p>
+
+    <h2
+      class="text-[36px] md:text-[52px] max-w-2xl mb-16 uppercase tracking-tight"
+      style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; line-height: 1.05; color: rgb(17, 17, 16);"
+    >{{ section.settings.heading }}</h2>
+
+    <div style="border-top: 1px solid rgba(17, 17, 16, 0.1);">
+      {%- for block in section.blocks -%}
+        <div
+          class="py-7 md:flex md:items-start md:gap-16"
+          style="border-bottom: 1px solid rgba(17, 17, 16, 0.1);"
+          {{ block.shopify_attributes }}
+        >
+          <div
+            class="mb-2 md:mb-0 uppercase"
+            style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(200, 90, 10); font-size: 13px; letter-spacing: 0.12em; min-width: 32px;"
+          >
+            {%- if forloop.index < 10 -%}0{{ forloop.index }}{%- else -%}{{ forloop.index }}{%- endif -%}
+          </div>
+
+          <h3
+            class="mb-1 md:mb-0 md:mr-4 uppercase tracking-tight"
+            style="font-family: Barlow, sans-serif; font-weight: 700; font-size: 18px; color: rgb(17, 17, 16); min-width: 260px;"
+          >{{ block.settings.title }}</h3>
+
+          <p
+            style="font-family: Barlow, sans-serif; font-size: 15px; color: rgb(107, 107, 104); line-height: 1.6; max-width: 480px;"
+          >{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Problem",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Problem"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choosing a Robot Shouldn't Require a Research Project."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

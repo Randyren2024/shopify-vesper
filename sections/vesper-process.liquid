@@ -1,0 +1,82 @@
+<section id="how-it-works" class="py-24 md:py-32" style="background: rgb(238, 236, 234);">
+  <div class="max-w-7xl mx-auto px-6">
+    <p
+      class="uppercase mb-8"
+      style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+    >{{ section.settings.eyebrow }}</p>
+
+    <h2
+      class="text-[36px] md:text-[52px] uppercase tracking-tight mb-16"
+      style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(17, 17, 16); line-height: 1;"
+    >{{ section.settings.heading }}</h2>
+
+    <div style="border-top: 1px solid rgba(17, 17, 16, 0.1);">
+      {%- for block in section.blocks -%}
+        <div
+          class="py-6 md:flex md:items-start md:gap-16"
+          style="border-bottom: 1px solid rgba(17, 17, 16, 0.1);"
+          {{ block.shopify_attributes }}
+        >
+          <div
+            class="mb-2 md:mb-0"
+            style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; font-size: 36px; color: rgba(17, 17, 16, 0.12); line-height: 1; min-width: 56px;"
+          >
+            {%- if forloop.index < 10 -%}0{{ forloop.index }}{%- else -%}{{ forloop.index }}{%- endif -%}
+          </div>
+
+          <h3
+            class="mb-1 md:mb-0"
+            style="font-family: Barlow, sans-serif; font-weight: 700; font-size: 16px; color: rgb(17, 17, 16); letter-spacing: 0.04em; text-transform: uppercase; min-width: 260px;"
+          >{{ block.settings.title }}</h3>
+
+          <p
+            style="font-family: Barlow, sans-serif; font-size: 15px; color: rgb(107, 107, 104); line-height: 1.6; max-width: 400px;"
+          >{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Process",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Process"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See It. Ask. Try. Decide."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process"
+    }
+  ]
+}
+{% endschema %}

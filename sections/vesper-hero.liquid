@@ -1,0 +1,127 @@
+<section
+  class="relative overflow-hidden flex flex-col justify-end pt-14"
+  style="background: rgb(238, 236, 234); min-height: 100svh;"
+>
+  <div class="absolute inset-0">
+    <img
+      alt="{{ section.settings.image_alt | escape }}"
+      class="w-full h-full object-cover"
+      src="{{ 'banner.jpg' | asset_url }}"
+      width="1190"
+      height="696"
+      style="object-position: {{ section.settings.image_position }};"
+    >
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(100deg, rgba(248, 247, 244, 0.8) 0%, rgba(248, 247, 244, 0.6) 42%, rgba(248, 247, 244, 0.15) 65%, rgba(248, 247, 244, 0.03) 100%);"
+    ></div>
+    <div
+      class="absolute bottom-0 left-0 right-0 h-32"
+      style="background: linear-gradient(transparent, rgba(238, 236, 234, 0.8));"
+    ></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6 pb-16 md:pb-24 w-full">
+    <p
+      class="mb-8 uppercase"
+      style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+    >{{ section.settings.eyebrow }}</p>
+
+    <h1
+      class="text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] mb-6 max-w-xl uppercase tracking-tight"
+      style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; line-height: 1; color: rgb(17, 17, 16);"
+    >{{ section.settings.heading }}</h1>
+
+    <p
+      class="mb-10"
+      style="font-family: Barlow, sans-serif; font-size: 17px; color: rgb(107, 107, 104); line-height: 1.6; max-width: 400px;"
+    >{{ section.settings.body }}</p>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      {%- if section.settings.primary_label != blank -%}
+        <a
+          href="{{ section.settings.primary_link }}"
+          class="hover:bg-[#78C500] transition-colors text-center"
+          style="background: #8DE600; color: rgb(17, 17, 16); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; padding: 14px 28px; display: inline-block;"
+        >{{ section.settings.primary_label }}</a>
+      {%- endif -%}
+
+      {%- if section.settings.secondary_label != blank -%}
+        <a
+          href="{{ section.settings.secondary_link }}"
+          class="hover:bg-[#111110] hover:text-[#F8F7F4] transition-colors text-center"
+          style="border: 1px solid rgb(17, 17, 16); color: rgb(17, 17, 16); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; padding: 14px 28px; display: inline-block;"
+        >{{ section.settings.secondary_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Melbourne East &nbsp;·&nbsp; Local Support &nbsp;·&nbsp; Live Demos"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Not Sure Which Robot Fits Your Home?"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "See it work. Ask an expert. Find the right solution for your home."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "BOOK A FREE DEMO"
+    },
+    {
+      "type": "text",
+      "id": "primary_link",
+      "label": "Primary button link",
+      "info": "A URL or an anchor such as #demo",
+      "default": "#demo"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "VISIT US IN MELBOURNE EAST"
+    },
+    {
+      "type": "text",
+      "id": "secondary_link",
+      "label": "Secondary button link",
+      "info": "A URL or an anchor such as #products",
+      "default": "#products"
+    },
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image alt text",
+      "default": "Vesper S1 robot mower"
+    },
+    {
+      "type": "text",
+      "id": "image_position",
+      "label": "Image object-position",
+      "info": "CSS value, for example 30% center",
+      "default": "30% center"
+    }
+  ]
+}
+{% endschema %}

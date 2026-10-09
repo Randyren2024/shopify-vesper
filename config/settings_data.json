@@ -1,14 +1,19 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
-    "vesper_logo": "shopify://shop_images/logo.webp"
+    "favicon": "",
+    "vesper_logo": "shopify://shop_images/logo.webp",
+    "content_for_index": [],
+    "blocks": {
+      "11609510145408961983": {
+        "type": "shopify://apps/zb-facebook-messenger-chat/blocks/zotabox_embed/d373f1c7-09a2-4414-b6f1-6c7e25e73133",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "favicon": ""
+    }
   }
 }

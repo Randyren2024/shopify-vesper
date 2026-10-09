@@ -1,206 +1,359 @@
 {
   "sections": {
-    "vesper-home-hero": {
-      "type": "vesper-home-hero",
+    "hero": {
+      "type": "vesper-hero",
       "settings": {
-        "heading": "Smart Agriculture, Precision Future",
-        "subheading": "Vesper AgriTech provides advanced agricultural technology solutions, enhancing farming efficiency and sustainability through intelligent technology",
-        "cta_label": "Explore Products & Solutions",
-        "cta_link": "/pages/products-solutions"
-      },
-      "blocks": {
-        "slide-1": {
-          "type": "slide",
-          "settings": {
-            "tag": "Vesper S1",
-            "title": "Slope Lawn Mower — 50°",
-            "description": "Remote-controlled 4WD with grip-tread tires conquers 50° (119% grade) slopes. 1985W peak power, 53cm deck, leaf-shredding vacuum.",
-            "link": "/products/vesper-s1-4wd-50",
-            "image_asset": "products-vesper-s1-4wd-50.webp"
-          }
-        },
-        "slide-2": {
-          "type": "slide",
-          "settings": {
-            "tag": "Vesper S1",
-            "title": "Slope Lawn Mower — 40°",
-            "description": "Wide TPU-tire 4WD climbs 40° (85% grade) slopes with extra grip on soft soil, mud, and wet grass. Same 1985W cutting platform.",
-            "link": "/products/vesper-s1-4wd-40",
-            "image_asset": "products-vesper-s1-4wd-40.webp"
-          }
-        },
-        "slide-3": {
-          "type": "slide",
-          "settings": {
-            "tag": "AF718",
-            "title": "Autosteering System",
-            "description": "High-performance autosteering with ±2.5 cm accuracy for precision agriculture",
-            "link": "/products/af718",
-            "image_asset": "products-af718.webp"
-          }
-        }
-      },
-      "block_order": [
-        "slide-1",
-        "slide-2",
-        "slide-3"
-      ]
+        "eyebrow": "Melbourne East  ·  Local Support  ·  Live Demos",
+        "heading": "Not Sure Which Robot Fits Your Yard?",
+        "body": "See it work. Ask an expert. Find the right solution for your Australian yard.",
+        "primary_label": "BOOK FREE DEMO",
+        "primary_link": "#demo",
+        "secondary_label": "",
+        "secondary_link": "",
+        "image_alt": "Vesper S1 robot mower",
+        "image_position": "30% center"
+      }
     },
-    "vesper-home-categories": {
-      "type": "vesper-home-categories",
-      "settings": {
-        "title": "Products & Solutions",
-        "subtitle": "Comprehensive technical support for modern agriculture"
-      },
+    "problem": {
+      "type": "vesper-problem",
       "blocks": {
-        "category-1": {
-          "type": "category",
+        "problem-1": {
+          "type": "item",
           "settings": {
-            "title": "Lawn Mower",
-            "description": "Remote control robotic lawn mowers for steep slopes and large lawns",
-            "link": "/pages/products-solutions?category=lawn-mower",
-            "image_asset": "categories-lawn-mower.webp"
+            "title": "Will it suit my home?",
+            "body": "Every yard, pool and floor is different. Specs on a screen don't tell you what actually works."
           }
         },
-        "category-2": {
-          "type": "category",
+        "problem-2": {
+          "type": "item",
           "settings": {
-            "title": "Precision Agriculture",
-            "description": "Advanced auto-steering systems including AF718, AF305, and ISOBUS terminal",
-            "link": "/pages/products-solutions?category=precision-agriculture",
-            "image_asset": "pexels-nc-farm-bureau-mark-26256448.webp"
+            "title": "Is it easy to use?",
+            "body": "Setup and day-to-day operation can be more complex than a product video suggests."
           }
         },
-        "category-3": {
-          "type": "category",
+        "problem-3": {
+          "type": "item",
           "settings": {
-            "title": "Precision Agriculture Solutions",
-            "description": "Precision spraying solutions including VS100 Spray Control System",
-            "link": "/pages/products-solutions?category=precision-spraying",
-            "image_asset": "agriculture-6502282.webp"
-          }
-        },
-        "category-4": {
-          "type": "category",
-          "settings": {
-            "title": "Land Leveling System",
-            "description": "GPS-controlled land leveling systems for sustainable agriculture",
-            "link": "/pages/products-solutions?category=land-leveling",
-            "image_asset": "pexels-wolfgang-weiser-467045605-34239949.webp"
-          }
-        },
-        "category-5": {
-          "type": "category",
-          "settings": {
-            "title": "Machine Control",
-            "description": "Intelligent guidance systems for construction and mining equipment",
-            "link": "/pages/products-solutions?category=machine-control",
-            "image_asset": "pexels-vladimirsrajber-18431208.webp"
+            "title": "Who helps me after I buy?",
+            "body": "Online-only retailers can't answer your calls. We can — in person, in Melbourne."
           }
         }
       },
       "block_order": [
-        "category-1",
-        "category-2",
-        "category-3",
-        "category-4",
-        "category-5"
-      ]
+        "problem-1",
+        "problem-2",
+        "problem-3"
+      ],
+      "settings": {
+        "eyebrow": "The Problem",
+        "heading": "Choosing a Robot Shouldn't Require a Research Project."
+      }
     },
-    "vesper-home-featured-products": {
-      "type": "vesper-home-featured-products",
-      "settings": {
-        "title": "Featured Products",
-        "subtitle": "Leading agricultural technology equipment",
-        "whatsapp_number": "61448290926"
-      },
+    "products": {
+      "type": "vesper-products",
       "blocks": {
-        "product-1": {
-          "type": "product",
+        "products-feature": {
+          "type": "feature",
           "settings": {
-            "title": "Remote Control Lawn Mower — 119% Slope (Grip Tread)",
-            "description": "Sit on your porch. Grab the controller. Watch the S1 4WD conquer 50° (119% Grade) slopes while you stay cool in the shade. 3.94\" obstacle clearance, 1000W traction, and a 21\" deck with 1985W peak cutting power — the S1 rips through 51\" tall grass, wet patches, and dense weeds that defeat every other mower. From the first spring mow to the last fall cleanup: discharge, mulch, bag, and a 931 CFM leaf-shredding vacuum with 70 L collection bag.",
-            "link": "/products/vesper-s1-4wd-50",
-            "image_asset": "products-vesper-s1-4wd-50.webp"
+            "image": "shopify://shop_images/4WD-DT-1.webp",
+            "image_alt": "Vesper S1 4WD Grip Tread",
+            "image_position": "35% center",
+            "badge": "GRIP TREAD",
+            "eyebrow": "Smart Lawn Mower",
+            "title": "Vesper S1 4WD",
+            "stats": "50° | Slope | 119% Grade\n3000 | m² | Per Charge\n4WD | Drive | All Terrain",
+            "bullets": "One-button automatic mowing\nNo base station required\nNo network needed\nMowrator platform",
+            "link_label": "See It Work →",
+            "link": "#demo"
           }
         },
-        "product-2": {
-          "type": "product",
+        "products-card-1": {
+          "type": "card",
           "settings": {
-            "title": "Remote Control Lawn Mower — 85% Slope (Wide Wheel)",
-            "description": "The S1 4WD Wide Wheel Edition climbs 40° (85% Grade) slopes with a wider TPU contact patch and bold straight-tread pattern for stronger grip on steeper lawns, damp grass, and soft ground. Same 4-Motor AWD platform, 21\" deck, 1985W peak cutting power, and 3.94\" obstacle clearance as the 50° — with the sweet-spot tire for everyday steep terrain.",
-            "link": "/products/vesper-s1-4wd-40",
-            "image_asset": "products-vesper-s1-4wd-40.webp"
+            "image": "shopify://shop_images/4WD-WW-1_20107b08-335f-4779-8855-6374a5dc851b.webp",
+            "image_url": "",
+            "image_alt": "Vesper S1 4WD Wide Wheel",
+            "image_position": "60% center",
+            "image_filter": "saturate(0.85)",
+            "image_background": "#EEECEA",
+            "badge": "WIDE WHEEL",
+            "eyebrow": "Smart Lawn Mower",
+            "title": "Vesper S1 4WD",
+            "stats": "40° | Slope\n85% | Grade\n3000 m² | Per Charge",
+            "bullets": "",
+            "link_label": "See It Work →",
+            "link": "#demo"
           }
         },
-        "product-3": {
-          "type": "product",
+        "products-card-2": {
+          "type": "card",
           "settings": {
-            "title": "Autosteering System",
-            "description": "The AF718 is Vesper's next-generation high-performance autosteering system. Powered by an advanced computing platform, it significantly enhances accuracy and efficiency across diverse farming operations.",
-            "link": "/products/af718",
-            "image_asset": "products-af718-main.png"
+            "image": "shopify://shop_images/V1000_Left45_W_PCWELT.webp",
+            "image_url": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&h=420&fit=crop&auto=format",
+            "image_alt": "Cordless pool robot",
+            "image_position": "center",
+            "image_filter": "saturate(0.9)",
+            "image_background": "#D6E8EA",
+            "badge": "",
+            "eyebrow": "Smart Lawn Robot",
+            "title": "Terramow V1000",
+            "stats": "",
+            "bullets": "No Wires. No Antennas. No Signal Issues. \nOne-Click Auto Mapping\nEdge-to-Edge Perfection",
+            "link_label": "See It Work →",
+            "link": "#demo"
           }
         }
       },
       "block_order": [
-        "product-1",
-        "product-2",
-        "product-3"
-      ]
+        "products-feature",
+        "products-card-1",
+        "products-card-2"
+      ],
+      "settings": {
+        "eyebrow": "Products",
+        "heading": "Don't Choose From a Screen. See It Work."
+      }
     },
-    "vesper-home-values": {
-      "type": "vesper-home-values",
+    "demonstrations": {
+      "type": "vesper-demonstrations",
       "settings": {
-        "title": "Our Values",
-        "subtitle": "What drives us forward"
-      },
+        "eyebrow": "Live Demonstrations",
+        "heading": "Don't Choose<br>From a Screen.",
+        "body": "Visit our Melbourne East showroom. See the robots work in person. Ask our team anything.",
+        "button_label": "Book a Free Demo",
+        "button_link": "#demo",
+        "image_alt": "Vesper robot in action",
+        "image_position": "30% center"
+      }
+    },
+    "why": {
+      "type": "vesper-why",
       "blocks": {
-        "value-1": {
-          "type": "value",
+        "why-1": {
+          "type": "item",
           "settings": {
-            "icon": "⚡",
-            "title": "Technical Excellence",
-            "description": "Maintaining the highest standards in product selection and technical validation, ensuring every solution meets rigorous quality benchmarks."
+            "title": "DJI & Mowrator R&D Background",
+            "body": "Our team has hands-on robotics R&D experience across drone and autonomous mower development."
           }
         },
-        "value-2": {
-          "type": "value",
+        "why-2": {
+          "type": "item",
           "settings": {
-            "icon": "🤝",
-            "title": "Customer Partnership",
-            "description": "Viewing clients as long-term partners, providing comprehensive support from product selection to after-sales service."
+            "title": "Founded by Former Mowrator CTO",
+            "body": "Our founder co-founded Mowrator and served as CTO — we know autonomous mowers from the ground up."
           }
         },
-        "value-3": {
-          "type": "value",
+        "why-3": {
+          "type": "item",
           "settings": {
-            "icon": "📊",
-            "title": "Market Intelligence",
-            "description": "Deep understanding of both Chinese manufacturing capabilities and global market needs for optimal product-market fit."
+            "title": "Based in Melbourne East",
+            "body": "We're here for setup, guidance and ongoing support — not just the transaction."
           }
         },
-        "value-4": {
-          "type": "value",
+        "why-4": {
+          "type": "item",
           "settings": {
-            "icon": "🌏",
-            "title": "Localized Service",
-            "description": "Building deep, localized service systems to truly serve global customers with complete solutions, not just products."
+            "title": "Curated for Australian Conditions",
+            "body": "We select products that actually work in Australian yards, pools and homes."
           }
         }
       },
       "block_order": [
-        "value-1",
-        "value-2",
-        "value-3",
-        "value-4"
-      ]
+        "why-1",
+        "why-2",
+        "why-3",
+        "why-4"
+      ],
+      "settings": {
+        "eyebrow": "Why Vesper",
+        "heading": "Robotics Expertise.Local Support.",
+        "body": "We understand the technology from the inside — and we explain it in a way that helps you make the right decision for your home.",
+        "button_label": "Talk to the Team",
+        "button_link": "#demo"
+      }
+    },
+    "1791268772f7af4e36": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5c9cab1_dqmtLR": {
+          "type": "ai_gen_block_5c9cab1",
+          "settings": {
+            "desktop_width_percent": 100,
+            "heading": "Expert Reviews",
+            "intro": "TerraMow has been reviewed and tested by creators and technology channels around the world."
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5c9cab1_dqmtLR"
+      ],
+      "name": "Feature",
+      "settings": {}
+    },
+    "process": {
+      "type": "vesper-process",
+      "blocks": {
+        "process-1": {
+          "type": "step",
+          "settings": {
+            "title": "Tell Us About Your Home",
+            "body": "Yard size, pool shape, floor type — the details that matter."
+          }
+        },
+        "process-2": {
+          "type": "step",
+          "settings": {
+            "title": "See the Robots Work",
+            "body": "Watch live demos at our Melbourne East showroom."
+          }
+        },
+        "process-3": {
+          "type": "step",
+          "settings": {
+            "title": "Get Personal Advice",
+            "body": "Our team recommends exactly what suits your situation."
+          }
+        },
+        "process-4": {
+          "type": "step",
+          "settings": {
+            "title": "Book an In-Home Demo",
+            "body": "See the robot perform in your actual environment."
+          }
+        }
+      },
+      "block_order": [
+        "process-1",
+        "process-2",
+        "process-3",
+        "process-4"
+      ],
+      "settings": {
+        "eyebrow": "Process",
+        "heading": "See It. Ask. Try. Decide."
+      }
+    },
+    "demo": {
+      "type": "vesper-demo-form",
+      "blocks": {
+        "forms_inline_p4WD3c": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "1170323",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_p4WD3c"
+      ],
+      "settings": {
+        "eyebrow": "In-Home Demo",
+        "heading": "Want to See If It Works In Your Home?",
+        "body": "Book an in-home demo and see how the robot performs in your actual yard, pool, or floors.",
+        "bullets": "Free for Melbourne East area\nNo commitment required\nExpert visits your home"
+      }
+    },
+    "faq": {
+      "type": "vesper-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need Wi-Fi?",
+            "answer": "Most of our lawn mowers and pool robots work completely offline — no Wi-Fi or app required. Some smart vacuum models offer optional app control, but it's never mandatory."
+          }
+        },
+        "faq-2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need a base station?",
+            "answer": "Our current smart lawn mowers do not require a base station. This is one of the key advantages of the range we carry."
+          }
+        },
+        "faq-3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I see the robots before buying?",
+            "answer": "Absolutely. Visit our Melbourne East showroom and see every robot in action before committing."
+          }
+        },
+        "faq-4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I book an in-home demo?",
+            "answer": "Yes. Fill in the form above and we'll be in touch to arrange a visit to your home."
+          }
+        },
+        "faq-5": {
+          "type": "question",
+          "settings": {
+            "question": "What areas do you service?",
+            "answer": "We are based in Melbourne East and service surrounding suburbs. Contact us to confirm your area."
+          }
+        },
+        "faq-6": {
+          "type": "question",
+          "settings": {
+            "question": "Do you provide support after purchase?",
+            "answer": "Yes — phone, email and in-person. We want the robot to work for you long-term."
+          }
+        },
+        "faq-7": {
+          "type": "question",
+          "settings": {
+            "question": "Can someone help me choose the right robot?",
+            "answer": "That's our speciality. Come in, tell us about your home, and we'll walk you through the options that make sense for your situation."
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6",
+        "faq-7"
+      ],
+      "settings": {
+        "eyebrow": "FAQ",
+        "heading": "Common Questions."
+      }
+    },
+    "cta": {
+      "type": "vesper-cta",
+      "settings": {
+        "heading": "Not Sure What Fits Your Home?",
+        "body": "Come see the robots work. Talk to our team. Find the right solution.",
+        "primary_label": "Book a Free Demo",
+        "primary_link": "#demo",
+        "secondary_label": "Visit Us in Melbourne East",
+        "secondary_link": "#"
+      }
     }
   },
   "order": [
-    "vesper-home-hero",
-    "vesper-home-categories",
-    "vesper-home-featured-products",
-    "vesper-home-values"
+    "hero",
+    "problem",
+    "products",
+    "demonstrations",
+    "why",
+    "1791268772f7af4e36",
+    "process",
+    "demo",
+    "faq",
+    "cta"
   ]
 }

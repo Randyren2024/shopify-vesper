@@ -1,0 +1,406 @@
+{%- comment -%}
+  Vesper header.
+
+  Products has a click-to-open dropdown menu.
+  The dropdown items come from a Shopify navigation menu picked in the
+  theme editor (setting: products_menu).
+{%- endcomment -%}
+
+{%- liquid
+  assign anchor_prefix = ''
+  if template.name != 'index'
+    assign anchor_prefix = routes.root_url
+  endif
+
+  assign products_menu = linklists[section.settings.products_menu]
+-%}
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50"
+  style="background: rgba(248, 247, 244, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(17, 17, 16, 0.1);"
+>
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
+    <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      <img
+        alt="{{ shop.name | escape }}"
+        src="{{ 'vesper-logo.svg' | asset_url }}"
+        width="557"
+        height="83"
+        style="height: 28px; width: auto; display: block;"
+      >
+    </a>
+
+    <div class="flex items-center gap-5 md:gap-8">
+      <div class="hidden md:flex items-center gap-8">
+
+        {%- for block in section.blocks -%}
+
+          {%- if block.settings.label == 'Products' and products_menu.links.size > 0 -%}
+
+            <div class="relative" data-products-dropdown>
+              <button
+                type="button"
+                class="flex items-center gap-1 hover:text-[#111110] transition-colors"
+                style="color: rgb(107, 107, 104); font-family: Barlow, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; background: none; border: 0; padding: 0; cursor: pointer;"
+                aria-expanded="false"
+                data-products-toggle
+              >
+                {{ block.settings.label }}
+
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="transition: transform 0.2s ease;"
+                  data-products-chevron
+                >
+                  <path d="M3 4.5L6 7.5L9 4.5"></path>
+                </svg>
+              </button>
+
+              <div
+                class="v-pmenu absolute left-0 top-full mt-4"
+                style="display: none;"
+                data-products-menu
+              >
+                {%- for link in products_menu.links -%}
+                  <a href="{{ link.url }}" class="v-pmenu__link">{{ link.title }}</a>
+                {%- endfor -%}
+              </div>
+            </div>
+
+          {%- else -%}
+
+            {%- assign first_char = block.settings.link | slice: 0, 1 -%}
+            {%- assign nav_url = block.settings.link -%}
+
+            {%- if first_char == '#' -%}
+              {%- assign nav_url = anchor_prefix | append: block.settings.link -%}
+            {%- endif -%}
+
+            <a
+              href="{{ nav_url }}"
+              class="hover:text-[#111110] transition-colors"
+              style="color: rgb(107, 107, 104); font-family: Barlow, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em;"
+              {{ block.shopify_attributes }}
+            >{{ block.settings.label }}</a>
+
+          {%- endif -%}
+
+        {%- endfor -%}
+
+        {%- if section.settings.cta_label != blank -%}
+
+          {%- assign cta_first_char = section.settings.cta_link | slice: 0, 1 -%}
+          {%- assign cta_url = section.settings.cta_link -%}
+
+          {%- if cta_first_char == '#' -%}
+            {%- assign cta_url = anchor_prefix | append: section.settings.cta_link -%}
+          {%- endif -%}
+
+          <a
+            href="{{ cta_url }}"
+            class="hover:bg-[#78C500] transition-colors"
+            style="background: #8DE600; color: rgb(17, 17, 16); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; padding: 9px 20px;"
+          >{{ section.settings.cta_label }}</a>
+
+        {%- endif -%}
+
+      </div>
+
+      <button
+        type="button"
+        class="md:hidden p-2"
+        aria-label="{{ 'accessibility.menu' | t }}"
+        aria-controls="mobile-menu-panel"
+        aria-expanded="false"
+        data-menu-toggle
+      >
+        <svg width="18" height="18" fill="none" stroke="#111110" stroke-width="1.5" stroke-linecap="round">
+          <line x1="2" y1="5" x2="16" y2="5"></line>
+          <line x1="2" y1="9" x2="16" y2="9"></line>
+          <line x1="2" y1="13" x2="16" y2="13"></line>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu-panel"
+    class="md:hidden"
+    style="background: rgb(248, 247, 244); border-top: 1px solid rgba(17, 17, 16, 0.1);"
+    hidden
+    data-menu-panel
+  >
+    <div class="px-6 py-4 flex flex-col">
+
+      {%- for block in section.blocks -%}
+
+        {%- if block.settings.label == 'Products' and products_menu.links.size > 0 -%}
+
+          <button
+            type="button"
+            class="py-3 flex items-center justify-between text-left"
+            style="font-family: Barlow, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: rgb(107, 107, 104); background: none; border: 0; border-bottom: 1px solid rgba(17, 17, 16, 0.06); width: 100%; cursor: pointer;"
+            data-mobile-products-toggle
+            aria-expanded="false"
+          >
+            <span>{{ block.settings.label }}</span>
+
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="transition: transform 0.2s ease;"
+              data-mobile-products-chevron
+            >
+              <path d="M3 4.5L6 7.5L9 4.5"></path>
+            </svg>
+          </button>
+
+          <div
+            class="v-pmenu-mobile"
+            style="display: none;"
+            data-mobile-products-menu
+          >
+            {%- for link in products_menu.links -%}
+              <a href="{{ link.url }}" class="v-pmenu__link v-pmenu__link--mobile">{{ link.title }}</a>
+            {%- endfor -%}
+          </div>
+
+        {%- else -%}
+
+          {%- assign first_char = block.settings.link | slice: 0, 1 -%}
+          {%- assign nav_url = block.settings.link -%}
+
+          {%- if first_char == '#' -%}
+            {%- assign nav_url = anchor_prefix | append: block.settings.link -%}
+          {%- endif -%}
+
+          <a
+            href="{{ nav_url }}"
+            class="py-3 transition-colors"
+            style="font-family: Barlow, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; color: rgb(107, 107, 104); border-bottom: 1px solid rgba(17, 17, 16, 0.06);"
+          >{{ block.settings.label }}</a>
+
+        {%- endif -%}
+
+      {%- endfor -%}
+
+      {%- if section.settings.cta_label != blank -%}
+
+        {%- assign cta_first_char = section.settings.cta_link | slice: 0, 1 -%}
+        {%- assign cta_url = section.settings.cta_link -%}
+
+        {%- if cta_first_char == '#' -%}
+          {%- assign cta_url = anchor_prefix | append: section.settings.cta_link -%}
+        {%- endif -%}
+
+        <a
+          href="{{ cta_url }}"
+          class="mt-4 text-center hover:bg-[#78C500] transition-colors"
+          style="background: #8DE600; color: rgb(17, 17, 16); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; padding: 13px 20px;"
+        >{{ section.settings.cta_label }}</a>
+
+      {%- endif -%}
+
+    </div>
+  </div>
+</nav>
+
+<style>
+  .v-pmenu {
+    min-width: 240px;
+    max-width: 340px;
+    padding: 6px 0;
+    background: rgb(248, 247, 244);
+    border: 1px solid rgba(17, 17, 16, 0.1);
+    box-shadow: 0 18px 40px rgba(17, 17, 16, 0.14);
+    animation: v-pmenu-in 0.16s ease;
+  }
+
+  @keyframes v-pmenu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .v-pmenu__link {
+    display: block;
+    padding: 11px 20px;
+    font-family: Barlow, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(17, 17, 16);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .v-pmenu__link:hover {
+    background: rgba(17, 17, 16, 0.05);
+    border-left-color: #8de600;
+  }
+
+  .v-pmenu-mobile {
+    padding: 4px 0 8px;
+  }
+
+  .v-pmenu__link--mobile {
+    padding: 10px 0 10px 14px;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const dropdown = document.querySelector('[data-products-dropdown]');
+    const toggle = document.querySelector('[data-products-toggle]');
+    const menu = document.querySelector('[data-products-menu]');
+    const chevron = document.querySelector('[data-products-chevron]');
+
+    if (dropdown && toggle && menu) {
+
+      toggle.addEventListener('click', function (event) {
+        event.stopPropagation();
+
+        const isOpen = menu.style.display === 'block';
+
+        menu.style.display = isOpen ? 'none' : 'block';
+
+        toggle.setAttribute(
+          'aria-expanded',
+          isOpen ? 'false' : 'true'
+        );
+
+        if (chevron) {
+          chevron.style.transform = isOpen
+            ? 'rotate(0deg)'
+            : 'rotate(180deg)';
+        }
+      });
+
+      document.addEventListener('click', function (event) {
+
+        if (!dropdown.contains(event.target)) {
+
+          menu.style.display = 'none';
+
+          toggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+          if (chevron) {
+            chevron.style.transform = 'rotate(0deg)';
+          }
+        }
+
+      });
+
+    }
+
+    const mobileToggle =
+      document.querySelector('[data-mobile-products-toggle]');
+
+    const mobileMenu =
+      document.querySelector('[data-mobile-products-menu]');
+
+    const mobileChevron =
+      document.querySelector('[data-mobile-products-chevron]');
+
+    if (mobileToggle && mobileMenu) {
+
+      mobileToggle.addEventListener('click', function () {
+
+        const isOpen =
+          mobileMenu.style.display === 'block';
+
+        mobileMenu.style.display =
+          isOpen ? 'none' : 'block';
+
+        mobileToggle.setAttribute(
+          'aria-expanded',
+          isOpen ? 'false' : 'true'
+        );
+
+        if (mobileChevron) {
+          mobileChevron.style.transform = isOpen
+            ? 'rotate(0deg)'
+            : 'rotate(180deg)';
+        }
+
+      });
+
+    }
+
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "BOOK A DEMO"
+    },
+    {
+      "type": "text",
+      "id": "cta_link",
+      "label": "Button link",
+      "info": "A URL or an anchor such as #demo",
+      "default": "#demo"
+    },
+    {
+      "type": "header",
+      "content": "Products dropdown"
+    },
+    {
+      "type": "link_list",
+      "id": "products_menu",
+      "label": "Products menu",
+      "info": "Navigation menu shown inside the Products dropdown."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Nav link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Link",
+          "info": "A URL or an anchor such as #faq"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

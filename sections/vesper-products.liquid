@@ -1,0 +1,390 @@
+{%- comment -%}
+  Products
+  The "feature" block renders the large dark product card; every "card" block renders
+  as one of the two-column cards below it. Multi-value settings use one entry per line,
+  with "|" separating the parts of a stat (value | label | caption).
+{%- endcomment -%}
+
+{%- liquid
+  assign feature = section.blocks | where: 'type', 'feature' | first
+  assign cards = section.blocks | where: 'type', 'card'
+-%}
+
+<section id="products" class="py-24 md:py-32" style="background: rgb(238, 236, 234);">
+  <div class="max-w-7xl mx-auto px-6">
+    <p
+      class="uppercase mb-4"
+      style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+    >{{ section.settings.eyebrow }}</p>
+
+    <h2
+      class="text-[36px] md:text-[52px] mb-16 uppercase tracking-tight max-w-xl"
+      style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; line-height: 1; color: rgb(17, 17, 16);"
+    >{{ section.settings.heading }}</h2>
+
+    {%- if feature != blank -%}
+      {%- if feature.settings.image != blank -%}
+        {%- assign feature_image = feature.settings.image | image_url: width: 1400 -%}
+      {%- else -%}
+        {%- assign feature_image = 'banner.jpg' | asset_url -%}
+      {%- endif -%}
+
+      <div
+        class="mb-4 grid md:grid-cols-2 overflow-hidden"
+        style="border: 1px solid rgba(17, 17, 16, 0.1); background: rgb(17, 17, 16);"
+        {{ feature.shopify_attributes }}
+      >
+        <div class="relative min-h-[320px] md:min-h-[460px] overflow-hidden bg-[#1E1E1C]">
+          <img
+            alt="{{ feature.settings.image_alt | escape }}"
+            class="absolute inset-0 w-full h-full object-cover opacity-80"
+            src="{{ feature_image }}"
+            width="1190"
+            height="696"
+            style="object-position: {{ feature.settings.image_position }};"
+          >
+          <div
+            class="absolute inset-0"
+            style="background: linear-gradient(to right, transparent 50%, rgba(17, 17, 16, 0.6));"
+          ></div>
+
+          {%- if feature.settings.badge != blank -%}
+            <div
+              class="absolute top-5 left-5"
+              style="border: 1px solid rgba(255, 255, 255, 0.25); padding: 4px 10px;"
+            >
+              <span style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.7);">{{ feature.settings.badge }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="p-8 md:p-12 flex flex-col justify-between">
+          <div>
+            <p
+              class="uppercase mb-3"
+              style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+            >{{ feature.settings.eyebrow }}</p>
+
+            <h3
+              class="text-[32px] md:text-[44px] uppercase mb-8 tracking-tight"
+              style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(248, 247, 244); line-height: 1;"
+            >{{ feature.settings.title }}</h3>
+
+            {%- if feature.settings.stats != blank -%}
+              <div class="grid grid-cols-3 gap-px mb-8" style="background: rgba(255, 255, 255, 0.1);">
+                {%- assign stats = feature.settings.stats | newline_to_br | split: '<br />' -%}
+                {%- for stat in stats -%}
+                  {%- assign parts = stat | split: '|' -%}
+                  <div class="p-4" style="background: rgb(30, 30, 28);">
+                    <div
+                      class="text-[28px] md:text-[36px]"
+                      style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(200, 90, 10); line-height: 1;"
+                    >{{ parts[0] | strip }}</div>
+                    <div
+                      class="mt-0.5 uppercase"
+                      style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; color: rgb(248, 247, 244); letter-spacing: 0.08em;"
+                    >{{ parts[1] | strip }}</div>
+                    {%- if parts[2] != blank -%}
+                      <div style="font-family: Barlow, sans-serif; font-size: 11px; color: rgb(107, 107, 104); margin-top: 2px;">{{ parts[2] | strip }}</div>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+
+            {%- if feature.settings.bullets != blank -%}
+              <ul class="space-y-2 mb-8">
+                {%- assign bullets = feature.settings.bullets | newline_to_br | split: '<br />' -%}
+                {%- for bullet in bullets -%}
+                  <li
+                    class="flex items-center gap-2.5"
+                    style="font-family: Barlow, sans-serif; font-size: 14px; color: rgba(248, 247, 244, 0.65);"
+                  >
+                    <span style="width: 16px; height: 1px; background: rgb(200, 90, 10); display: inline-block; flex-shrink: 0;"></span>{{ bullet | strip }}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </div>
+
+          {%- if feature.settings.link_label != blank -%}
+            <a
+              href="{{ feature.settings.link }}"
+              class="hover:border-white transition-colors uppercase"
+              style="border: 1px solid rgba(255, 255, 255, 0.2); color: rgb(248, 247, 244); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; padding: 13px 24px; display: inline-block; align-self: flex-start;"
+            >{{ feature.settings.link_label }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if cards.size > 0 -%}
+      <div class="grid md:grid-cols-2 gap-4">
+        {%- for block in cards -%}
+          {%- if block.settings.image != blank -%}
+            {%- assign card_image = block.settings.image | image_url: width: 900 -%}
+          {%- elsif block.settings.image_url != blank -%}
+            {%- assign card_image = block.settings.image_url -%}
+          {%- else -%}
+            {%- assign card_image = 'banner.jpg' | asset_url -%}
+          {%- endif -%}
+
+          <div
+            class="overflow-hidden"
+            style="border: 1px solid rgba(17, 17, 16, 0.1); background: rgb(248, 247, 244);"
+            {{ block.shopify_attributes }}
+          >
+            <div
+              class="relative h-52 overflow-hidden"
+              style="background: {{ block.settings.image_background }};"
+            >
+              <img
+                alt="{{ block.settings.image_alt | escape }}"
+                class="absolute inset-0 w-full h-full object-cover"
+                src="{{ card_image }}"
+                width="700"
+                height="420"
+                style="object-position: {{ block.settings.image_position }}; filter: {{ block.settings.image_filter }};"
+              >
+              {%- if block.settings.badge != blank -%}
+                <div
+                  class="absolute top-4 left-4"
+                  style="border: 1px solid rgba(17, 17, 16, 0.1); background: rgba(248, 247, 244, 0.85); padding: 3px 9px;"
+                >
+                  <span style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: rgb(17, 17, 16);">{{ block.settings.badge }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="p-6">
+              <p
+                class="uppercase mb-1.5"
+                style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+              >{{ block.settings.eyebrow }}</p>
+
+              <h3
+                class="text-2xl uppercase mb-4 tracking-tight"
+                style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(17, 17, 16); line-height: 1;"
+              >{{ block.settings.title }}</h3>
+
+              {%- if block.settings.stats != blank -%}
+                <div class="flex gap-5 mb-5">
+                  {%- assign stats = block.settings.stats | newline_to_br | split: '<br />' -%}
+                  {%- for stat in stats -%}
+                    {%- assign parts = stat | split: '|' -%}
+                    <div>
+                      <div style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(200, 90, 10); font-size: 22px;">{{ parts[0] | strip }}</div>
+                      <div
+                        class="uppercase"
+                        style="font-family: Barlow, sans-serif; font-size: 11px; color: rgb(107, 107, 104); letter-spacing: 0.06em;"
+                      >{{ parts[1] | strip }}</div>
+                    </div>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.bullets != blank -%}
+                <ul class="space-y-1.5 mb-5">
+                  {%- assign bullets = block.settings.bullets | newline_to_br | split: '<br />' -%}
+                  {%- for bullet in bullets -%}
+                    <li
+                      class="flex items-center gap-2.5"
+                      style="font-family: Barlow, sans-serif; font-size: 14px; color: rgb(107, 107, 104);"
+                    >
+                      <span style="width: 12px; height: 1px; background: rgb(200, 90, 10); display: inline-block; flex-shrink: 0;"></span>{{ bullet | strip }}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              {%- if block.settings.link_label != blank -%}
+                <a
+                  href="{{ block.settings.link }}"
+                  class="hover:text-[#1E3D1E] hover:border-[#1E3D1E] transition-colors uppercase"
+                  style="font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: rgb(17, 17, 16); border-bottom: 1px solid rgb(17, 17, 16); padding-bottom: 2px;"
+                >{{ block.settings.link_label }}</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Products"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Don't Choose From a Screen. See It Work."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature card",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "default": "Vesper S1 4WD Grip Tread"
+        },
+        {
+          "type": "text",
+          "id": "image_position",
+          "label": "Image object-position",
+          "default": "35% center"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "GRIP TREAD"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Smart Lawn Mower"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Vesper S1 4WD"
+        },
+        {
+          "type": "textarea",
+          "id": "stats",
+          "label": "Stats",
+          "info": "One per line: value | label | caption",
+          "default": "50° | Slope | 119% Grade\n3000 | m² | Per Charge\n4WD | Drive | All Terrain"
+        },
+        {
+          "type": "textarea",
+          "id": "bullets",
+          "label": "Bullets",
+          "info": "One per line",
+          "default": "One-button automatic mowing\nNo base station required\nNo network needed\nMowrator platform"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "See It Work →"
+        },
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Link",
+          "info": "A URL or an anchor such as #demo",
+          "default": "#demo"
+        }
+      ]
+    },
+    {
+      "type": "card",
+      "name": "Product card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Fallback image URL",
+          "info": "Used when no image is selected above"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text"
+        },
+        {
+          "type": "text",
+          "id": "image_position",
+          "label": "Image object-position",
+          "default": "center"
+        },
+        {
+          "type": "text",
+          "id": "image_filter",
+          "label": "Image CSS filter",
+          "info": "For example saturate(0.85)"
+        },
+        {
+          "type": "text",
+          "id": "image_background",
+          "label": "Image area background",
+          "default": "#EEECEA"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Smart Lawn Mower"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "stats",
+          "label": "Stats",
+          "info": "One per line: value | label"
+        },
+        {
+          "type": "textarea",
+          "id": "bullets",
+          "label": "Bullets",
+          "info": "One per line"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "See It Work →"
+        },
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Link",
+          "info": "A URL or an anchor such as #demo",
+          "default": "#demo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products"
+    }
+  ]
+}
+{% endschema %}

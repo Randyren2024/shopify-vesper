@@ -1,0 +1,203 @@
+{%- comment -%}
+  Vesper product rich content — V600 (TerraMow robotic lawn mower).
+  The V600 is resold as a TerraMow product, so the copy keeps the TerraMow
+  brand and model naming. Wording is written in-house; no vendor text is
+  copied verbatim. Only facts published for the product are stated.
+
+  All imagery comes from the product's own image set (uploaded in the Shopify
+  admin), so no V600 pictures are stored as theme assets.
+{%- endcomment -%}
+{%- assign vpd_code = code | default: 'V600' -%}
+{%- assign vpd_name = name | default: 'Robotic Lawn Mower' -%}
+{%- assign v600_shots = product.images -%}
+
+{%- capture v600_g1 -%}
+Navigation=Triple-camera AI vision
+Mapping=One-tap automatic mapping from the app
+Obstacle avoidance=AI vision + CMOS sensors, real time
+Edge cutting=Ride-on edge cutting, about 15 cm adjustable distance
+Mowing modes=3 (quick trim / standard cut / intensive mow)
+Cutting height=1"–3"
+Control=Mobile app: schedules, zones, live status
+Drive=Fully electric, zero emissions
+{%- endcapture -%}
+
+{%- capture v600_g2 -%}
+Robotic mower=1
+Base station=1
+Base station garage=1
+Power adapter=1
+Blades=9
+Blade screws=9
+Garage screws=4
+Base station screws=8
+Hex key=1
+User manual=1
+Quick guide=1
+{%- endcapture -%}
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <div class="vpd-learn__cards">
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          {%- assign v600_shot = v600_shots[1] -%}
+          {%- if v600_shot != blank -%}
+            <img src="{{ v600_shot | image_url: width: 800 }}" alt="One-Tap Smart Mapping" width="{{ v600_shot.width }}" height="{{ v600_shot.height }}" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">One-Tap Smart Mapping</h3>
+          <p class="vpd-learn-card__desc">Tap once in the app and the mower maps the lawn on its own. It then turns that map into an efficient mowing route, so there is no boundary wire to lay and no zones to draw by hand.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          {%- assign v600_shot = v600_shots[2] -%}
+          {%- if v600_shot != blank -%}
+            <img src="{{ v600_shot | image_url: width: 800 }}" alt="AI Real-Time Obstacle Avoidance" width="{{ v600_shot.width }}" height="{{ v600_shot.height }}" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">AI Real-Time Obstacle Avoidance</h3>
+          <p class="vpd-learn-card__desc">AI vision works alongside CMOS sensors to recognise obstacles as they appear — toys, hoses, pets — and route around them, so a mowing session is not interrupted and nothing in the garden gets hit.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          {%- assign v600_shot = v600_shots[3] -%}
+          {%- if v600_shot != blank -%}
+            <img src="{{ v600_shot | image_url: width: 800 }}" alt="Edge-to-Edge Precision" width="{{ v600_shot.width }}" height="{{ v600_shot.height }}" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Edge-to-Edge Precision</h3>
+          <p class="vpd-learn-card__desc">Every pass follows the boundary, with roughly 15 cm of adjustable offset along lawn edges. The result is clean, defined borders from the centre of the lawn right out to the fence.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          {%- assign v600_shot = v600_shots[4] -%}
+          {%- if v600_shot != blank -%}
+            <img src="{{ v600_shot | image_url: width: 800 }}" alt="Built for Complex Gardens" width="{{ v600_shot.width }}" height="{{ v600_shot.height }}" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Built for Complex Gardens</h3>
+          <p class="vpd-learn-card__desc">Tight corners, heavy tree cover and criss-cross layouts are handled without extra setup. Because the mower judges its surroundings directly, it keeps working where a fixed, pre-planned path would fail.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card">
+        <div class="vpd-learn-card__image">
+          {%- assign v600_shot = v600_shots[5] -%}
+          {%- if v600_shot != blank -%}
+            <img src="{{ v600_shot | image_url: width: 800 }}" alt="No Signal, No Limits" width="{{ v600_shot.width }}" height="{{ v600_shot.height }}" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">No Signal, No Limits</h3>
+          <p class="vpd-learn-card__desc">Navigation is camera-based rather than satellite-based, so shaded, enclosed or signal-poor parts of the garden are mown just like open lawn — no antenna, no base station placement, no dropouts.</p>
+        </div>
+      </article>
+      <article class="vpd-learn-card vpd-learn-card--reverse">
+        <div class="vpd-learn-card__image">
+          {%- assign v600_shot = v600_shots[6] -%}
+          {%- if v600_shot != blank -%}
+            <img src="{{ v600_shot | image_url: width: 800 }}" alt="Adjustable Cutting Height for Dense Grass" width="{{ v600_shot.width }}" height="{{ v600_shot.height }}" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="vpd-learn-card__body">
+          <h3 class="vpd-learn-card__title">Adjustable Cutting Height for Dense Grass</h3>
+          <p class="vpd-learn-card__desc">Cutting height adjusts between 1 inch and 3 inch, so one machine copes with fine turf and dense, tough grasses such as Bermuda, Zoysia, Kentucky Bluegrass and St. Augustine.</p>
+        </div>
+      </article>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in the {{ vpd_code }} {{ vpd_name }}. Could you please send me more information?">Learn More About the {{ vpd_code }} →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section vpd-section--tint" id="specifications" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Specifications</h2>
+    <div class="vpd-specs">
+      <div class="v-tabs vpd-specs__tabs" data-tabs>
+        <div class="v-tabs__list" role="tablist">
+          <button type="button" class="v-tabs__tab" data-tab="Mower" aria-selected="true" role="tab">Mower</button>
+          <button type="button" class="v-tabs__tab" data-tab="In the Box" aria-selected="false" role="tab">In the Box</button>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="Mower" role="tabpanel">
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = v600_g1 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+        <div class="v-tabs__panel" data-tab-panel="In the Box" role="tabpanel" hidden>
+          <table class="v-specs-table">
+            <tbody>
+              {%- assign rows = v600_g2 | newline_to_br | split: '<br />' -%}
+              {%- for row in rows -%}
+                {%- assign r = row | strip -%}
+                {%- if r != blank -%}
+                  {%- assign kv = r | split: '=' -%}
+                  <tr><th>{{ kv | first | escape }}</th><td>{{ kv | last | escape }}</td></tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I'm interested in the {{ vpd_code }} {{ vpd_name }}. Could you please send me the full specification sheet?">Ask for the Full Specification →</button>
+    </div>
+  </div>
+</section>
+
+<section class="vpd-section" data-reveal>
+  <div class="v-container">
+    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <div class="v-accordion vpd-faq__accordion" data-accordion>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>Does the {{ vpd_code }} need a boundary wire or an RTK antenna?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">Neither. The {{ vpd_code }} navigates with a triple-camera AI vision system that reads the lawn directly, so there is no perimeter wire to bury and no RTK base station to install. It also keeps mowing in shaded or enclosed areas where satellite signal is weak.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What can I control from the app?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The app covers the whole workflow: one-tap mapping of the lawn, mowing schedules and zones, the choice of mowing mode, and live status while the mower is running.</p>
+        </div>
+      </div>
+      <div class="v-accordion__item" data-open="false">
+        <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
+          <span>What comes in the box, and what warranty applies?</span>
+          {%- render 'vesper-icons', icon: 'chevron-down' -%}
+        </button>
+        <div class="v-accordion__panel">
+          <p class="vpd-faq-answer">The box contains the robotic mower, the base station and its garage, the power adapter, 9 blades with blade screws, the mounting screws, a hex key, the user manual and a quick guide. Free shipping, 30-day returns and a 3-year warranty are included.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vpd-more">
+      <button type="button" class="v-btn v-btn--ghost" data-request-demo data-message="Hello! I have a question about the {{ vpd_code }} {{ vpd_name }}.">Ask a Question →</button>
+    </div>
+  </div>
+</section>

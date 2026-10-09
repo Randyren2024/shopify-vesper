@@ -48,5 +48,50 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "label": "Breadcrumbs"
+    },
+    "search": {
+      "placeholder": "Search products",
+      "submit": "Search",
+      "title": "Search",
+      "results_with_count": {
+        "one": "{{ count }} result for \"{{ terms }}\"",
+        "other": "{{ count }} results for \"{{ terms }}\""
+      },
+      "results_all": "Showing all results for \"{{ terms }}\"",
+      "no_results": "No results for \"{{ terms }}\"",
+      "no_results_hint": "Try a different word or browse the collections below.",
+      "empty": "Enter a keyword to search."
+    },
+    "404": {
+      "title": "Page Not Found",
+      "subtext": "The page you were looking for doesn't exist or has moved.",
+      "link": "Back to Home"
+    }
+  },
+  "accessibility": {
+    "menu": "Menu",
+    "close_menu": "Close menu",
+    "search": "Search",
+    "cart": "Cart",
+    "account": "Account",
+    "skip_to_content": "Skip to content",
+    "cart_count": {
+      "one": "{{ count }} item in cart",
+      "other": "{{ count }} items in cart"
+    }
   }
 }

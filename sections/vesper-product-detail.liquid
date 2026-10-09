@@ -149,6 +149,28 @@
       assign vpd_features = 'Grade control|Depth display|Slope matching|2D/3D control|GNSS + Laser sensors|±3 cm accuracy'
       assign vpd_image = 'products-egs101-main.png'
       assign vpd_price_text = '$2,499.00'
+    when 'v600'
+      assign vpd_code = 'V600'
+      assign vpd_name = 'Robotic Lawn Mower'
+      assign vpd_category_name = 'Lawn Mower'
+      assign vpd_category_id = 'lawn-mower'
+      assign vpd_tagline = 'Triple-camera AI vision mowing — no boundary wire, no RTK antenna, no signal dropouts'
+      assign vpd_badges = 'AI VISION|TRIPLE CAMERA|AUTO MAPPING|APP CONTROL|OBSTACLE AVOIDANCE|EDGE CUTTING'
+      assign vpd_why = 'A triple-camera AI vision system reads the lawn in real time, so the V600 navigates and mows without boundary wire, RTK antenna or satellite signal|One tap in the app is all the setup it needs — the mower builds an accurate map of your lawn by itself|AI vision and CMOS sensors spot toys, hoses, pets and other obstacles as they appear, then steer around them so a mowing session is never interrupted|Cuts right along the border with roughly 15 cm of adjustable offset, leaving a finish that needs no tidying up afterwards|Three mowing modes — a quick trim, a standard cut or an intensive mow — matched to how fast your lawn is growing|Fully electric drive means no petrol, no emissions and far lower running costs than a ride-on mower'
+      assign vpd_features = 'Triple-camera AI vision, 360° awareness|Wire-free: no boundary wire, no RTK antenna|One-tap app mapping and scheduling|Real-time obstacle avoidance|Cutting height 1"–3"|Three mowing modes: trim, standard, intensive|Edge cutting with about 15 cm adjustable offset'
+      assign vpd_price_text = '$1,999.99'
+      assign vpd_new = 'true'
+    when 'v1000'
+      assign vpd_code = 'V1000'
+      assign vpd_name = 'Robotic Lawn Mower'
+      assign vpd_category_name = 'Lawn Mower'
+      assign vpd_category_id = 'lawn-mower'
+      assign vpd_tagline = 'Triple-camera AI vision mowing — no boundary wire, no RTK antenna, no signal dropouts'
+      assign vpd_badges = 'AI VISION|TRIPLE CAMERA|AUTO MAPPING|APP CONTROL|OBSTACLE AVOIDANCE|EDGE CUTTING'
+      assign vpd_why = 'A triple-camera AI vision system reads the lawn in real time, so the V1000 navigates and mows without boundary wire, RTK antenna or satellite signal|One tap in the app is all the setup it needs — the mower builds an accurate map of your lawn by itself|AI vision and CMOS sensors spot toys, hoses, pets and other obstacles as they appear, then steer around them so a mowing session is never interrupted|Cuts right along the border with roughly 15 cm of adjustable offset, leaving a finish that needs no tidying up afterwards|Three mowing modes — a quick trim, a standard cut or an intensive mow — matched to how fast your lawn is growing|Fully electric drive means no petrol, no emissions and far lower running costs than a ride-on mower'
+      assign vpd_features = 'Triple-camera AI vision, 360° awareness|Wire-free: no boundary wire, no RTK antenna|One-tap app mapping and scheduling|Real-time obstacle avoidance|Cutting height 1"–3"|Three mowing modes: trim, standard, intensive|Edge cutting with about 15 cm adjustable offset'
+      assign vpd_price_text = '$2,499.99'
+      assign vpd_new = 'true'
   endcase
 
   assign vpd_whatsapp = section.settings.whatsapp_number | default: settings.vesper_whatsapp_number
@@ -355,23 +377,6 @@
                   </div>
                 {%- endunless -%}
 
-                {%- if product.variants.size > 1 -%}
-                  <div class="vpd-variant-selector">
-                    <label class="vpd-variant-label" for="vpd-variant-{{ section.id }}">Configuration:</label>
-                    <select id="vpd-variant-{{ section.id }}" class="v-select" data-variant-picker>
-                      {%- for variant in product.variants -%}
-                        <option
-                          value="{{ variant.id }}"
-                          data-price="{{ variant.price | money | strip_html | escape }}"
-                          data-available="{{ variant.available }}"
-                          data-stock-label="{% if variant.available %}In stock{% else %}Out of Stock{% endif %}"
-                          {% if variant.compare_at_price > variant.price %}data-compare="{{ variant.compare_at_price | money | strip_html | escape }}"{% endif %}
-                          {% if variant == vpd_variant %}selected{% endif %}>{{ variant.title }}</option>
-                      {%- endfor -%}
-                    </select>
-                  </div>
-                {%- endif -%}
-
                 <div class="vpd-quantity">
                   <label class="vpd-quantity-label" for="vpd-qty-{{ section.id }}">Quantity:</label>
                   <div class="vpd-qty" data-qty>
@@ -443,6 +448,10 @@
       {% render 'vesper-product-content-taurus80e', code: 'Taurus80E', name: 'Smart Lawn Mowing Robot' %}
     {%- when 'egs101' -%}
       {% render 'vesper-product-content-egs101', code: 'EGS101', name: 'Intelligent Excavator Guidance System' %}
+    {%- when 'v600' -%}
+      {% render 'vesper-product-content-v600', code: 'V600', name: 'Robotic Lawn Mower' %}
+    {%- when 'v1000' -%}
+      {% render 'vesper-product-content-v1000', code: 'V1000', name: 'Robotic Lawn Mower' %}
   {%- endcase -%}
 
   {%- if vpd_code != blank -%}

@@ -1,17 +1,53 @@
 {
   "type": "header",
-  "name": "Header",
+  "name": "Header (Robot)",
   "sections": {
     "header": {
-      "type": "vesper-header",
+      "type": "header",
+      "blocks": {
+        "nav-products": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Products",
+            "link": "#products"
+          }
+        },
+        "nav_link_iLECy8": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Contact",
+            "link": "#contact"
+          }
+        },
+        "nav-why-vesper": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Home",
+            "link": "#home"
+          }
+        },
+        "nav-faq": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "link": "#faq"
+          }
+        }
+      },
+      "block_order": [
+        "nav-products",
+        "nav_link_iLECy8",
+        "nav-why-vesper",
+        "nav-faq"
+      ],
       "settings": {
-        "menu": "vesper-main-menu",
-        "view_all_link": "/collections/all",
-        "show_demo_button": true,
-        "demo_label": "Request Demo",
-        "whatsapp_number": "61448290926"
+        "products_menu": "product",
+        "cta_label": "BOOK FREE DEMO",
+        "cta_link": "#demo"
       }
     }
   },
-  "order": ["header"]
+  "order": [
+    "header"
+  ]
 }

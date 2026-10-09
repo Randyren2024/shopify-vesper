@@ -1,11 +1,22 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Vesper AgriTech",
+    "theme_name": "Vesper Robot",
     "theme_version": "1.0.0",
-    "theme_author": "Vesper",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_author": "Vesper Robot",
+    "theme_documentation_url": "https://vesperrobot.com.au",
+    "theme_support_url": "https://vesperrobot.com.au"
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
   },
   {
     "name": "Brand",

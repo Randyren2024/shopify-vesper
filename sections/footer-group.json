@@ -1,77 +1,29 @@
 {
   "type": "footer",
-  "name": "Footer",
+  "name": "Footer (Robot)",
   "sections": {
     "footer": {
-      "type": "vesper-footer",
-      "blocks": {
-        "quick-products": {
-          "type": "quick_link",
-          "settings": {
-            "title": "Products & Solutions",
-            "link": "/pages/products-solutions"
-          }
-        },
-        "quick-about": {
-          "type": "quick_link",
-          "settings": {
-            "title": "About Us",
-            "link": "/pages/about-us"
-          }
-        },
-        "quick-contact": {
-          "type": "quick_link",
-          "settings": {
-            "title": "Contact Us",
-            "link": "/pages/contact-us"
-          }
-        },
-        "quick-support": {
-          "type": "quick_link",
-          "settings": {
-            "title": "Support",
-            "link": "/pages/support"
-          }
-        },
-        "legal-privacy": {
-          "type": "legal_link",
-          "settings": {
-            "title": "Privacy Policy",
-            "link": "/pages/privacy-policy"
-          }
-        },
-        "legal-terms": {
-          "type": "legal_link",
-          "settings": {
-            "title": "Terms & Conditions",
-            "link": "/pages/terms-conditions"
-          }
-        }
-      },
-      "block_order": [
-        "quick-products",
-        "quick-about",
-        "quick-contact",
-        "quick-support",
-        "legal-privacy",
-        "legal-terms"
-      ],
+      "type": "footer",
       "settings": {
-        "description": "Committed to advancing agricultural modernization through technological innovation, achieving sustainable agricultural production",
-        "quick_links_title": "Quick Links",
-        "legal_title": "Legal",
-        "contact_title": "Contact Us",
-        "email": "market@vesperinno.com",
-        "phone": "+61 448 290 926",
-        "address": "Australia",
-        "follow_title": "Follow Us",
-        "linkedin_url": "https://www.linkedin.com/in/alan-gan-vesperinno/",
-        "show_whatsapp": true,
-        "whatsapp_number": "61448290926",
-        "copyright_prefix": "Copyright©",
-        "copyright_holder": "Shenzhen Vesper Inno Technology Co., Ltd All Rights Reserved"
+        "tagline": "Smart robotics for Australian homes.<br>3 Read street, Templestowe VIC 3106",
+        "social_1": "TikTok",
+        "social_2": "LinkedIn",
+        "social_3": "Facebook",
+        "products_heading": "Products",
+        "products_items": "TerraMow V1000\nTerraMow V600\nS1 4WD 119% Slope(50˚)\nS1 4WD 85% Slope(40˚)",
+        "company_heading": "Company",
+        "company_items": "Home\nFAQ",
+        "contact_heading": "Contact",
+        "contact_items": "3 Read street, Templestowe VIC 3106\nJade@vesperrobot.au\n+61 448290926",
+        "copyright": "© 2026 Vesper Robot Mowers Pty. Ltd. All rights reserved.",
+        "legal_1": "Privacy Policy",
+        "legal_2": "Terms of Service",
+        "mobile_cta_label": "BOOK A DEMO",
+        "mobile_cta_link": "#demo"
       }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }

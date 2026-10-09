@@ -1,0 +1,107 @@
+{%- comment -%}
+  In-home demo booking.
+
+  The booking form is the Shopify Forms app inline form. Add it to this section in
+  the theme editor (Add block > Apps > Forms), then paste the form's Form ID into
+  the block settings. The form's own fields, labels, success message and email
+  notification are managed in the Forms app, not in this section.
+
+  This section only provides the surrounding layout and copy.
+{%- endcomment -%}
+
+<section id="demo" class="py-24 md:py-32" style="background: rgb(17, 17, 16);">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-20">
+      <div>
+        <p
+          class="uppercase mb-8"
+          style="font-family: Barlow, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; color: rgb(107, 107, 104);"
+        >{{ section.settings.eyebrow }}</p>
+
+        <h2
+          class="text-[36px] md:text-[52px] uppercase tracking-tight mb-8"
+          style="font-family: &quot;Barlow Condensed&quot;, sans-serif; font-weight: 700; color: rgb(248, 247, 244); line-height: 1;"
+        >{{ section.settings.heading }}</h2>
+
+        <p
+          class="mb-10"
+          style="font-family: Barlow, sans-serif; font-size: 16px; color: rgba(248, 247, 244, 0.5); line-height: 1.7; max-width: 400px;"
+        >{{ section.settings.body }}</p>
+
+        {%- if section.settings.bullets != blank -%}
+          <div class="space-y-3">
+            {%- assign bullets = section.settings.bullets | newline_to_br | split: '<br />' -%}
+            {%- for bullet in bullets -%}
+              <div
+                class="flex items-center gap-3"
+                style="font-family: Barlow, sans-serif; font-size: 14px; color: rgba(248, 247, 244, 0.5);"
+              >
+                <span style="width: 16px; height: 1px; background: rgb(200, 90, 10); display: inline-block; flex-shrink: 0;"></span>{{ bullet | strip }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 or request.design_mode -%}
+        <div style="background: rgb(248, 247, 244); padding: 36px;">
+          {%- for block in section.blocks -%}
+            {% render block %}
+          {%- endfor -%}
+
+          {%- if section.blocks.size == 0 -%}
+            <p
+              style="font-family: Barlow, sans-serif; font-size: 14px; color: rgb(107, 107, 104); line-height: 1.7;"
+            >
+              Add the Shopify Forms inline form here: <strong>Add block</strong> &gt; <strong>Apps</strong> &gt;
+              <strong>Forms</strong>, then paste the form's Form ID.
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "In-home demo form",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "In-Home Demo"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Want to See If It Works In Your Home?"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Book an in-home demo and see how the robot performs in your actual yard, pool, or floors."
+    },
+    {
+      "type": "textarea",
+      "id": "bullets",
+      "label": "Bullets",
+      "info": "One per line",
+      "default": "Free for Melbourne East area\nNo commitment required\nExpert visits your home"
+    }
+  ],
+  "presets": [
+    {
+      "name": "In-home demo form"
+    }
+  ]
+}
+{% endschema %}

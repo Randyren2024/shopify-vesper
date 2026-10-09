@@ -1,0 +1,451 @@
+{% comment %}
+  Expert Reviews — video review carousel.
+  Six YouTube reviews using the same video IDs as TerraMow's own site.
+  Posters use i.ytimg.com thumbnails; clicking a poster swaps in a
+  youtube-nocookie iframe (lazy, so nothing loads until the user plays).
+  Per-review content is editable through block settings.
+{% endcomment %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-er-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding: 48px 0;
+    color: #222222;
+    font: inherit;
+  }
+
+  .ai-er-{{ ai_gen_id }} *,
+  .ai-er-{{ ai_gen_id }} *::before,
+  .ai-er-{{ ai_gen_id }} *::after {
+    box-sizing: border-box;
+  }
+
+  .ai-er-{{ ai_gen_id }}__inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .ai-er-{{ ai_gen_id }}__heading {
+    margin: 0 0 12px;
+    color: inherit;
+    font: inherit;
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 600;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .ai-er-{{ ai_gen_id }}__intro {
+    max-width: 680px;
+    margin: 0 0 32px;
+    color: #555555;
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .ai-er-{{ ai_gen_id }}__carousel {
+    position: relative;
+  }
+
+  .ai-er-{{ ai_gen_id }}__track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .ai-er-{{ ai_gen_id }}__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-er-{{ ai_gen_id }}__card {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    width: calc((100% - 60px) / 4);
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background: #ffffff;
+    scroll-snap-align: start;
+  }
+
+  .ai-er-{{ ai_gen_id }}__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #000000;
+  }
+
+  .ai-er-{{ ai_gen_id }}__poster {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .ai-er-{{ ai_gen_id }}__poster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-er-{{ ai_gen_id }}__poster:hover img {
+    opacity: 0.85;
+  }
+
+  .ai-er-{{ ai_gen_id }}__play {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .ai-er-{{ ai_gen_id }}__play svg {
+    width: 56px;
+    height: 56px;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  }
+
+  .ai-er-{{ ai_gen_id }}__iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .ai-er-{{ ai_gen_id }}__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .ai-er-{{ ai_gen_id }}__name {
+    margin: 0;
+    color: #222222;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ai-er-{{ ai_gen_id }}__subs {
+    margin: 2px 0 0;
+    color: #777777;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .ai-er-{{ ai_gen_id }}__quote {
+    flex: 1;
+    margin: 10px 0 0;
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .ai-er-{{ ai_gen_id }}__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    color: #222222;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .ai-er-{{ ai_gen_id }}__arrow {
+    position: absolute;
+    top: 34%;
+    z-index: 2;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 9999px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    color: #222222;
+    cursor: pointer;
+  }
+
+  .ai-er-{{ ai_gen_id }}__arrow[disabled] {
+    opacity: 0.35;
+    cursor: default;
+  }
+
+  .ai-er-{{ ai_gen_id }}__arrow--prev {
+    left: -8px;
+  }
+
+  .ai-er-{{ ai_gen_id }}__arrow--next {
+    right: -8px;
+  }
+
+  .ai-er-{{ ai_gen_id }}__dots {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .ai-er-{{ ai_gen_id }}__dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: #d5d5d5;
+    cursor: pointer;
+  }
+
+  .ai-er-{{ ai_gen_id }}__dot.is-active {
+    background: #3392ff;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-er-{{ ai_gen_id }} {
+      padding: 36px 0;
+    }
+
+    .ai-er-{{ ai_gen_id }}__inner {
+      padding: 0 18px;
+    }
+
+    .ai-er-{{ ai_gen_id }}__card {
+      width: calc((100% - 20px) / 2);
+    }
+
+    .ai-er-{{ ai_gen_id }}__arrow {
+      display: none;
+    }
+  }
+{% endstyle %}
+
+<section class="ai-er-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-er-{{ ai_gen_id }}__inner">
+    <h2 class="ai-er-{{ ai_gen_id }}__heading">{{ block.settings.heading | escape }}</h2>
+    {%- if block.settings.intro != blank -%}
+      <p class="ai-er-{{ ai_gen_id }}__intro">{{ block.settings.intro | escape }}</p>
+    {%- endif -%}
+
+    <div class="ai-er-{{ ai_gen_id }}__carousel" data-carousel>
+      <button type="button" class="ai-er-{{ ai_gen_id }}__arrow ai-er-{{ ai_gen_id }}__arrow--prev" data-prev aria-label="Previous reviews">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+
+      <div class="ai-er-{{ ai_gen_id }}__track" data-track>
+        {% for i in (1..6) %}
+          {%- liquid
+            assign name_key = 'review_' | append: i | append: '_name'
+            assign subs_key = 'review_' | append: i | append: '_subs'
+            assign quote_key = 'review_' | append: i | append: '_quote'
+            assign video_key = 'review_' | append: i | append: '_video'
+            assign r_name = block.settings[name_key]
+            assign r_subs = block.settings[subs_key]
+            assign r_quote = block.settings[quote_key]
+            assign r_video = block.settings[video_key]
+          -%}
+          {%- if r_video != blank -%}
+            <article class="ai-er-{{ ai_gen_id }}__card" data-card>
+              <div class="ai-er-{{ ai_gen_id }}__media">
+                <button type="button" class="ai-er-{{ ai_gen_id }}__poster" data-play data-video-id="{{ r_video | escape }}" data-title="{{ r_name | escape }}" aria-label="Play review from {{ r_name | escape }}">
+                  <img src="https://i.ytimg.com/vi/{{ r_video | escape }}/hqdefault.jpg" alt="{{ r_name | escape }} review" width="480" height="360" loading="lazy">
+                  <span class="ai-er-{{ ai_gen_id }}__play" aria-hidden="true">
+                    <svg viewBox="0 0 68 48" focusable="false"><path fill="#ff0000" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.6 89.6 0 0 0 0 24a89.6 89.6 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.6 89.6 0 0 0 68 24a89.6 89.6 0 0 0-1.5-16.3z"/><path fill="#ffffff" d="M27 34l18-10-18-10z"/></svg>
+                  </span>
+                </button>
+              </div>
+              <div class="ai-er-{{ ai_gen_id }}__body">
+                <p class="ai-er-{{ ai_gen_id }}__name">{{ r_name | escape }}</p>
+                {%- if r_subs != blank -%}
+                  <p class="ai-er-{{ ai_gen_id }}__subs">{{ r_subs | escape }}</p>
+                {%- endif -%}
+                {%- if r_quote != blank -%}
+                  <p class="ai-er-{{ ai_gen_id }}__quote">{{ r_quote | escape }}</p>
+                {%- endif -%}
+                <a class="ai-er-{{ ai_gen_id }}__link" href="https://www.youtube.com/watch?v={{ r_video | escape }}" target="_blank" rel="noopener noreferrer">View Full Video <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </article>
+          {%- endif -%}
+        {% endfor %}
+      </div>
+
+      <button type="button" class="ai-er-{{ ai_gen_id }}__arrow ai-er-{{ ai_gen_id }}__arrow--next" data-next aria-label="Next reviews">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+
+      <div class="ai-er-{{ ai_gen_id }}__dots" data-dots></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var roots = document.querySelectorAll('.ai-er-{{ ai_gen_id }}');
+    for (var r = 0; r < roots.length; r++) {
+      (function (root) {
+        var track = root.querySelector('[data-track]');
+        var prev = root.querySelector('[data-prev]');
+        var next = root.querySelector('[data-next]');
+        var dotsWrap = root.querySelector('[data-dots]');
+        var cards = root.querySelectorAll('[data-card]');
+        if (!track || !cards.length) return;
+
+        function perView() {
+          return window.matchMedia('(max-width: 749px)').matches ? 2 : 4;
+        }
+        function maxIndex() {
+          return Math.max(0, cards.length - perView());
+        }
+        function step() {
+          var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+          return cards[0].getBoundingClientRect().width + gap;
+        }
+        function currentIndex() {
+          var s = step();
+          return s ? Math.round(track.scrollLeft / s) : 0;
+        }
+        function buildDots() {
+          if (!dotsWrap) return;
+          dotsWrap.innerHTML = '';
+          for (var i = 0; i <= maxIndex(); i++) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'ai-er-{{ ai_gen_id }}__dot';
+            dot.setAttribute('aria-label', 'Go to review ' + (i + 1));
+            dot.dataset.index = i;
+            dotsWrap.appendChild(dot);
+          }
+        }
+        function sync() {
+          var i = currentIndex();
+          if (dotsWrap) {
+            var dots = dotsWrap.children;
+            for (var d = 0; d < dots.length; d++) {
+              dots[d].classList.toggle('is-active', d === i);
+            }
+          }
+          if (prev) prev.disabled = i <= 0;
+          if (next) next.disabled = i >= maxIndex();
+        }
+
+        if (prev) {
+          prev.addEventListener('click', function () {
+            track.scrollBy({ left: -step(), behavior: 'smooth' });
+          });
+        }
+        if (next) {
+          next.addEventListener('click', function () {
+            track.scrollBy({ left: step(), behavior: 'smooth' });
+          });
+        }
+        if (dotsWrap) {
+          dotsWrap.addEventListener('click', function (event) {
+            var dot = event.target.closest('[data-index]');
+            if (!dot) return;
+            track.scrollTo({ left: parseInt(dot.dataset.index, 10) * step(), behavior: 'smooth' });
+          });
+        }
+        track.addEventListener('scroll', function () {
+          window.requestAnimationFrame(sync);
+        }, { passive: true });
+        window.addEventListener('resize', function () {
+          buildDots();
+          sync();
+        });
+
+        buildDots();
+        sync();
+
+        root.addEventListener('click', function (event) {
+          var poster = event.target.closest('[data-play]');
+          if (!poster) return;
+          var id = poster.getAttribute('data-video-id');
+          if (!id) return;
+          var iframe = document.createElement('iframe');
+          iframe.className = 'ai-er-{{ ai_gen_id }}__iframe';
+          iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+          iframe.title = poster.getAttribute('data-title') || 'Video review';
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+          poster.replaceWith(iframe);
+        });
+      })(roots[r]);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Media / press",
+  "settings": [
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Expert Reviews" },
+    { "type": "text", "id": "intro", "label": "Introduction", "default": "TerraMow has been reviewed and tested by creators and technology channels around the world." },
+    { "type": "header", "content": "Review 1" },
+    { "type": "text", "id": "review_1_name", "label": "Channel", "default": "Enoylity Technology" },
+    { "type": "text", "id": "review_1_subs", "label": "Subscribers", "default": "730K subscribers" },
+    { "type": "textarea", "id": "review_1_quote", "label": "Quote", "default": "No wire, no RTK. Its tri-camera AI vision lets the mower navigate on its own." },
+    { "type": "text", "id": "review_1_video", "label": "YouTube video ID", "default": "gaQ0U2Jm0m8" },
+    { "type": "header", "content": "Review 2" },
+    { "type": "text", "id": "review_2_name", "label": "Channel", "default": "TechMagnet" },
+    { "type": "text", "id": "review_2_subs", "label": "Subscribers", "default": "463K subscribers" },
+    { "type": "textarea", "id": "review_2_quote", "label": "Quote", "default": "One of the simplest smart mowers, with solid vision navigation and real mowing performance." },
+    { "type": "text", "id": "review_2_video", "label": "YouTube video ID", "default": "QpnGPYCdZGg" },
+    { "type": "header", "content": "Review 3" },
+    { "type": "text", "id": "review_3_name", "label": "Channel", "default": "Florians Gartenwelt" },
+    { "type": "text", "id": "review_3_subs", "label": "Subscribers", "default": "119K subscribers" },
+    { "type": "textarea", "id": "review_3_quote", "label": "Quote", "default": "TerraMow as an easy AI vision mower, with wire-free setup and straightforward installation." },
+    { "type": "text", "id": "review_3_video", "label": "YouTube video ID", "default": "dWlxpxP7574" },
+    { "type": "header", "content": "Review 4" },
+    { "type": "text", "id": "review_4_name", "label": "Channel", "default": "TESTSIEGER TV" },
+    { "type": "text", "id": "review_4_subs", "label": "Subscribers", "default": "31.7K subscribers" },
+    { "type": "textarea", "id": "review_4_quote", "label": "Quote", "default": "Camera-based navigation, easy setup, and strong obstacle detection make TerraMow stand out." },
+    { "type": "text", "id": "review_4_video", "label": "YouTube video ID", "default": "AG96kXhsuss" },
+    { "type": "header", "content": "Review 5" },
+    { "type": "text", "id": "review_5_name", "label": "Channel", "default": "Valentine Lewis" },
+    { "type": "text", "id": "review_5_subs", "label": "Subscribers", "default": "269K subscribers" },
+    { "type": "textarea", "id": "review_5_quote", "label": "Quote", "default": "A wire-free, RTK-free mower that makes lawn care much easier and more hands-off." },
+    { "type": "text", "id": "review_5_video", "label": "YouTube video ID", "default": "9XuiPMaMltY" },
+    { "type": "header", "content": "Review 6" },
+    { "type": "text", "id": "review_6_name", "label": "Channel", "default": "Wittmanns Welt" },
+    { "type": "text", "id": "review_6_subs", "label": "Subscribers", "default": "57.1K subscribers" },
+    { "type": "textarea", "id": "review_6_quote", "label": "Quote", "default": "Set up in minutes, TerraMow makes wire-free mowing feel simple and intuitive." },
+    { "type": "text", "id": "review_6_video", "label": "YouTube video ID", "default": "-54GCkNfvQo" }
+  ],
+  "presets": [
+    { "name": "Media / press" }
+  ],
+  "tag": null,
+  "class": "media-press-block"
+}
+{% endschema %}
