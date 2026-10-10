@@ -26,28 +26,30 @@
 
   .ai-er-{{ ai_gen_id }}__inner {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 24px;
   }
 
   .ai-er-{{ ai_gen_id }}__heading {
-    margin: 0 0 12px;
-    color: inherit;
-    font: inherit;
-    font-size: clamp(26px, 3vw, 38px);
-    font-weight: 600;
-    line-height: 1.2;
+    margin: 0 0 32px;
+    color: rgb(17, 17, 16);
+    font-family: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
     overflow-wrap: anywhere;
   }
 
   .ai-er-{{ ai_gen_id }}__intro {
-    max-width: 680px;
+    max-width: 440px;
     margin: 0 0 32px;
-    color: #555555;
-    font: inherit;
+    color: rgb(107, 107, 104);
+    font-family: "Barlow", system-ui, sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-wrap: anywhere;
   }
 
@@ -236,8 +238,8 @@
       padding: 36px 0;
     }
 
-    .ai-er-{{ ai_gen_id }}__inner {
-      padding: 0 18px;
+    .ai-er-{{ ai_gen_id }}__heading {
+      font-size: 36px;
     }
 
     .ai-er-{{ ai_gen_id }}__card {
@@ -273,12 +275,13 @@
             assign r_subs = block.settings[subs_key]
             assign r_quote = block.settings[quote_key]
             assign r_video = block.settings[video_key]
+            assign r_thumb = 'expert-review-' | append: r_video | append: '.jpg'
           -%}
           {%- if r_video != blank -%}
             <article class="ai-er-{{ ai_gen_id }}__card" data-card>
               <div class="ai-er-{{ ai_gen_id }}__media">
                 <button type="button" class="ai-er-{{ ai_gen_id }}__poster" data-play data-video-id="{{ r_video | escape }}" data-title="{{ r_name | escape }}" aria-label="Play review from {{ r_name | escape }}">
-                  <img src="https://i.ytimg.com/vi/{{ r_video | escape }}/hqdefault.jpg" alt="{{ r_name | escape }} review" width="480" height="360" loading="lazy">
+                  <img src="{{ r_thumb | file_url }}" alt="{{ r_name | escape }} review" width="480" height="360" loading="lazy">
                   <span class="ai-er-{{ ai_gen_id }}__play" aria-hidden="true">
                     <svg viewBox="0 0 68 48" focusable="false"><path fill="#ff0000" d="M66.5 7.7a8.6 8.6 0 0 0-6-6C55.2 0 34 0 34 0S12.8 0 7.5 1.7a8.6 8.6 0 0 0-6 6A89.6 89.6 0 0 0 0 24a89.6 89.6 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6C12.8 48 34 48 34 48s21.2 0 26.5-1.7a8.6 8.6 0 0 0 6-6A89.6 89.6 0 0 0 68 24a89.6 89.6 0 0 0-1.5-16.3z"/><path fill="#ffffff" d="M27 34l18-10-18-10z"/></svg>
                   </span>

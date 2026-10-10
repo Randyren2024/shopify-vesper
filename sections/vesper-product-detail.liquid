@@ -30,8 +30,8 @@
 
   case product.handle
     when 'vesper-s1-4wd-50'
-      assign vpd_code = 'S1 4WD 50°'
-      assign vpd_name = 'Remote Control Lawn Mower — 119% Slope (Grip Tread)'
+      assign vpd_code = 'Mowrator S1 4WD'
+      assign vpd_name = '119% SLOPE(50°)'
       assign vpd_category_name = 'Lawn Mower'
       assign vpd_category_id = 'lawn-mower'
       assign vpd_tagline = 'Remember the joy of RC cars as a kid? We brought that feeling back to your lawn.'
@@ -43,8 +43,8 @@
       assign vpd_best = 'true'
       assign vpd_new = 'true'
     when 'vesper-s1-4wd-40'
-      assign vpd_code = 'S1 4WD 40°'
-      assign vpd_name = 'Remote Control Lawn Mower — 85% Slope (Wide Wheel)'
+      assign vpd_code = 'Mowrator S1 4WD'
+      assign vpd_name = '85% SLOPE(40°)'
       assign vpd_category_name = 'Lawn Mower'
       assign vpd_category_id = 'lawn-mower'
       assign vpd_tagline = 'Remember the joy of RC cars as a kid? We brought that feeling back to your lawn.'
@@ -150,8 +150,8 @@
       assign vpd_image = 'products-egs101-main.png'
       assign vpd_price_text = '$2,499.00'
     when 'v600'
-      assign vpd_code = 'V600'
-      assign vpd_name = 'Robotic Lawn Mower'
+      assign vpd_code = 'TerraMow V600'
+      assign vpd_name = 'Auto Mower'
       assign vpd_category_name = 'Lawn Mower'
       assign vpd_category_id = 'lawn-mower'
       assign vpd_tagline = 'Triple-camera AI vision mowing — no boundary wire, no RTK antenna, no signal dropouts'
@@ -161,8 +161,8 @@
       assign vpd_price_text = '$1,999.99'
       assign vpd_new = 'true'
     when 'v1000'
-      assign vpd_code = 'V1000'
-      assign vpd_name = 'Robotic Lawn Mower'
+      assign vpd_code = 'TerraMow V1000'
+      assign vpd_name = 'Auto Mower'
       assign vpd_category_name = 'Lawn Mower'
       assign vpd_category_id = 'lawn-mower'
       assign vpd_tagline = 'Triple-camera AI vision mowing — no boundary wire, no RTK antenna, no signal dropouts'
@@ -429,9 +429,9 @@
 
   {%- case product.handle -%}
     {%- when 'vesper-s1-4wd-50' -%}
-      {% render 'vesper-product-content-vesper-s1-4wd-50', code: 'S1 4WD 50°', name: 'Remote Control Lawn Mower — 119% Slope (Grip Tread)' %}
+      {% render 'vesper-product-content-vesper-s1-4wd-50', code: 'Mowrator S1 4WD', name: '119% SLOPE(50°)' %}
     {%- when 'vesper-s1-4wd-40' -%}
-      {% render 'vesper-product-content-vesper-s1-4wd-40', code: 'S1 4WD 40°', name: 'Remote Control Lawn Mower — 85% Slope (Wide Wheel)' %}
+      {% render 'vesper-product-content-vesper-s1-4wd-40', code: 'Mowrator S1 4WD', name: '85% SLOPE(40°)' %}
     {%- when 'af718' -%}
       {% render 'vesper-product-content-af718', code: 'AF718', name: 'Autosteering System' %}
     {%- when 'af305' -%}
@@ -449,9 +449,9 @@
     {%- when 'egs101' -%}
       {% render 'vesper-product-content-egs101', code: 'EGS101', name: 'Intelligent Excavator Guidance System' %}
     {%- when 'v600' -%}
-      {% render 'vesper-product-content-v600', code: 'V600', name: 'Robotic Lawn Mower' %}
+      {% render 'vesper-product-content-v600', code: 'TerraMow V600', name: 'Auto Mower' %}
     {%- when 'v1000' -%}
-      {% render 'vesper-product-content-v1000', code: 'V1000', name: 'Robotic Lawn Mower' %}
+      {% render 'vesper-product-content-v1000', code: 'TerraMow V1000', name: 'Auto Mower' %}
   {%- endcase -%}
 
   {%- if vpd_code != blank -%}
