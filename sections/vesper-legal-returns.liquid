@@ -1,0 +1,117 @@
+{%- comment -%}
+  Vesper legal page — Returns Policy.
+  Copy from the Vesper content document (section 24.6).
+{%- endcomment -%}
+
+{{ 'vesper-legal.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'Returns Policy',
+   subtitle: 'Cancellations, returns, refunds and your rights',
+   breadcrumb: 'Returns Policy' %}
+
+<section class="v-section v-section--tight v-legal">
+  <div class="v-container v-legal__grid">
+    <aside class="v-legal__toc">
+      <h3 class="v-legal__toc-title">Contents</h3>
+      <ul class="v-legal__toc-list">
+        <li><a href="#order-cancellations">1. Order Cancellations</a></li>
+        <li><a href="#change-of-mind">2. Change of Mind</a></li>
+        <li><a href="#return-shipping">3. Return Shipping and Fees</a></li>
+        <li><a href="#faulty-items">4. Faulty, Damaged or Incorrect Items</a></li>
+        <li><a href="#consumer-law">5. Your Rights under Australian Consumer Law</a></li>
+        <li><a href="#how-to-return">6. How to Return a Product</a></li>
+        <li><a href="#refunds">7. Refunds</a></li>
+        <li><a href="#contact">8. Contact</a></li>
+      </ul>
+    </aside>
+
+    <div class="v-legal__main">
+      <div id="order-cancellations" class="v-legal__block">
+        <h2>1. Order Cancellations</h2>
+        <p>
+          You can cancel your order before it is dispatched by contacting us at
+          <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a>, and we will refund you in full. If your order
+          has already shipped, contact us as soon as possible and we will guide you through the return process.
+        </p>
+      </div>
+
+      <div id="change-of-mind" class="v-legal__block">
+        <h2>2. Change of Mind</h2>
+        <p>
+          You can request a return or exchange within 30 days of receiving your product. The product must be in its
+          original packaging, unused and in the same condition as received, complete with all accessories, manuals and
+          components, and free from damage caused by misuse, accidents or unauthorised modification. Proof of purchase
+          is required. Products that have been used, damaged or altered, or that are returned without original packaging
+          or accessories, may not be eligible.
+        </p>
+      </div>
+
+      <div id="return-shipping" class="v-legal__block">
+        <h2>3. Return Shipping and Fees</h2>
+        <p>
+          For change-of-mind returns, you pay the return shipping cost, and original shipping charges are generally not
+          refunded. For high-value items such as robot mowers, a 15% restocking fee may apply if the original packaging
+          has been compromised.
+        </p>
+      </div>
+
+      <div id="faulty-items" class="v-legal__block">
+        <h2>4. Faulty, Damaged or Incorrect Items</h2>
+        <p>
+          If your product is faulty, damaged on arrival or incorrectly supplied, we will cover the reasonable cost of
+          returning it. We will repair, replace, exchange or refund it (in full or in part) in line with our
+          <a href="/pages/warranty-policy">Warranty Policy</a> and the Australian Consumer Law.
+        </p>
+      </div>
+
+      <div id="consumer-law" class="v-legal__block">
+        <h2>5. Your Rights under Australian Consumer Law</h2>
+        <p>
+          Our goods come with guarantees that cannot be excluded under the Australian Consumer Law. You are entitled to
+          a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or
+          damage. You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable
+          quality and the failure does not amount to a major failure.
+        </p>
+      </div>
+
+      <div id="how-to-return" class="v-legal__block">
+        <h2>6. How to Return a Product</h2>
+        <ol>
+          <li>Submit our return and exchange form, or email <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a> with your order number and reason.</li>
+          <li>We review your request within 48 hours. If approved, we send you a return authorisation (RMA) number and instructions.</li>
+          <li>Pack the product securely with its original packaging, accessories and manuals. We recommend a tracked service; keep your proof of postage.</li>
+          <li>Do not send anything back before we approve your return.</li>
+        </ol>
+      </div>
+
+      <div id="refunds" class="v-legal__block">
+        <h2>7. Refunds</h2>
+        <p>
+          After we receive and inspect the product, we process approved refunds within 1–3 business days to your
+          original payment method. Depending on your bank or card issuer, it may take up to 7 more business days to
+          appear.
+        </p>
+      </div>
+
+      <div id="contact" class="v-legal__block">
+        <h2>8. Contact</h2>
+        <div class="v-legal__contact">
+          <p><strong>Vesper Robot Mowers Pty. Ltd.</strong></p>
+          <p>📍 Address: 3 Read Street, Templestowe VIC 3106</p>
+          <p>📧 Email: <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a></p>
+          <p>📞 Phone: +61 448 290 926</p>
+          <a class="v-btn v-btn--primary" href="/pages/contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Returns policy",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

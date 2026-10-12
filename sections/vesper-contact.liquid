@@ -2,12 +2,11 @@
 
 {% render 'vesper-page-hero',
    title: 'Contact Us',
-   subtitle: 'Connect with our team for agricultural technology solutions',
+   subtitle: 'Questions about our robot mowers, an order, a return or a warranty claim?',
    breadcrumb: 'Contact Us' %}
 
 {%- liquid
   assign contact_cards = section.blocks | where: 'type', 'contact_card'
-  assign dealers = section.blocks | where: 'type', 'dealer'
 -%}
 
 <div class="vesper-contact">
@@ -40,7 +39,7 @@
               {%- when 'mailto' -%}
                 <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="mailto:{{ block.settings.action_value }}">{{ block.settings.action_label }}</a>
               {%- when 'whatsapp' -%}
-                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="https://wa.me/{{ block.settings.action_value }}?text={{ 'Hello! I would like to get in touch with Vesper AgriTech.' | url_encode }}" target="_blank" rel="noopener">{{ block.settings.action_label }}</a>
+                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="https://wa.me/{{ block.settings.action_value }}?text={{ 'Hello! I would like to get in touch with Vesper Robot Mowers.' | url_encode }}" target="_blank" rel="noopener">{{ block.settings.action_label }}</a>
             {%- endcase -%}
 
             {%- if block.settings.subtext != blank -%}
@@ -48,6 +47,27 @@
             {%- endif -%}
           </div>
         {%- endfor -%}
+      </div>
+
+      <div class="contact-meta" data-reveal>
+        <div class="contact-meta__item">
+          <span class="contact-meta__label">{{ section.settings.hours_label }}</span>
+          <span class="contact-meta__value">{{ section.settings.hours_value }}</span>
+        </div>
+
+        <div class="contact-meta__item">
+          <span class="contact-meta__label">{{ section.settings.entity_label }}</span>
+          <span class="contact-meta__value">{{ section.settings.entity_value }}</span>
+        </div>
+
+        <div class="contact-meta__item">
+          <span class="contact-meta__label">{{ section.settings.social_label }}</span>
+          <span class="contact-meta__value contact-meta__social">
+            <a href="https://www.linkedin.com/company/vesperinno" target="_blank" rel="noopener noreferrer">{{ section.settings.social_1 }}</a>
+            <a href="https://www.facebook.com/share/1JWNgbRVk2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">{{ section.settings.social_2 }}</a>
+            <a href="https://www.tiktok.com/@vesper.inno2020?_r=1&_t=ZS-955nk6Azn5Z" target="_blank" rel="noopener noreferrer">{{ section.settings.social_3 }}</a>
+          </span>
+        </div>
       </div>
     </div>
   </section>
@@ -158,91 +178,6 @@
       </div>
     </div>
   </section>
-
-  {%- comment -%} Global dealer network {%- endcomment -%}
-  <section class="global-map-section v-section">
-    <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.map_heading }}</h2>
-        <p>{{ section.settings.map_subtitle }}</p>
-      </div>
-
-      <div class="world-map-container">
-        <div class="map-header" data-reveal>
-          <h3 class="map-title">{{ section.settings.map_title }}</h3>
-          <p class="map-subtitle">{{ section.settings.map_inner_subtitle }}</p>
-        </div>
-
-        <div class="map-wrapper" data-reveal>
-          <div class="map-canvas" role="img" aria-label="{{ section.settings.map_title | escape }}">
-            {%- for block in dealers -%}
-              {%- assign dealer_count = block.settings.dealer_count | plus: 0 -%}
-              {%- assign lat_num = block.settings.lat | times: 1.0 -%}
-              {%- assign lng_num = block.settings.lng | times: 1.0 -%}
-              {%- assign pin_x = lng_num | plus: 180.0 | times: 100 | divided_by: 360.0 | round: 2 -%}
-              {%- assign pin_y = 90.0 | minus: lat_num | times: 100 | divided_by: 180.0 | round: 2 -%}
-              {%- if dealer_count >= 8 -%}
-                {%- assign pin_tone = 'high' -%}
-              {%- elsif dealer_count >= 4 -%}
-                {%- assign pin_tone = 'mid' -%}
-              {%- else -%}
-                {%- assign pin_tone = 'low' -%}
-              {%- endif -%}
-              <span class="map-pin map-pin--{{ pin_tone }}" style="left: {{ pin_x }}%; top: {{ pin_y }}%;">
-                <span class="map-pin__dot"></span>
-                <span class="map-pin__label">{{ block.settings.country_code }}</span>
-              </span>
-            {%- endfor -%}
-          </div>
-
-          <div class="map-legend">
-            <div class="legend-item">
-              <span class="legend-color" style="background-color: #2e7d32;"></span>
-              <span class="legend-label">High Density (8+ dealers)</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-color" style="background-color: #4caf50;"></span>
-              <span class="legend-label">Medium Density (4-7 dealers)</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-color" style="background-color: #8bc34a;"></span>
-              <span class="legend-label">Low Density (1-3 dealers)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="map-countries">
-          {%- for block in dealers -%}
-            {%- assign dealer_count = block.settings.dealer_count | plus: 0 -%}
-            <details class="map-country" {{ block.shopify_attributes }}>
-              <summary class="map-country__summary">
-                <span class="map-country__name">{{ block.settings.country_name }}</span>
-                <span class="map-country__count">{{ block.settings.dealer_count }}{% if dealer_count == 1 %} dealer{% else %} dealers{% endif %}</span>
-              </summary>
-              <div class="map-country__body">
-                <p class="detail-item">
-                  <span class="detail-label">Dealers:</span>
-                  <span class="detail-value">{{ block.settings.dealer_count }}</span>
-                </p>
-                <p class="detail-item">
-                  <span class="detail-label">Coverage:</span>
-                  <span class="detail-value">{{ block.settings.city }}</span>
-                </p>
-                <p class="detail-item">
-                  <span class="detail-label">Description:</span>
-                  <span class="detail-value">{{ block.settings.description }}</span>
-                </p>
-              </div>
-            </details>
-          {%- endfor -%}
-        </div>
-
-        <div class="map-description">
-          <p>{{ section.settings.map_description }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
 
 {% schema %}
@@ -263,7 +198,7 @@
       "type": "text",
       "id": "info_subtitle",
       "label": "Subtitle",
-      "default": "Reach out to us through any of these channels"
+      "default": "Send us a message and we will get back to you within 1 business day."
     },
     {
       "type": "header",
@@ -289,37 +224,55 @@
     },
     {
       "type": "header",
-      "content": "Global network"
+      "content": "Contact details"
     },
     {
       "type": "text",
-      "id": "map_heading",
-      "label": "Heading",
-      "default": "Our Global Presence"
+      "id": "hours_label",
+      "label": "Business hours label",
+      "default": "Business hours"
     },
     {
       "type": "text",
-      "id": "map_subtitle",
-      "label": "Subtitle",
-      "default": "Vesper AgriTech dealers and partners worldwide"
+      "id": "hours_value",
+      "label": "Business hours",
+      "default": "Mon–Fri 9:00 am – 5:00 pm (AEST/AEDT)"
     },
     {
       "type": "text",
-      "id": "map_title",
-      "label": "Map heading",
-      "default": "Global Distribution Network"
+      "id": "entity_label",
+      "label": "Company label",
+      "default": "Company"
     },
     {
       "type": "text",
-      "id": "map_inner_subtitle",
-      "label": "Map subtitle",
-      "default": "Click on any country to see dealer information"
+      "id": "entity_value",
+      "label": "Company",
+      "default": "Vesper Robot Mowers Pty. Ltd. ABN 71702120143"
     },
     {
-      "type": "textarea",
-      "id": "map_description",
-      "label": "Description",
-      "default": "Vesper AgriTech has established a global network of dealers and partners across major agricultural markets. Our distribution network ensures that farmers and agricultural businesses worldwide have access to our advanced technology solutions with local support and service."
+      "type": "text",
+      "id": "social_label",
+      "label": "Social label",
+      "default": "Follow us"
+    },
+    {
+      "type": "text",
+      "id": "social_1",
+      "label": "Social link 1",
+      "default": "LinkedIn"
+    },
+    {
+      "type": "text",
+      "id": "social_2",
+      "label": "Social link 2",
+      "default": "Facebook"
+    },
+    {
+      "type": "text",
+      "id": "social_3",
+      "label": "Social link 3",
+      "default": "TikTok"
     }
   ],
   "blocks": [
@@ -381,48 +334,6 @@
           "type": "text",
           "id": "subtext",
           "label": "Subtext"
-        }
-      ]
-    },
-    {
-      "type": "dealer",
-      "name": "Dealer location",
-      "settings": [
-        {
-          "type": "text",
-          "id": "country_code",
-          "label": "Country code",
-          "info": "Two-letter code shown on the map, e.g. AU"
-        },
-        {
-          "type": "text",
-          "id": "country_name",
-          "label": "Country"
-        },
-        {
-          "type": "text",
-          "id": "city",
-          "label": "City"
-        },
-        {
-          "type": "text",
-          "id": "dealer_count",
-          "label": "Dealer count"
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Description"
-        },
-        {
-          "type": "text",
-          "id": "lat",
-          "label": "Latitude"
-        },
-        {
-          "type": "text",
-          "id": "lng",
-          "label": "Longitude"
         }
       ]
     }

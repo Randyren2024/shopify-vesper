@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "vesper-legal-returns",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

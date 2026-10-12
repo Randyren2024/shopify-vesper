@@ -22,12 +22,7 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap"
       >
 
-      <title>
-        {{ page_title }}
-        {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
-        {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
-        {%- unless page_title contains 'Vesper Robot' %} &ndash; Vesper Robot{% endunless -%}
-      </title>
+      <title>{{ shop.name }}</title>
 
       {%- if page_description -%}
         <meta name="description" content="{{ page_description | escape }}">

@@ -1,6 +1,6 @@
 <footer class="py-12" style="background: rgb(17, 17, 16); border-top: 1px solid rgba(255, 255, 255, 0.06);">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
       <div class="col-span-2 md:col-span-1">
         <img
           alt="{{ shop.name | escape }}"
@@ -68,10 +68,44 @@
 
         {%- for item in items -%}
           {%- if item != blank -%}
-            <div
-              class="hover:text-[rgba(248,247,244,0.8)] cursor-pointer transition-colors"
-              style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
-            >{{ item | strip }}</div>
+            {%- assign item_parts = item | strip | split: '|' -%}
+            {%- assign item_label = item_parts[0] | strip -%}
+            {%- assign item_link = item_parts[1] | strip -%}
+            {%- if item_link != blank -%}
+              <a
+                href="{{ item_link }}"
+                class="block hover:text-[rgba(248,247,244,0.8)] transition-colors"
+                style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+              >{{ item_label }}</a>
+            {%- else -%}
+              <div
+                class="hover:text-[rgba(248,247,244,0.8)] transition-colors"
+                style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+              >{{ item_label }}</div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div>
+        <div
+          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+        >{{ section.settings.legal_heading }}</div>
+
+        {%- assign legal_links = section.settings.legal_more | newline_to_br | split: '<br />' -%}
+
+        {%- for row in legal_links -%}
+          {%- if row != blank -%}
+            {%- assign row_parts = row | strip | split: '|' -%}
+            {%- assign row_label = row_parts[0] | strip -%}
+            {%- assign row_link = row_parts[1] | strip -%}
+            {%- if row_link != blank -%}
+              <a
+                href="{{ row_link }}"
+                class="block hover:text-[rgba(248,247,244,0.8)] transition-colors"
+                style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+              >{{ row_label }}</a>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       </div>
@@ -95,30 +129,12 @@
     </div>
 
     <div
-      class="pt-6 flex flex-col sm:flex-row justify-between gap-3"
+      class="pt-6"
       style="border-top: 1px solid rgba(255, 255, 255, 0.06);"
     >
       <div
         style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
       >{{ section.settings.copyright }}</div>
-
-      <div class="flex gap-6">
-        {%- if section.settings.legal_1 != blank -%}
-          <a
-            href="{{ shop.privacy_policy.url }}"
-            class="hover:text-[rgba(248,247,244,0.5)] transition-colors"
-            style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
-          >{{ section.settings.legal_1 }}</a>
-        {%- endif -%}
-
-        {%- if section.settings.legal_2 != blank -%}
-          <a
-            href="{{ shop.terms_of_service.url }}"
-            class="hover:text-[rgba(248,247,244,0.5)] transition-colors"
-            style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
-          >{{ section.settings.legal_2 }}</a>
-        {%- endif -%}
-      </div>
     </div>
   </div>
 </footer>
@@ -194,8 +210,8 @@
       "type": "textarea",
       "id": "company_items",
       "label": "Items",
-      "info": "One per line",
-      "default": "Why Vesper\nHow It Works\nFAQ"
+      "info": "One per line, optionally formatted as label|/url",
+      "default": "About Us | /pages/about-us\nContact Us | /pages/contact\nSupport | /pages/support"
     },
     {
       "type": "header",
@@ -216,6 +232,23 @@
     },
     {
       "type": "header",
+      "content": "Column: legal"
+    },
+    {
+      "type": "text",
+      "id": "legal_heading",
+      "label": "Heading",
+      "default": "Legal"
+    },
+    {
+      "type": "textarea",
+      "id": "legal_more",
+      "label": "Legal links",
+      "info": "One per line, formatted as label|/url",
+      "default": "Privacy Policy|/pages/privacy-policy\nTerms & Conditions|/pages/terms-conditions\nShipping Policy|/pages/shipping-policy\nReturns Policy|/pages/returns-policy\nWarranty Policy|/pages/warranty-policy"
+    },
+    {
+      "type": "header",
       "content": "Bottom bar"
     },
     {
@@ -223,18 +256,6 @@
       "id": "copyright",
       "label": "Copyright",
       "default": "© 2026 Vesper Robot Mowers Pty. Ltd. All rights reserved."
-    },
-    {
-      "type": "text",
-      "id": "legal_1",
-      "label": "Legal link 1",
-      "default": "Privacy Policy"
-    },
-    {
-      "type": "text",
-      "id": "legal_2",
-      "label": "Legal link 2",
-      "default": "Terms of Service"
     },
     {
       "type": "header",

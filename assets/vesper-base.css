@@ -743,7 +743,7 @@ button {
 
 .v-footer__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(24px, 4vw, 40px);
   max-width: var(--vesper-container);
   margin-inline: auto;

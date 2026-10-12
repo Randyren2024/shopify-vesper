@@ -16,14 +16,14 @@
           "type": "nav_link",
           "settings": {
             "label": "Contact",
-            "link": "#contact"
+            "link": "/pages/contact"
           }
         },
         "nav-why-vesper": {
           "type": "nav_link",
           "settings": {
             "label": "Home",
-            "link": "#home"
+            "link": "/"
           }
         },
         "nav-faq": {

@@ -23,7 +23,7 @@
           "type": "quick_link",
           "settings": {
             "title": "Contact Us",
-            "link": "/pages/contact-us"
+            "link": "/pages/contact"
           }
         },
         "quick-support": {
@@ -46,6 +46,27 @@
             "title": "Terms & Conditions",
             "link": "/pages/terms-conditions"
           }
+        },
+        "legal-shipping": {
+          "type": "legal_link",
+          "settings": {
+            "title": "Shipping Policy",
+            "link": "/pages/shipping-policy"
+          }
+        },
+        "legal-returns": {
+          "type": "legal_link",
+          "settings": {
+            "title": "Returns Policy",
+            "link": "/pages/returns-policy"
+          }
+        },
+        "legal-warranty": {
+          "type": "legal_link",
+          "settings": {
+            "title": "Warranty Policy",
+            "link": "/pages/warranty-policy"
+          }
         }
       },
       "block_order": [
@@ -54,22 +75,25 @@
         "quick-contact",
         "quick-support",
         "legal-privacy",
-        "legal-terms"
+        "legal-terms",
+        "legal-shipping",
+        "legal-returns",
+        "legal-warranty"
       ],
       "settings": {
         "description": "Committed to advancing agricultural modernization through technological innovation, achieving sustainable agricultural production",
         "quick_links_title": "Quick Links",
         "legal_title": "Legal",
         "contact_title": "Contact Us",
-        "email": "market@vesperinno.com",
+        "email": "info@vesperrobot.au",
         "phone": "+61 448 290 926",
-        "address": "Australia",
+        "address": "3 Read Street, Templestowe VIC 3106, Australia",
         "follow_title": "Follow Us",
         "linkedin_url": "https://www.linkedin.com/in/alan-gan-vesperinno/",
         "show_whatsapp": true,
         "whatsapp_number": "61448290926",
         "copyright_prefix": "Copyright©",
-        "copyright_holder": "Shenzhen Vesper Inno Technology Co., Ltd All Rights Reserved"
+        "copyright_holder": "Vesper Robot Mowers Pty. Ltd. All Rights Reserved"
       }
     }
   },

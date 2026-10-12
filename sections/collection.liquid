@@ -6,14 +6,8 @@
   card grid, closing CTA.
 
   The difference is the data source. The grid is driven by
-  `collection.products`, so newly published products appear automatically,
-  and the tab bar links to the real collections instead of filtering
-  in-page with ?category=.
+  `collection.products`, so newly published products appear automatically.
 {%- endcomment -%}
-
-{%- liquid
-  assign category_handles = 'lawn-mower|precision-agriculture|precision-spraying|land-leveling|machine-control' | split: '|'
--%}
 
 <div class="v-products-hero">
   {%- render 'vesper-page-hero',
@@ -31,18 +25,6 @@
       >
         All
       </a>
-
-      {%- for category_handle in category_handles -%}
-        {%- assign category = collections[category_handle] -%}
-        {%- if category -%}
-          <a
-            class="v-products-filter__tab{% if collection.handle == category_handle %} is-active{% endif %}"
-            href="{{ category.url }}"
-          >
-            {{ category.title }}
-          </a>
-        {%- endif -%}
-      {%- endfor -%}
     </nav>
   </div>
 </section>
@@ -80,7 +62,7 @@
       <p>Contact us today for a personalized demonstration or quote</p>
       <div class="v-products-cta__actions">
         <button type="button" class="v-btn v-btn--lg v-products-cta__primary" data-request-demo>Request a Demo</button>
-        <a class="v-btn v-btn--lg v-products-cta__outline" href="/pages/contact-us">Contact Us</a>
+        <a class="v-btn v-btn--lg v-products-cta__outline" href="/pages/contact">Contact Us</a>
       </div>
     </div>
   </section>

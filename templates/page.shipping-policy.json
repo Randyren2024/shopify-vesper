@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "vesper-legal-shipping",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

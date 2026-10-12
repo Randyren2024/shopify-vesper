@@ -35,7 +35,7 @@
           "type": "journey_item",
           "settings": {
             "year": "2024",
-            "title": "Vesper AgriTech",
+            "title": "Vesper Robot Mowers",
             "description": "Extended expertise to large-scale agriculture. Partnered with Australia-China Agricultural Association. Established product matrix including agricultural robots and lawn mowers.",
             "logo_asset": "logo.webp"
           }
@@ -44,8 +44,8 @@
           "type": "team_member",
           "settings": {
             "photo_asset": "mr-gan-founder.webp",
-            "photo_alt": "Mr. Gan - Founder & CEO of Vesper AgriTech",
-            "name": "Mr. Gan",
+            "photo_alt": "Alan Gan - Founder & CEO of Vesper Robot Mowers",
+            "name": "Alan Gan",
             "position": "Founder & CEO",
             "bio": "<p>Top-tier expert in the drone and robotics industry with over 15 years of deep experience. Former core member of DJI's intelligent perception system team and architect at Alibaba DAMO Academy.</p><p>Led industry-first mass production of 8,000 units/day at DJI and co-founded a robotic lawn mower company that secured investment from Mr. Lei Jun (Xiaomi) and Mr. Zeng Liqing (Tencent).</p>"
           }

@@ -691,7 +691,7 @@
       e.preventDefault();
 
       var phone = el.getAttribute('data-whatsapp') || document.documentElement.dataset.whatsapp;
-      var message = el.getAttribute('data-message') || 'Hello! I would like to request a demo of Vesper AgriTech products.';
+      var message = el.getAttribute('data-message') || 'Hello! I would like to request a demo of Vesper Robot Mowers products.';
 
       if (!phone) return;
       window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank', 'noopener');

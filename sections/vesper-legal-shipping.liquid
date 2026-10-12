@@ -1,0 +1,107 @@
+{%- comment -%}
+  Vesper legal page — Shipping Policy.
+  Copy from the Vesper content document (section 24.5).
+{%- endcomment -%}
+
+{{ 'vesper-legal.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'Shipping Policy',
+   subtitle: 'Delivery, processing and tracking across Australia',
+   breadcrumb: 'Shipping Policy' %}
+
+<section class="v-section v-section--tight v-legal">
+  <div class="v-container v-legal__grid">
+    <aside class="v-legal__toc">
+      <h3 class="v-legal__toc-title">Contents</h3>
+      <ul class="v-legal__toc-list">
+        <li><a href="#where-we-deliver">1. Where We Deliver</a></li>
+        <li><a href="#processing-delivery">2. Processing and Delivery Times</a></li>
+        <li><a href="#shipping-fees">3. Shipping Fees</a></li>
+        <li><a href="#weekends-holidays">4. Weekends, Holidays and Busy Periods</a></li>
+        <li><a href="#tracking">5. Tracking</a></li>
+        <li><a href="#melbourne-pickup">6. Melbourne Pickup and Local Delivery</a></li>
+        <li><a href="#damaged-items">7. Damaged or Incorrect Items</a></li>
+        <li><a href="#shipping-information">8. Shipping Information</a></li>
+      </ul>
+    </aside>
+
+    <div class="v-legal__main">
+      <div id="where-we-deliver" class="v-legal__block">
+        <h2>1. Where We Deliver</h2>
+        <p>We deliver to addresses in Australia only.</p>
+      </div>
+
+      <div id="processing-delivery" class="v-legal__block">
+        <h2>2. Processing and Delivery Times</h2>
+        <p>Orders are processed within 1–2 business days. Standard delivery takes 3–7 business days after dispatch.</p>
+      </div>
+
+      <div id="shipping-fees" class="v-legal__block">
+        <h2>3. Shipping Fees</h2>
+        <p>Standard delivery is free across Australia. Shipping for accessories is free / calculated at checkout.</p>
+      </div>
+
+      <div id="weekends-holidays" class="v-legal__block">
+        <h2>4. Weekends, Holidays and Busy Periods</h2>
+        <p>
+          We do not dispatch or deliver on weekends or public holidays. During busy periods, shipments may be delayed
+          by a few days. If your order is significantly delayed, we will email you.
+        </p>
+      </div>
+
+      <div id="tracking" class="v-legal__block">
+        <h2>5. Tracking</h2>
+        <p>
+          Once your order ships, you will receive a confirmation email with your tracking number. Tracking details
+          usually update within 5 business days. If there is no update after 10 business days, please contact us at
+          <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a>.
+        </p>
+      </div>
+
+      <div id="melbourne-pickup" class="v-legal__block">
+        <h2>6. Melbourne Pickup and Local Delivery</h2>
+        <p>
+          Pick up your order from our showroom at 3 Read Street, Templestowe VIC 3106 by appointment, or ask about
+          local delivery and setup in Melbourne East.
+        </p>
+      </div>
+
+      <div id="damaged-items" class="v-legal__block">
+        <h2>7. Damaged or Incorrect Items</h2>
+        <p>
+          Please inspect your parcel on arrival. If your item is damaged, faulty or incorrect, email us within 48 hours
+          with your order number and photos of the product and packaging. See our
+          <a href="/pages/returns-policy">Returns Policy</a> and
+          <a href="/pages/warranty-policy">Warranty Policy</a>.
+        </p>
+      </div>
+
+      <div id="shipping-information" class="v-legal__block">
+        <h2>8. Shipping Information</h2>
+        <p>
+          Please check that the details you give us are correct. We are not responsible for losses, including missing
+          or damaged parcels and delays, caused by incorrect shipping information supplied by the customer.
+        </p>
+      </div>
+
+      <div class="v-legal__block">
+        <div class="v-legal__contact">
+          <p><strong>Vesper Robot Mowers Pty. Ltd.</strong></p>
+          <p>📧 Email: <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a></p>
+          <p>📞 Phone: +61 448 290 926</p>
+          <p>📍 Address: 3 Read Street, Templestowe VIC 3106, Australia</p>
+          <a class="v-btn v-btn--primary" href="/pages/contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shipping policy",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}

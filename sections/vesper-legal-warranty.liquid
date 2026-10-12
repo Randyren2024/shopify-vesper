@@ -1,0 +1,126 @@
+{%- comment -%}
+  Vesper legal page — Warranty Policy.
+  Copy from the Vesper content document (section 24.7).
+{%- endcomment -%}
+
+{{ 'vesper-legal.css' | asset_url | stylesheet_tag }}
+
+{% render 'vesper-page-hero',
+   title: 'Warranty Policy',
+   subtitle: 'Coverage, claims and local support',
+   breadcrumb: 'Warranty Policy' %}
+
+<section class="v-section v-section--tight v-legal">
+  <div class="v-container v-legal__grid">
+    <aside class="v-legal__toc">
+      <h3 class="v-legal__toc-title">Contents</h3>
+      <ul class="v-legal__toc-list">
+        <li><a href="#provider">1. Who Provides This Warranty</a></li>
+        <li><a href="#consumer-law">2. Australian Consumer Law</a></li>
+        <li><a href="#who-is-covered">3. Who Is Covered</a></li>
+        <li><a href="#warranty-period">4. Warranty Period</a></li>
+        <li><a href="#what-is-covered">5. What Is Covered</a></li>
+        <li><a href="#what-is-not-covered">6. What Is Not Covered</a></li>
+        <li><a href="#make-a-claim">7. How to Make a Claim</a></li>
+        <li><a href="#what-we-will-do">8. What We Will Do</a></li>
+        <li><a href="#costs">9. Costs</a></li>
+        <li><a href="#local-support">10. Local Support</a></li>
+      </ul>
+    </aside>
+
+    <div class="v-legal__main">
+      <div id="provider" class="v-legal__block">
+        <h2>1. Who Provides This Warranty</h2>
+        <p>
+          This warranty is provided by <strong>Vesper Robot Mowers Pty. Ltd.</strong> (ABN 71702120143),
+          3 Read Street, Templestowe VIC 3106, phone +61 448 290 926, email
+          <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a>.
+        </p>
+      </div>
+
+      <div id="consumer-law" class="v-legal__block">
+        <h2>2. Australian Consumer Law</h2>
+        <p>
+          Our goods come with guarantees that cannot be excluded under the Australian Consumer Law. You are entitled to
+          a replacement or refund for a major failure and compensation for any other reasonably foreseeable loss or
+          damage. You are also entitled to have the goods repaired or replaced if the goods fail to be of acceptable
+          quality and the failure does not amount to a major failure. This warranty is in addition to, and does not
+          limit, your rights under the Australian Consumer Law.
+        </p>
+      </div>
+
+      <div id="who-is-covered" class="v-legal__block">
+        <h2>3. Who Is Covered</h2>
+        <p>The original consumer who bought the product from Vesper or an authorised reseller in Australia.</p>
+      </div>
+
+      <div id="warranty-period" class="v-legal__block">
+        <h2>4. Warranty Period</h2>
+        <p>
+          Robot mowers: 3 years. Accessories: 12 months. The warranty period starts on the date of delivery.
+        </p>
+      </div>
+
+      <div id="what-is-covered" class="v-legal__block">
+        <h2>5. What Is Covered</h2>
+        <p>
+          Defects in materials and workmanship under normal consumer use, including internal hardware failures,
+          software faults caused by factory defects, and defective original accessories.
+        </p>
+      </div>
+
+      <div id="what-is-not-covered" class="v-legal__block">
+        <h2>6. What Is Not Covered</h2>
+        <p>
+          Normal wear and tear (such as blades dulling or the battery ageing over time); damage from misuse, neglect or
+          accidents; damage from unauthorised repairs, modifications or third-party accessories; and water damage to
+          products not rated for water resistance. This does not limit your rights under the Australian Consumer Law.
+        </p>
+      </div>
+
+      <div id="make-a-claim" class="v-legal__block">
+        <h2>7. How to Make a Claim</h2>
+        <ol>
+          <li>Contact us by email, phone or our <a href="/pages/contact">contact form</a>.</li>
+          <li>Send your proof of purchase and a detailed description of the fault. Photos or videos help us process your claim faster.</li>
+          <li>Our technical team will assess your claim. If the product must be sent back for inspection or repair, we will give you a return authorisation (RMA) number and instructions.</li>
+        </ol>
+      </div>
+
+      <div id="what-we-will-do" class="v-legal__block">
+        <h2>8. What We Will Do</h2>
+        <p>
+          If your claim is valid and made within the warranty period, we will, at our discretion, repair the product
+          using new or refurbished parts, replace it with a new or equivalent refurbished product, or give you a full
+          or partial refund if repair or replacement is not possible.
+        </p>
+      </div>
+
+      <div id="costs" class="v-legal__block">
+        <h2>9. Costs</h2>
+        <p>If your claim is accepted, we pay the reasonable cost of sending the product to us and returning it to you.</p>
+      </div>
+
+      <div id="local-support" class="v-legal__block">
+        <h2>10. Local Support</h2>
+        <p>Customers in Melbourne East can arrange an inspection at our showroom or at home.</p>
+
+        <div class="v-legal__contact">
+          <p><strong>Vesper Robot Mowers Pty. Ltd.</strong></p>
+          <p>📧 Email: <a href="mailto:info@vesperrobot.au">info@vesperrobot.au</a></p>
+          <p>📞 Phone: +61 448 290 926</p>
+          <p>📍 Address: 3 Read Street, Templestowe VIC 3106, Australia</p>
+          <a class="v-btn v-btn--primary" href="/pages/contact">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Warranty policy",
+  "tag": "div",
+  "settings": []
+}
+{% endschema %}
