@@ -1,133 +1,54 @@
 {%- comment -%}
-  Products & Solutions — category filter + product grid.
-  Ported from src/views/ProductsSolutionsView.vue (+ the product data in
-  src/data/products.ts).
+  Products & Solutions — product grid.
 
-  The 10 products are static theme content, stored as parallel Liquid string
-  arrays (Liquid cannot build nested hashes). Every array below shares the
-  same order, so `array[forloop.index0]` pairs the fields of one product.
-
-  Category filtering is server-side: the `?category=` query string is resolved
-  to `active_category`, which is written onto the grid wrapper as
-  `data-filter`. Pure CSS (assets/vesper-products.css) then shows/hides the
-  cards via their `data-category` attribute.
+  Lists the products published in the store (`collections.all`). Products no
+  longer use categories, so only the "All" filter tab is shown.
 {%- endcomment -%}
 
 {%- liquid
-  # ---- active category, from ?category= ----
-  assign active_category = request.query.category | default: ''
-
-  # Shopify Liquid does not expose query params directly; fall back to parsing
-  # the canonical page URL that Shopify injects into content_for_header.
-  if active_category == blank
-    assign page_url_raw = content_for_header | split: '"pageurl":"' | last | split: '"' | first | replace: '\/', '/' | replace: '\u0026', '&'
-    if page_url_raw contains '?'
-      assign query_parts = page_url_raw | split: '?' | last | split: '&'
-      for part in query_parts
-        assign pair = part | split: '='
-        if pair[0] == 'category'
-          assign active_category = pair[1]
-        endif
-      endfor
-    endif
-  endif
-
-  assign active_category = active_category | url_decode | strip
-  assign valid_categories = 'lawn-mower|precision-agriculture|precision-spraying|land-leveling|machine-control' | split: '|'
-  unless valid_categories contains active_category
-    assign active_category = 'all'
-  endunless
-
   assign page_path = page.url | default: request.path
-
-  # ---- static product data (src/data/products.ts) ----
-  assign product_ids = 'vesper-s1-4wd-50|vesper-s1-4wd-40|af718|af305|isobus|vs100|w20|aries300n|taurus80e|egs101' | split: '|'
-  assign product_codes = 'S1 4WD 50°|S1 4WD 40°|AF718|AF305|ISOBUS|VS100|W20|Aries300N|Taurus80E|EGS101' | split: '|'
-  assign product_names = 'Remote Control Lawn Mower — 119% Slope (Grip Tread)|Remote Control Lawn Mower — 85% Slope (Wide Wheel)|Autosteering System|Automated Steering System|Terminal|Spray Control System|Land Leveling System|Orchard Spraying Robot|Smart Lawn Mowing Robot|Intelligent Excavator Guidance System' | split: '|'
-  assign product_categories = 'lawn-mower|lawn-mower|precision-agriculture|precision-agriculture|precision-agriculture|precision-spraying|land-leveling|agricultural-robotics|agricultural-robotics|machine-control' | split: '|'
-  assign product_category_names = 'Lawn Mower|Lawn Mower|Precision Agriculture|Precision Agriculture|Precision Agriculture|Precision Agriculture Solutions|Land Leveling System|Agricultural Robots|Agricultural Robots|Machine Control' | split: '|'
-  assign product_images = 'products-vesper-s1-4wd-50.webp|products-vesper-s1-4wd-40.webp|products-af718-main.png|products-af305-main.png|products-isobus-main.png|products-vs100-main.png|products-w20-main.png|products-aries300n-main.png|products-80e-1.webp|products-egs101-main.png' | split: '|'
-  assign product_bests = '1|1|1|1|0|1|0|1|1|0' | split: '|'
-  assign product_news = '1|1|1|0|0|0|0|0|0|0' | split: '|'
-  assign product_prices = '249900|199900|349900|219900|129900|499900|899900|599900|399900|249900' | split: '|'
-  assign product_taglines = 'Remember the joy of RC cars as a kid? We brought that feeling back to your lawn.|Remember the joy of RC cars as a kid? We brought that feeling back to your lawn.|AF718 Frontier — Pioneering the Future of Smart Farming|An Advanced Steering Solution for Precision Agriculture|A one-stop ISOBUS solution for smart implements — fully compatible with mainstream agricultural equipment|The VS100 Smart Spray Control System utilizes advanced satellite navigation to deliver precise pest and weed management|The W20 is a GNSS-based smart land leveling system designed to replace inefficient manual methods|A hybrid-powered orchard spraying robot combining GNSS navigation, autonomous driving, and obstacle avoidance|Autonomous Electric Mowing for Professional Operations|Works seamlessly with a wide range of excavator models, providing precise real-time guidance for digging and grading' | split: '|'
-  assign product_descriptions = 'Sit on your porch. Grab the controller. Watch the S1 4WD conquer 50° (119% Grade) slopes while you stay cool in the shade. 3.94" obstacle clearance, 1000W traction, and a 21" deck with 1985W peak cutting power — the S1 rips through 51" tall grass, wet patches, and dense weeds that defeat every other mower. From the first spring mow to the last fall cleanup: discharge, mulch, bag, and a 931 CFM leaf-shredding vacuum with 70 L collection bag.|The S1 4WD Wide Wheel Edition climbs 40° (85% Grade) slopes with a wider TPU contact patch and bold straight-tread pattern for stronger grip on steeper lawns, damp grass, and soft ground. Same 4-Motor AWD platform, 21" deck, 1985W peak cutting power, and 3.94" obstacle clearance as the 50° — with the sweet-spot tire for everyday steep terrain.|The AF718 is Vesper&#39;s next-generation high-performance autosteering system. Powered by an advanced computing platform, it significantly enhances accuracy and efficiency across diverse farming operations.|AF305 delivers high accuracy, smart path planning, and broad equipment compatibility to boost field efficiency and simplify operations.|Empower your implements with a certified ISOBUS terminal featuring a 12.1" sunlight-readable touchscreen, built-in high-precision GNSS guidance, and seamless compatibility with major agricultural equipment.|VS100 offers 98% spraying accuracy, GNSS-based flow control, section automation, and ISOBUS support for efficient, traceable crop protection.|W20 delivers ≤2.5 cm leveling accuracy with terrain compensation — ideal for farming, reclamation, and site preparation.|Aries300N Smart Sprayer delivers GNSS-guided, hybrid spraying for orchards. Ensures full coverage, cuts labor, and works smarter with Vesper.|Autonomous Electric Mowing Robot for Professional Operations. 24/7 working capability with slope handling and low noise operation.|EGS101 Grade Control System delivers real-time excavator guidance with grading accuracy within 3 cm — ideal for trenching, slopes, and land leveling.' | split: '|'
-
-  # ---- category tabs metadata (src/data/products.ts > categories) ----
-  assign category_ids = 'lawn-mower|precision-agriculture|precision-spraying|land-leveling|machine-control' | split: '|'
-  assign category_names = 'Lawn Mower|Precision Agriculture|Precision Agriculture Solutions|Land Leveling System|Machine Control' | split: '|'
-
-  # ---- how many products match the current filter ----
-  assign visible_count = 0
-  for cat in product_categories
-    if cat == active_category
-      assign visible_count = visible_count | plus: 1
-    endif
-  endfor
 -%}
 
 <section class="v-products-filter">
   <div class="v-container">
     <nav class="v-products-filter__tabs" aria-label="Product categories">
-      <a class="v-products-filter__tab{% if active_category == 'all' %} is-active{% endif %}" href="{{ page_path }}">All</a>
-      {%- for cat in category_ids -%}
-        {%- assign ci = forloop.index0 -%}
-        <a
-          class="v-products-filter__tab{% if active_category == cat %} is-active{% endif %}"
-          href="{{ page_path }}?category={{ cat }}"
-        >
-          {{ category_names[ci] }}
-        </a>
-      {%- endfor -%}
+      <a class="v-products-filter__tab is-active" href="{{ page_path }}">All</a>
     </nav>
   </div>
 </section>
 
 <section class="v-products-grid">
   <div class="v-container">
-    <div class="v-products-grid__inner" data-filter="{{ active_category }}">
-      {%- for pid in product_ids -%}
-        {%- assign i = forloop.index0 -%}
+    <div class="v-products-grid__inner">
+      {%- for product in collections.all.products -%}
         {%- assign p_best = false -%}
-        {%- if product_bests[i] == '1' -%}{%- assign p_best = true -%}{%- endif -%}
+        {%- if product.tags contains 'Best Seller' -%}
+          {%- assign p_best = true -%}
+        {%- endif -%}
         {%- assign p_new = false -%}
-        {%- if product_news[i] == '1' -%}{%- assign p_new = true -%}{%- endif -%}
+        {%- if product.tags contains 'New' -%}
+          {%- assign p_new = true -%}
+        {%- endif -%}
         {%- render 'vesper-product-card',
-          id: pid,
-          code: product_codes[i],
-          name: product_names[i],
-          description: product_descriptions[i],
-          category: product_categories[i],
-          category_name: product_category_names[i],
-          image: product_images[i],
+          product: product,
+          category_name: product.type,
           bestseller: p_best,
-          is_new: p_new,
-          price: product_prices[i],
-          tagline: product_taglines[i] -%}
+          is_new: p_new -%}
       {%- endfor -%}
     </div>
   </div>
 </section>
 
-{%- if active_category != 'all' and visible_count == 0 -%}
-  <section class="v-products-empty">
-    <div class="v-container">
-      <p class="v-products-empty__text">No products found in this category</p>
-      <a class="v-btn v-btn--primary" href="{{ page_path }}">View All Products</a>
+<section class="v-products-cta">
+  <div class="v-container">
+    <h2>Ready to Transform Your Farming?</h2>
+    <p>Contact us today for a personalized demonstration or quote</p>
+    <div class="v-products-cta__actions">
+      <button type="button" class="v-btn v-btn--lg v-products-cta__primary" data-request-demo>Request a Demo</button>
+      <a class="v-btn v-btn--lg v-products-cta__outline" href="/pages/contact">Contact Us</a>
     </div>
-  </section>
-{%- else -%}
-  <section class="v-products-cta">
-    <div class="v-container">
-      <h2>Ready to Transform Your Farming?</h2>
-      <p>Contact us today for a personalized demonstration or quote</p>
-      <div class="v-products-cta__actions">
-        <button type="button" class="v-btn v-btn--lg v-products-cta__primary" data-request-demo>Request a Demo</button>
-        <a class="v-btn v-btn--lg v-products-cta__outline" href="/pages/contact">Contact Us</a>
-      </div>
-    </div>
-  </section>
-{%- endif -%}
+  </div>
+</section>
 
 {% schema %}
 {

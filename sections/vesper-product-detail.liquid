@@ -333,6 +333,17 @@
               </div>
             </div>
 
+            {%- if shop.enabled_payment_types.size > 0 -%}
+              <div class="vpd-payments">
+                <span class="vpd-payments__label">Secure payment:</span>
+                <ul class="v-payment-icons" aria-label="Accepted payment methods">
+                  {%- for type in shop.enabled_payment_types -%}
+                    <li class="v-payment-icons__item">{{ type | payment_type_svg_tag: class: 'v-payment-icons__svg' }}</li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            {%- endif -%}
+
             <div class="vpd-cta-buttons">
               <button type="button" class="v-btn v-btn--pill-primary v-btn--lg" data-request-demo data-whatsapp="{{ vpd_whatsapp }}" data-message="Hello! I would like to request a demo of the {{ vpd_code }} {{ vpd_name }}.">
                 {%- render 'vesper-icons', icon: 'phone' -%}

@@ -133,8 +133,20 @@
       style="border-top: 1px solid rgba(255, 255, 255, 0.06);"
     >
       <div
-        style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
-      >{{ section.settings.copyright }}</div>
+        style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;"
+      >
+        <div
+          style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
+        >{{ section.settings.copyright }}</div>
+
+        {%- if shop.enabled_payment_types.size > 0 -%}
+          <ul class="v-payment-icons" aria-label="Accepted payment methods">
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="v-payment-icons__item">{{ type | payment_type_svg_tag: class: 'v-payment-icons__svg' }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 </footer>

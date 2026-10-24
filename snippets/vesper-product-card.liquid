@@ -29,8 +29,8 @@
     assign card_url = product.url
     assign card_title = product.title
     assign card_desc = product.description | strip_html | truncatewords: 24
-    assign card_category = product.type
-    assign card_category_label = product.type
+    assign card_category = category | default: product.type | handleize
+    assign card_category_label = category_name | default: product.type
     assign card_price = product.price
   else
     assign card_url = '/products/' | append: id

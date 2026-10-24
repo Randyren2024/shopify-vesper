@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f8f7f4">
+    <script>document.documentElement.classList.add('js');</script>
 
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 96, height: 96 }}">
@@ -179,6 +180,8 @@
       {% render 'vesper-cart-drawer' %}
 
       <div class="v-toast-stack" data-vesper-toasts aria-live="polite"></div>
+
+      <script src="{{ 'vesper.js' | asset_url }}" defer></script>
 
      <script>
 document.addEventListener('DOMContentLoaded', function(){
