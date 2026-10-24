@@ -17,10 +17,11 @@
         Home page — Vesper Robot landing page (ported from vesper-robot-theme).
         Keeps the compiled landing bundle and the Barlow font stack.
       {%- endcomment -%}
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap"
-      >
+      {%- comment -%}
+        No web font on the landing page: Barlow/Barlow Condensed were a
+        third-party request on the critical path (up to 10 s on some networks).
+        The CSS stacks fall back to the system UI font.
+      {%- endcomment -%}
 
       <title>{{ shop.name }}</title>
 
@@ -31,6 +32,105 @@
 
       {{ 'vesper-robot.css' | asset_url | stylesheet_tag }}
       {{ 'vesper-core.css' | asset_url | stylesheet_tag }}
+
+      {%- comment -%}
+        Mobile-only overrides for the landing page. Kept inline on purpose: it is
+        under 3 KB and avoids an extra render-blocking request on the critical path.
+        Desktop markup and styles are untouched.
+      {%- endcomment -%}
+      <style id="vesper-mobile-index">
+        @media (max-width: 767px) {
+          /* 1. The template already renders the booking form right after the hero,
+             so phones need no reordering — only the shortening below. */
+
+          /* 2. Non-essential blocks are removed on mobile to shorten the page.
+             The last one is the "Expert Reviews" app section: six YouTube embeds. */
+          body.template-index #problem,
+          body.template-index #demonstrations,
+          body.template-index #why-vesper,
+          body.template-index #how-it-works,
+          body.template-index #main-content > .shopify-section[id$="__1791268772f7af4e36"] {
+            display: none !important;
+          }
+
+          /* 3. Compact hero. */
+          body.template-index #home-hero {
+            min-height: 62svh !important;
+          }
+          body.template-index #home-hero > div:last-child {
+            padding-bottom: 28px !important;
+          }
+          body.template-index #home-hero h1 {
+            font-size: 38px !important;
+            margin-bottom: 12px !important;
+          }
+          body.template-index #home-hero p {
+            font-size: 15px !important;
+            line-height: 1.5 !important;
+            margin-bottom: 20px !important;
+          }
+          body.template-index #home-hero [data-hero-cta] {
+            display: block;
+            width: 100%;
+            padding: 16px 24px !important;
+            font-size: 13px !important;
+            text-align: center;
+          }
+
+          /* 4. Tighter section rhythm. */
+          body.template-index #demo,
+          body.template-index #products,
+          body.template-index #faq,
+          body.template-index #cta {
+            padding-top: 44px !important;
+            padding-bottom: 44px !important;
+          }
+
+          /* 5. Form first inside the demo section. */
+          body.template-index #demo {
+            scroll-margin-top: 56px;
+          }
+          body.template-index #demo > div > .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+          }
+          body.template-index #demo > div > .grid > div:last-child {
+            order: -1;
+            padding: 18px !important;
+          }
+          /* The form is rendered by the Forms app after load; reserving its
+             height keeps the sections below it from jumping. */
+          body.template-index #demo [data-form-root] {
+            min-height: 800px;
+          }
+        }
+
+        {%- comment -%}
+          The demo section sits second in templates/index.json so that phones get
+          the form early in the HTML (a late insertion would shift every section
+          below it). Desktop keeps its original sequence via flex order.
+        {%- endcomment -%}
+        @media (min-width: 768px) {
+          body.template-index #main-content {
+            display: flex;
+            flex-direction: column;
+          }
+          body.template-index #main-content > .shopify-section {
+            flex: none;
+            width: 100%;
+          }
+          body.template-index #main-content > .shopify-section[id$="__products"] { order: 1; }
+          body.template-index #main-content > .shopify-section[id$="__problem"] { order: 2; }
+          body.template-index #main-content > .shopify-section[id$="__demonstrations"] { order: 3; }
+          body.template-index #main-content > .shopify-section[id$="__why"] { order: 4; }
+          body.template-index #main-content > .shopify-section[id$="__1791268772f7af4e36"] { order: 5; }
+          body.template-index #main-content > .shopify-section[id$="__process"] { order: 6; }
+          body.template-index #main-content > .shopify-section[id$="__demo"] { order: 7; }
+          body.template-index #main-content > .shopify-section[id$="__faq"] { order: 8; }
+          body.template-index #main-content > .shopify-section[id$="__cta"] { order: 9; }
+        }
+      </style>
     {%- else -%}
       {%- comment -%}
         All other templates — Vesper AgriTech theme (ported from theme/).
@@ -52,7 +152,7 @@
   </head>
 
   {%- if template.name == 'index' -%}
-    <body>
+    <body class="template-index">
       <a class="v-visually-hidden" href="#main-content">{{ 'accessibility.skip_to_content' | t }}</a>
 
       {% sections 'header-group' %}
@@ -80,7 +180,30 @@
 
       <div class="v-toast-stack" data-vesper-toasts aria-live="polite"></div>
 
-      <script src="{{ 'vesper.js' | asset_url }}" defer></script>
+     <script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('click', function(e){
+    const linkEl = e.target.closest('a[href*="wa.me"]');
+    if(!linkEl) return;
+    e.preventDefault();
+    const targetUrl = linkEl.href;
+    // 判断：如果是Zotabox弹窗按钮，标记zotabox；导航栏按钮标记header
+    let source = 'header';
+    if(linkEl.closest('[class*="zotabox"]')){
+      source = 'zotabox';
+    }
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18471097817/TOVHCJTC0KYdENmr2udE',
+      'value': 40.0,
+      'currency': 'AUD',
+      'button_source': source,
+      'event_callback': function(){
+        window.location.href = targetUrl;
+      }
+    });
+  })
+})
+</script>
     </body>
   {%- endif -%}
 </html>

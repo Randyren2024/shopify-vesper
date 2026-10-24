@@ -24,11 +24,11 @@
         "company_items": "About Us | /pages/about-us\nContact Us | /pages/contact\nSupport | /pages/support",
         "contact_heading": "Contact",
         "contact_items": "3 Read street, Templestowe VIC 3106\nInfo@vesperrobot.au\n+61 448290926",
-        "copyright": "© 2026 Vesper Robot Mowers Pty. Ltd. All rights reserved.",
         "legal_heading": "Legal",
         "legal_more": "Privacy Policy|/pages/privacy-policy\nTerms & Conditions|/pages/terms-conditions\nShipping Policy|/pages/shipping-policy\nReturns Policy|/pages/returns-policy\nWarranty Policy|/pages/warranty-policy",
-        "mobile_cta_label": "BOOK A DEMO",
-        "mobile_cta_link": "#demo"
+        "copyright": "© 2026 Vesper Robot Mowers Pty. Ltd. All rights reserved.",
+        "mobile_cta_label": "BOOK FREE DEMO",
+        "mobile_cta_link": "https://www.vesperrobot.au/pages/book-demo"
       }
     }
   },

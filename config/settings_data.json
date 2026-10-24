@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "favicon": "",
+    "favicon": "shopify://shop_images/logo.webp",
     "vesper_logo": "shopify://shop_images/logo.webp",
     "content_for_index": [],
     "blocks": {
@@ -24,5 +24,10 @@
     "Default": {
       "favicon": ""
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "/* thank-you页面隐藏表单ID:1208064，表单页面不受影响 */.page--thank-youdiv[data-form-id=\"1208064\"]{display: none !important;}"
+    ]
   }
 }

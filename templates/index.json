@@ -1,52 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "vesper-hero",
+      "custom_css": [],
       "settings": {
         "eyebrow": "Melbourne East  ·  Local Support  ·  Live Demos",
-        "heading": "Not Sure Which Robot Fits Your Yard?",
-        "body": "See it work. Ask an expert. Find the right solution for your Australian yard.",
+        "heading": "Robot Mowers: Aussie Slopes & Small Yards",
+        "body": "Two ranges: heavy-duty slope models for large yards & smart compact units for small yards.",
         "primary_label": "BOOK FREE DEMO",
-        "primary_link": "#demo",
+        "primary_link": "https://www.vesperrobot.au/pages/book-demo",
         "secondary_label": "",
         "secondary_link": "",
         "image_alt": "Vesper S1 robot mower",
         "image_position": "30% center"
-      }
-    },
-    "problem": {
-      "type": "vesper-problem",
-      "blocks": {
-        "problem-1": {
-          "type": "item",
-          "settings": {
-            "title": "Will it suit my home?",
-            "body": "Every yard, pool and floor is different. Specs on a screen don't tell you what actually works."
-          }
-        },
-        "problem-2": {
-          "type": "item",
-          "settings": {
-            "title": "Is it easy to use?",
-            "body": "Setup and day-to-day operation can be more complex than a product video suggests."
-          }
-        },
-        "problem-3": {
-          "type": "item",
-          "settings": {
-            "title": "Who helps me after I buy?",
-            "body": "Online-only retailers can't answer your calls. We can — in person, in Melbourne."
-          }
-        }
-      },
-      "block_order": [
-        "problem-1",
-        "problem-2",
-        "problem-3"
-      ],
-      "settings": {
-        "eyebrow": "The Problem",
-        "heading": "Choosing a Robot Shouldn't Require a Research Project."
       }
     },
     "products": {
@@ -114,14 +89,49 @@
         "heading": "Don't Choose From a Screen. See It Work."
       }
     },
+    "problem": {
+      "type": "vesper-problem",
+      "blocks": {
+        "problem-1": {
+          "type": "item",
+          "settings": {
+            "title": "Will it suit my home?",
+            "body": "Every yard, pool and floor is different. Specs on a screen don't tell you what actually works."
+          }
+        },
+        "problem-2": {
+          "type": "item",
+          "settings": {
+            "title": "Is it easy to use?",
+            "body": "Setup and day-to-day operation can be more complex than a product video suggests."
+          }
+        },
+        "problem-3": {
+          "type": "item",
+          "settings": {
+            "title": "Who helps me after I buy?",
+            "body": "Online-only retailers can't answer your calls. We can — in person, in Melbourne."
+          }
+        }
+      },
+      "block_order": [
+        "problem-1",
+        "problem-2",
+        "problem-3"
+      ],
+      "settings": {
+        "eyebrow": "The Problem",
+        "heading": "Choosing a Robot Shouldn't Require a Research Project."
+      }
+    },
     "demonstrations": {
       "type": "vesper-demonstrations",
       "settings": {
         "eyebrow": "Live Demonstrations",
-        "heading": "Don't Choose<br>From a Screen.",
+        "heading": "Don't ChooseFrom a Screen.",
         "body": "Visit our Melbourne East showroom. See the robots work in person. Ask our team anything.",
-        "button_label": "Book a Free Demo",
-        "button_link": "#demo",
+        "button_label": "Book Free Demo",
+        "button_link": "https://www.vesperrobot.au/pages/book-demo",
         "image_alt": "Vesper robot in action",
         "image_position": "30% center"
       }
@@ -168,8 +178,8 @@
         "eyebrow": "Why Vesper",
         "heading": "Robotics Expertise.Local Support.",
         "body": "We understand the technology from the inside — and we explain it in a way that helps you make the right decision for your home.",
-        "button_label": "Talk to the Team",
-        "button_link": "#demo"
+        "button_label": "BOOK FREE DEMO",
+        "button_link": "https://www.vesperrobot.au/pages/book-demo"
       }
     },
     "1791268772f7af4e36": {
@@ -180,7 +190,31 @@
           "settings": {
             "desktop_width_percent": 100,
             "heading": "Expert Reviews",
-            "intro": "TerraMow has been reviewed and tested by creators and technology channels around the world."
+            "intro": "TerraMow has been reviewed and tested by creators and technology channels around the world.",
+            "review_1_name": "Enoylity Technology",
+            "review_1_subs": "730K subscribers",
+            "review_1_quote": "No wire, no RTK. Its tri-camera AI vision lets the mower navigate on its own.",
+            "review_1_video": "gaQ0U2Jm0m8",
+            "review_2_name": "TechMagnet",
+            "review_2_subs": "463K subscribers",
+            "review_2_quote": "One of the simplest smart mowers, with solid vision navigation and real mowing performance.",
+            "review_2_video": "QpnGPYCdZGg",
+            "review_3_name": "Florians Gartenwelt",
+            "review_3_subs": "119K subscribers",
+            "review_3_quote": "TerraMow as an easy AI vision mower, with wire-free setup and straightforward installation.",
+            "review_3_video": "dWlxpxP7574",
+            "review_4_name": "TESTSIEGER TV",
+            "review_4_subs": "31.7K subscribers",
+            "review_4_quote": "Camera-based navigation, easy setup, and strong obstacle detection make TerraMow stand out.",
+            "review_4_video": "AG96kXhsuss",
+            "review_5_name": "Valentine Lewis",
+            "review_5_subs": "269K subscribers",
+            "review_5_quote": "A wire-free, RTK-free mower that makes lawn care much easier and more hands-off.",
+            "review_5_video": "9XuiPMaMltY",
+            "review_6_name": "Wittmanns Welt",
+            "review_6_subs": "57.1K subscribers",
+            "review_6_quote": "Set up in minutes, TerraMow makes wire-free mowing feel simple and intuitive.",
+            "review_6_video": "-54GCkNfvQo"
           },
           "blocks": {}
         }
@@ -337,8 +371,8 @@
       "settings": {
         "heading": "Not Sure What Fits Your Home?",
         "body": "Come see the robots work. Talk to our team. Find the right solution.",
-        "primary_label": "Book a Free Demo",
-        "primary_link": "#demo",
+        "primary_label": "Book Free Demo",
+        "primary_link": "https://www.vesperrobot.au/pages/book-demo",
         "secondary_label": "Visit Us in Melbourne East",
         "secondary_link": "#"
       }
@@ -346,13 +380,13 @@
   },
   "order": [
     "hero",
-    "problem",
+    "demo",
     "products",
+    "problem",
     "demonstrations",
     "why",
     "1791268772f7af4e36",
     "process",
-    "demo",
     "faq",
     "cta"
   ]

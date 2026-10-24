@@ -1,16 +1,27 @@
 <section
+  id="home-hero"
   class="relative overflow-hidden flex flex-col justify-end pt-14"
   style="background: rgb(238, 236, 234); min-height: 100svh;"
 >
   <div class="absolute inset-0">
-    <img
-      alt="{{ section.settings.image_alt | escape }}"
-      class="w-full h-full object-cover"
-      src="{{ 'banner.jpg' | asset_url }}"
-      width="1190"
-      height="696"
-      style="object-position: {{ section.settings.image_position }};"
-    >
+    <picture class="block w-full h-full">
+      <source
+        media="(max-width: 767px)"
+        srcset="{{ 'banner-mobile.webp' | asset_url }}"
+        width="750"
+        height="434"
+      >
+      <img
+        alt="{{ section.settings.image_alt | escape }}"
+        class="w-full h-full object-cover"
+        src="{{ 'banner.jpg' | asset_url }}"
+        width="1190"
+        height="696"
+        fetchpriority="high"
+        decoding="async"
+        style="object-position: {{ section.settings.image_position }};"
+      >
+    </picture>
     <div
       class="absolute inset-0"
       style="background: linear-gradient(100deg, rgba(248, 247, 244, 0.8) 0%, rgba(248, 247, 244, 0.6) 42%, rgba(248, 247, 244, 0.15) 65%, rgba(248, 247, 244, 0.03) 100%);"
@@ -41,6 +52,7 @@
       {%- if section.settings.primary_label != blank -%}
         <a
           href="{{ section.settings.primary_link }}"
+          data-hero-cta
           class="hover:bg-[#78C500] transition-colors text-center"
           style="background: #8DE600; color: rgb(17, 17, 16); font-family: Barlow, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; padding: 14px 28px; display: inline-block;"
         >{{ section.settings.primary_label }}</a>

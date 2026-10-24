@@ -25,6 +25,11 @@
     {%- if feature != blank -%}
       {%- if feature.settings.image != blank -%}
         {%- assign feature_image = feature.settings.image | image_url: width: 1400 -%}
+        {%- capture feature_srcset -%}
+          {{ feature.settings.image | image_url: width: 600 }} 600w,
+          {{ feature.settings.image | image_url: width: 900 }} 900w,
+          {{ feature.settings.image | image_url: width: 1400 }} 1400w
+        {%- endcapture -%}
       {%- else -%}
         {%- assign feature_image = 'banner.jpg' | asset_url -%}
       {%- endif -%}
@@ -39,8 +44,14 @@
             alt="{{ feature.settings.image_alt | escape }}"
             class="absolute inset-0 w-full h-full object-cover opacity-80"
             src="{{ feature_image }}"
+            {%- if feature.settings.image != blank %}
+              srcset="{{ feature_srcset | strip }}"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            {%- endif %}
             width="1190"
             height="696"
+            loading="lazy"
+            decoding="async"
             style="object-position: {{ feature.settings.image_position }};"
           >
           <div
@@ -123,6 +134,11 @@
         {%- for block in cards -%}
           {%- if block.settings.image != blank -%}
             {%- assign card_image = block.settings.image | image_url: width: 900 -%}
+            {%- capture card_srcset -%}
+              {{ block.settings.image | image_url: width: 400 }} 400w,
+              {{ block.settings.image | image_url: width: 600 }} 600w,
+              {{ block.settings.image | image_url: width: 900 }} 900w
+            {%- endcapture -%}
           {%- elsif block.settings.image_url != blank -%}
             {%- assign card_image = block.settings.image_url -%}
           {%- else -%}
@@ -142,8 +158,14 @@
                 alt="{{ block.settings.image_alt | escape }}"
                 class="absolute inset-0 w-full h-full object-cover"
                 src="{{ card_image }}"
+                {%- if block.settings.image != blank %}
+                  srcset="{{ card_srcset | strip }}"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                {%- endif %}
                 width="700"
                 height="420"
+                loading="lazy"
+                decoding="async"
                 style="object-position: {{ block.settings.image_position }}; filter: {{ block.settings.image_filter }};"
               >
               {%- if block.settings.badge != blank -%}
