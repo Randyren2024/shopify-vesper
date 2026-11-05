@@ -211,3 +211,120 @@
     font-size: 13px;
   }
 }
+
+
+/* 2026 refinement — cart clarity and mobile checkout */
+.v-cart-page {
+  background: #f8f7f4;
+}
+
+.v-cart-page__title {
+  margin-bottom: 30px;
+  font-size: clamp(34px, 4.5vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.v-cart-page__items,
+.v-cart-page__summary,
+.v-cart-page__empty {
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(17, 17, 16, 0.045);
+}
+
+.v-cart-page__items {
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.v-cart-page__summary {
+  top: calc(var(--vesper-header-height, 56px) + 24px);
+  padding: 26px;
+}
+
+.v-cart-page .v-cart-line {
+  padding-block: 20px;
+  border-bottom: 1px solid rgba(17, 17, 16, 0.08);
+}
+
+.v-cart-page .v-cart-line__img {
+  border: 1px solid rgba(17, 17, 16, 0.06);
+  border-radius: 12px;
+  background: #f1f0ec;
+  object-fit: contain;
+}
+
+.v-cart-page .v-cart-line__title a {
+  color: #111110;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.v-cart-page .v-cart-line__title a:hover {
+  color: #1e3d1e;
+}
+
+.v-cart-page .v-cart-line__price {
+  color: #111110;
+  font-size: 18px;
+}
+
+.v-cart-page__remove {
+  color: #6b6b68;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.v-cart-page__remove:hover {
+  color: #a8480a;
+}
+
+.v-cart-page__total {
+  padding-top: 20px;
+  border-top: 1px solid rgba(17, 17, 16, 0.12);
+  font-size: 22px;
+}
+
+.v-cart-page__summary .v-btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.v-cart-page__empty {
+  padding: clamp(40px, 6vw, 68px) 24px;
+}
+
+.v-cart-page__empty .v-icon {
+  color: #1e3d1e;
+}
+
+@media (max-width: 680px) {
+  .v-cart-page .v-cart-line {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+
+  .v-cart-page .v-cart-line__img {
+    width: 76px;
+    height: 76px;
+    grid-row: span 2;
+  }
+
+  .v-cart-page__qty,
+  .v-cart-page__line-actions {
+    grid-column: 2;
+    align-items: flex-start;
+  }
+
+  .v-cart-page__line-actions {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .v-cart-page__summary {
+    position: static;
+    padding: 20px;
+  }
+}
