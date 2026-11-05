@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Design tokens
+   --------------------------------------------------------------------------
+   Mirrors the Liquid theme (assets/vesper-core.css) so both storefronts share
+   one brand. There is exactly one palette: brand green + brand orange. The
+   only thing that changes between light and dark is token values.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --v-bg: #f8f7f4;
+  --v-bg-soft: #eeecea;
+  --v-surface: #ffffff;
+  --v-ink: #111110;
+  --v-ink-soft: #6b6b68;
+  --v-ink-faint: rgba(17, 17, 16, 0.45);
+  --v-line: rgba(17, 17, 16, 0.1);
+  --v-line-strong: rgba(17, 17, 16, 0.18);
+
+  --v-green: #1e3d1e;
+  --v-green-hover: #2d5a2d;
+  --v-green-deep: #16301a;
+  --v-orange: #c85a0a;
+  --v-accent: #8de600;
+  --v-on-green: #f8f7f4;
+
+  --v-shadow: 0 18px 50px rgba(20, 40, 25, 0.1);
+  --v-shadow-sm: 0 8px 24px rgba(20, 40, 25, 0.08);
+
+  /* Landing surfaces */
+  --v-card: #ffffff;
+  --v-tile: #f1f4f0;
+  --v-tile-img: #e8ece6;
+  --v-pattern: rgba(17, 17, 16, 0.035);
+  --v-pattern-2: rgba(17, 17, 16, 0.022);
+  --v-glow-1: rgba(30, 61, 30, 0.09);
+  --v-glow-2: rgba(200, 90, 10, 0.05);
+  --v-badge-bg: rgba(255, 255, 255, 0.96);
+  --v-surface-1: rgba(17, 17, 16, 0.025);
+  --v-surface-2: rgba(17, 17, 16, 0.04);
+
+  --v-font: "Barlow", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --v-font-display: "Barlow Condensed", "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --v-nav-h: 56px;
+  --v-max: 1200px;
+  --v-radius: 22px;
+  --v-radius-lg: 28px;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --v-bg: #070a08;
+  --v-bg-soft: #0d1210;
+  --v-surface: #101713;
+  --v-ink: #f1f4ee;
+  --v-ink-soft: #a6b0a7;
+  --v-ink-faint: rgba(241, 244, 238, 0.45);
+  --v-line: rgba(255, 255, 255, 0.12);
+  --v-line-strong: rgba(255, 255, 255, 0.22);
+
+  /* In dark mode the brand green becomes the highlight colour, so anything
+     sitting on top of it has to flip to near-black. */
+  --v-green: #8de600;
+  --v-green-hover: #a5f02e;
+  --v-green-deep: #0b0f0c;
+  --v-orange: #f08a3c;
+  --v-on-green: #0b0f0c;
+
+  --v-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+  --v-shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  --v-card: #101713;
+  --v-tile: #0b1013;
+  --v-tile-img: #0a0d0f;
+  --v-pattern: rgba(255, 255, 255, 0.025);
+  --v-pattern-2: rgba(255, 255, 255, 0.018);
+  --v-glow-1: rgba(141, 230, 0, 0.1);
+  --v-glow-2: rgba(141, 230, 0, 0.05);
+  --v-badge-bg: rgba(15, 22, 18, 0.92);
+  --v-surface-1: rgba(255, 255, 255, 0.035);
+  --v-surface-2: rgba(255, 255, 255, 0.025);
+}
