@@ -189,3 +189,139 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* 2026 refinement — support channels and service information */
+.vesper-support__lead-wrap {
+  padding-block: 18px 10px;
+  background: #eeecea;
+}
+
+.vesper-support__lead {
+  color: #1e3d1e;
+  font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: -0.025em;
+}
+
+.vesper-support .support-section,
+.vesper-support .service-section {
+  background: #f8f7f4;
+}
+
+.vesper-support .support-cards,
+.vesper-support .service-grid {
+  gap: 16px;
+}
+
+.vesper-support .support-card,
+.vesper-support .service-card,
+.vesper-support .hours-card {
+  padding: clamp(22px, 3vw, 30px);
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 26px rgba(17, 17, 16, 0.045);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.vesper-support .support-card:hover,
+.vesper-support .service-card:hover,
+.vesper-support .hours-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(30, 61, 30, 0.18);
+  box-shadow: 0 15px 34px rgba(17, 17, 16, 0.07);
+}
+
+.vesper-support .support-card h3,
+.vesper-support .hours-card h3,
+.vesper-support .service-card h3 {
+  font-size: 20px;
+  letter-spacing: -0.015em;
+}
+
+.vesper-support .support-icon,
+.vesper-support .hours-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(30, 61, 30, 0.12);
+  border-radius: 15px;
+  background: #f1f0ec;
+  color: #1e3d1e;
+  font-size: 22px;
+}
+
+.vesper-support .hours-section {
+  background: #eeecea;
+}
+
+.vesper-support .hours-grid {
+  gap: 16px;
+}
+
+.vesper-support .hours-info p {
+  color: #6b6b68;
+  line-height: 1.7;
+}
+
+.vesper-support .hours-info strong {
+  color: #111110;
+}
+
+.vesper-support .service-card {
+  text-align: left;
+}
+
+.vesper-support .service-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 16px;
+  border-radius: 13px;
+  background: #f1f0ec;
+  color: #1e3d1e;
+}
+
+.vesper-support .service-desc {
+  color: #6b6b68;
+  line-height: 1.7;
+}
+
+.vesper-support .warranty-section {
+  background: #f8f7f4;
+}
+
+.vesper-support .warranty-content {
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.vesper-support .warranty-content .v-accordion {
+  display: grid;
+  gap: 10px;
+  border: 0;
+}
+
+.vesper-support .warranty-content .v-accordion__item {
+  padding-inline: 18px;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.vesper-support .warranty-content .v-accordion__trigger {
+  padding-block: 18px;
+}
+
+@media (max-width: 640px) {
+  .vesper-support .support-cards,
+  .vesper-support .service-grid,
+  .vesper-support .hours-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
