@@ -6,7 +6,7 @@
 
 /* ---------- Hero ---------- */
 .v-products-hero .v-page-hero {
-  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+  background: linear-gradient(135deg, #eeecea 0%, #eeecea 100%);
 }
 
 .v-products-hero .v-page-hero__title {
@@ -130,7 +130,7 @@
 }
 
 .v-product-card__badge--new {
-  background: #52c41a;
+  background: #1e3d1e;
 }
 
 .v-product-card__body {
@@ -200,7 +200,7 @@
 /* ---------- CTA ---------- */
 .v-products-cta {
   padding: clamp(40px, 5vw, 60px) 0;
-  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  background: linear-gradient(135deg, #1e3d1e, #2d5a2d);
   color: #fff;
   text-align: center;
 }
@@ -227,13 +227,13 @@
 
 .v-products-cta .v-products-cta__primary {
   background: #fff;
-  color: #2e7d32;
+  color: #1e3d1e;
   border-color: transparent;
 }
 
 .v-products-cta .v-products-cta__primary:hover {
   background: #fff;
-  color: #2e7d32;
+  color: #1e3d1e;
   border-color: transparent;
 }
 

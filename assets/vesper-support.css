@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .vesper-support {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-support__lead-wrap {
@@ -46,7 +46,7 @@
 .vesper-support .support-card h3 {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 12px;
 }
 
@@ -59,13 +59,13 @@
 .vesper-support .support-phone {
   font-size: 24px;
   font-weight: 700;
-  color: #52c41a;
+  color: #1e3d1e;
   margin-bottom: 20px;
 }
 
 /* ---------- Operating hours & services ---------- */
 .vesper-support .hours-section {
-  background: linear-gradient(135deg, #1a1a2e, #2c3e50);
+  background: linear-gradient(135deg, #1a1a2e, #111110);
 }
 
 .vesper-support .hours-grid {
@@ -89,7 +89,7 @@
 .vesper-support .hours-icon svg {
   width: 48px;
   height: 48px;
-  color: #52c41a;
+  color: #1e3d1e;
 }
 
 .vesper-support .hours-card h3 {
@@ -137,13 +137,13 @@
 .vesper-support .service-icon .v-icon {
   width: 36px;
   height: 36px;
-  color: #52c41a;
+  color: #1e3d1e;
 }
 
 .vesper-support .service-card h3 {
   font-size: 18px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 8px;
 }
 
@@ -161,7 +161,7 @@
 
 /* ---------- Warranty ---------- */
 .vesper-support .warranty-section {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-support .warranty-content {

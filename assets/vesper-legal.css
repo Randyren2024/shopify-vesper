@@ -23,7 +23,7 @@
 .v-legal__toc-title {
   margin: 0 0 16px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #52c41a;
+  border-bottom: 2px solid #1e3d1e;
   font-size: 18px;
   font-weight: 600;
   color: var(--vesper-text);
@@ -48,8 +48,8 @@
 }
 
 .v-legal__toc-list a:hover {
-  color: #52c41a;
-  background: #f6ffed;
+  color: #1e3d1e;
+  background: #eeecea;
 }
 
 /* ---------- Article body ---------- */
@@ -118,10 +118,10 @@
 
 .v-legal__alert {
   padding: 16px 20px;
-  border: 1px solid #b7eb8f;
+  border: 1px solid #eeecea;
   border-radius: 8px;
-  background: #f6ffed;
-  color: #2e7d32;
+  background: #eeecea;
+  color: #1e3d1e;
   font-weight: 500;
 }
 

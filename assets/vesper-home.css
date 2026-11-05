@@ -6,7 +6,7 @@
 
 /* ---------- Hero ---------- */
 .vhome-hero {
-  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+  background: linear-gradient(135deg, #eeecea 0%, #eeecea 100%);
   padding-block: clamp(40px, 5vw, 80px);
   scroll-margin-top: 100px;
 }
@@ -92,7 +92,7 @@
   border: 1px solid #d9d9d9;
   border-radius: 50%;
   background: #fff;
-  color: #2c3e50;
+  color: #111110;
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
@@ -100,8 +100,8 @@
 }
 
 .vhome-carousel__control:hover {
-  background: #52c41a;
-  border-color: #52c41a;
+  background: #1e3d1e;
+  border-color: #1e3d1e;
   color: #fff;
 }
 
@@ -123,7 +123,7 @@
 }
 
 .vhome-carousel__dot.is-active {
-  background: #52c41a;
+  background: #1e3d1e;
   transform: scale(1.25);
 }
 
@@ -132,12 +132,12 @@
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  background: #f5f7fa;
+  background: #f8f7f4;
   aspect-ratio: 1 / 1;
 }
 
 .vhome-carousel__media:focus-visible {
-  outline: 3px solid #52c41a;
+  outline: 3px solid #1e3d1e;
   outline-offset: 3px;
 }
 
@@ -194,7 +194,7 @@
 .vhome-slide__title {
   font-size: clamp(28px, 3vw, 40px);
   font-weight: 700;
-  color: #2c3e50;
+  color: #111110;
   line-height: 1.2;
   margin: 0;
 }
@@ -214,7 +214,7 @@
 .vhome-section-head h2 {
   font-size: clamp(28px, 3vw, 36px);
   font-weight: 700;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: clamp(12px, 1.5vw, 16px);
 }
 
@@ -256,7 +256,7 @@
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #f5f7fa;
+  background: #f8f7f4;
 }
 
 .vhome-solution-card__cover img {
@@ -280,7 +280,7 @@
 .vhome-solution-card__title {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin: 0;
 }
 
@@ -293,7 +293,7 @@
 
 /* ---------- Featured product cards ---------- */
 .vhome-products {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vhome-product-card {
@@ -309,7 +309,7 @@
   display: block;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: #f5f7fa;
+  background: #f8f7f4;
 }
 
 .vhome-product-card__cover img {
@@ -337,7 +337,7 @@
 }
 
 .vhome-product-card__title a {
-  color: #2c3e50;
+  color: #111110;
 }
 
 .vhome-product-card__title a:hover {
@@ -378,7 +378,7 @@
   text-align: center;
   padding: 40px 20px;
   border-radius: 12px;
-  background: #f8f9fa;
+  background: #f8f7f4;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -399,7 +399,7 @@
 }
 
 .vhome-value-card__icon--1 {
-  background: linear-gradient(135deg, #b7eb8f, #95de64);
+  background: linear-gradient(135deg, #eeecea, #2d5a2d);
 }
 
 .vhome-value-card__icon--2 {
@@ -407,17 +407,17 @@
 }
 
 .vhome-value-card__icon--3 {
-  background: linear-gradient(135deg, #ffd666, #ffc53d);
+  background: linear-gradient(135deg, #c85a0a, #c85a0a);
 }
 
 .vhome-value-card__icon--4 {
-  background: linear-gradient(135deg, #d3adf7, #b37feb);
+  background: linear-gradient(135deg, #b4b2ad, #6b6b68);
 }
 
 .vhome-value-card__title {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin: 0 0 12px;
 }
 

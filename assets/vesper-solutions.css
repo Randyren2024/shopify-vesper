@@ -6,7 +6,7 @@
 
 /* ---------- Hero ---------- */
 .v-solutions-hero .v-page-hero {
-  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+  background: linear-gradient(135deg, #eeecea 0%, #eeecea 100%);
 }
 
 .v-solutions-hero .v-page-hero__title {
@@ -111,7 +111,7 @@
 /* ---------- CTA ---------- */
 .v-solutions-cta {
   padding: clamp(56px, 7vw, 80px) 0;
-  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  background: linear-gradient(135deg, #1e3d1e, #2d5a2d);
   color: #fff;
   text-align: center;
 }
@@ -132,13 +132,13 @@
 .v-solutions-cta .v-btn {
   background: #fff;
   border-color: transparent;
-  color: #2e7d32;
+  color: #1e3d1e;
 }
 
 .v-solutions-cta .v-btn:hover {
   background: #fff;
   border-color: transparent;
-  color: #2e7d32;
+  color: #1e3d1e;
 }
 
 /* ---------- Responsive ---------- */

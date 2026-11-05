@@ -4,22 +4,23 @@
    ========================================================================== */
 
 /* ---------- Design tokens ---------- */
+/* 以主页（vesper-core.css）为基准：深绿 / 墨黑 / 米白，去掉蓝橙多彩体系 */
 :root {
-  --vesper-primary: #2e7d32;
-  --vesper-primary-light: #4caf50;
-  --vesper-primary-dark: #1b5e20;
-  --vesper-secondary: #2196f3;
-  --vesper-accent: #ff9800;
+  --vesper-primary: #1e3d1e;
+  --vesper-primary-light: #2d5a2d;
+  --vesper-primary-dark: #16301a;
+  --vesper-secondary: #111110;
+  --vesper-accent: #8de600;
 
-  --vesper-text: #2c3e50;
-  --vesper-text-secondary: #666;
-  --vesper-border: #e8e8e8;
-  --vesper-bg: #f8f9fa;
+  --vesper-text: #111110;
+  --vesper-text-secondary: #6b6b68;
+  --vesper-border: rgba(17, 17, 16, 0.1);
+  --vesper-bg: #f8f7f4;
   --vesper-card-bg: #ffffff;
 
-  --gradient-primary: linear-gradient(135deg, #2e7d32, #4caf50);
-  --gradient-secondary: linear-gradient(135deg, #2196f3, #1976d2);
-  --gradient-accent: linear-gradient(135deg, #ff9800, #f57c00);
+  --gradient-primary: linear-gradient(135deg, #1e3d1e, #2d5a2d);
+  --gradient-secondary: linear-gradient(135deg, #111110, #111110);
+  --gradient-accent: linear-gradient(135deg, #c85a0a, #a8480a);
 
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -36,12 +37,12 @@
   --glass-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   --glass-card-radius: 34px;
 
-  --vesper-font-title: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --vesper-font-body: 'Noto Sans', 'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --vesper-font-mono: 'JetBrains Mono', monospace;
+  --vesper-font-title: var(--v-font-display, "Barlow Condensed", "Barlow", system-ui, sans-serif);
+  --vesper-font-body: var(--v-font, "Barlow", system-ui, sans-serif);
+  --vesper-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --vesper-container: 1200px;
-  --vesper-header-height: 72px;
+  --vesper-header-height: 56px;
 }
 
 /* ---------- Reset ---------- */
@@ -290,7 +291,7 @@ button {
   min-height: 0;
   font-size: 17px;
   font-weight: 700;
-  background: linear-gradient(135deg, #178c45, #0f5c2e);
+  background: linear-gradient(135deg, #1e3d1e, #0f5c2e);
   color: #fff;
   box-shadow: 0 14px 34px rgba(15, 92, 46, 0.22);
 }
@@ -511,14 +512,14 @@ button {
 }
 
 .v-nav__menu a:hover {
-  background: #f6ffed;
-  color: #52c41a;
+  background: #eeecea;
+  color: #1e3d1e;
 }
 
 .v-nav__menu .v-icon {
   width: 18px;
   height: 18px;
-  color: #52c41a;
+  color: #1e3d1e;
   flex: none;
 }
 
@@ -530,7 +531,7 @@ button {
 
 .v-nav__view-all {
   font-weight: 600;
-  color: #52c41a !important;
+  color: #1e3d1e !important;
 }
 
 .v-header__actions {
@@ -589,7 +590,7 @@ button {
 }
 
 .v-header__demo {
-  background: linear-gradient(135deg, #52c41a, #73d13d);
+  background: linear-gradient(135deg, #1e3d1e, #73d13d);
   border: 0;
   color: #fff;
   font-weight: 600;
@@ -712,8 +713,8 @@ button {
 
 .v-mobile-nav a:hover,
 .v-mobile-nav a[aria-current='page'] {
-  background: #f6ffed;
-  color: #52c41a;
+  background: #eeecea;
+  color: #1e3d1e;
 }
 
 .v-mobile-nav .v-icon {
@@ -784,7 +785,7 @@ button {
 }
 
 .v-footer__link:hover {
-  color: #52c41a;
+  color: #1e3d1e;
 }
 
 .v-footer__link .v-icon {

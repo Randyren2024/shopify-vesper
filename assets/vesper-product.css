@@ -6,8 +6,20 @@
    ========================================================================== */
 
 .vpd-page {
-  background: radial-gradient(circle at top left, #eef8f0 0%, #f7f8fb 35%, #ffffff 100%);
+  background: radial-gradient(circle at top left, #eeecea 0%, #f8f7f4 35%, #ffffff 100%);
   overflow: hidden;
+}
+
+/* 图标统一：正文 16px，分享按钮 18px，描边 1.5（与主页 header 保持一致） */
+.vpd-page .v-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.vpd-page .vpd-share__btn .v-icon,
+.vpd-page .vpd-share__btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* ---------- Breadcrumb ---------- */
@@ -21,7 +33,7 @@
 }
 
 .vpd-breadcrumb .v-breadcrumb [aria-current='page'] {
-  color: #102132;
+  color: #111110;
 }
 
 /* ---------- Hero ---------- */
@@ -45,7 +57,7 @@
 }
 
 .vpd-gallery {
-  background: linear-gradient(180deg, #f6fbf7 0%, #edf5ef 100%);
+  background: linear-gradient(180deg, #f8f7f4 0%, #eeecea 100%);
   padding: 40px;
   position: relative;
   min-width: 0;
@@ -152,25 +164,31 @@
 }
 
 .vpd-stock-badge {
-  padding: 8px 16px;
+  padding: 7px 14px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
 .vpd-stock-badge--in {
-  background: #e8f8ec;
-  color: #1f8c49;
+  background: rgba(30, 61, 30, 0.07);
+  color: #1e3d1e;
+  border-color: rgba(30, 61, 30, 0.18);
 }
 
 .vpd-stock-badge--best {
-  background: #fff7e6;
-  color: #b8860b;
+  background: rgba(200, 90, 10, 0.08);
+  color: #a8480a;
+  border-color: rgba(200, 90, 10, 0.22);
 }
 
 .vpd-stock-badge--new {
-  background: #eaf3ff;
-  color: #2970ff;
+  background: rgba(17, 17, 16, 0.06);
+  color: #111110;
+  border-color: rgba(17, 17, 16, 0.12);
 }
 
 .vpd-share {
@@ -184,7 +202,7 @@
 .vpd-share__label {
   font-size: 14px;
   font-weight: 500;
-  color: #7f8b96;
+  color: #6b6b68;
   margin-right: 4px;
 }
 
@@ -195,13 +213,13 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  color: #637381;
+  color: #6b6b68;
   transition: color 0.2s ease, background 0.2s ease;
 }
 
 .vpd-share__btn:hover {
-  color: #178c45;
-  background: #eef8f0;
+  color: #1e3d1e;
+  background: #eeecea;
 }
 
 .vpd-share__btn .v-icon,
@@ -220,7 +238,7 @@
 }
 
 .vpd-category a {
-  color: #1b8b4d;
+  color: #1e3d1e;
   font-weight: 600;
   font-size: 18px;
 }
@@ -230,13 +248,13 @@
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -2.5px;
-  color: #102132;
+  color: #111110;
   margin-bottom: 20px;
 }
 
 .vpd-tagline {
   font-size: 20px;
-  color: #4d5f6d;
+  color: #6b6b68;
   line-height: 1.9;
   margin-bottom: 28px;
 }
@@ -249,24 +267,35 @@
 }
 
 .vpd-feature-badge {
-  padding: 14px 20px;
+  padding: 10px 16px;
   border-radius: 999px;
-  font-size: 14px;
+  background: #eeecea;
+  color: #111110;
+  border: 1px solid rgba(17, 17, 16, 0.1);
+  font-size: 12px;
   font-weight: 600;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
-.vpd-feature-badge:nth-child(1) { background: #eef8f0; color: #1f7c48; border: 1px solid #d8eedf; }
-.vpd-feature-badge:nth-child(2) { background: #eaf3ff; color: #2970ff; border: 1px solid #d6e6ff; }
-.vpd-feature-badge:nth-child(3) { background: #e6fcf7; color: #0d7377; border: 1px solid #c8f0e5; }
-.vpd-feature-badge:nth-child(4) { background: #fff7e6; color: #b8860b; border: 1px solid #ffe8ba; }
-.vpd-feature-badge:nth-child(5) { background: #f9f0ff; color: #722ed1; border: 1px solid #efdbff; }
-.vpd-feature-badge:nth-child(6) { background: #fff1f0; color: #cf1322; border: 1px solid #ffd8d5; }
+/* 统一的主页式前缀标记：品牌橙小圆点，替代原来的六色轮换 */
+.vpd-feature-badge::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c85a0a;
+  flex: 0 0 auto;
+}
 
 .vpd-feature-badge:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  filter: brightness(0.95);
+  transform: translateY(-2px);
+  background: #f8f7f4;
+  box-shadow: 0 6px 16px rgba(17, 17, 16, 0.08);
 }
 
 /* ---------- Product accordion (card style) ---------- */
@@ -300,7 +329,7 @@
 }
 
 .vpd-accordion .v-accordion__trigger:hover {
-  background: #eaf3ff;
+  background: #eeecea;
 }
 
 .vpd-accordion .v-accordion__panel {
@@ -318,7 +347,7 @@
   align-items: flex-start;
   gap: 10px;
   padding: 6px 0;
-  color: #4d5f6d;
+  color: #6b6b68;
   font-size: 15px;
   line-height: 1.5;
 }
@@ -328,7 +357,7 @@
   width: 16px;
   height: 16px;
   margin-top: 2px;
-  color: #1f8c49;
+  color: #1e3d1e;
 }
 
 /* ---------- CTA buttons ---------- */
@@ -344,7 +373,7 @@
   margin-top: 8px;
   margin-bottom: 24px;
   padding: 20px;
-  background: #fafafa;
+  background: #f8f7f4;
   border: 1px solid #f0f0f0;
   border-radius: 12px;
 }
@@ -360,7 +389,7 @@
 .vpd-price-current {
   font-size: 32px;
   font-weight: 700;
-  color: #2c3e50;
+  color: #111110;
 }
 
 .vpd-price-compare {
@@ -373,7 +402,7 @@
   margin-left: auto;
   font-size: 13px;
   font-weight: 500;
-  color: #52c41a;
+  color: #1e3d1e;
 }
 
 .vpd-price-stock--out {
@@ -405,7 +434,7 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
 }
 
 .vpd-qty {
@@ -430,7 +459,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #637381;
+  color: #6b6b68;
   font-size: 15px;
   font-weight: 500;
 }
@@ -444,13 +473,45 @@
   height: 16px;
 }
 
+/* ---------- Payment icons ---------- */
+.vpd-payments {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.vpd-payments__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b6b68;
+}
+
+.vpd-payments .v-payment-icons {
+  gap: 8px;
+}
+
+.vpd-payments .v-payment-icons__item {
+  padding: 4px 6px;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 4px;
+}
+
+.vpd-payments .v-payment-icons__svg {
+  height: 18px;
+}
+
 /* ---------- Shared section chrome ---------- */
 .vpd-section {
   padding-block: clamp(40px, 5vw, 72px);
 }
 
 .vpd-section--tint {
-  background: #f7faf8;
+  background: #eeecea;
 }
 
 .vpd-section-title {
@@ -460,7 +521,7 @@
   font-weight: 700;
   text-align: center;
   letter-spacing: -1px;
-  color: #102132;
+  color: #111110;
   z-index: 0;
 }
 
@@ -474,11 +535,11 @@
   height: 12px;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(26, 102, 229, 0.08) 15%,
-    rgba(26, 102, 229, 0.6) 30%,
-    rgba(77, 143, 247, 0.8) 50%,
-    rgba(26, 102, 229, 0.6) 70%,
-    rgba(26, 102, 229, 0.08) 85%,
+    rgba(200, 90, 10, 0.08) 15%,
+    rgba(200, 90, 10, 0.6) 30%,
+    rgba(230, 140, 60, 0.8) 50%,
+    rgba(200, 90, 10, 0.6) 70%,
+    rgba(200, 90, 10, 0.08) 85%,
     transparent 100%
   );
   border-radius: 50%;
@@ -494,18 +555,18 @@
   height: 6px;
   margin: 16px auto 0;
   background: linear-gradient(90deg,
-    #1a66e5 0%,
-    #4d8ff7 20%,
-    #7bb3ff 40%,
-    #4d8ff7 60%,
-    #1a66e5 80%,
-    #1555c0 100%
+    #1e3d1e 0%,
+    #2d5a2d 20%,
+    #c85a0a 40%,
+    #2d5a2d 60%,
+    #1e3d1e 80%,
+    #16301a 100%
   );
   background-size: 200% 100%;
   border-radius: 0 0 8px 8px;
   box-shadow:
-    0 2px 8px rgba(26, 102, 229, 0.35),
-    0 0 20px rgba(26, 102, 229, 0.15);
+    0 2px 8px rgba(200, 90, 10, 0.25),
+    0 0 20px rgba(200, 90, 10, 0.12);
   animation: vpdRibbonWave 4s ease-in-out infinite;
 }
 
@@ -594,7 +655,7 @@
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #178c45, #0f5c2e);
+  background: linear-gradient(135deg, #1e3d1e, #16301a);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -606,15 +667,15 @@
   width: 40px;
   height: 4px;
   margin: 10px 0 6px;
-  background: linear-gradient(90deg, #1a66e5, #4d8ff7, #1a66e5);
+  background: linear-gradient(90deg, #1e3d1e, #c85a0a, #1e3d1e);
   border-radius: 0 0 4px 4px;
-  box-shadow: 0 1px 4px rgba(26, 102, 229, 0.25);
+  box-shadow: 0 1px 4px rgba(30, 61, 30, 0.25);
 }
 
 .vpd-learn-card__desc {
   font-size: 20px;
   line-height: 1.9;
-  color: #4d5f6d;
+  color: #6b6b68;
 }
 
 /* ---------- Core applications ---------- */
@@ -650,9 +711,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e8f5e9, #d0ebd6);
+  background: linear-gradient(135deg, #eeecea, #e3ded6);
   border-radius: 50%;
-  color: #1f8c49;
+  color: #1e3d1e;
 }
 
 .vpd-app-card__icon .v-icon {
@@ -670,7 +731,7 @@
 .vpd-app-card h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
 }
 
 /* ---------- Specifications ---------- */
@@ -694,7 +755,7 @@
 }
 
 .vpd-specs .v-specs-table tr:nth-child(even) td {
-  background: #eaf3ff;
+  background: #eeecea;
 }
 
 /* ---------- FAQ ---------- */
@@ -726,7 +787,7 @@
 }
 
 .vpd-faq__accordion .v-accordion__trigger:hover {
-  background: #eaf3ff;
+  background: #eeecea;
 }
 
 .vpd-faq__accordion .v-accordion__panel {
@@ -737,7 +798,7 @@
   margin: 0;
   font-size: 20px;
   line-height: 1.9;
-  color: #4d5f6d;
+  color: #6b6b68;
 }
 
 /* ---------- Related products ---------- */
@@ -767,7 +828,7 @@
 .vpd-related-card__cover {
   height: 180px;
   overflow: hidden;
-  background: #f5f5f5;
+  background: #f1efea;
 }
 
 .vpd-related-card__cover img {
@@ -790,14 +851,14 @@
   margin: 0 0 6px;
   font-size: 15px;
   font-weight: 600;
-  color: #102132;
+  color: #111110;
 }
 
 .vpd-related-card__desc {
   margin: 0;
   font-size: 13px;
   line-height: 1.7;
-  color: #7f8b96;
+  color: #6b6b68;
 }
 
 /* ---------- Closing CTA ---------- */
@@ -805,7 +866,7 @@
   padding: 80px 16px;
   text-align: center;
   color: #fff;
-  background: linear-gradient(135deg, #178c45, #0f5c2e);
+  background: linear-gradient(135deg, #1e3d1e, #16301a);
 }
 
 .vpd-cta-inner h2 {
@@ -831,13 +892,13 @@
 
 .vpd-cta-contact {
   background: #fff;
-  color: #2e7d32;
+  color: #1e3d1e;
   border-color: #fff;
 }
 
 .vpd-cta-contact:hover {
   background: #fff;
-  color: #1b5e20;
+  color: #16301a;
 }
 
 /* ---------- Responsive ---------- */

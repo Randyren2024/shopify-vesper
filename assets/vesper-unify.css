@@ -1,0 +1,34 @@
+/*
+ * Vesper — 全站统一层
+ *
+ * 以主页（vesper-robot.css + vesper-core.css）为唯一基准。
+ * 颜色 token 已经写进 vesper-base.css 的 :root，这里只负责
+ * 最后一道收敛：字体、正文底色、固定头部后的内容留白。
+ * 必须最后加载。
+ */
+
+/* 正文统一为主页的字族与底色 */
+body {
+  font-family: var(--v-font, "Barlow", system-ui, sans-serif);
+  background: var(--v-bg, #f8f7f4);
+  color: var(--v-ink, #111110);
+}
+
+/* 表单控件跟随正文字体，避免回退到系统默认 */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* 标题统一使用主页的展示字族 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--v-font-display, var(--v-font, "Barlow", system-ui, sans-serif));
+  color: var(--v-ink, #111110);
+}
+
+/* 主页 header 是 fixed 定位，非首页需要留出导航高度 */
+body:not(.template-index) .v-main {
+  padding-top: var(--v-nav-height, 56px);
+}

@@ -134,17 +134,26 @@
       </style>
     {%- else -%}
       {%- comment -%}
-        All other templates — Vesper AgriTech theme (ported from theme/).
+        All other templates — aligned to the home page design system.
+
+        The home page (vesper-robot.css + vesper-core.css) is the single
+        source of truth for header, footer, typography and colour. Every
+        other template loads the same layers on top of the page-level
+        styles so the whole store reads as one brand:
+
+          critical.css        base reset
+          vesper-base.css     page-level component styles
+          vesper-robot.css    utility classes used by header/footer
+          vesper-core.css     brand tokens (--v-*) + shared components
+          vesper-unify.css    final alignment: fonts + colours
       {%- endcomment -%}
       {% render 'css-variables' %}
 
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap"
-      >
-
       {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
       {{ 'vesper-base.css' | asset_url | stylesheet_tag }}
+      {{ 'vesper-robot.css' | asset_url | stylesheet_tag }}
+      {{ 'vesper-core.css' | asset_url | stylesheet_tag }}
+      {{ 'vesper-unify.css' | asset_url | stylesheet_tag }}
 
       {% render 'meta-tags' %}
     {%- endif -%}
@@ -169,13 +178,13 @@
     </body>
   {%- else -%}
     <body class="vesper-theme template-{{ template.name | handle }}">
-      {% sections 'agri-header-group' %}
+      {% sections 'header-group' %}
 
       <main id="MainContent" class="v-main" role="main" tabindex="-1">
         {{ content_for_layout }}
       </main>
 
-      {% sections 'agri-footer-group' %}
+      {% sections 'footer-group' %}
 
       {% render 'vesper-cart-drawer' %}
 

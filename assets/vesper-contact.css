@@ -23,7 +23,7 @@
 
 /* ---------- Contact information cards ---------- */
 .vesper-contact .contact-info-section {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-contact .contact-cards {
@@ -59,21 +59,21 @@
 }
 
 .vesper-contact .contact-icon--email {
-  background: linear-gradient(135deg, #ffd666, #ffc53d);
+  background: linear-gradient(135deg, #c85a0a, #c85a0a);
 }
 
 .vesper-contact .contact-icon--whatsapp {
-  background: linear-gradient(135deg, #b7eb8f, #95de64);
+  background: linear-gradient(135deg, #eeecea, #2d5a2d);
 }
 
 .vesper-contact .contact-icon--location {
-  background: linear-gradient(135deg, #d3adf7, #b37feb);
+  background: linear-gradient(135deg, #b4b2ad, #6b6b68);
 }
 
 .vesper-contact .contact-card-title {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 10px;
 }
 
@@ -102,7 +102,7 @@
 .vesper-contact .form-container {
   max-width: 800px;
   margin: 0 auto;
-  background: #f8f9fa;
+  background: #f8f7f4;
   border-radius: 16px;
   padding: 50px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -116,7 +116,7 @@
 .vesper-contact .form-title {
   font-size: 32px;
   font-weight: 700;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 12px;
 }
 
@@ -148,9 +148,9 @@
 }
 
 .vesper-contact .form-success {
-  background: #f6ffed;
-  border: 1px solid #b7eb8f;
-  color: #237804;
+  background: #eeecea;
+  border: 1px solid #eeecea;
+  color: #16301a;
   border-radius: 8px;
   padding: 14px 18px;
   margin-bottom: 24px;
@@ -212,11 +212,11 @@
 
 .vesper-contact .contact-meta__social a {
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
 }
 
 .vesper-contact .contact-meta__social a:hover {
-  color: #52c41a;
+  color: #1e3d1e;
 }
 
 /* ---------- Responsive ---------- */

@@ -19,7 +19,7 @@
 /* ---------- Form card ---------- */
 
 .vesper-booking .booking-form-card {
-  background: #f8f9fa;
+  background: #f8f7f4;
   border-radius: 16px;
   padding: 44px 48px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
@@ -114,9 +114,9 @@
 }
 
 .vesper-booking .booking-success {
-  background: #f6ffed;
-  border: 1px solid #b7eb8f;
-  color: #237804;
+  background: #eeecea;
+  border: 1px solid #eeecea;
+  color: #16301a;
   font-weight: 600;
 }
 
@@ -193,7 +193,7 @@
 }
 
 .vesper-booking .booking-side-card--help {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-booking .booking-side-card--help p {

@@ -23,7 +23,7 @@
 
 /* ---------- Introduction ---------- */
 .vesper-about .intro-section {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-about .intro-content {
@@ -81,7 +81,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: #52c41a;
+  background: #1e3d1e;
 }
 
 .vesper-about .timeline-item {
@@ -129,8 +129,8 @@
   bottom: 0;
   width: 80px;
   height: 20px;
-  background: linear-gradient(to top, #f6ffed, #d9f7be);
-  color: #237804;
+  background: linear-gradient(to top, #eeecea, #d9f7be);
+  color: #16301a;
   border-radius: 0 0 40px 40px;
   display: flex;
   align-items: center;
@@ -140,7 +140,7 @@
   text-align: center;
   z-index: 2;
   box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid #b7eb8f;
+  border-top: 1px solid #eeecea;
 }
 
 .vesper-about .timeline-content {
@@ -148,13 +148,13 @@
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #52c41a;
+  border-left: 4px solid #1e3d1e;
 }
 
 .vesper-about .timeline-title {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 10px;
 }
 
@@ -167,7 +167,7 @@
 
 /* ---------- Leadership team ---------- */
 .vesper-about .team-section {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-about .team-grid {
@@ -203,13 +203,13 @@
 .vesper-about .team-name {
   font-size: 28px;
   font-weight: 700;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 8px;
 }
 
 .vesper-about .team-position {
   font-size: 18px;
-  color: #52c41a;
+  color: #1e3d1e;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -243,7 +243,7 @@
   text-align: center;
   padding: 40px 20px;
   border-radius: 12px;
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-about .value-icon {
@@ -259,7 +259,7 @@
 }
 
 .vesper-about .value-1 {
-  background: linear-gradient(135deg, #b7eb8f, #95de64);
+  background: linear-gradient(135deg, #eeecea, #2d5a2d);
 }
 
 .vesper-about .value-2 {
@@ -267,17 +267,17 @@
 }
 
 .vesper-about .value-3 {
-  background: linear-gradient(135deg, #ffd666, #ffc53d);
+  background: linear-gradient(135deg, #c85a0a, #c85a0a);
 }
 
 .vesper-about .value-4 {
-  background: linear-gradient(135deg, #d3adf7, #b37feb);
+  background: linear-gradient(135deg, #b4b2ad, #6b6b68);
 }
 
 .vesper-about .value-title {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 12px;
 }
 
@@ -290,7 +290,7 @@
 
 /* ---------- Statistics ---------- */
 .vesper-about .stats-section {
-  background: #f8f9fa;
+  background: #f8f7f4;
 }
 
 .vesper-about .stats-grid {
@@ -313,7 +313,7 @@
 .vesper-about .stat-title {
   font-size: 20px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 12px;
 }
 
@@ -326,7 +326,7 @@
 
 /* ---------- Contact CTA ---------- */
 .vesper-about .contact-section {
-  background: linear-gradient(135deg, #f6ffed 0%, #e6f7ff 100%);
+  background: linear-gradient(135deg, #eeecea 0%, #eeecea 100%);
 }
 
 .vesper-about .contact-content {
@@ -343,7 +343,7 @@
 .vesper-about .contact-title {
   font-size: 36px;
   font-weight: 700;
-  color: #2c3e50;
+  color: #111110;
   margin-bottom: 20px;
 }
 
