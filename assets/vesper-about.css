@@ -471,3 +471,267 @@
     font-size: 16px;
   }
 }
+
+
+/* 2026 refinement — story, credibility and leadership */
+.vesper-about__lead-wrap {
+  padding-block: clamp(18px, 3vw, 28px);
+  background: #eeecea;
+}
+
+.vesper-about__lead {
+  max-width: 980px;
+  margin: 0 auto;
+  color: #1e3d1e;
+  font-size: clamp(19px, 2.5vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.vesper-about .intro-section {
+  background: #f8f7f4;
+}
+
+.vesper-about .intro-content {
+  gap: clamp(28px, 5vw, 64px);
+}
+
+.vesper-about .intro-text {
+  flex-basis: 42%;
+}
+
+.vesper-about .intro-text p {
+  color: #555550;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.8;
+}
+
+.vesper-about .intro-image {
+  flex-basis: 48%;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(17, 17, 16, 0.08);
+}
+
+.vesper-about .intro-image img {
+  min-height: 340px;
+  height: clamp(340px, 38vw, 480px);
+}
+
+.vesper-about .timeline-section {
+  background: #eeecea;
+}
+
+.vesper-about .timeline {
+  max-width: 900px;
+}
+
+.vesper-about .timeline::before {
+  left: 35px;
+  width: 1px;
+  background: rgba(30, 61, 30, 0.24);
+}
+
+.vesper-about .timeline-item {
+  margin-bottom: 22px;
+  padding: 24px 28px 24px 108px;
+  border: 1px solid rgba(17, 17, 16, 0.075);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 7px 24px rgba(17, 17, 16, 0.035);
+}
+
+.vesper-about .timeline-logo {
+  left: 0;
+  top: 50%;
+  width: 70px;
+  height: 70px;
+  padding: 8px;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  transform: translateY(-50%);
+  box-shadow: 0 8px 20px rgba(17, 17, 16, 0.06);
+}
+
+.vesper-about .timeline-year {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  border: 1px solid rgba(30, 61, 30, 0.12);
+  border-radius: 999px;
+  background: #f5f4f0;
+  color: #1e3d1e;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.vesper-about .timeline-content {
+  padding: 0;
+}
+
+.vesper-about .timeline-title {
+  margin-bottom: 6px;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.2;
+}
+
+.vesper-about .timeline-description {
+  margin: 0;
+  color: #6b6b68;
+  line-height: 1.7;
+}
+
+.vesper-about .team-section,
+.vesper-about .values-section {
+  background: #f8f7f4;
+}
+
+.vesper-about .team-grid,
+.vesper-about .values-grid,
+.vesper-about .stats-grid {
+  gap: 18px;
+}
+
+.vesper-about .team-card {
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 9px 28px rgba(17, 17, 16, 0.05);
+}
+
+.vesper-about .team-image {
+  overflow: hidden;
+  background: #eeecea;
+}
+
+.vesper-about .team-image img {
+  transition: transform 0.45s ease;
+}
+
+.vesper-about .team-card:hover .team-image img {
+  transform: scale(1.035);
+}
+
+.vesper-about .team-info {
+  padding: 24px;
+}
+
+.vesper-about .team-name {
+  margin-bottom: 4px;
+  font-size: 22px;
+}
+
+.vesper-about .team-position {
+  color: #1e3d1e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.vesper-about .team-bio {
+  color: #6b6b68;
+  line-height: 1.75;
+}
+
+.vesper-about .value-card,
+.vesper-about .stat-card {
+  padding: 26px;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(17, 17, 16, 0.04);
+}
+
+.vesper-about .value-icon,
+.vesper-about .stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(30, 61, 30, 0.12);
+  border-radius: 14px;
+  background: #f2f1ed;
+  color: #1e3d1e;
+  font-size: 22px;
+}
+
+.vesper-about .value-title,
+.vesper-about .stat-title {
+  margin-bottom: 8px;
+  font-size: 19px;
+  line-height: 1.2;
+}
+
+.vesper-about .value-description,
+.vesper-about .stat-description {
+  margin: 0;
+  color: #6b6b68;
+  line-height: 1.7;
+}
+
+.vesper-about .contact-section {
+  background: #eeecea;
+}
+
+.vesper-about .contact-content {
+  padding: clamp(30px, 5vw, 58px);
+  border-radius: 22px;
+  background: #1e3d1e;
+  color: #fff;
+  box-shadow: 0 18px 44px rgba(30, 61, 30, 0.16);
+}
+
+.vesper-about .contact-title {
+  color: #fff;
+  font-size: clamp(29px, 4vw, 42px);
+  line-height: 1.05;
+}
+
+.vesper-about .contact-description,
+.vesper-about .contact-detail {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.vesper-about .contact-actions .v-btn--outline {
+  border-color: rgba(255, 255, 255, 0.52);
+  color: #fff;
+}
+
+.vesper-about .contact-actions .v-btn--outline:hover {
+  background: #fff;
+  color: #1e3d1e;
+}
+
+@media (max-width: 767px) {
+  .vesper-about .timeline::before {
+    left: 22px;
+  }
+
+  .vesper-about .timeline-item {
+    padding: 90px 18px 20px;
+  }
+
+  .vesper-about .timeline-logo {
+    top: 10px;
+    left: 10px;
+    width: 56px;
+    height: 56px;
+    transform: none;
+  }
+
+  .vesper-about .intro-image img {
+    min-height: 260px;
+    height: 280px;
+  }
+
+  .vesper-about .contact-content {
+    padding: 28px 22px;
+  }
+}

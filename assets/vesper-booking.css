@@ -229,3 +229,141 @@
     padding: 22px 20px;
   }
 }
+
+
+/* 2026 refinement — demo booking flow */
+.vesper-booking .booking-lead {
+  max-width: 780px;
+  margin: 0 auto 34px;
+  color: #1e3d1e;
+  font-size: clamp(19px, 2.3vw, 26px);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.vesper-booking .booking-layout {
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
+  gap: clamp(18px, 3vw, 30px);
+}
+
+.vesper-booking .booking-form-card,
+.vesper-booking .booking-side-card {
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(17, 17, 16, 0.05);
+}
+
+.vesper-booking .booking-form-card {
+  padding: clamp(24px, 4vw, 46px);
+}
+
+.vesper-booking .booking-form-head {
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(17, 17, 16, 0.08);
+  margin-bottom: 26px;
+}
+
+.vesper-booking .booking-form-head h2 {
+  font-size: clamp(25px, 3vw, 32px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.vesper-booking .booking-form-head p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.vesper-booking .booking-row {
+  gap: 0 18px;
+}
+
+.vesper-booking .booking-fieldset {
+  margin-bottom: 22px;
+}
+
+.vesper-booking .booking-choice span {
+  min-height: 40px;
+  padding: 9px 15px;
+  border-color: rgba(17, 17, 16, 0.14);
+  background: #f8f7f4;
+}
+
+.vesper-booking .booking-choice input:checked + span {
+  border-color: #1e3d1e;
+  background: rgba(30, 61, 30, 0.08);
+  color: #1e3d1e;
+}
+
+.vesper-booking .booking-actions {
+  padding-top: 12px;
+}
+
+.vesper-booking .booking-actions .v-btn {
+  min-width: 190px;
+  min-height: 50px;
+}
+
+.vesper-booking .booking-side {
+  gap: 16px;
+}
+
+.vesper-booking .booking-side-card {
+  padding: 24px;
+}
+
+.vesper-booking .booking-side-card h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.vesper-booking .booking-steps li {
+  gap: 14px;
+  padding-block: 12px;
+}
+
+.vesper-booking .booking-step-index {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #eeecea;
+  color: #1e3d1e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.vesper-booking .booking-step-body span {
+  color: #6b6b68;
+  line-height: 1.55;
+}
+
+.vesper-booking .booking-side-card--help {
+  background: #eeecea;
+}
+
+@media (max-width: 900px) {
+  .vesper-booking .booking-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vesper-booking .booking-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .vesper-booking .booking-form-card {
+    padding: 22px 18px;
+  }
+
+  .vesper-booking .booking-row,
+  .vesper-booking .booking-side {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vesper-booking .booking-actions .v-btn {
+    width: 100%;
+  }
+}
