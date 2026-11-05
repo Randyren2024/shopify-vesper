@@ -13,50 +13,54 @@
 -%}
 
 <div class="vesper-about">
-  <div class="vesper-about__lead-wrap">
+  <div class="ab-lead">
     <div class="v-container">
-      <p class="vesper-about__lead" data-reveal>Bridging China's Intelligent Hardware Technology with Australia Agriculture</p>
+      <p class="ab-lead__text" data-reveal>Bridging China's Intelligent Hardware Technology with Australia Agriculture</p>
     </div>
   </div>
 
-  {%- comment -%} Company introduction {%- endcomment -%}
-  <section class="intro-section v-section">
+  {%- comment -%} 01 — Company introduction {%- endcomment -%}
+  <section class="ab-section ab-section--paper">
     <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.intro_heading }}</h2>
-        <p>{{ section.settings.intro_subtitle }}</p>
-      </div>
+      <header class="ab-head" data-reveal>
+        <span class="ab-head__index">01 — Story</span>
+        <h2 class="ab-head__title">{{ section.settings.intro_heading }}</h2>
+        <p class="ab-head__sub">{{ section.settings.intro_subtitle }}</p>
+      </header>
 
-      <div class="intro-content">
-        <div class="intro-text" data-reveal="left">
+      <div class="ab-story">
+        <div class="ab-story__body" data-reveal="left">
           {{ section.settings.intro_body }}
         </div>
 
         {%- if section.settings.intro_image != blank -%}
-          <div class="intro-image" data-reveal="right">
+          <figure class="ab-story__figure" data-reveal="right">
             <img
               src="{{ section.settings.intro_image | asset_url }}"
               alt="{{ section.settings.intro_image_alt | escape }}"
               loading="lazy"
             >
-          </div>
+          </figure>
         {%- endif -%}
       </div>
     </div>
   </section>
 
-  {%- comment -%} Company journey timeline {%- endcomment -%}
-  <section class="timeline-section v-section">
+  {%- comment -%} 02 — Company journey {%- endcomment -%}
+  <section class="ab-section ab-section--tint">
     <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.journey_heading }}</h2>
-        <p>{{ section.settings.journey_subtitle }}</p>
-      </div>
+      <header class="ab-head" data-reveal>
+        <span class="ab-head__index">02 — Journey</span>
+        <h2 class="ab-head__title">{{ section.settings.journey_heading }}</h2>
+        <p class="ab-head__sub">{{ section.settings.journey_subtitle }}</p>
+      </header>
 
-      <div class="timeline">
+      <ol class="ab-steps">
         {%- for block in journey_items -%}
-          <div class="timeline-item" data-reveal {{ block.shopify_attributes }}>
-            <div class="timeline-logo">
+          <li class="ab-step" data-reveal {{ block.shopify_attributes }}>
+            <span class="ab-step__year">{{ block.settings.year }}</span>
+
+            <span class="ab-step__logo">
               {%- if block.settings.logo_asset != blank -%}
                 <img
                   src="{{ block.settings.logo_asset | asset_url }}"
@@ -66,31 +70,32 @@
               {%- else -%}
                 {% render 'vesper-icons', icon: 'grid' %}
               {%- endif -%}
+            </span>
+
+            <div class="ab-step__body">
+              <h3 class="ab-step__title">{{ block.settings.title }}</h3>
+              <p class="ab-step__desc">{{ block.settings.description }}</p>
             </div>
-            <div class="timeline-year">{{ block.settings.year }}</div>
-            <div class="timeline-content">
-              <h3 class="timeline-title">{{ block.settings.title }}</h3>
-              <p class="timeline-description">{{ block.settings.description }}</p>
-            </div>
-          </div>
+          </li>
         {%- endfor -%}
-      </div>
+      </ol>
     </div>
   </section>
 
-  {%- comment -%} Leadership team {%- endcomment -%}
-  <section class="team-section v-section">
+  {%- comment -%} 03 — Leadership team {%- endcomment -%}
+  <section class="ab-section ab-section--white">
     <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.team_heading }}</h2>
-        <p>{{ section.settings.team_subtitle }}</p>
-      </div>
+      <header class="ab-head" data-reveal>
+        <span class="ab-head__index">03 — Leadership</span>
+        <h2 class="ab-head__title">{{ section.settings.team_heading }}</h2>
+        <p class="ab-head__sub">{{ section.settings.team_subtitle }}</p>
+      </header>
 
-      <div class="team-grid">
+      <div class="ab-team">
         {%- for block in team_members -%}
-          <div class="team-card v-card" data-reveal {{ block.shopify_attributes }}>
+          <article class="ab-profile" data-reveal {{ block.shopify_attributes }}>
             {%- if block.settings.photo_asset != blank -%}
-              <div class="team-image">
+              <div class="ab-profile__photo">
                 <img
                   src="{{ block.settings.photo_asset | asset_url }}"
                   alt="{{ block.settings.photo_alt | escape }}"
@@ -98,79 +103,155 @@
                 >
               </div>
             {%- endif -%}
-            <div class="team-info">
-              <h3 class="team-name">{{ block.settings.name }}</h3>
-              <p class="team-position">{{ block.settings.position }}</p>
-              <div class="team-bio">{{ block.settings.bio }}</div>
+
+            <div class="ab-profile__body">
+              <h3 class="ab-profile__name">{{ block.settings.name }}</h3>
+              <p class="ab-profile__role">{{ block.settings.position }}</p>
+              <div class="ab-profile__bio">{{ block.settings.bio }}</div>
             </div>
-          </div>
+          </article>
         {%- endfor -%}
       </div>
     </div>
   </section>
 
-  {%- comment -%} Core values {%- endcomment -%}
-  <section class="values-section v-section">
+  {%- comment -%} 04 — Core values {%- endcomment -%}
+  <section class="ab-section ab-section--paper">
     <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.values_heading }}</h2>
-        <p>{{ section.settings.values_subtitle }}</p>
-      </div>
+      <header class="ab-head" data-reveal>
+        <span class="ab-head__index">04 — Values</span>
+        <h2 class="ab-head__title">{{ section.settings.values_heading }}</h2>
+        <p class="ab-head__sub">{{ section.settings.values_subtitle }}</p>
+      </header>
 
-      <div class="values-grid">
+      <div class="ab-values">
         {%- for block in value_items -%}
-          <div class="value-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
-            <div class="value-icon value-{{ forloop.index }}">{{ block.settings.icon }}</div>
-            <h3 class="value-title">{{ block.settings.title }}</h3>
-            <p class="value-description">{{ block.settings.description }}</p>
-          </div>
+          {%- liquid
+            assign value_icon = ''
+            case block.settings.icon
+              when 'shield'
+                assign value_icon = 'shield'
+              when 'users'
+                assign value_icon = 'users'
+              when 'grid'
+                assign value_icon = 'grid'
+              when 'map-pin'
+                assign value_icon = 'map-pin'
+              when 'rocket'
+                assign value_icon = 'rocket'
+              when 'headset'
+                assign value_icon = 'headset'
+            endcase
+
+            if value_icon == blank
+              case forloop.index
+                when 1
+                  assign value_icon = 'shield'
+                when 2
+                  assign value_icon = 'users'
+                when 3
+                  assign value_icon = 'grid'
+                else
+                  assign value_icon = 'map-pin'
+              endcase
+            endif
+          -%}
+
+          <article class="ab-value" data-reveal {{ block.shopify_attributes }}>
+            <span class="ab-value__icon">
+              {%- render 'vesper-icons', icon: value_icon -%}
+            </span>
+            <h3 class="ab-value__title">{{ block.settings.title }}</h3>
+            <p class="ab-value__desc">{{ block.settings.description }}</p>
+          </article>
         {%- endfor -%}
       </div>
     </div>
   </section>
 
-  {%- comment -%} Statistics {%- endcomment -%}
-  <section class="stats-section v-section">
+  {%- comment -%} 05 — Track record {%- endcomment -%}
+  <section class="ab-section ab-section--white">
     <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.stats_heading }}</h2>
-        <p>{{ section.settings.stats_subtitle }}</p>
-      </div>
+      <header class="ab-head" data-reveal>
+        <span class="ab-head__index">05 — Track record</span>
+        <h2 class="ab-head__title">{{ section.settings.stats_heading }}</h2>
+        <p class="ab-head__sub">{{ section.settings.stats_subtitle }}</p>
+      </header>
 
-      <div class="stats-grid">
+      <div class="ab-stats">
         {%- for block in stat_items -%}
-          <div class="stat-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
-            <div class="stat-icon">{{ block.settings.icon }}</div>
-            <h3 class="stat-title">{{ block.settings.title }}</h3>
-            <p class="stat-description">{{ block.settings.description }}</p>
-          </div>
+          {%- liquid
+            assign stat_icon = ''
+            case block.settings.icon
+              when 'rocket'
+                assign stat_icon = 'rocket'
+              when 'agricultural-robots'
+                assign stat_icon = 'agricultural-robots'
+              when 'map-pin'
+                assign stat_icon = 'map-pin'
+              when 'truck'
+                assign stat_icon = 'truck'
+              when 'users'
+                assign stat_icon = 'users'
+            endcase
+
+            if stat_icon == blank
+              case forloop.index
+                when 1
+                  assign stat_icon = 'rocket'
+                when 2
+                  assign stat_icon = 'agricultural-robots'
+                when 3
+                  assign stat_icon = 'map-pin'
+                else
+                  assign stat_icon = 'truck'
+              endcase
+            endif
+          -%}
+
+          <article class="ab-stat" data-reveal {{ block.shopify_attributes }}>
+            <span class="ab-stat__icon">
+              {%- render 'vesper-icons', icon: stat_icon -%}
+            </span>
+            <h3 class="ab-stat__title">{{ block.settings.title }}</h3>
+            <p class="ab-stat__desc">{{ block.settings.description }}</p>
+          </article>
         {%- endfor -%}
       </div>
     </div>
   </section>
 
-  {%- comment -%} Contact CTA {%- endcomment -%}
-  <section class="contact-section v-section">
+  {%- comment -%} Closing CTA {%- endcomment -%}
+  <section class="ab-cta-section">
     <div class="v-container">
-      <div class="contact-content" data-reveal>
-        <h2 class="contact-title">{{ section.settings.cta_heading }}</h2>
-        <p class="contact-description">{{ section.settings.cta_description }}</p>
+      <div class="ab-cta" data-reveal>
+        <h2 class="ab-cta__title">{{ section.settings.cta_heading }}</h2>
+        <p class="ab-cta__desc">{{ section.settings.cta_description }}</p>
 
-        <div class="contact-actions">
-          <a class="v-btn v-btn--primary v-btn--lg" href="/pages/contact">{{ section.settings.contact_button_label }}</a>
+        <div class="ab-cta__actions">
+          <a class="v-btn v-btn--lg ab-cta__primary" href="/pages/contact">{{ section.settings.contact_button_label }}</a>
           <button
             type="button"
-            class="v-btn v-btn--outline v-btn--lg"
+            class="v-btn v-btn--lg ab-cta__ghost"
             data-request-demo
             data-whatsapp="{{ section.settings.whatsapp_number }}"
             data-message="{{ section.settings.demo_message | escape }}"
           >{{ section.settings.demo_label }}</button>
         </div>
 
-        <div class="contact-info">
-          <p class="contact-detail">📧 info@vesperrobot.au</p>
-          <p class="contact-detail">📞 +61 448 290 926</p>
-          <p class="contact-detail">📍 3 Read Street, Templestowe VIC 3106, Australia</p>
+        <div class="ab-cta__contacts">
+          <a class="ab-cta__contact" href="mailto:info@vesperrobot.au">
+            {%- render 'vesper-icons', icon: 'mail' -%}
+            <span>info@vesperrobot.au</span>
+          </a>
+          <a class="ab-cta__contact" href="tel:+61448290926">
+            {%- render 'vesper-icons', icon: 'phone' -%}
+            <span>+61 448 290 926</span>
+          </a>
+          <span class="ab-cta__contact">
+            {%- render 'vesper-icons', icon: 'map-pin' -%}
+            <span>3 Read Street, Templestowe VIC 3106, Australia</span>
+          </span>
         </div>
       </div>
     </div>
@@ -386,7 +467,8 @@
         {
           "type": "text",
           "id": "icon",
-          "label": "Icon (emoji)"
+          "label": "Icon name (optional)",
+          "info": "shield, users, grid, map-pin, rocket or headset. Leave empty to use the default for this position."
         },
         {
           "type": "text",
@@ -407,7 +489,8 @@
         {
           "type": "text",
           "id": "icon",
-          "label": "Icon (emoji)"
+          "label": "Icon name (optional)",
+          "info": "rocket, agricultural-robots, map-pin, truck or users. Leave empty to use the default for this position."
         },
         {
           "type": "text",

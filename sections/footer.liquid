@@ -151,7 +151,8 @@
   </div>
 </footer>
 
-{%- if section.settings.mobile_cta_label != blank -%}
+{%- comment -%} 产品页底部由 .vpd-buybar 承担转化，避免两条固定底栏叠在一起 {%- endcomment -%}
+{%- if section.settings.mobile_cta_label != blank and template.name != 'product' -%}
   <div class="fixed bottom-0 left-0 right-0 z-40 md:hidden">
     <a
       href="{{ section.settings.mobile_cta_link }}"

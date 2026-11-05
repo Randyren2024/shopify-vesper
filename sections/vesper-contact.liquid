@@ -10,88 +10,116 @@
 -%}
 
 <div class="vesper-contact">
-  <div class="vesper-contact__lead-wrap">
+  <section class="vcp-section">
     <div class="v-container">
-      <p class="vesper-contact__lead" data-reveal>Get In Touch</p>
-    </div>
-  </div>
+      <div class="vcp-layout">
+        <aside class="vcp-aside" data-reveal="left">
+          <p class="vcp-eyebrow">Get in touch</p>
+          <h2 class="vcp-heading">{{ section.settings.info_heading }}</h2>
+          <p class="vcp-sub">{{ section.settings.info_subtitle }}</p>
 
-  {%- comment -%} Contact information cards {%- endcomment -%}
-  <section class="contact-info-section v-section">
-    <div class="v-container">
-      <div class="v-section-head" data-reveal>
-        <h2 class="gradient-text-secondary">{{ section.settings.info_heading }}</h2>
-        <p>{{ section.settings.info_subtitle }}</p>
-      </div>
+          <ul class="vcp-list">
+            {%- for block in contact_cards -%}
+              {%- liquid
+                assign card_icon = ''
+                case block.settings.icon
+                  when 'phone'
+                    assign card_icon = 'phone'
+                  when 'mail'
+                    assign card_icon = 'mail'
+                  when 'map-pin'
+                    assign card_icon = 'map-pin'
+                  when 'whatsapp'
+                    assign card_icon = 'whatsapp'
+                endcase
 
-      <div class="contact-cards">
-        {%- for block in contact_cards -%}
-          <div class="contact-card v-card v-card-hover" data-reveal {{ block.shopify_attributes }}>
-            <div class="contact-icon contact-icon--{{ block.settings.tone }}">
-              <span>{{ block.settings.icon }}</span>
+                if card_icon == blank
+                  case block.settings.tone
+                    when 'phone'
+                      assign card_icon = 'phone'
+                    when 'email'
+                      assign card_icon = 'mail'
+                    when 'whatsapp'
+                      assign card_icon = 'whatsapp'
+                    when 'location'
+                      assign card_icon = 'map-pin'
+                    else
+                      assign card_icon = 'phone'
+                  endcase
+                endif
+              -%}
+
+              <li class="vcp-item" {{ block.shopify_attributes }}>
+                <span class="vcp-item__icon">
+                  {%- render 'vesper-icons', icon: card_icon -%}
+                </span>
+
+                <div class="vcp-item__body">
+                  <span class="vcp-item__label">{{ block.settings.title }}</span>
+                  <span class="vcp-item__value">{{ block.settings.content }}</span>
+                  {%- if block.settings.subtext != blank -%}
+                    <span class="vcp-item__note">{{ block.settings.subtext }}</span>
+                  {%- endif -%}
+                </div>
+
+                {%- case block.settings.action_type -%}
+                  {%- when 'tel' -%}
+                    <a class="vcp-item__link" href="tel:{{ block.settings.action_value | remove: ' ' }}">
+                      <span>{{ block.settings.action_label }}</span>
+                      {%- render 'vesper-icons', icon: 'arrow-right' -%}
+                    </a>
+                  {%- when 'mailto' -%}
+                    <a class="vcp-item__link" href="mailto:{{ block.settings.action_value }}">
+                      <span>{{ block.settings.action_label }}</span>
+                      {%- render 'vesper-icons', icon: 'arrow-right' -%}
+                    </a>
+                  {%- when 'whatsapp' -%}
+                    <a class="vcp-item__link" href="https://wa.me/{{ block.settings.action_value }}?text={{ 'Hello! I would like to get in touch with Vesper Robot Mowers.' | url_encode }}" target="_blank" rel="noopener">
+                      <span>{{ block.settings.action_label }}</span>
+                      {%- render 'vesper-icons', icon: 'arrow-right' -%}
+                    </a>
+                {%- endcase -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+
+          <dl class="vcp-facts">
+            <div class="vcp-facts__row">
+              <dt>{{ section.settings.hours_label }}</dt>
+              <dd>{{ section.settings.hours_value }}</dd>
             </div>
-            <h3 class="contact-card-title">{{ block.settings.title }}</h3>
-            <p class="contact-card-content">{{ block.settings.content }}</p>
+            <div class="vcp-facts__row">
+              <dt>{{ section.settings.entity_label }}</dt>
+              <dd>{{ section.settings.entity_value }}</dd>
+            </div>
+            <div class="vcp-facts__row">
+              <dt>{{ section.settings.social_label }}</dt>
+              <dd class="vcp-facts__links">
+                <a href="https://www.linkedin.com/company/vesperinno" target="_blank" rel="noopener noreferrer">{{ section.settings.social_1 }}</a>
+                <a href="https://www.facebook.com/share/1JWNgbRVk2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">{{ section.settings.social_2 }}</a>
+                <a href="https://www.tiktok.com/@vesper.inno2020?_r=1&amp;_t=ZS-955nk6Azn5Z" target="_blank" rel="noopener noreferrer">{{ section.settings.social_3 }}</a>
+              </dd>
+            </div>
+          </dl>
+        </aside>
 
-            {%- case block.settings.action_type -%}
-              {%- when 'tel' -%}
-                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="tel:{{ block.settings.action_value | remove: ' ' }}">{{ block.settings.action_label }}</a>
-              {%- when 'mailto' -%}
-                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="mailto:{{ block.settings.action_value }}">{{ block.settings.action_label }}</a>
-              {%- when 'whatsapp' -%}
-                <a class="v-btn v-btn--primary v-btn--sm contact-action-btn" href="https://wa.me/{{ block.settings.action_value }}?text={{ 'Hello! I would like to get in touch with Vesper Robot Mowers.' | url_encode }}" target="_blank" rel="noopener">{{ block.settings.action_label }}</a>
-            {%- endcase -%}
+        {%- comment -%} Contact form (native Shopify contact form) {%- endcomment -%}
+        <div class="vcp-form" data-reveal="right">
+          <header class="vcp-form__head">
+            <h2 class="vcp-form__title">{{ section.settings.form_heading }}</h2>
+            <p class="vcp-form__sub">{{ section.settings.form_subtitle }}</p>
+          </header>
 
-            {%- if block.settings.subtext != blank -%}
-              <p class="contact-card-subtext">{{ block.settings.subtext }}</p>
+          {%- form 'contact' -%}
+            {%- if form.posted_successfully? -%}
+              <p class="form-success" role="status">{{ section.settings.form_success }}</p>
             {%- endif -%}
-          </div>
-        {%- endfor -%}
-      </div>
 
-      <div class="contact-meta" data-reveal>
-        <div class="contact-meta__item">
-          <span class="contact-meta__label">{{ section.settings.hours_label }}</span>
-          <span class="contact-meta__value">{{ section.settings.hours_value }}</span>
-        </div>
+            {%- if form.errors -%}
+              <div class="form-errors" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
 
-        <div class="contact-meta__item">
-          <span class="contact-meta__label">{{ section.settings.entity_label }}</span>
-          <span class="contact-meta__value">{{ section.settings.entity_value }}</span>
-        </div>
-
-        <div class="contact-meta__item">
-          <span class="contact-meta__label">{{ section.settings.social_label }}</span>
-          <span class="contact-meta__value contact-meta__social">
-            <a href="https://www.linkedin.com/company/vesperinno" target="_blank" rel="noopener noreferrer">{{ section.settings.social_1 }}</a>
-            <a href="https://www.facebook.com/share/1JWNgbRVk2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">{{ section.settings.social_2 }}</a>
-            <a href="https://www.tiktok.com/@vesper.inno2020?_r=1&_t=ZS-955nk6Azn5Z" target="_blank" rel="noopener noreferrer">{{ section.settings.social_3 }}</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {%- comment -%} Contact form (native Shopify contact form) {%- endcomment -%}
-  <section class="contact-form-section v-section">
-    <div class="v-container">
-      <div class="form-container">
-        <div class="form-header" data-reveal>
-          <h2 class="form-title">{{ section.settings.form_heading }}</h2>
-          <p class="form-subtitle">{{ section.settings.form_subtitle }}</p>
-        </div>
-
-        {%- form 'contact' -%}
-          {%- if form.posted_successfully? -%}
-            <p class="form-success" role="status">{{ section.settings.form_success }}</p>
-          {%- endif -%}
-
-          {%- if form.errors -%}
-            <div class="form-errors" role="alert">{{ form.errors | default_errors }}</div>
-          {%- endif -%}
-
-          <div class="form-content">
-            <div class="form-row">
+            <div class="vcp-grid">
               <div class="v-field">
                 <label class="v-field__label" for="contact-name">Full Name *</label>
                 <input
@@ -101,6 +129,7 @@
                   name="contact[name]"
                   value="{{ form.name }}"
                   placeholder="Enter your full name"
+                  autocomplete="name"
                   required
                 >
               </div>
@@ -114,12 +143,11 @@
                   name="contact[email]"
                   value="{{ form.email }}"
                   placeholder="Enter your email address"
+                  autocomplete="email"
                   required
                 >
               </div>
-            </div>
 
-            <div class="form-row">
               <div class="v-field">
                 <label class="v-field__label" for="contact-phone">Phone Number</label>
                 <input
@@ -129,6 +157,7 @@
                   name="contact[phone]"
                   value="{{ form.phone }}"
                   placeholder="Enter your phone number"
+                  autocomplete="tel"
                 >
               </div>
 
@@ -139,6 +168,8 @@
                   <optgroup label="Lawn Mower">
                     <option value="S1 4WD 50° - Remote Control Lawn Mower — 119% Slope (Grip Tread)">S1 4WD 50° - Remote Control Lawn Mower — 119% Slope (Grip Tread)</option>
                     <option value="S1 4WD 40° - Remote Control Lawn Mower — 85% Slope (Wide Wheel)">S1 4WD 40° - Remote Control Lawn Mower — 85% Slope (Wide Wheel)</option>
+                    <option value="V600 - TerraMow Auto Mower">V600 - TerraMow Auto Mower</option>
+                    <option value="V1000 - TerraMow Auto Mower">V1000 - TerraMow Auto Mower</option>
                   </optgroup>
                   <optgroup label="Precision Agriculture">
                     <option value="AF718 - Autosteering System">AF718 - Autosteering System</option>
@@ -154,27 +185,31 @@
                   <optgroup label="Machine Control">
                     <option value="EGS101 - Intelligent Excavator Guidance System">EGS101 - Intelligent Excavator Guidance System</option>
                   </optgroup>
+                  <optgroup label="Agricultural Robots">
+                    <option value="Aries300N - Orchard Spraying Robot">Aries300N - Orchard Spraying Robot</option>
+                    <option value="Taurus80E - Smart Lawn Mowing Robot">Taurus80E - Smart Lawn Mowing Robot</option>
+                  </optgroup>
                 </select>
+              </div>
+
+              <div class="v-field vcp-grid__full">
+                <label class="v-field__label" for="contact-message">Message *</label>
+                <textarea
+                  id="contact-message"
+                  class="v-textarea"
+                  name="contact[body]"
+                  rows="6"
+                  placeholder="Tell us about your needs or questions..."
+                  required
+                >{{ form.body }}</textarea>
               </div>
             </div>
 
-            <div class="v-field">
-              <label class="v-field__label" for="contact-message">Message *</label>
-              <textarea
-                id="contact-message"
-                class="v-textarea"
-                name="contact[body]"
-                rows="6"
-                placeholder="Tell us about your needs or questions..."
-                required
-              >{{ form.body }}</textarea>
-            </div>
-
-            <div class="form-actions">
+            <div class="vcp-form__actions">
               <button type="submit" class="v-btn v-btn--primary v-btn--lg submit-btn">Send message</button>
             </div>
-          </div>
-        {%- endform -%}
+          {%- endform -%}
+        </div>
       </div>
     </div>
   </section>
@@ -283,17 +318,18 @@
         {
           "type": "text",
           "id": "icon",
-          "label": "Icon (emoji)"
+          "label": "Icon name (optional)",
+          "info": "phone, mail, map-pin or whatsapp. Leave empty to use the icon colour."
         },
         {
           "type": "select",
           "id": "tone",
-          "label": "Icon colour",
+          "label": "Icon",
           "options": [
-            { "value": "phone", "label": "Blue" },
-            { "value": "email", "label": "Yellow" },
-            { "value": "whatsapp", "label": "Green" },
-            { "value": "location", "label": "Purple" }
+            { "value": "phone", "label": "Phone" },
+            { "value": "email", "label": "Email" },
+            { "value": "whatsapp", "label": "WhatsApp" },
+            { "value": "location", "label": "Location" }
           ],
           "default": "phone"
         },

@@ -188,11 +188,11 @@
       <div class="v-container">
         <nav class="v-breadcrumb" aria-label="Breadcrumb">
           <a href="{{ routes.root_url }}">Home</a>
-          <span aria-hidden="true">/</span>
+          {%- render 'vesper-icons', icon: 'chevron-right' -%}
           <a href="/pages/products-solutions">Products &amp; Solutions</a>
-          <span aria-hidden="true">/</span>
+          {%- render 'vesper-icons', icon: 'chevron-right' -%}
           <a href="/pages/products-solutions?category={{ vpd_category_id }}">{{ vpd_category_name }}</a>
-          <span aria-hidden="true">/</span>
+          {%- render 'vesper-icons', icon: 'chevron-right' -%}
           <span aria-current="page">{{ vpd_code }}</span>
         </nav>
       </div>
@@ -363,7 +363,7 @@
             endif
           -%}
 
-          <div class="vpd-ecommerce">
+          <div class="vpd-ecommerce" id="vpd-buy">
             {%- if vpd_variant == nil -%}
               <div class="vpd-price-section">
                 <span class="vpd-price-current">{{ vpd_price_text }}</span>
@@ -481,6 +481,24 @@
         </div>
       </div>
     </section>
+  {%- endif -%}
+
+  {%- comment -%} 移动端底部常驻购买栏：只做锚点与 WhatsApp 跳转，不复制购买表单 {%- endcomment -%}
+  {%- if vpd_code != blank -%}
+    <div class="vpd-buybar">
+      <div class="vpd-buybar__inner">
+        <div class="vpd-buybar__meta">
+          <span class="vpd-buybar__code">{{ vpd_code }} {{ vpd_name }}</span>
+          <span class="vpd-buybar__price">
+            {%- if vpd_variant != nil -%}{{ vpd_variant.price | money }}{%- else -%}{{ vpd_price_text }}{%- endif -%}
+          </span>
+        </div>
+        <div class="vpd-buybar__actions">
+          <button type="button" class="vpd-buybar__btn vpd-buybar__btn--demo" data-request-demo data-whatsapp="{{ vpd_whatsapp }}" data-message="Hello! I would like to request a demo of the {{ vpd_code }} {{ vpd_name }}.">Get a Demo</button>
+          <a class="vpd-buybar__btn vpd-buybar__btn--buy" href="#vpd-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
   {%- endif -%}
 </div>
 

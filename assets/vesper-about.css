@@ -1,737 +1,557 @@
 /* ==========================================================================
-   Vesper — About page (ported from vesper_vue/src/views/AboutView.vue)
+   Vesper — About page
+   Editorial "company dossier" layout built on the shared --v-* tokens.
    ========================================================================== */
 
-.vesper-about__lead-wrap {
-  background: linear-gradient(180deg, var(--vesper-bg), #ffffff);
-  padding-block: clamp(24px, 4vw, 40px) 0;
+.vesper-about {
+  --ab-gutter: clamp(20px, 3vw, 40px);
+  background: var(--v-bg, #f8f7f4);
+  overflow-x: clip;
 }
 
-.vesper-about__lead {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: var(--vesper-font-title);
-  font-size: clamp(24px, 3.4vw, 38px);
+/* ---------- Opening statement ---------- */
+.ab-lead {
+  padding-block: clamp(28px, 4vw, 46px);
+  background: #fff;
+  border-bottom: 1px solid var(--v-line, rgba(17, 17, 16, 0.1));
+}
+
+.ab-lead__text {
+  max-width: 980px;
+  margin: 0;
+  padding-left: 20px;
+  border-left: 3px solid #c85a0a;
+  font-family: var(--v-font-display);
+  font-size: clamp(21px, 2.9vw, 34px);
   font-weight: 700;
-  line-height: 1.2;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  line-height: 1.18;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  color: #1e3d1e;
 }
 
-/* ---------- Introduction ---------- */
-.vesper-about .intro-section {
-  background: #f8f7f4;
+/* ---------- Section shell ---------- */
+.ab-section {
+  padding-block: clamp(52px, 6.5vw, 96px);
 }
 
-.vesper-about .intro-content {
-  display: flex;
+.ab-section--paper {
+  background: var(--v-bg, #f8f7f4);
+}
+
+.ab-section--tint {
+  background: var(--v-bg-alt, #eeecea);
+}
+
+.ab-section--white {
+  background: #fff;
+}
+
+/* ---------- Section heading ---------- */
+.ab-head {
+  max-width: 760px;
+  margin-bottom: clamp(30px, 4vw, 54px);
+}
+
+.ab-head__index {
+  display: inline-flex;
   align-items: center;
-  gap: 60px;
-  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--v-ink-soft, #6b6b68);
 }
 
-.vesper-about .intro-text {
-  flex: 1 1 320px;
-  min-width: 300px;
+.ab-head__index::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c85a0a;
+  flex: 0 0 auto;
 }
 
-.vesper-about .intro-text p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #444;
-  margin-bottom: 20px;
+.ab-head__title {
+  margin: 0 0 10px;
+  font-family: var(--v-font-display);
+  font-size: clamp(28px, 3.8vw, 46px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  color: var(--v-ink, #111110);
 }
 
-.vesper-about .intro-text p:last-child {
+.ab-head__sub {
+  max-width: 56ch;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--v-ink-soft, #6b6b68);
+}
+
+/* ---------- 01 Story ---------- */
+.ab-story {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(28px, 4.5vw, 64px);
+  align-items: start;
+}
+
+.ab-story__body {
+  max-width: 60ch;
+}
+
+.ab-story__body p {
+  margin: 0 0 20px;
+  font-size: 17px;
+  line-height: 1.85;
+  color: #4d4d48;
+}
+
+.ab-story__body p:first-child {
+  font-size: 19px;
+  line-height: 1.7;
+  color: #111110;
+}
+
+.ab-story__body p:last-child {
   margin-bottom: 0;
 }
 
-.vesper-about .intro-image {
-  flex: 1 1 320px;
-  min-width: 300px;
-  border-radius: 12px;
+.ab-story__figure {
+  margin: 0;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 22px;
+  background: #eeecea;
+  box-shadow: 0 20px 48px rgba(17, 17, 16, 0.08);
 }
 
-.vesper-about .intro-image img {
+.ab-story__figure img {
+  display: block;
   width: 100%;
-  height: 400px;
+  height: clamp(300px, 34vw, 440px);
   object-fit: cover;
 }
 
-/* ---------- Journey timeline ---------- */
-.vesper-about .timeline-section {
-  background: #ffffff;
+/* ---------- 02 Journey ---------- */
+.ab-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--v-line, rgba(17, 17, 16, 0.1));
 }
 
-.vesper-about .timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
+.ab-step {
+  display: grid;
+  grid-template-columns: 148px 64px minmax(0, 1fr);
+  gap: clamp(16px, 2.4vw, 28px);
+  align-items: center;
+  padding-block: 26px;
+  border-top: 1px solid var(--v-line, rgba(17, 17, 16, 0.1));
 }
 
-.vesper-about .timeline::before {
-  content: '';
-  position: absolute;
-  left: 40px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: #1e3d1e;
+.ab-step__year {
+  font-family: var(--v-font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: #1e3d1e;
 }
 
-.vesper-about .timeline-item {
-  position: relative;
-  margin-bottom: 40px;
-  padding-left: 100px;
-}
-
-.vesper-about .timeline-item:last-child {
-  margin-bottom: 0;
-}
-
-.vesper-about .timeline-logo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 80px;
-  height: 80px;
-  background: #ffffff;
-  border-radius: 50%;
+.ab-step__logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 1;
-  padding-bottom: 20px;
+  width: 64px;
+  height: 64px;
+  padding: 10px;
+  border: 1px solid var(--v-line, rgba(17, 17, 16, 0.1));
+  border-radius: 14px;
+  background: #fff;
 }
 
-.vesper-about .timeline-logo img {
-  width: 50px;
-  height: 50px;
+.ab-step__logo img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
-.vesper-about .timeline-logo .v-icon {
-  width: 30px;
-  height: 30px;
-  color: #95a5a6;
+.ab-step__logo .v-icon {
+  width: 22px;
+  height: 22px;
+  color: #1e3d1e;
 }
 
-.vesper-about .timeline-year {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 80px;
-  height: 20px;
-  background: linear-gradient(to top, #eeecea, #d9f7be);
-  color: #16301a;
-  border-radius: 0 0 40px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 11px;
-  text-align: center;
-  z-index: 2;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid #eeecea;
-}
-
-.vesper-about .timeline-content {
-  background: #ffffff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #1e3d1e;
-}
-
-.vesper-about .timeline-title {
-  font-size: 20px;
+.ab-step__title {
+  margin: 0 0 6px;
+  font-size: 19px;
   font-weight: 600;
-  color: #111110;
-  margin-bottom: 10px;
+  line-height: 1.3;
+  color: var(--v-ink, #111110);
 }
 
-.vesper-about .timeline-description {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666;
+.ab-step__desc {
   margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--v-ink-soft, #6b6b68);
 }
 
-/* ---------- Leadership team ---------- */
-.vesper-about .team-section {
-  background: #f8f7f4;
+/* ---------- 03 Leadership ---------- */
+.ab-team {
+  display: grid;
+  gap: 22px;
 }
 
-.vesper-about .team-grid {
-  max-width: 800px;
-  margin: 0 auto;
+.ab-profile {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 52px);
+  align-items: stretch;
+  padding: clamp(18px, 2.4vw, 28px);
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 24px;
+  background: var(--v-bg, #f8f7f4);
 }
 
-.vesper-about .team-card {
+.ab-profile__photo {
   overflow: hidden;
+  border-radius: 16px;
+  background: #eeecea;
 }
 
-.vesper-about .team-image {
-  height: 400px;
-  overflow: hidden;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.vesper-about .team-image img {
+.ab-profile__photo img {
+  display: block;
   width: 100%;
   height: 100%;
+  min-height: 300px;
   object-fit: contain;
-  object-position: center;
-  padding: 20px;
+  object-position: center bottom;
 }
 
-.vesper-about .team-info {
-  padding: 40px;
+.ab-profile__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 8px;
 }
 
-.vesper-about .team-name {
-  font-size: 28px;
+.ab-profile__name {
+  margin: 0 0 8px;
+  font-family: var(--v-font-display);
+  font-size: clamp(26px, 3vw, 38px);
   font-weight: 700;
-  color: #111110;
-  margin-bottom: 8px;
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--v-ink, #111110);
 }
 
-.vesper-about .team-position {
-  font-size: 18px;
+.ab-profile__role {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: #1e3d1e;
-  font-weight: 600;
-  margin-bottom: 20px;
 }
 
-.vesper-about .team-bio {
+.ab-profile__role::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c85a0a;
+  flex: 0 0 auto;
+}
+
+.ab-profile__bio {
+  max-width: 64ch;
+}
+
+.ab-profile__bio p {
+  margin: 0 0 14px;
   font-size: 16px;
-  line-height: 1.6;
-  color: #666;
+  line-height: 1.8;
+  color: var(--v-ink-soft, #6b6b68);
 }
 
-.vesper-about .team-bio p {
-  margin-bottom: 15px;
-}
-
-.vesper-about .team-bio p:last-child {
+.ab-profile__bio p:last-child {
   margin-bottom: 0;
 }
 
-/* ---------- Values ---------- */
-.vesper-about .values-section {
-  background: #ffffff;
-}
-
-.vesper-about .values-grid {
+/* ---------- 04 Values ---------- */
+.ab-values {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.vesper-about .value-card {
-  text-align: center;
-  padding: 40px 20px;
-  border-radius: 12px;
-  background: #f8f7f4;
-}
-
-.vesper-about .value-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  line-height: 1;
-}
-
-.vesper-about .value-1 {
-  background: linear-gradient(135deg, #eeecea, #2d5a2d);
-}
-
-.vesper-about .value-2 {
-  background: linear-gradient(135deg, #91d5ff, #69c0ff);
-}
-
-.vesper-about .value-3 {
-  background: linear-gradient(135deg, #c85a0a, #c85a0a);
-}
-
-.vesper-about .value-4 {
-  background: linear-gradient(135deg, #b4b2ad, #6b6b68);
-}
-
-.vesper-about .value-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #111110;
-  margin-bottom: 12px;
-}
-
-.vesper-about .value-description {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #666;
-  margin: 0;
-}
-
-/* ---------- Statistics ---------- */
-.vesper-about .stats-section {
-  background: #f8f7f4;
-}
-
-.vesper-about .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.vesper-about .stat-card {
-  padding: 30px 20px;
-  text-align: center;
-}
-
-.vesper-about .stat-icon {
-  font-size: 40px;
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.vesper-about .stat-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #111110;
-  margin-bottom: 12px;
-}
-
-.vesper-about .stat-description {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
-  margin: 0;
-}
-
-/* ---------- Contact CTA ---------- */
-.vesper-about .contact-section {
-  background: linear-gradient(135deg, #eeecea 0%, #eeecea 100%);
-}
-
-.vesper-about .contact-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 60px 40px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(82, 196, 26, 0.1);
-}
-
-.vesper-about .contact-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #111110;
-  margin-bottom: 20px;
-}
-
-.vesper-about .contact-description {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #666;
-  margin: 0 auto 40px;
-  max-width: 600px;
-}
-
-.vesper-about .contact-actions {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.vesper-about .contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-}
-
-.vesper-about .contact-detail {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-}
-
-/* ---------- Responsive ---------- */
-@media (max-width: 992px) {
-  .vesper-about .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .vesper-about .intro-content {
-    flex-direction: column;
-  }
-
-  .vesper-about .timeline::before {
-    left: 25px;
-  }
-
-  .vesper-about .timeline-item {
-    padding-left: 70px;
-  }
-
-  .vesper-about .timeline-logo {
-    width: 50px;
-    height: 50px;
-    padding-bottom: 12px;
-  }
-
-  .vesper-about .timeline-logo img {
-    width: 30px;
-    height: 30px;
-  }
-
-  .vesper-about .timeline-logo .v-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .vesper-about .timeline-year {
-    width: 50px;
-    height: 12px;
-    font-size: 9px;
-    border-radius: 0 0 25px 25px;
-  }
-
-  .vesper-about .team-image {
-    height: 200px;
-  }
-
-  .vesper-about .stats-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin-inline: auto;
-  }
-
-  .vesper-about .stat-card {
-    padding: 24px 16px;
-  }
-
-  .vesper-about .contact-content {
-    padding: 40px 24px;
-    border-radius: 16px;
-  }
-
-  .vesper-about .contact-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .vesper-about .contact-actions .v-btn {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 576px) {
-  .vesper-about .values-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .vesper-about .stats-grid {
-    gap: 30px;
-  }
-
-  .vesper-about .contact-content {
-    padding: 32px 20px;
-    border-radius: 12px;
-  }
-
-  .vesper-about .contact-title {
-    font-size: 28px;
-  }
-
-  .vesper-about .contact-description {
-    font-size: 16px;
-  }
-}
-
-
-/* 2026 refinement — story, credibility and leadership */
-.vesper-about__lead-wrap {
-  padding-block: clamp(18px, 3vw, 28px);
-  background: #eeecea;
-}
-
-.vesper-about__lead {
-  max-width: 980px;
-  margin: 0 auto;
-  color: #1e3d1e;
-  font-size: clamp(19px, 2.5vw, 28px);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-}
-
-.vesper-about .intro-section {
-  background: #f8f7f4;
-}
-
-.vesper-about .intro-content {
-  gap: clamp(28px, 5vw, 64px);
-}
-
-.vesper-about .intro-text {
-  flex-basis: 42%;
-}
-
-.vesper-about .intro-text p {
-  color: #555550;
-  font-size: clamp(16px, 1.6vw, 18px);
-  line-height: 1.8;
-}
-
-.vesper-about .intro-image {
-  flex-basis: 48%;
-  border: 1px solid rgba(17, 17, 16, 0.08);
-  border-radius: 22px;
-  box-shadow: 0 18px 44px rgba(17, 17, 16, 0.08);
-}
-
-.vesper-about .intro-image img {
-  min-height: 340px;
-  height: clamp(340px, 38vw, 480px);
-}
-
-.vesper-about .timeline-section {
-  background: #eeecea;
-}
-
-.vesper-about .timeline {
-  max-width: 900px;
-}
-
-.vesper-about .timeline::before {
-  left: 35px;
-  width: 1px;
-  background: rgba(30, 61, 30, 0.24);
-}
-
-.vesper-about .timeline-item {
-  margin-bottom: 22px;
-  padding: 24px 28px 24px 108px;
-  border: 1px solid rgba(17, 17, 16, 0.075);
-  border-radius: 18px;
-  background: #fff;
-  box-shadow: 0 7px 24px rgba(17, 17, 16, 0.035);
-}
-
-.vesper-about .timeline-logo {
-  left: 0;
-  top: 50%;
-  width: 70px;
-  height: 70px;
-  padding: 8px;
-  border: 1px solid rgba(17, 17, 16, 0.08);
-  transform: translateY(-50%);
-  box-shadow: 0 8px 20px rgba(17, 17, 16, 0.06);
-}
-
-.vesper-about .timeline-year {
-  position: static;
-  display: inline-flex;
-  align-items: center;
-  width: auto;
-  height: auto;
-  margin-bottom: 8px;
-  padding: 5px 10px;
-  border: 1px solid rgba(30, 61, 30, 0.12);
-  border-radius: 999px;
-  background: #f5f4f0;
-  color: #1e3d1e;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
-
-.vesper-about .timeline-content {
-  padding: 0;
-}
-
-.vesper-about .timeline-title {
-  margin-bottom: 6px;
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.2;
-}
-
-.vesper-about .timeline-description {
-  margin: 0;
-  color: #6b6b68;
-  line-height: 1.7;
-}
-
-.vesper-about .team-section,
-.vesper-about .values-section {
-  background: #f8f7f4;
-}
-
-.vesper-about .team-grid,
-.vesper-about .values-grid,
-.vesper-about .stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
-.vesper-about .team-card {
-  overflow: hidden;
-  border: 1px solid rgba(17, 17, 16, 0.08);
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 9px 28px rgba(17, 17, 16, 0.05);
-}
-
-.vesper-about .team-image {
-  overflow: hidden;
-  background: #eeecea;
-}
-
-.vesper-about .team-image img {
-  transition: transform 0.45s ease;
-}
-
-.vesper-about .team-card:hover .team-image img {
-  transform: scale(1.035);
-}
-
-.vesper-about .team-info {
-  padding: 24px;
-}
-
-.vesper-about .team-name {
-  margin-bottom: 4px;
-  font-size: 22px;
-}
-
-.vesper-about .team-position {
-  color: #1e3d1e;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
-}
-
-.vesper-about .team-bio {
-  color: #6b6b68;
-  line-height: 1.75;
-}
-
-.vesper-about .value-card,
-.vesper-about .stat-card {
-  padding: 26px;
+.ab-value {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 28px;
   border: 1px solid rgba(17, 17, 16, 0.08);
   border-radius: 18px;
   background: #fff;
-  box-shadow: 0 8px 24px rgba(17, 17, 16, 0.04);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
-.vesper-about .value-icon,
-.vesper-about .stat-icon {
+.ab-value:hover {
+  transform: translateY(-3px);
+  border-color: rgba(30, 61, 30, 0.2);
+  box-shadow: 0 14px 34px rgba(17, 17, 16, 0.06);
+}
+
+.ab-value__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   margin-bottom: 18px;
-  border: 1px solid rgba(30, 61, 30, 0.12);
-  border-radius: 14px;
-  background: #f2f1ed;
+  border: 1px solid rgba(30, 61, 30, 0.14);
+  border-radius: 13px;
+  background: var(--v-bg-alt, #eeecea);
   color: #1e3d1e;
-  font-size: 22px;
 }
 
-.vesper-about .value-title,
-.vesper-about .stat-title {
-  margin-bottom: 8px;
-  font-size: 19px;
-  line-height: 1.2;
+.ab-value__icon .v-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.vesper-about .value-description,
-.vesper-about .stat-description {
+.ab-value__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--v-ink, #111110);
+}
+
+.ab-value__desc {
   margin: 0;
-  color: #6b6b68;
+  font-size: 14px;
   line-height: 1.7;
+  color: var(--v-ink-soft, #6b6b68);
 }
 
-.vesper-about .contact-section {
-  background: #eeecea;
+/* ---------- 05 Track record ---------- */
+.ab-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 36px);
 }
 
-.vesper-about .contact-content {
-  padding: clamp(30px, 5vw, 58px);
-  border-radius: 22px;
-  background: #1e3d1e;
+.ab-stat {
+  padding-top: 20px;
+  border-top: 2px solid #1e3d1e;
+}
+
+.ab-stat__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 16px;
+  color: #1e3d1e;
+}
+
+.ab-stat__icon .v-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.ab-stat__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--v-ink, #111110);
+}
+
+.ab-stat__desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--v-ink-soft, #6b6b68);
+}
+
+/* ---------- Closing CTA ---------- */
+.ab-cta-section {
+  padding-block: clamp(40px, 6vw, 80px);
+  background: var(--v-bg-alt, #eeecea);
+}
+
+.ab-cta {
+  overflow: hidden;
+  padding: clamp(30px, 5vw, 62px);
+  border-radius: 26px;
+  background:
+    radial-gradient(ellipse at 88% 116%, rgba(141, 230, 0, 0.16), transparent 56%),
+    linear-gradient(135deg, #1e3d1e, #16301a);
   color: #fff;
-  box-shadow: 0 18px 44px rgba(30, 61, 30, 0.16);
 }
 
-.vesper-about .contact-title {
-  color: #fff;
-  font-size: clamp(29px, 4vw, 42px);
-  line-height: 1.05;
-}
-
-.vesper-about .contact-description,
-.vesper-about .contact-detail {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.vesper-about .contact-actions .v-btn--outline {
-  border-color: rgba(255, 255, 255, 0.52);
+.ab-cta__title {
+  max-width: 22ch;
+  margin: 0 0 14px;
+  font-family: var(--v-font-display);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
   color: #fff;
 }
 
-.vesper-about .contact-actions .v-btn--outline:hover {
+.ab-cta__desc {
+  max-width: 62ch;
+  margin: 0 0 30px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.ab-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.ab-cta__primary {
+  border-radius: 999px;
+  background: #8de600;
+  color: #111110;
+}
+
+.ab-cta__primary:hover {
+  background: #78c500;
+  color: #111110;
+}
+
+.ab-cta__ghost {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+}
+
+.ab-cta__ghost:hover {
+  border-color: #fff;
   background: #fff;
   color: #1e3d1e;
 }
 
-@media (max-width: 767px) {
-  .vesper-about .timeline::before {
-    left: 22px;
+.ab-cta__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.ab-cta__contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.74);
+  text-decoration: none;
+}
+
+.ab-cta__contact .v-icon {
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  flex: 0 0 auto;
+}
+
+a.ab-cta__contact:hover {
+  color: #fff;
+}
+
+a.ab-cta__contact:hover .v-icon {
+  color: #8de600;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .ab-values,
+  .ab-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .ab-story {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .vesper-about .timeline-item {
-    padding: 90px 18px 20px;
+  .ab-story__figure img {
+    height: clamp(260px, 48vw, 380px);
   }
 
-  .vesper-about .timeline-logo {
-    top: 10px;
-    left: 10px;
+  .ab-profile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ab-profile__photo img {
+    min-height: 0;
+    height: clamp(280px, 58vw, 420px);
+  }
+}
+
+@media (max-width: 720px) {
+  .ab-step {
+    grid-template-columns: 56px minmax(0, 1fr);
+    row-gap: 12px;
+    align-items: start;
+  }
+
+  .ab-step__year {
+    grid-column: 1 / -1;
+    font-size: 17px;
+  }
+
+  .ab-step__logo {
     width: 56px;
     height: 56px;
-    transform: none;
+    padding: 8px;
   }
 
-  .vesper-about .intro-image img {
-    min-height: 260px;
-    height: 280px;
+  .ab-lead__text {
+    padding-left: 16px;
+    font-size: 20px;
   }
 
-  .vesper-about .contact-content {
-    padding: 28px 22px;
+  .ab-values,
+  .ab-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ab-cta__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ab-cta__actions .v-btn {
+    width: 100%;
+  }
+
+  .ab-cta__contacts {
+    flex-direction: column;
+    gap: 12px;
   }
 }

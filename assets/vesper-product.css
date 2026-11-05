@@ -1393,3 +1393,199 @@
     order: initial;
   }
 }
+
+/* ==========================================================================
+   2026-11 UI uplift — catalog display type, motif refinement, mobile sticky
+   buy bar. Appended last so it wins the cascade without rewriting the
+   Vue-ported rules above.
+   ========================================================================== */
+
+/* Breadcrumb: chevron separators instead of slashes */
+.vpd-breadcrumb .v-breadcrumb {
+  gap: 6px;
+}
+
+.vpd-breadcrumb .v-breadcrumb .v-icon {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  color: rgba(17, 17, 16, 0.28);
+}
+
+/* Display type: same condensed all-caps voice as the homepage hero */
+.vpd-title {
+  font-family: var(--v-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  line-height: 0.94;
+}
+
+.vpd-section-title {
+  font-family: var(--v-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Category eyebrow: brand-orange dot prefix, matching the homepage chips */
+.vpd-category a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vpd-category a::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c85a0a;
+  flex: 0 0 auto;
+}
+
+/* Learn-more cards: short orange rule under each card title */
+.vpd-learn-card__title::after {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 3px;
+  margin-top: 10px;
+  background: #c85a0a;
+  border-radius: 2px;
+}
+
+/* Body copy inherited 20px from the Vue port — too loose for a spec-heavy page */
+.vpd-learn-card__desc,
+.vpd-faq-answer {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.vpd-specs .v-specs-table {
+  font-size: 15px;
+}
+
+.vpd-specs .v-specs-table td,
+.vpd-specs .v-specs-table th {
+  padding-block: 12px;
+  line-height: 1.6;
+}
+
+.vpd-specs .v-specs-table th {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Anchor targets must clear the fixed 56px header */
+#specifications,
+#vpd-buy {
+  scroll-margin-top: 80px;
+}
+
+/* Closing CTA: acid-green lift from the homepage CTA palette */
+.vpd-cta-inner h2 {
+  font-family: var(--v-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.vpd-cta-section {
+  background:
+    radial-gradient(ellipse at 50% 118%, rgba(141, 230, 0, 0.16), transparent 58%),
+    linear-gradient(135deg, #1e3d1e, #16301a);
+}
+
+/* ---------- Mobile sticky buy bar ---------- */
+.vpd-buybar {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 40;
+  display: none;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid rgba(17, 17, 16, 0.1);
+  box-shadow: 0 -8px 24px rgba(17, 17, 16, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.vpd-buybar__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.vpd-buybar__meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vpd-buybar__code {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b6b68;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vpd-buybar__price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111110;
+}
+
+.vpd-buybar__actions {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+.vpd-buybar__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vpd-buybar__btn--demo {
+  background: #1e3d1e;
+  color: #ffffff;
+}
+
+.vpd-buybar__btn--buy {
+  background: #8de600;
+  color: #111110;
+}
+
+.vpd-buybar__btn--buy:hover {
+  background: #78c500;
+}
+
+@media (max-width: 900px) {
+  .vpd-buybar {
+    display: block;
+  }
+
+  .vpd-page {
+    padding-bottom: 84px;
+  }
+}
