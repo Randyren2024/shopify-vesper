@@ -415,3 +415,493 @@ body.template-article #MainContent .shopify-section > div h3 {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   DARK MODE（内页）
+   --------------------------------------------------------------------------
+   同一套品牌 token 的暗色映射，不是第二套配色。`data-theme="dark"` 由
+   theme.liquid 在首屏渲染前写入 <html>，本地偏好存于 localStorage。
+   首页暂不启用：其区块仍以内联写死颜色为主。
+   ========================================================================== */
+
+[data-theme='dark'] {
+  --v-bg: #0b0f0c;
+  --v-bg-alt: #151b16;
+  --v-surface: #111713;
+  --v-ink: #f1f4ee;
+  --v-ink-soft: #a6b0a7;
+  --v-ink-faint: rgba(241, 244, 238, 0.45);
+  --v-line: rgba(255, 255, 255, 0.12);
+  --v-line-strong: rgba(255, 255, 255, 0.22);
+  --v-green: #8de600;
+  --v-green-hover: #a5f02e;
+  --v-disabled: #4a544b;
+
+  --vesper-primary: #8de600;
+  --vesper-primary-light: #a5f02e;
+  --vesper-primary-dark: #0b0f0c;
+  --vesper-secondary: #a6b0a7;
+  --vesper-text: #f1f4ee;
+  --vesper-text-secondary: #a6b0a7;
+  --vesper-border: rgba(255, 255, 255, 0.12);
+  --vesper-bg: #0b0f0c;
+  --vesper-card-bg: #111713;
+  --color-background: #0b0f0c;
+  --color-foreground: #f1f4ee;
+}
+
+/* ---------- Header ---------- */
+[data-theme='dark'] .v-headerbar {
+  background: rgba(11, 15, 12, 0.92);
+}
+
+[data-theme='dark'] .v-theme-toggle {
+  color: var(--v-ink-soft);
+}
+
+/* ---------- Shared chrome ---------- */
+[data-theme='dark'] body.vesper-theme .v-page-hero {
+  background:
+    radial-gradient(ellipse at 88% 8%, rgba(141, 230, 0, 0.07), transparent 36%),
+    linear-gradient(180deg, #0f1410 0%, #0b0f0c 100%);
+}
+
+[data-theme='dark'] body.vesper-theme .v-page-hero::after {
+  border-color: rgba(141, 230, 0, 0.14);
+  box-shadow: 0 0 0 30px rgba(141, 230, 0, 0.02), 0 0 0 64px rgba(141, 230, 0, 0.015);
+}
+
+[data-theme='dark'] body.vesper-theme .v-card,
+[data-theme='dark'] body.vesper-theme .v-card-hover {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='dark'] body.vesper-theme .v-btn--primary {
+  background: #8de600;
+  border-color: #8de600;
+  color: #0b0f0c;
+  box-shadow: 0 8px 22px rgba(141, 230, 0, 0.18);
+}
+
+[data-theme='dark'] body.vesper-theme .v-btn--primary:hover {
+  background: #a5f02e;
+  border-color: #a5f02e;
+  color: #0b0f0c;
+}
+
+[data-theme='dark'] body.vesper-theme .v-btn--outline {
+  border-color: rgba(141, 230, 0, 0.42);
+  color: #a5f02e;
+}
+
+[data-theme='dark'] body.vesper-theme .v-btn--outline:hover {
+  background: #8de600;
+  border-color: #8de600;
+  color: #0b0f0c;
+}
+
+[data-theme='dark'] body.vesper-theme .v-btn--ghost {
+  border-color: var(--v-line);
+  background: transparent;
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] body.vesper-theme .v-btn--ghost:hover {
+  border-color: rgba(141, 230, 0, 0.45);
+  background: #151b16;
+  color: #a5f02e;
+}
+
+[data-theme='dark'] body.vesper-theme .v-input,
+[data-theme='dark'] body.vesper-theme .v-select,
+[data-theme='dark'] body.vesper-theme .v-textarea,
+[data-theme='dark'] body.vesper-theme input[type='text'],
+[data-theme='dark'] body.vesper-theme input[type='email'],
+[data-theme='dark'] body.vesper-theme input[type='tel'],
+[data-theme='dark'] body.vesper-theme input[type='number'],
+[data-theme='dark'] body.vesper-theme input[type='search'],
+[data-theme='dark'] body.vesper-theme select,
+[data-theme='dark'] body.vesper-theme textarea {
+  background: #0f1511;
+  border-color: var(--v-line);
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] body.vesper-theme input::placeholder,
+[data-theme='dark'] body.vesper-theme textarea::placeholder {
+  color: rgba(241, 244, 238, 0.38);
+}
+
+[data-theme='dark'] body.vesper-theme .v-input:focus,
+[data-theme='dark'] body.vesper-theme .v-select:focus,
+[data-theme='dark'] body.vesper-theme .v-textarea:focus,
+[data-theme='dark'] body.vesper-theme input:focus,
+[data-theme='dark'] body.vesper-theme select:focus,
+[data-theme='dark'] body.vesper-theme textarea:focus {
+  border-color: #8de600;
+  box-shadow: 0 0 0 3px rgba(141, 230, 0, 0.16);
+}
+
+[data-theme='dark'] body.vesper-theme :focus-visible {
+  outline-color: rgba(141, 230, 0, 0.7);
+}
+
+[data-theme='dark'] body.vesper-theme .v-accordion__item,
+[data-theme='dark'] body.vesper-theme .v-tabs__list,
+[data-theme='dark'] body.vesper-theme .v-specs-table tr {
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] body.vesper-theme .v-carousel__btn {
+  background: #151b16;
+  border-color: var(--v-line);
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] body.vesper-theme .v-qty button {
+  background: #151b16;
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] body.vesper-theme .v-qty button:hover {
+  background: #1e2720;
+  color: #a5f02e;
+}
+
+[data-theme='dark'] body.vesper-theme .v-qty input {
+  background: transparent;
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] body.template-search .v-search__form,
+[data-theme='dark'] body.template-search .v-search-card,
+[data-theme='dark'] body.template-search .v-search__empty,
+[data-theme='dark'] body.template-blog #MainContent .shopify-section > div,
+[data-theme='dark'] body.template-article #MainContent .shopify-section > div,
+[data-theme='dark'] body.template-article #MainContent .shopify-section > #comments {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='dark'] body.template-search .v-search-card__media {
+  background: #0f1511;
+}
+
+/* ---------- Product detail ---------- */
+[data-theme='dark'] .vpd-page {
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(141, 230, 0, 0.05), transparent 36%),
+    #0b0f0c;
+}
+
+[data-theme='dark'] .vpd-hero__container {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .vpd-gallery,
+[data-theme='dark'] .vpd-gallery__carousel {
+  background: #0f1511;
+}
+
+[data-theme='dark'] .vpd-thumb {
+  background: #151b16;
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .vpd-thumb.is-active {
+  border-color: #8de600;
+  box-shadow: 0 4px 14px rgba(141, 230, 0, 0.18);
+}
+
+[data-theme='dark'] .vpd-title,
+[data-theme='dark'] .vpd-price-current,
+[data-theme='dark'] .vpd-section-title,
+[data-theme='dark'] .vpd-buybar__price {
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .vpd-tagline,
+[data-theme='dark'] .vpd-check-list li,
+[data-theme='dark'] .vpd-learn-card__desc,
+[data-theme='dark'] .vpd-faq-answer,
+[data-theme='dark'] .vpd-support-link,
+[data-theme='dark'] .vpd-related-card__desc {
+  color: var(--v-ink-soft);
+}
+
+[data-theme='dark'] .vpd-category a,
+[data-theme='dark'] .vpd-support-link:hover {
+  color: #a5f02e;
+}
+
+[data-theme='dark'] .vpd-feature-badge {
+  background: #151b16;
+  border-color: var(--v-line);
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .vpd-feature-badge:hover {
+  background: #1a221b;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='dark'] .vpd-accordion .v-accordion__item,
+[data-theme='dark'] .vpd-faq__accordion .v-accordion__item {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .vpd-accordion .v-accordion__trigger:hover,
+[data-theme='dark'] .vpd-faq__accordion .v-accordion__trigger:hover {
+  background: #1a221b;
+}
+
+[data-theme='dark'] .vpd-check-list .v-icon {
+  color: #8de600;
+}
+
+[data-theme='dark'] .vpd-ecommerce {
+  background: #0f1511;
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .vpd-price-stock {
+  background: rgba(141, 230, 0, 0.1);
+  border-color: rgba(141, 230, 0, 0.28);
+  color: #c9f39a;
+}
+
+[data-theme='dark'] .vpd-price-stock--out {
+  color: #ff9a98;
+}
+
+[data-theme='dark'] .vpd-section--tint {
+  background: #10160f;
+}
+
+[data-theme='dark'] .vpd-learn-card,
+[data-theme='dark'] .vpd-app-card,
+[data-theme='dark'] .vpd-related-card {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+[data-theme='dark'] .vpd-learn-card__image,
+[data-theme='dark'] .vpd-app-card__img,
+[data-theme='dark'] .vpd-related-card__cover {
+  background: #0f1511;
+}
+
+[data-theme='dark'] .vpd-learn-card__title {
+  background: none;
+  -webkit-text-fill-color: var(--v-ink);
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .vpd-specs .v-specs-table {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .vpd-specs .v-specs-table th {
+  background: #151b16;
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .vpd-specs .v-specs-table tr:nth-child(even) td {
+  background: #0f1511;
+}
+
+[data-theme='dark'] .vpd-share__btn:hover {
+  background: #1a221b;
+  color: #a5f02e;
+}
+
+[data-theme='dark'] .vpd-buybar {
+  background: rgba(11, 15, 12, 0.96);
+  border-top-color: var(--v-line);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .vpd-buybar__code {
+  color: var(--v-ink-soft);
+}
+
+[data-theme='dark'] .vpd-payments .v-payment-icons__item {
+  background: #151b16;
+  border-color: var(--v-line);
+}
+
+/* ---------- Contact ---------- */
+[data-theme='dark'] .vesper-contact {
+  background:
+    radial-gradient(ellipse at 4% 0%, rgba(141, 230, 0, 0.05), transparent 44%),
+    #0b0f0c;
+}
+
+[data-theme='dark'] .vcp-heading,
+[data-theme='dark'] .vcp-form__title,
+[data-theme='dark'] .vcp-item__value,
+[data-theme='dark'] .vcp-facts dd {
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .vcp-sub,
+[data-theme='dark'] .vcp-form__sub,
+[data-theme='dark'] .vcp-item__label,
+[data-theme='dark'] .vcp-item__note,
+[data-theme='dark'] .vcp-facts dt {
+  color: var(--v-ink-soft);
+}
+
+[data-theme='dark'] .vcp-item__icon {
+  background: #151b16;
+  border-color: var(--v-line);
+  color: #a5f02e;
+}
+
+[data-theme='dark'] .vcp-item__link,
+[data-theme='dark'] .vcp-facts__links a {
+  color: #a5f02e;
+}
+
+[data-theme='dark'] .vcp-item__link:hover,
+[data-theme='dark'] .vcp-facts__links a:hover {
+  color: #c85a0a;
+}
+
+[data-theme='dark'] .vesper-contact .vcp-form {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='dark'] .vesper-contact .vcp-form .v-input,
+[data-theme='dark'] .vesper-contact .vcp-form .v-select,
+[data-theme='dark'] .vesper-contact .vcp-form .v-textarea {
+  background: #0f1511;
+  border-color: var(--v-line);
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .vesper-contact .vcp-form .v-input:focus,
+[data-theme='dark'] .vesper-contact .vcp-form .v-select:focus,
+[data-theme='dark'] .vesper-contact .vcp-form .v-textarea:focus {
+  border-color: #8de600;
+  background: #121a14;
+  box-shadow: 0 0 0 3px rgba(141, 230, 0, 0.14);
+}
+
+[data-theme='dark'] .vesper-contact .vcp-form .form-success {
+  background: rgba(141, 230, 0, 0.08);
+  border-color: rgba(141, 230, 0, 0.3);
+  color: #d9ffa8;
+}
+
+[data-theme='dark'] .vesper-contact .vcp-form .form-errors {
+  background: rgba(255, 77, 79, 0.12);
+  border-color: rgba(255, 120, 117, 0.4);
+  color: #ffb4b2;
+}
+
+/* ---------- About ---------- */
+[data-theme='dark'] .vesper-about {
+  background: #0b0f0c;
+}
+
+[data-theme='dark'] .ab-lead {
+  background: #0f1410;
+  border-bottom-color: var(--v-line);
+}
+
+[data-theme='dark'] .ab-lead__text {
+  color: #c9f39a;
+}
+
+[data-theme='dark'] .ab-section--paper {
+  background: #0b0f0c;
+}
+
+[data-theme='dark'] .ab-section--tint {
+  background: #10160f;
+}
+
+[data-theme='dark'] .ab-section--white {
+  background: #0d120e;
+}
+
+[data-theme='dark'] .ab-head__title,
+[data-theme='dark'] .ab-step__title,
+[data-theme='dark'] .ab-profile__name,
+[data-theme='dark'] .ab-value__title,
+[data-theme='dark'] .ab-stat__title {
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .ab-head__sub,
+[data-theme='dark'] .ab-story__body p,
+[data-theme='dark'] .ab-step__desc,
+[data-theme='dark'] .ab-profile__bio p,
+[data-theme='dark'] .ab-value__desc,
+[data-theme='dark'] .ab-stat__desc {
+  color: var(--v-ink-soft);
+}
+
+[data-theme='dark'] .ab-story__body p:first-child {
+  color: var(--v-ink);
+}
+
+[data-theme='dark'] .ab-story__figure {
+  background: #0f1511;
+  border-color: var(--v-line);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .ab-step__year,
+[data-theme='dark'] .ab-profile__role,
+[data-theme='dark'] .ab-value__icon,
+[data-theme='dark'] .ab-stat__icon {
+  color: #a5f02e;
+}
+
+[data-theme='dark'] .ab-step__logo {
+  background: #151b16;
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .ab-step__logo .v-icon {
+  color: #a5f02e;
+}
+
+[data-theme='dark'] .ab-profile {
+  background: #0f1511;
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .ab-profile__photo {
+  background: #151b16;
+}
+
+[data-theme='dark'] .ab-value {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .ab-value__icon {
+  background: #151b16;
+  border-color: var(--v-line);
+}
+
+[data-theme='dark'] .ab-stat {
+  border-top-color: #8de600;
+}
+
+[data-theme='dark'] .ab-cta-section {
+  background: #10160f;
+}

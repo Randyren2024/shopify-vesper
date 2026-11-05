@@ -48,6 +48,81 @@
   padding: 0 24px;
 }
 
+/* ---------------------------------------------------------------- site header */
+
+.v-headerbar {
+  background: rgba(248, 247, 244, 0.92);
+  border-bottom: 1px solid var(--v-line);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* 深色模式下深色 logo 不可见，切到白色版本 */
+.v-logo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.v-logo--on-dark {
+  display: none;
+}
+
+[data-theme='dark'] .v-logo--on-light {
+  display: none;
+}
+
+[data-theme='dark'] .v-logo--on-dark {
+  display: block;
+}
+
+.v-header-link {
+  color: var(--v-ink-soft);
+  font-family: var(--v-font);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.v-header-link:hover {
+  color: var(--v-ink);
+}
+
+.v-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--v-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--v-ink-soft);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.v-theme-toggle:hover {
+  color: var(--v-ink);
+  border-color: var(--v-line-strong);
+}
+
+.v-theme-toggle__icon {
+  display: none;
+}
+
+.v-theme-toggle__icon .v-icon {
+  width: 15px;
+  height: 15px;
+}
+
+html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
+[data-theme='dark'] .v-theme-toggle__icon--sun {
+  display: inline-flex;
+}
+
 .v-container--narrow {
   max-width: 48rem;
 }

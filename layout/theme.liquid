@@ -6,6 +6,57 @@
     <meta name="theme-color" content="#f8f7f4">
     <script>document.documentElement.classList.add('js');</script>
 
+    {%- comment -%}
+      Dark mode bootstrap. Runs before the stylesheets so the stored theme is
+      applied on the first paint (no white flash). The landing page is excluded
+      for now: its sections still carry hard-coded inline colours.
+    {%- endcomment -%}
+    {%- liquid
+      assign dark_enabled = false
+      if template.name != 'index'
+        assign dark_enabled = true
+      endif
+    -%}
+    <script>
+      (function () {
+        var darkEnabled = {{ dark_enabled | json }};
+        var root = document.documentElement;
+        var stored = null;
+        try { stored = localStorage.getItem('vesper-theme'); } catch (e) {}
+
+        var wantsDark = darkEnabled && (stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (wantsDark) root.setAttribute('data-theme', 'dark');
+
+        function syncMeta() {
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', root.getAttribute('data-theme') === 'dark' ? '#0b0f0c' : '#f8f7f4');
+        }
+        syncMeta();
+
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
+            button.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+          });
+        });
+
+        document.addEventListener('click', function (event) {
+          var trigger = event.target.closest ? event.target.closest('[data-theme-toggle]') : null;
+          if (!trigger) return;
+          var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          if (next === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+          } else {
+            root.removeAttribute('data-theme');
+          }
+          try { localStorage.setItem('vesper-theme', next); } catch (e) {}
+          document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
+            button.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+          });
+          syncMeta();
+        });
+      })();
+    </script>
+
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 96, height: 96 }}">
     {%- endif -%}

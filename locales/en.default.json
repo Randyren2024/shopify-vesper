@@ -88,6 +88,7 @@
     "search": "Search",
     "cart": "Cart",
     "account": "Account",
+    "theme_toggle": "Toggle dark mode",
     "skip_to_content": "Skip to content",
     "cart_count": {
       "one": "{{ count }} item in cart",

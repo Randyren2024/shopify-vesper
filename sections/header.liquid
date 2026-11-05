@@ -15,18 +15,23 @@
   assign products_menu = linklists[section.settings.products_menu]
 -%}
 
-<nav
-  class="fixed top-0 left-0 right-0 z-50"
-  style="background: rgba(248, 247, 244, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(17, 17, 16, 0.1);"
->
+<nav class="fixed top-0 left-0 right-0 z-50 v-headerbar">
   <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
     <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
       <img
+        class="v-logo v-logo--on-light"
         alt="{{ shop.name | escape }}"
         src="{{ 'vesper-logo.svg' | asset_url }}"
         width="557"
         height="83"
-        style="height: 28px; width: auto; display: block;"
+      >
+      <img
+        class="v-logo v-logo--on-dark"
+        alt=""
+        src="{{ 'vesper-logo-white.svg' | asset_url }}"
+        width="557"
+        height="83"
+        aria-hidden="true"
       >
     </a>
 
@@ -40,8 +45,8 @@
             <div class="relative" data-products-dropdown>
               <button
                 type="button"
-                class="flex items-center gap-1 hover:text-[#111110] transition-colors"
-                style="color: rgb(107, 107, 104); font-family: Barlow, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; background: none; border: 0; padding: 0; cursor: pointer;"
+                class="flex items-center gap-1 v-header-link"
+                style="background: none; border: 0; padding: 0; cursor: pointer;"
                 aria-expanded="false"
                 data-products-toggle
               >
@@ -85,8 +90,7 @@
 
             <a
               href="{{ nav_url }}"
-              class="hover:text-[#111110] transition-colors"
-              style="color: rgb(107, 107, 104); font-family: Barlow, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em;"
+              class="v-header-link"
               {{ block.shopify_attributes }}
             >{{ block.settings.label }}</a>
 
@@ -113,11 +117,24 @@
 
       </div>
 
+      {%- if template.name != 'index' -%}
+        <button
+          type="button"
+          class="v-theme-toggle"
+          data-theme-toggle
+          aria-label="{{ 'accessibility.theme_toggle' | t }}"
+          aria-pressed="false"
+        >
+          <span class="v-theme-toggle__icon v-theme-toggle__icon--moon">{% render 'vesper-icons', icon: 'moon' %}</span>
+          <span class="v-theme-toggle__icon v-theme-toggle__icon--sun">{% render 'vesper-icons', icon: 'sun' %}</span>
+        </button>
+      {%- endif -%}
+
       {%- comment -%} 购物车 / 账号入口：主页与全站共用同一个 header，保证每个页面都能进购物车 {%- endcomment -%}
       <a
         href="{{ routes.cart_url }}"
-        class="relative hover:text-[#111110] transition-colors"
-        style="color: rgb(107, 107, 104); display: flex; align-items: center; padding: 4px;"
+        class="relative v-header-link"
+        style="display: flex; align-items: center; padding: 4px;"
         aria-label="{{ 'accessibility.cart' | t }}"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -127,7 +144,7 @@
         </svg>
         {%- if cart.item_count > 0 -%}
           <span
-            style="position: absolute; top: -2px; right: -4px; min-width: 15px; height: 15px; border-radius: 999px; background: #1e3d1e; color: #fff; font-family: Barlow, sans-serif; font-size: 9px; font-weight: 700; line-height: 15px; text-align: center;"
+            style="position: absolute; top: -2px; right: -4px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--v-green); color: var(--v-bg); font-family: Barlow, sans-serif; font-size: 9px; font-weight: 700; line-height: 15px; text-align: center;"
           >{{ cart.item_count }}</span>
         {%- endif -%}
       </a>
@@ -135,8 +152,8 @@
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{{ routes.account_url }}"
-          class="hover:text-[#111110] transition-colors"
-          style="color: rgb(107, 107, 104); display: flex; align-items: center; padding: 4px;"
+          class="v-header-link"
+          style="display: flex; align-items: center; padding: 4px;"
           aria-label="{{ 'accessibility.account' | t }}"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -154,7 +171,7 @@
         aria-expanded="false"
         data-menu-toggle
       >
-        <svg width="18" height="18" fill="none" stroke="#111110" stroke-width="1.5" stroke-linecap="round">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
           <line x1="2" y1="5" x2="16" y2="5"></line>
           <line x1="2" y1="9" x2="16" y2="9"></line>
           <line x1="2" y1="13" x2="16" y2="13"></line>
@@ -167,7 +184,7 @@
   <div
     id="mobile-menu-panel"
     class="md:hidden"
-    style="background: rgb(248, 247, 244); border-top: 1px solid rgba(17, 17, 16, 0.1);"
+    style="background: var(--v-bg); border-top: 1px solid var(--v-line);"
     hidden
     data-menu-panel
   >
