@@ -1,5 +1,11 @@
 import type { CatalogCategory, LandingContent, ShopProduct } from '#shared/types'
-import { CATEGORY_META, fallbackLanding, fallbackProduct, fallbackProducts } from '../data/catalog'
+import {
+  CATEGORY_META,
+  fallbackLanding,
+  fallbackProduct,
+  fallbackProducts,
+  withDedicatedDefaults,
+} from '../data/catalog'
 import { fetchProduct, fetchProducts, isShopifyConfigured } from '../utils/shopify'
 
 /**
@@ -24,7 +30,7 @@ export function landingFromProduct(product: ShopProduct): LandingContent {
     (item) => item.label.toLowerCase() === product.productType.toLowerCase(),
   )
 
-  return {
+  const landing: LandingContent = {
     code,
     name,
     category: category?.id ?? slugify(product.productType || 'product'),
@@ -52,6 +58,11 @@ export function landingFromProduct(product: ShopProduct): LandingContent {
     heroImage: product.featuredImage?.url ?? product.images[0]?.url ?? null,
     galleryImages: product.images.map((image) => image.url),
   }
+
+  return withDedicatedDefaults(
+    landing,
+    product.featuredImage?.url ?? product.images[0]?.url ?? '',
+  )
 }
 
 function slugify(value: string): string {

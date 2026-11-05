@@ -1,6 +1,7 @@
 import type {
   CatalogCategory,
   LandingContent,
+  LandingFaq,
   ShopImage,
   ShopProduct,
   ShopVariant,
@@ -268,6 +269,125 @@ const SEEDS: Seed[] = [
         { label: 'Blade set', qty: '1' },
         { label: 'Tool kit', qty: '1' },
         { label: 'User manual', qty: '1' },
+      ],
+      overview: {
+        heading: 'A slope mower that stays planted where ride-ons give up',
+        paragraphs: [
+          'The Mowrator S1 4WD is built around four independent brushless motors, a 53 cm stamped steel deck and a 56V LiFePO₄ pack. The result is a 64 kg machine that climbs a 50° bank, clears 10 cm obstacles and keeps cutting through 1.3 m grass.',
+          'There is no RTK base station, no boundary wire and no app account. The DJI-grade remote responds in 5 ms from up to 400 m away, so the operator stands clear of the slope while the machine does the work.',
+        ],
+      },
+      metrics: [
+        { value: '50', unit: '°', label: 'Maximum slope' },
+        { value: '53', unit: 'cm', label: 'Cutting width' },
+        { value: '1985', unit: 'W', label: 'Peak cutting power' },
+        { value: '2000', unit: '㎡/h', label: 'Coverage' },
+      ],
+      engineering: {
+        image: '/brand/media/vesper-aluminum.webp',
+        heading: 'Aircraft-grade chassis, serviceable by design',
+        lead: 'Every wear part is reachable without specialist tools, so a blade or battery swap is a minutes-long job rather than a workshop booking.',
+        items: [
+          {
+            name: 'Four-motor drive',
+            value: '4× brushless, 1000W',
+            detail: 'An independent motor per wheel keeps traction on wet grass and loose soil.',
+          },
+          {
+            name: 'Deck',
+            value: '53 cm, DC06 steel',
+            detail: 'Deep-draw stamped steel resists stone damage and stays rigid after seasons of use.',
+          },
+          {
+            name: 'Battery',
+            value: '56V LiFePO₄',
+            detail: '1500+ cycles, 12Ah or 18Ah, 70–90 minute charge on the 600W charger.',
+          },
+          {
+            name: 'Obstacle clearance',
+            value: '10 cm',
+            detail: 'Roots and rocks pass under the deck without stalling the blade.',
+          },
+          {
+            name: 'Tyres',
+            value: '12 mm tread teeth',
+            detail: 'Semi-solid TPU, puncture-free, with a wide contact patch for slope grip.',
+          },
+          {
+            name: 'Remote control',
+            value: '5 ms, 400 m',
+            detail: 'DJI-grade controller — no phone, no app and no account required.',
+          },
+          {
+            name: 'Safety',
+            value: '4 sensors + bumper',
+            detail: 'Ultrasonic array plus a physical bumper, with tilt and roll auto-stop.',
+          },
+          {
+            name: 'Weight',
+            value: '64 kg',
+            detail: 'Heavy enough to hold a slope, light enough to load on a trailer ramp.',
+          },
+        ],
+      },
+      performance: {
+        heading: 'Runtime that matches the size of the job',
+        lead: 'Two battery capacities cover a suburban block or a paddock. Coverage figures are measured at the 53 cm deck width and 1.5 m/s top speed.',
+        chartTitle: 'Cutting coverage per charge',
+        note: 'Manufacturer estimates on level, dry grass. Slope, grass length and discharge mode change real-world coverage.',
+        points: [
+          { label: '12Ah', value: 3000, caption: '3000 ㎡' },
+          { label: '18Ah', value: 4500, caption: '4500 ㎡' },
+        ],
+        figureImage: '/brand/media/vesper-remote.webp',
+        figureTitle: 'Remote-only operation',
+        figureText: 'No app pairing, no account setup and no RTK base station. The controller is the whole interface.',
+      },
+      applications: [
+        {
+          title: 'Steep residential banks',
+          desc: 'Mow a 50° bank from the bottom of the hill, with the operator standing clear.',
+        },
+        {
+          title: 'Orchard inter-rows',
+          desc: 'Tall, matted grass between rows is cleared without a strimmer pass first.',
+        },
+        {
+          title: 'Rough paddocks',
+          desc: 'Roots, rocks and uneven ground pass under a 10 cm clearance deck.',
+        },
+        {
+          title: 'Autumn leaf cleanup',
+          desc: 'Switch to the 931 CFM vacuum and 70 L bag to clear leaves as well as grass.',
+        },
+      ],
+      faq: [
+        {
+          q: 'Can it really mow a 50° slope?',
+          a: 'Yes, on ground with reasonable grip. The four-motor drive and 12 mm tread tyres hold a 50° (119%) grade; wet clay or loose gravel will reduce that figure.',
+        },
+        {
+          q: 'Do I need a base station or boundary wire?',
+          a: 'No. The S1 4WD is remote controlled, so there is no RTK antenna, no boundary wire and no satellite subscription.',
+        },
+        {
+          q: 'How long does the battery take to charge?',
+          a: 'About 70 minutes for the 12Ah pack and 90 minutes for the 18Ah pack on the 600W charger.',
+        },
+        {
+          q: 'What happens if it tips or loses signal?',
+          a: 'Tilt and roll sensors cut the blade and drive immediately, and the remote failsafe stops the machine if the signal is lost.',
+        },
+        {
+          q: 'Is freight included in the price?',
+          a: 'Freight is quoted per order once we confirm your location and access. Add the machine to the cart and we will follow up with a delivered price.',
+        },
+      ],
+      notes: [
+        'Specifications are manufacturer figures and may change without notice.',
+        'Coverage and runtime are estimates on level, dry grass at the stated deck width and speed.',
+        'Operate only on ground within the rated slope, with people and animals clear of the deck.',
+        'Displayed price includes GST. Freight is quoted separately.',
       ],
     },
   },
@@ -798,6 +918,107 @@ const SEEDS: Seed[] = [
         { label: 'User manual', qty: '1' },
         { label: 'Quick guide', qty: '1' },
       ],
+      overview: {
+        heading: 'A mower that reads the lawn instead of following a wire',
+        paragraphs: [
+          'Three cameras and an on-board vision system build the map as the V600 works, so there is no boundary wire to bury, no RTK antenna to site and no satellite subscription to renew.',
+          'Obstacles are recognised as they appear — toys, hoses, pets — and the route adjusts in real time. Cutting height runs from 1 to 3 inches, with an edge pass that leaves about 15 cm of adjustable offset along borders.',
+        ],
+      },
+      metrics: [
+        { value: '0', unit: 'm', label: 'Boundary wire' },
+        { value: '3', unit: 'cameras', label: 'AI vision array' },
+        { value: '1–3', unit: 'in', label: 'Cutting height' },
+        { value: '15', unit: 'cm', label: 'Edge offset' },
+      ],
+      engineering: {
+        image: '/brand/media/categories-lawn-mower.webp',
+        heading: 'Vision-first navigation, nothing to install',
+        lead: 'Because the mower judges its surroundings directly, shaded, enclosed and signal-poor parts of the garden are mown like open lawn.',
+        items: [
+          {
+            name: 'Navigation',
+            value: 'Triple-camera AI vision',
+            detail: 'No RTK antenna and no satellite fix required, so tree cover and buildings are not a problem.',
+          },
+          {
+            name: 'Mapping',
+            value: 'One-tap automatic',
+            detail: 'A single tap in the app builds an accurate map and an efficient mowing route.',
+          },
+          {
+            name: 'Obstacle handling',
+            value: 'AI vision + CMOS',
+            detail: 'Toys, hoses and pets are recognised as they appear and steered around in real time.',
+          },
+          {
+            name: 'Edge cutting',
+            value: '~15 cm adjustable',
+            detail: 'A dedicated edge pass follows the border, so no trimming is needed afterwards.',
+          },
+          {
+            name: 'Mowing modes',
+            value: '3',
+            detail: 'Quick trim, standard cut or intensive mow, matched to how fast the lawn is growing.',
+          },
+          {
+            name: 'Cutting height',
+            value: '1"–3"',
+            detail: 'Copes with fine turf and dense warm-season grasses such as Bermuda and Zoysia.',
+          },
+          {
+            name: 'Control',
+            value: 'Mobile app',
+            detail: 'Schedules, zones and live status, with no boundary wire to reconfigure.',
+          },
+          {
+            name: 'Drive',
+            value: 'Fully electric',
+            detail: 'Zero emissions and far lower running costs than a petrol ride-on.',
+          },
+        ],
+      },
+      applications: [
+        {
+          title: 'Complex gardens',
+          desc: 'Tight corners, heavy tree cover and criss-cross layouts, with no extra setup.',
+        },
+        {
+          title: 'Shaded or enclosed lawns',
+          desc: 'Camera navigation keeps working where satellite-based mowers lose position.',
+        },
+        {
+          title: 'Scheduled quiet mowing',
+          desc: 'Electric drive is quiet enough for early starts, on a schedule set once in the app.',
+        },
+        {
+          title: 'Mixed grass types',
+          desc: 'One inch to three inches covers fine turf and tough warm-season grasses.',
+        },
+      ],
+      faq: [
+        {
+          q: 'Does it need a boundary wire or RTK antenna?',
+          a: 'No. The V600 navigates with three cameras and on-board AI, so nothing is buried and no base station is required.',
+        },
+        {
+          q: 'What happens in heavy shade?',
+          a: 'Navigation is camera-based rather than satellite-based, so shaded and enclosed areas are mown the same way as open lawn.',
+        },
+        {
+          q: 'How does it handle toys and pets?',
+          a: 'AI vision and CMOS sensors recognise obstacles in real time and route around them, then resume the mowing pattern.',
+        },
+        {
+          q: 'Can it cut right up to the fence?',
+          a: 'An edge pass leaves roughly 15 cm of adjustable offset along borders, which removes the need for a trimmer pass.',
+        },
+      ],
+      notes: [
+        'Specifications are manufacturer figures and may change without notice.',
+        'Mapping, cutting height and edge offset depend on lawn shape, grass type and app settings.',
+        'Displayed price includes GST. Freight is quoted separately.',
+      ],
     },
   },
   {
@@ -918,6 +1139,105 @@ export function fallbackCategories(): CatalogCategory[] {
  * coherent page even when only the basics are known. Rich sections are skipped
  * by the page whenever their array is empty.
  */
+const DEFAULT_NOTES = [
+  'Specifications are manufacturer figures and may change without notice.',
+  'Images are indicative; final configuration may vary.',
+  'Displayed price includes GST. Freight is quoted separately.',
+]
+
+/** "50°" → { value: "50", unit: "°" }, "1–3 in" → { value: "1–3", unit: "in" } */
+function splitStat(raw: string): { value: string; unit: string } {
+  const match = raw.trim().match(/^([\d.,/\u2013-]+)\s*(.*)$/)
+  if (!match) return { value: raw.trim(), unit: '' }
+  return { value: (match[1] ?? raw.trim()).trim(), unit: (match[2] ?? '').trim() }
+}
+
+function buildFaq(landing: LandingContent): LandingFaq[] {
+  const items: LandingFaq[] = []
+
+  if (landing.features.length) {
+    items.push({
+      q: `What does the ${landing.code} include?`,
+      a: `Standard scope covers ${landing.features.slice(0, 4).join('; ')}. Contact us for the exact configuration quoted.`,
+    })
+  }
+
+  items.push({
+    q: 'Is freight included?',
+    a: 'Freight is quoted per order once we confirm your location and access requirements.',
+  })
+
+  items.push({
+    q: 'What warranty applies?',
+    a: 'All Vesper equipment carries a standard 12-month warranty, with extended options available. Spare parts typically ship within 3–7 business days in Australia.',
+  })
+
+  if (landing.specs.length) {
+    items.push({
+      q: 'Where can I see the full specification?',
+      a: `The complete ${landing.code} specification is listed in the specifications section on this page.`,
+    })
+  }
+
+  return items
+}
+
+/**
+ * Fills the dedicated-landing blocks for products that only have the shorter
+ * seed data, so every product renders the same page structure without
+ * inventing numbers it does not have.
+ */
+export function withDedicatedDefaults(landing: LandingContent, fallbackImage: string): LandingContent {
+  const overview =
+    landing.overview ??
+    (landing.why.length
+      ? { heading: `${landing.code} ${landing.name}`, paragraphs: landing.why.slice(0, 2) }
+      : { heading: `${landing.code} ${landing.name}`, paragraphs: [landing.tagline] })
+
+  const metrics =
+    landing.metrics && landing.metrics.length
+      ? landing.metrics
+      : landing.stats.slice(0, 4).map((stat) => {
+          const parts = splitStat(stat.value)
+          return { value: parts.value, unit: parts.unit, label: stat.label }
+        })
+
+  const engineering =
+    landing.engineering ??
+    (landing.specs[0]
+      ? {
+          image: landing.gallery[0]?.image || landing.heroImage || fallbackImage,
+          heading: `${landing.code} engineering`,
+          lead: landing.tagline,
+          items: landing.specs[0].items.slice(0, 6).map((item) => ({
+            name: item.label,
+            value: item.value,
+            detail: '',
+          })),
+        }
+      : null)
+
+  const applications =
+    landing.applications && landing.applications.length
+      ? landing.applications
+      : landing.scenarios.length
+        ? landing.scenarios.map((item) => ({ title: item.title, desc: item.text }))
+        : landing.highlights.length
+          ? landing.highlights.map((item) => ({ title: item.title, desc: item.text }))
+          : landing.features.slice(0, 4).map((item) => ({ title: item, desc: '' }))
+
+  return {
+    ...landing,
+    overview,
+    metrics,
+    engineering,
+    applications,
+    faq: landing.faq && landing.faq.length ? landing.faq : buildFaq(landing),
+    notes: landing.notes && landing.notes.length ? landing.notes : DEFAULT_NOTES,
+    performance: landing.performance ?? null,
+  }
+}
+
 export function fallbackLanding(handle: string): LandingContent | null {
   const seed = SEEDS.find((item) => item.handle === handle)
   if (!seed) return null
@@ -947,7 +1267,7 @@ export function fallbackLanding(handle: string): LandingContent | null {
     galleryImages: [seed.image],
   }
 
-  return { ...base, ...seed.landing }
+  return withDedicatedDefaults({ ...base, ...seed.landing }, seed.image)
 }
 
 export function seedHandleForVariant(variantId: string): string | null {

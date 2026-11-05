@@ -103,6 +103,61 @@ export interface LandingCompare {
   rows: string[][]
 }
 
+/* -------------------------------------------------------------------------- */
+/* Dedicated landing-page blocks                                              */
+/* -------------------------------------------------------------------------- */
+
+export interface LandingOverview {
+  heading: string
+  paragraphs: string[]
+}
+
+export interface LandingMetric {
+  value: string
+  unit: string
+  label: string
+}
+
+export interface LandingEngineeringItem {
+  name: string
+  value: string
+  detail: string
+}
+
+export interface LandingEngineering {
+  image: string
+  heading: string
+  lead: string
+  items: LandingEngineeringItem[]
+}
+
+export interface LandingChartPoint {
+  label: string
+  value: number
+  caption: string
+}
+
+export interface LandingPerformance {
+  heading: string
+  lead: string
+  chartTitle: string
+  note: string
+  points: LandingChartPoint[]
+  figureImage: string
+  figureTitle: string
+  figureText: string
+}
+
+export interface LandingApplication {
+  title: string
+  desc: string
+}
+
+export interface LandingFaq {
+  q: string
+  a: string
+}
+
 export interface LandingContent {
   code: string
   name: string
@@ -126,4 +181,11 @@ export interface LandingContent {
   video: string | null
   heroImage: string | null
   galleryImages: string[]
+  overview?: LandingOverview | null
+  metrics?: LandingMetric[]
+  engineering?: LandingEngineering | null
+  performance?: LandingPerformance | null
+  applications?: LandingApplication[]
+  faq?: LandingFaq[]
+  notes?: string[]
 }

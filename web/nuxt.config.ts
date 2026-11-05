@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '~/assets/css/base.css',
     '~/assets/css/inner.css',
     '~/assets/css/landing.css',
+    '~/assets/css/dedicated.css',
   ],
 
   /**
