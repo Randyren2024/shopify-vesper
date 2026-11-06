@@ -96,7 +96,6 @@ const VARIANT_FRAGMENT = `
     id
     title
     availableForSale
-    quantityAvailable
     price { amount currencyCode }
     compareAtPrice { amount currencyCode }
     selectedOptions { name value }
@@ -170,6 +169,7 @@ export function normaliseProduct(raw: RawProduct): ShopProduct {
     compareAtPrice: compareAt && Number(compareAt.amount) > 0 ? compareAt : null,
     variants: (raw.variants?.nodes ?? []).map((variant) => ({
       ...variant,
+      quantityAvailable: variant.quantityAvailable ?? null,
       compareAtPrice:
         variant.compareAtPrice && Number(variant.compareAtPrice.amount) > 0
           ? variant.compareAtPrice
