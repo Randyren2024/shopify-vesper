@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { theme as antdThemeTools } from 'ant-design-vue'
+import { useCart } from '~/composables/useCart'
+import { useTheme } from '~/composables/useTheme'
 
 const { refresh } = useCart()
 const { scheme, sync } = useTheme()
