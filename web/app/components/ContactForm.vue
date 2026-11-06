@@ -37,10 +37,12 @@ async function submit() {
 
 <template>
   <div class="ct-form antd-contact-form">
-    <h2 style="font-size: 1.3rem">Send us a message</h2>
-    <p class="ct-form__intro">
+    <a-typography-title :level="4" class="ct-form__title">
+      Send us a message
+    </a-typography-title>
+    <a-typography-paragraph class="ct-form__intro">
       Tell us what you are working with and we will reply within one business day.
-    </p>
+    </a-typography-paragraph>
 
     <a-form v-if="!sent" :model="form" layout="vertical" @finish="submit">
       <div class="ct-form__grid">
