@@ -19,7 +19,12 @@ body {
   color: var(--v-ink);
   font-family: var(--v-font);
   font-size: 16px;
-  line-height: 1.6;
+  font-weight: var(--v-font-weight-regular);
+  line-height: var(--v-leading-body);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  font-feature-settings: "kern";
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.25s ease, color 0.25s ease;
@@ -68,9 +73,9 @@ h2,
 h3,
 h4 {
   font-family: var(--v-font-display);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  font-weight: 800;
+  line-height: var(--v-leading-heading);
+  letter-spacing: var(--v-tracking-display);
+  font-weight: var(--v-font-weight-extrabold);
 }
 
 ::selection {
