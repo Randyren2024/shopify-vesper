@@ -3,6 +3,12 @@ export default defineNuxtConfig({
 
   devtools: { enabled: false },
 
+  // Make the Nuxt 4 app composables directory explicit for clean/remote builds.
+  imports: {
+    scan: true,
+    dirs: ['~/composables'],
+  },
+
   css: [
     '~/assets/css/tokens.css',
     '~/assets/css/base.css',
