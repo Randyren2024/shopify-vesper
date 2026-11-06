@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '~/assets/css/landing.css',
     '~/assets/css/dedicated.css',
     '~/assets/css/drawer.css',
+    '~/assets/css/antd-overrides.css',
   ],
 
   /**

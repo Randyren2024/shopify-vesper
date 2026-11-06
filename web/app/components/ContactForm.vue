@@ -36,69 +36,94 @@ async function submit() {
 </script>
 
 <template>
-  <div class="ct-form">
+  <div class="ct-form antd-contact-form">
     <h2 style="font-size: 1.3rem">Send us a message</h2>
-    <p style="margin: 8px 0 22px; color: var(--v-ink-soft); font-size: 0.92rem">
+    <p class="ct-form__intro">
       Tell us what you are working with and we will reply within one business day.
     </p>
 
-    <form v-if="!sent" @submit.prevent="submit">
+    <a-form v-if="!sent" :model="form" layout="vertical" @finish="submit">
       <div class="ct-form__grid">
-        <div class="v-field">
-          <label for="cf-name">Name</label>
-          <input id="cf-name" v-model="form.name" class="v-input" type="text" autocomplete="name" required>
-        </div>
-        <div class="v-field">
-          <label for="cf-email">Email</label>
-          <input id="cf-email" v-model="form.email" class="v-input" type="email" autocomplete="email" required>
-        </div>
-        <div class="v-field">
-          <label for="cf-phone">Phone</label>
-          <input id="cf-phone" v-model="form.phone" class="v-input" type="tel" autocomplete="tel">
-        </div>
-        <div class="v-field">
-          <label for="cf-company">Company</label>
-          <input id="cf-company" v-model="form.company" class="v-input" type="text" autocomplete="organization">
-        </div>
-        <div class="v-field ct-form__full">
-          <label for="cf-product">Product interest</label>
-          <input
-            id="cf-product"
-            v-model="form.product"
-            class="v-input"
-            type="text"
+        <a-form-item
+          label="Name"
+          name="name"
+          :rules="[{ required: true, message: 'Please enter your name.' }]"
+        >
+          <a-input v-model:value="form.name" autocomplete="name" placeholder="Your name" />
+        </a-form-item>
+
+        <a-form-item
+          label="Email"
+          name="email"
+          :rules="[
+            { required: true, message: 'Please enter your email address.' },
+            { type: 'email', message: 'Please enter a valid email address.' },
+          ]"
+        >
+          <a-input v-model:value="form.email" type="email" autocomplete="email" placeholder="you@company.com" />
+        </a-form-item>
+
+        <a-form-item label="Phone" name="phone">
+          <a-input v-model:value="form.phone" type="tel" autocomplete="tel" placeholder="Your phone number" />
+        </a-form-item>
+
+        <a-form-item label="Company" name="company">
+          <a-input v-model:value="form.company" autocomplete="organization" placeholder="Company name" />
+        </a-form-item>
+
+        <a-form-item class="ct-form__full" label="Product interest" name="product">
+          <a-input
+            v-model:value="form.product"
             placeholder="e.g. Mowrator S1 4WD, AF718, orchard sprayer"
-          >
-        </div>
-        <div class="v-field ct-form__full">
-          <label for="cf-message">How can we help?</label>
-          <textarea id="cf-message" v-model="form.message" class="v-textarea" required></textarea>
-        </div>
+          />
+        </a-form-item>
+
+        <a-form-item
+          class="ct-form__full"
+          label="How can we help?"
+          name="message"
+          :rules="[{ required: true, message: 'Please tell us a little about your project.' }]"
+        >
+          <a-textarea
+            v-model:value="form.message"
+            :rows="4"
+            :maxlength="3000"
+            show-count
+            placeholder="Tell us about your site, application and what you need to achieve."
+          />
+        </a-form-item>
       </div>
 
-      <p v-if="error" class="v-form-note v-form-note--error" style="margin-top: 16px">{{ error }}</p>
+      <a-alert
+        v-if="error"
+        class="ct-form__alert"
+        type="error"
+        show-icon
+        :message="error"
+      />
 
       <div class="ct-form__foot">
         <p>
           We use your details only to answer this enquiry. Prefer email?
           <a :href="`mailto:${config.public.email}`" style="text-decoration: underline">{{ config.public.email }}</a>
         </p>
-        <button type="submit" class="v-btn v-btn--primary v-btn--lg" :disabled="sending">
-          <AppIcon name="mail" :size="16" />
-          {{ sending ? 'Sending…' : 'Send message' }}
-        </button>
+        <a-button html-type="submit" type="primary" size="large" :loading="sending">
+          <template #icon><AppIcon name="mail" :size="16" /></template>
+          Send message
+        </a-button>
       </div>
-    </form>
+    </a-form>
 
-    <div v-else class="v-form-note v-form-note--ok">
-      <strong>Thanks — your message is on its way.</strong>
-      <p style="margin-top: 6px">
-        We will reply within one business day. If it is urgent, call
-        <a :href="`tel:${config.public.phone}`" style="text-decoration: underline">{{ config.public.phone }}</a>.
-      </p>
-      <button type="button" class="v-btn v-btn--ghost" style="margin-top: 10px" @click="sent = false">
+    <div v-else class="ct-form__success">
+      <a-alert type="success" show-icon message="Thanks — your message is on its way.">
+        <template #description>
+          We will reply within one business day. If it is urgent, call
+          <a :href="`tel:${config.public.phone}`">{{ config.public.phone }}</a>.
+        </template>
+      </a-alert>
+      <a-button type="default" style="margin-top: 18px" @click="sent = false">
         Send another message
-      </button>
+      </a-button>
     </div>
   </div>
 </template>

@@ -1,0 +1,213 @@
+/* Ant Design Vue storefront skin — deliberately scoped to the Vesper brand.
+   Keep the library's CSS-in-JS component styles; do not load reset.css here. */
+
+.ant-btn {
+  border-radius: 999px;
+  font-family: var(--v-font);
+  font-weight: 650;
+  box-shadow: none;
+  transition: transform .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.ant-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.ant-btn-primary {
+  background: var(--v-green);
+  border-color: var(--v-green);
+  color: var(--v-on-green);
+}
+
+.ant-btn-primary:not(:disabled):hover {
+  background: var(--v-green-hover);
+  border-color: var(--v-green-hover);
+  color: var(--v-on-green);
+}
+
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-select-selector {
+  border-radius: 11px !important;
+  background: var(--v-surface) !important;
+  color: var(--v-ink) !important;
+  border-color: var(--v-line-strong) !important;
+  box-shadow: none !important;
+}
+
+.ant-input,
+.ant-input-affix-wrapper {
+  min-height: 44px;
+  padding-inline: 13px;
+}
+
+.ant-input-number {
+  min-height: 38px;
+}
+
+.ant-input-number-input {
+  height: 36px;
+  text-align: center;
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover,
+.ant-input-number:hover,
+.ant-select:hover .ant-select-selector {
+  border-color: var(--v-green) !important;
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper-focused,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector {
+  border-color: var(--v-green) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--v-green) 15%, transparent) !important;
+}
+
+.ant-input::placeholder,
+.ant-select-selection-placeholder {
+  color: var(--v-ink-faint) !important;
+}
+
+.ant-form-item {
+  margin-bottom: 18px;
+}
+
+.ant-form-item-label > label {
+  color: var(--v-ink-soft);
+  font-family: var(--v-font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.ant-form-item-explain-error {
+  font-size: 12px;
+}
+
+.ant-alert {
+  border-radius: 12px;
+  font-family: var(--v-font);
+}
+
+.ant-tag {
+  border-radius: 999px;
+  padding-inline: 10px;
+  font-family: var(--v-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.ant-empty-description {
+  color: var(--v-ink-soft);
+}
+
+/* Quantity control is shared by the product page and cart drawer. */
+.v-qty {
+  display: inline-flex;
+  width: 124px;
+}
+
+.v-qty .ant-input-number {
+  width: 100%;
+  border-radius: 999px !important;
+  overflow: hidden;
+}
+
+.v-qty .ant-input-number-handler-wrap {
+  opacity: 1;
+  background: var(--v-bg-soft);
+}
+
+.v-qty .ant-input-number-handler {
+  border-color: var(--v-line);
+}
+
+.v-qty .ant-input-number-input {
+  font-family: var(--v-font-display);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Catalogue controls */
+.catalogue-controls {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding: 18px 20px;
+  border: 1px solid var(--v-line);
+  border-radius: 18px;
+  background: var(--v-card);
+}
+
+.catalogue-controls__filter {
+  display: grid;
+  gap: 7px;
+  width: min(360px, 100%);
+}
+
+.catalogue-controls__label {
+  color: var(--v-ink-soft);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.catalogue-controls__select {
+  width: 100%;
+}
+
+.catalogue-controls .ant-tag {
+  margin: 0;
+  padding: 7px 12px;
+}
+
+.catalogue-preview-alert {
+  margin-bottom: 24px;
+}
+
+/* Product purchase controls */
+.dl-variant-select {
+  width: 100%;
+}
+
+.dl-ant-buy.ant-btn {
+  min-height: 54px;
+  height: auto;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 750;
+  white-space: normal;
+}
+
+.dl-stock-tag {
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+.dl-commerce-alert {
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .catalogue-controls {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .catalogue-controls__filter {
+    width: 100%;
+  }
+
+  .catalogue-controls .ant-tag {
+    align-self: start;
+  }
+}

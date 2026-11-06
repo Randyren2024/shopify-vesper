@@ -48,6 +48,11 @@ const safety = computed(() => landing.value.safety)
 /* ------------------------------------------------------------- commerce */
 
 const variants = computed(() => product.value.variants)
+const variantOptions = computed(() => variants.value.map((item) => ({
+  label: `${item.title}${item.availableForSale ? '' : ' — sold out'}`,
+  value: item.id,
+  disabled: !item.availableForSale,
+})))
 const selectedId = ref(variants.value[0]?.id ?? '')
 const quantity = ref(1)
 const added = ref(false)
@@ -292,22 +297,17 @@ if (faqLd.value) {
             <div class="dl-buy__price">
               <strong>{{ price }}</strong>
               <s v-if="compareAt">{{ compareAt }}</s>
-              <span class="dl-buy__stock">{{ inStock ? 'In stock' : 'Out of stock' }}</span>
+              <a-tag :color="inStock ? 'success' : 'default'" class="dl-stock-tag">{{ inStock ? 'In stock' : 'Out of stock' }}</a-tag>
             </div>
 
             <div v-if="variants.length > 1" class="dl-form">
               <label>
                 Configuration
-                <select v-model="selectedId">
-                  <option
-                    v-for="item in variants"
-                    :key="item.id"
-                    :value="item.id"
-                    :disabled="!item.availableForSale"
-                  >
-                    {{ item.title }}{{ item.availableForSale ? '' : ' — sold out' }}
-                  </option>
-                </select>
+                <a-select
+                  v-model:value="selectedId"
+                  :options="variantOptions"
+                  class="dl-variant-select"
+                />
               </label>
             </div>
 
@@ -319,25 +319,30 @@ if (faqLd.value) {
                 </label>
               </div>
 
-              <button
-                type="button"
-                class="dl-cta"
-                style="align-self: end; width: 100%"
-                :disabled="pending || !inStock"
+              <a-button
+                type="primary"
+                size="large"
+                block
+                class="dl-ant-buy"
+                :loading="pending"
+                :disabled="!inStock"
                 @click="addToCart"
               >
                 <template v-if="added">Added to cart</template>
-                <template v-else-if="pending">Adding…</template>
-                <template v-else-if="inStock">Add to cart — {{ price }}</template>
-                <template v-else>Out of stock</template>
-              </button>
+                <template v-else-if="!inStock">Out of stock</template>
+                <template v-else>Add to cart — {{ price }}</template>
+              </a-button>
             </div>
 
-            <p v-if="cartError" class="dl-form__status">{{ cartError }}</p>
-            <p v-if="!checkoutEnabled" class="dl-form__privacy">
-              Preview catalogue — add a Storefront API token to <code>.env</code> to enable live
-              stock and Shopify checkout.
-            </p>
+            <a-alert v-if="cartError" class="dl-commerce-alert" type="error" show-icon :message="cartError" />
+            <a-alert
+              v-if="!checkoutEnabled"
+              class="dl-commerce-alert"
+              type="info"
+              show-icon
+              message="Preview catalogue"
+              description="Connect a Shopify Storefront API token to enable live stock and secure checkout."
+            />
           </div>
 
           <aside class="dl-buy__aside">

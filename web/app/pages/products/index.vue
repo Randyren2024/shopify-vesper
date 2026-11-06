@@ -17,6 +17,7 @@ const { data: categoryData } = await useFetch<{ categories: CatalogCategory[] }>
 
 const products = computed(() => catalog.value?.products ?? [])
 const categories = computed(() => categoryData.value?.categories ?? [])
+const categoryOptions = computed(() => categories.value.map((item) => ({ label: item.label, value: item.id })))
 const isFallback = computed(() => catalog.value?.source === 'fallback')
 
 const activeCategory = computed(() => String(route.query.category ?? ''))
@@ -87,38 +88,38 @@ useHead({
 
     <section class="v-section">
       <div class="v-container">
-        <div class="flt">
-          <button
-            type="button"
-            class="flt__chip"
-            :class="{ 'is-active': !activeCategory }"
-            @click="selectCategory('')"
-          >
-            All products
-          </button>
-          <button
-            v-for="category in categories"
-            :key="category.id"
-            type="button"
-            class="flt__chip"
-            :class="{ 'is-active': activeCategory === category.id }"
-            @click="selectCategory(category.id)"
-          >
-            {{ category.label }}
-          </button>
+        <div class="catalogue-controls">
+          <div class="catalogue-controls__filter">
+            <span class="catalogue-controls__label">Filter by category</span>
+            <a-select
+              :value="activeCategory || undefined"
+              :options="categoryOptions"
+              placeholder="All product categories"
+              allow-clear
+              show-search
+              option-filter-prop="label"
+              class="catalogue-controls__select"
+              @change="selectCategory(String($event ?? ''))"
+            />
+          </div>
+          <a-tag color="green">{{ filtered.length }} {{ filtered.length === 1 ? 'item' : 'items' }}</a-tag>
         </div>
 
-        <p v-if="isFallback" class="cart-summary__note" style="margin-bottom: 22px">
-          Bundled catalogue preview — add a Storefront API token to <code>.env</code> to list live
-          Shopify products.
-        </p>
+        <a-alert
+          v-if="isFallback"
+          class="catalogue-preview-alert"
+          type="info"
+          show-icon
+          message="Preview catalogue"
+          description="This page is showing the bundled preview catalogue. Connect a Shopify Storefront API token to load live products and availability."
+        />
 
         <div v-if="filtered.length" class="p-grid">
           <ProductCard v-for="product in filtered" :key="product.id" :product="product" />
         </div>
 
         <div v-else class="cart-empty">
-          <h2>Nothing in this category yet</h2>
+          <a-empty description="Nothing in this category yet" />
           <p>Tell us what you need and we will source it — most of our range is configured to order.</p>
           <NuxtLink to="/contact" class="v-btn v-btn--primary">Talk to the team</NuxtLink>
         </div>
