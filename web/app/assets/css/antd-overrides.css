@@ -2,6 +2,12 @@
    Keep the library's CSS-in-JS component styles; do not load reset.css here. */
 
 .ant-btn {
+  /* Slotted icons live straight inside the button, so lay text and icon out
+     on one row ourselves instead of relying on ant's .anticon wrapper. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   border-radius: 999px;
   font-family: var(--v-font);
   font-weight: 650;
