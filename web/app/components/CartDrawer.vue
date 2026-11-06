@@ -212,19 +212,21 @@ onBeforeUnmount(() => {
                       <span class="cd-line__price">{{ formatMoney(line.merchandise.price) }}</span>
                     </div>
 
-                    <button
-                      type="button"
+                    <a-button
+                      type="link"
+                      danger
+                      size="small"
                       class="cd-line__remove"
                       :disabled="busy || pending"
                       @click="removeLine(line.id)"
                     >
                       Remove
-                    </button>
+                    </a-button>
                   </div>
                 </li>
               </ul>
 
-              <p v-if="error" class="cd__error">{{ error }}</p>
+              <a-alert v-if="error" class="cd__error" type="error" show-icon :message="error" />
             </div>
 
             <footer class="cd__foot">
@@ -236,15 +238,17 @@ onBeforeUnmount(() => {
                 GST included. Freight is quoted to your postcode after the order.
               </p>
 
-              <button
-                type="button"
-                class="v-btn v-btn--primary v-btn--block v-btn--lg"
+              <a-button
+                type="primary"
+                size="large"
+                block
+                class="cd-checkout-btn"
                 :disabled="!cart?.checkoutUrl"
                 @click="checkout"
               >
                 Continue to checkout
                 <AppIcon name="arrow-right" :size="16" />
-              </button>
+              </a-button>
 
               <NuxtLink to="/cart" class="cd__cartlink" @click="closeDrawer">
                 View full cart
