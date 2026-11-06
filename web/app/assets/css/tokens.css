@@ -42,6 +42,15 @@
 
   --v-font: "Barlow", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --v-font-display: "Barlow Condensed", "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --v-font-weight-regular: 400;
+  --v-font-weight-medium: 500;
+  --v-font-weight-semibold: 600;
+  --v-font-weight-bold: 700;
+  --v-font-weight-extrabold: 800;
+  --v-leading-tight: 1.02;
+  --v-leading-heading: 1.08;
+  --v-leading-body: 1.65;
+  --v-tracking-display: -0.035em;
 
   --v-nav-h: 56px;
   --v-max: 1200px;
