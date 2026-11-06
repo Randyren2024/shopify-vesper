@@ -73,11 +73,13 @@ useHead({
     <section class="pg-hero">
       <div class="v-container">
         <span class="v-eyebrow">Catalogue</span>
-        <h1>{{ activeLabel }}</h1>
-        <p>
+        <a-typography-title :level="1" class="pg-hero__title">
+          {{ activeLabel }}
+        </a-typography-title>
+        <a-typography-paragraph class="pg-hero__description">
           Every machine we stock is chosen for Australian conditions and supported from Perth.
           Filter by the job you need done.
-        </p>
+        </a-typography-paragraph>
         <div class="pg-hero__meta">
           <span>{{ filtered.length }} products</span>
           <span>Prices in AUD, GST included</span>
