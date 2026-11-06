@@ -8,12 +8,12 @@ import {
   InputNumber,
   Select,
   Tag,
+  Typography,
 } from 'ant-design-vue'
 
 /**
- * Register only the Ant Design Vue components used by the storefront.
- * Component styles are supplied by Ant Design Vue's CSS-in-JS runtime;
- * we intentionally do not import reset.css to preserve Vesper's site-wide base.
+ * Register the focused Ant Design Vue component set used by the storefront.
+ * We intentionally skip reset.css so Vesper's marketing layout remains intact.
  */
 export default defineNuxtPlugin((nuxtApp) => {
   const components = [
@@ -26,6 +26,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     InputNumber,
     Select,
     Tag,
+    Typography,
   ]
 
   components.forEach((component) => nuxtApp.vueApp.use(component))
