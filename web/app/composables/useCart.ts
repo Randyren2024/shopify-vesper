@@ -4,6 +4,15 @@ export function useCart() {
   const cart = useState<Cart | null>('vesper-cart', () => null)
   const checkoutEnabled = useState<boolean>('vesper-checkout-enabled', () => false)
   const pending = useState<boolean>('vesper-cart-pending', () => false)
+  const drawerOpen = useState<boolean>('vesper-cart-drawer-open', () => false)
+
+  function openDrawer() {
+    drawerOpen.value = true
+  }
+
+  function closeDrawer() {
+    drawerOpen.value = false
+  }
 
   const count = computed(() => cart.value?.totalQuantity ?? 0)
   const isEmpty = computed(() => !cart.value || cart.value.lines.length === 0)
@@ -31,6 +40,8 @@ export function useCart() {
         body: { variantId, quantity },
       })
       cart.value = response.cart
+      // Every successful add opens the drawer so the result is visible.
+      drawerOpen.value = true
     } finally {
       pending.value = false
     }
@@ -65,5 +76,18 @@ export function useCart() {
     return cart.value
   }
 
-  return { cart, count, isEmpty, pending, checkoutEnabled, refresh, add, setQuantity, remove }
+  return {
+    cart,
+    count,
+    isEmpty,
+    pending,
+    checkoutEnabled,
+    drawerOpen,
+    openDrawer,
+    closeDrawer,
+    refresh,
+    add,
+    setQuantity,
+    remove,
+  }
 }

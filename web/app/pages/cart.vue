@@ -32,6 +32,17 @@ async function removeLine(lineId: string) {
 function checkout() {
   const url = cart.value?.checkoutUrl
   if (!url) return
+  trackEvent('begin_checkout', {
+    currency: cart.value?.subtotal.currencyCode,
+    value: Number(cart.value?.subtotal.amount ?? 0),
+    items: cart.value?.lines.map((line) => ({
+      item_id: line.merchandise.productHandle,
+      item_name: line.merchandise.productTitle,
+      item_variant: line.merchandise.title,
+      price: Number(line.merchandise.price.amount),
+      quantity: line.quantity,
+    })),
+  })
   window.location.href = url
 }
 

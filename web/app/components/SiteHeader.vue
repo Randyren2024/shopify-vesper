@@ -2,7 +2,7 @@
 import type { CatalogCategory } from '#shared/types'
 
 const route = useRoute()
-const { count } = useCart()
+const { count, openDrawer } = useCart()
 const config = useRuntimeConfig()
 
 const { data: catalog } = await useFetch<{
@@ -116,10 +116,10 @@ const accountUrl = computed(() => `https://${config.public.storeDomain}/account`
       <div class="site-header__actions">
         <ThemeToggle />
 
-        <NuxtLink to="/cart" class="site-icon-btn" aria-label="Cart" style="position: relative">
+        <button type="button" class="site-icon-btn" aria-label="Open cart" style="position: relative" @click="openDrawer">
           <AppIcon name="cart" :size="16" />
           <span v-if="count > 0" class="site-cart-count">{{ count }}</span>
-        </NuxtLink>
+        </button>
 
         <button
           type="button"

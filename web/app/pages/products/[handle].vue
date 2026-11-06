@@ -81,6 +81,19 @@ async function addToCart() {
   try {
     await add(variant.value.id, quantity.value)
     added.value = true
+    trackEvent('add_to_cart', {
+      currency: variant.value.price.currencyCode,
+      value: Number(variant.value.price.amount) * quantity.value,
+      items: [
+        {
+          item_id: product.value.handle,
+          item_name: pageTitle.value,
+          item_variant: variant.value.title,
+          price: Number(variant.value.price.amount),
+          quantity: quantity.value,
+        },
+      ],
+    })
     window.setTimeout(() => {
       added.value = false
     }, 2600)
@@ -88,6 +101,26 @@ async function addToCart() {
     cartError.value = errorMessage(cause)
   }
 }
+
+function trackWhatsApp() {
+  trackEvent('contact', { method: 'whatsapp', product: landing.value.code })
+}
+
+/* GA4 ecommerce: view_item fires once the product data is on the client. */
+onMounted(() => {
+  const currency = product.value.priceRange.minVariantPrice.currencyCode
+  trackEvent('view_item', {
+    currency,
+    value: Number(product.value.priceRange.minVariantPrice.amount),
+    items: [
+      {
+        item_id: product.value.handle,
+        item_name: pageTitle.value,
+        price: Number(product.value.priceRange.minVariantPrice.amount),
+      },
+    ],
+  })
+})
 
 /* ------------------------------------------------------------------ seo */
 
@@ -321,7 +354,7 @@ if (faqLd.value) {
               </li>
             </ul>
 
-            <a :href="whatsappHref" target="_blank" rel="noopener" class="dl-ghost" style="justify-content: center">
+            <a :href="whatsappHref" target="_blank" rel="noopener" class="dl-ghost" style="justify-content: center" @click="trackWhatsApp">
               <AppIcon name="whatsapp" :size="16" />
               Chat on WhatsApp
             </a>

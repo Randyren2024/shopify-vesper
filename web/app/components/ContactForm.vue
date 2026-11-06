@@ -20,6 +20,7 @@ async function submit() {
   try {
     await $fetch('/api/contact', { method: 'POST', body: { ...form } })
     sent.value = true
+    trackEvent('generate_lead', { form: 'contact_page', product: form.product || null })
     form.name = ''
     form.email = ''
     form.phone = ''

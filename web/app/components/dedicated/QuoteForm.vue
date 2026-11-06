@@ -51,6 +51,7 @@ async function submit() {
       },
     })
     sent.value = true
+    trackEvent('generate_lead', { form: 'product_quote', product: props.code })
   } catch (cause) {
     error.value = errorMessage(cause)
   } finally {

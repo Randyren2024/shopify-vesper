@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '~/assets/css/inner.css',
     '~/assets/css/landing.css',
     '~/assets/css/dedicated.css',
+    '~/assets/css/drawer.css',
   ],
 
   /**
@@ -26,6 +27,8 @@ export default defineNuxtConfig({
       whatsapp: '61448290926',
       email: 'info@vesperrobot.au',
       phone: '+61448290926',
+      // GTM container id (GTM-XXXXXXX). Empty string disables the plugin.
+      gtmId: 'GTM-PHDJJ744',
     },
   },
 
