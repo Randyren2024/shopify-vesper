@@ -22,6 +22,10 @@ export default defineNuxtConfig({
     shopifyDomain: '',
     shopifyStorefrontToken: '',
     shopifyApiVersion: '2025-10',
+    // Admin API credentials for lead capture (custom app "Vesper Leads API").
+    shopifyAdminToken: '',
+    shopifyAdminClientId: '',
+    shopifyAdminClientSecret: '',
     public: {
       siteUrl: 'https://www.vesperrobot.au',
       storeDomain: 'www.vesperrobot.au',

@@ -7,16 +7,52 @@ interface Body {
   message?: string
 }
 
+interface CustomerNode {
+  id: string
+  note: string | null
+  tags: string[]
+}
+
+const FIND_CUSTOMER = `#graphql
+  query FindCustomer($q: String!) {
+    customers(first: 1, query: $q) {
+      nodes { id note tags }
+    }
+  }
+`
+
+const CREATE_CUSTOMER = `#graphql
+  mutation CreateCustomer($input: CustomerInput!) {
+    customerCreate(input: $input) {
+      customer { id email }
+      userErrors { field message }
+    }
+  }
+`
+
+const UPDATE_CUSTOMER = `#graphql
+  mutation UpdateCustomer($input: CustomerInput!) {
+    customerUpdate(input: $input) {
+      customer { id email }
+      userErrors { field message }
+    }
+  }
+`
+
+const LEAD_TAGS = ['website-lead', 'home-demo']
+
 /**
- * Proxies the contact form to Shopify's own contact endpoint, so enquiries land
- * in the store's customer email flow instead of a third-party service. Runs on
- * the server because Shopify does not send CORS headers for this endpoint.
+ * Creates (or appends to) a Shopify customer so enquiries land in the same
+ * back office as the live store. The Shopify Forms endpoint requires an
+ * hCaptcha token that cannot be minted from a non-Shopify origin, so the
+ * Admin API is the only CAPTCHA-free delivery path.
  */
 export default defineEventHandler(async (event) => {
   const body = await readBody<Body>(event)
   const name = String(body?.name ?? '').trim()
-  const email = String(body?.email ?? '').trim()
+  const email = String(body?.email ?? '').trim().toLowerCase()
   const message = String(body?.message ?? '').trim()
+  const phone = String(body?.phone ?? '').trim()
 
   if (!name || !email || !message) {
     throw createError({
@@ -29,45 +65,64 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Please enter a valid email address.' })
   }
 
-  const config = useRuntimeConfig()
-  const domain = String(config.shopifyDomain || '')
-    .replace(/^https?:\/\//, '')
-    .replace(/\/$/, '')
-
-  if (!domain) {
+  if (!isAdminConfigured()) {
     throw createError({
       statusCode: 503,
       statusMessage:
-        'Contact delivery is not configured yet. Set NUXT_SHOPIFY_DOMAIN in .env, or email us directly.',
+        'Contact delivery is not configured yet. Set NUXT_SHOPIFY_ADMIN_CLIENT_ID / NUXT_SHOPIFY_ADMIN_CLIENT_SECRET in .env.',
     })
   }
 
-  const payload = new URLSearchParams({
-    utf8: '✓',
-    form_type: 'customer',
-    'contact[name]': name,
-    'contact[email]': email,
-    'contact[phone]': String(body?.phone ?? '').trim(),
-    'contact[body]': [
-      message,
-      String(body?.company ?? '').trim() ? `Company: ${String(body?.company).trim()}` : '',
-      String(body?.product ?? '').trim() ? `Product interest: ${String(body?.product).trim()}` : '',
-    ]
-      .filter(Boolean)
-      .join('\n\n'),
-  })
+  const note = [
+    message,
+    String(body?.company ?? '').trim() ? `Company: ${String(body?.company).trim()}` : '',
+    String(body?.product ?? '').trim() ? `Product interest: ${String(body?.product).trim()}` : '',
+    phone && !/^\+[1-9]\d{6,14}$/.test(phone) ? `Phone: ${phone}` : '',
+    `Submitted from: ${getRequestURL(event).origin}`,
+  ]
+    .filter(Boolean)
+    .join('\n\n')
+
+  const [firstName, ...rest] = name.split(/\s+/)
+  const lastName = rest.join(' ')
 
   try {
-    await $fetch(`https://${domain}/contact`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: payload.toString(),
-      responseType: 'text',
-      retry: 0,
-      timeout: 15000,
+    const existing = await adminGraphql<{ customers: { nodes: CustomerNode[] } }>(FIND_CUSTOMER, {
+      q: `email:${email}`,
     })
+    const customer = existing.customers.nodes[0]
+
+    if (customer) {
+      const mergedNote = [customer.note, note].filter(Boolean).join('\n\n---\n\n')
+      const mergedTags = Array.from(new Set([...(customer.tags ?? []), ...LEAD_TAGS]))
+      const updated = await adminGraphql<{
+        customerUpdate: { userErrors: { field: string[]; message: string }[] }
+      }>(UPDATE_CUSTOMER, { input: { id: customer.id, note: mergedNote, tags: mergedTags } })
+
+      if (updated.customerUpdate.userErrors.length) {
+        throw new Error(updated.customerUpdate.userErrors.map((error) => error.message).join('; '))
+      }
+    } else {
+      const created = await adminGraphql<{
+        customerCreate: { userErrors: { field: string[]; message: string }[] }
+      }>(CREATE_CUSTOMER, {
+        input: {
+          firstName,
+          lastName,
+          email,
+          // Admin API only accepts E.164; otherwise the raw value lives in the note.
+          ...(/^\+[1-9]\d{6,14}$/.test(phone) ? { phone } : {}),
+          note,
+          tags: LEAD_TAGS,
+        },
+      })
+
+      if (created.customerCreate.userErrors.length) {
+        throw new Error(created.customerCreate.userErrors.map((error) => error.message).join('; '))
+      }
+    }
   } catch (error) {
-    console.error('[contact] Shopify contact endpoint failed:', error)
+    console.error('[contact] Shopify Admin API failed:', error)
     throw createError({
       statusCode: 502,
       statusMessage: 'We could not deliver your message. Please email info@vesperrobot.au instead.',
