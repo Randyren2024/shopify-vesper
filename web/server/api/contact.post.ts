@@ -65,7 +65,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Please enter a valid email address.' })
   }
 
-  if (!isAdminConfigured()) {
+  if (!isAdminConfigured(event)) {
     throw createError({
       statusCode: 503,
       statusMessage:
@@ -87,7 +87,7 @@ export default defineEventHandler(async (event) => {
   const lastName = rest.join(' ')
 
   try {
-    const existing = await adminGraphql<{ customers: { nodes: CustomerNode[] } }>(FIND_CUSTOMER, {
+    const existing = await adminGraphql<{ customers: { nodes: CustomerNode[] } }>(event, FIND_CUSTOMER, {
       q: `email:${email}`,
     })
     const customer = existing.customers.nodes[0]
@@ -97,7 +97,7 @@ export default defineEventHandler(async (event) => {
       const mergedTags = Array.from(new Set([...(customer.tags ?? []), ...LEAD_TAGS]))
       const updated = await adminGraphql<{
         customerUpdate: { userErrors: { field: string[]; message: string }[] }
-      }>(UPDATE_CUSTOMER, { input: { id: customer.id, note: mergedNote, tags: mergedTags } })
+      }>(event, UPDATE_CUSTOMER, { input: { id: customer.id, note: mergedNote, tags: mergedTags } })
 
       if (updated.customerUpdate.userErrors.length) {
         throw new Error(updated.customerUpdate.userErrors.map((error) => error.message).join('; '))
@@ -105,7 +105,7 @@ export default defineEventHandler(async (event) => {
     } else {
       const created = await adminGraphql<{
         customerCreate: { userErrors: { field: string[]; message: string }[] }
-      }>(CREATE_CUSTOMER, {
+      }>(event, CREATE_CUSTOMER, {
         input: {
           firstName,
           lastName,
