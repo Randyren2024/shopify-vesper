@@ -438,12 +438,12 @@
     </div>
   </section>
 
-  {%- if product.handle == 'v600' or product.handle == 'v1000' or product.handle == 'vesper-s1-4wd-40' or product.handle == 'vesper-s1-4wd-50' -%}
+  {%- if product.handle == 'v600' or product.handle == 'v1000' or product.handle == 'vesper-s1-4wd-40' or product.handle == 'vesper-s1-4wd-50' or product.handle == 'af718' or product.handle == 'af305' or product.handle == 'isobus' or product.handle == 'vs100' or product.handle == 'w20' or product.handle == 'aries300n' or product.handle == 'taurus80e' -%}
     <nav class="vpd-anchor-nav" aria-label="Product page sections">
       <div class="v-container">
         <a href="#overview">Overview</a>
         <a href="#specifications">Specifications</a>
-        <a href="#faq">FAQ</a>
+        {%- unless product.handle == 'taurus80e' -%}<a href="#faq">FAQ</a>{%- endunless -%}
         <a href="#vpd-quote">Request a quote</a>
       </div>
     </nav>
