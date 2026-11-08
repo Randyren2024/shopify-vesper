@@ -67,7 +67,7 @@ export function useCart() {
     try {
       const response = await requestFetch<{ cart: Cart }>('/api/cart/lines', {
         method: 'DELETE',
-        body: { lineId },
+        query: { lineId },
       })
       cart.value = response.cart
     } finally {
