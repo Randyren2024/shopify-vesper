@@ -240,28 +240,39 @@
       <script src="{{ 'vesper-tracking.js' | asset_url }}" defer></script>
 
      <script>
-document.addEventListener('DOMContentLoaded', function(){
-  document.addEventListener('click', function(e){
-    const linkEl = e.target.closest('a[href*="wa.me"]');
-    if(!linkEl) return;
-    e.preventDefault();
-    const targetUrl = linkEl.href;
-    // 判断：如果是Zotabox弹窗按钮，标记zotabox；导航栏按钮标记header
-    let source = 'header';
-    if(linkEl.closest('[class*="zotabox"]')){
-      source = 'zotabox';
-    }
-    gtag('event', 'conversion', {
-      'send_to': 'AW-18471097817/TOVHCJTC0KYdENmr2udE',
-      'value': 40.0,
-      'currency': 'AUD',
-      'button_source': source,
-      'event_callback': function(){
-        window.location.href = targetUrl;
-      }
-    });
-  })
-})
+document.addEventListener('click', function(e) {
+  const linkEl = e.target.closest('a[href*="wa.me"]');
+  if (!linkEl || typeof window.gtag !== 'function') return;
+
+  // Keep normal new-tab behaviour. Same-tab links wait briefly for the Ads
+  // conversion callback, with a timeout fallback so navigation never hangs.
+  let source = linkEl.closest('[class*="zotabox"]') ? 'zotabox' : 'header';
+  const payload = {
+    send_to: 'AW-18471097817/TOVHCJTC0KYdENmr2udE',
+    value: 40.0,
+    currency: 'AUD',
+    button_source: source
+  };
+
+  if (linkEl.target === '_blank') {
+    window.gtag('event', 'conversion', payload);
+    return;
+  }
+
+  e.preventDefault();
+  let navigated = false;
+  const navigate = function() {
+    if (navigated) return;
+    navigated = true;
+    window.location.href = linkEl.href;
+  };
+
+  window.gtag('event', 'conversion', Object.assign({}, payload, {
+    event_callback: navigate,
+    event_timeout: 1200
+  }));
+  window.setTimeout(navigate, 1500);
+});
 </script>
     </body>
   {%- endif -%}
