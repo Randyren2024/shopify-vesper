@@ -40,7 +40,7 @@ textarea {
   font-family: var(--v-font);
 }
 
-body {
+body.vesper-theme {
   font-size: 16px;
   font-weight: var(--v-font-weight-regular);
   line-height: var(--v-leading-body);
@@ -65,33 +65,33 @@ h6,
   font-family: var(--v-font-display);
 }
 
-h1,
-h2,
-h3,
-h4 {
+body.vesper-theme h1,
+body.vesper-theme h2,
+body.vesper-theme h3,
+body.vesper-theme h4 {
   font-weight: var(--v-font-weight-extrabold);
   line-height: var(--v-leading-heading);
   letter-spacing: var(--v-tracking-display);
 }
 
 /* Match Nuxt's 1200px content frame and section rhythm exactly. */
-.v-container {
+body.vesper-theme .v-container {
   width: min(var(--v-max, 1200px), calc(100% - 48px));
   max-width: var(--v-max, 1200px);
   margin-inline: auto;
   padding-inline: 0;
 }
 
-.v-container--wide {
+body.vesper-theme .v-container--wide {
   width: min(1320px, calc(100% - 48px));
   max-width: 1320px;
 }
 
-.v-section {
+body.vesper-theme .v-section {
   padding: clamp(64px, 9vw, 110px) 0;
 }
 
-.v-section--tight {
+body.vesper-theme .v-section--tight {
   padding: 40px 0;
 }
 
