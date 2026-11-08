@@ -2406,3 +2406,50 @@
     transform: none;
   }
 }
+
+
+/* Gallery and mobile purchase-bar finishing details */
+.vpd-gallery__carousel {
+  position: relative;
+}
+
+.vpd-gallery > .vpd-gallery__image {
+  height: auto;
+  aspect-ratio: 1 / 0.88;
+}
+
+.vpd-gallery__carousel .vpd-gallery__image {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.vpd-buybar {
+  border-color: var(--v-line);
+  background: color-mix(in srgb, var(--v-surface) 94%, transparent);
+  box-shadow: 0 -8px 24px color-mix(in srgb, var(--v-bg) 55%, transparent);
+}
+
+.vpd-buybar__code {
+  color: var(--v-ink-soft);
+}
+
+.vpd-buybar__price {
+  color: var(--v-ink);
+  font-family: var(--v-font-display);
+}
+
+.vpd-buybar__btn--demo {
+  border: 1px solid var(--v-line-strong);
+  background: transparent;
+  color: var(--v-ink);
+}
+
+.vpd-buybar__btn--buy {
+  background: var(--v-green);
+  color: var(--v-on-green);
+}
+
+.vpd-buybar__btn--buy:hover {
+  background: var(--v-green-hover);
+  color: var(--v-on-green);
+}
