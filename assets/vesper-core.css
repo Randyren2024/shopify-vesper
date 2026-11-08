@@ -1028,3 +1028,54 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
     height: 24px;
   }
 }
+
+
+/* ==========================================================================
+   Shared storefront chrome — aligned with Nuxt SiteHeader / SiteFooter
+   Shopify menus, cart routes, Theme Editor settings and menu hooks are kept.
+   ========================================================================== */
+.v-btn--primary{background:var(--v-green);border-color:var(--v-green);color:var(--v-bg)}
+.v-btn--primary:hover{background:var(--v-green-hover);border-color:var(--v-green-hover);color:var(--v-bg)}
+.site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:56px;background:rgba(248,247,244,.92);border-bottom:1px solid var(--v-line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.site-header__inner{width:min(1200px,calc(100% - 48px));max-width:1200px;height:100%;margin:0 auto;padding:0;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.site-header__logo{display:flex;align-items:center;flex:none}
+.site-header__logo img{display:block;width:auto;height:26px}
+.site-header__right{display:flex;align-items:center;gap:24px;min-width:0}
+.site-header__nav{display:flex;align-items:center;gap:30px;margin-left:auto}
+.site-link{position:relative;padding:0;border:0;background:none;color:var(--v-ink-soft);font-family:var(--v-font);font-size:13px;font-weight:500;letter-spacing:.02em;white-space:nowrap;cursor:pointer;transition:color .2s ease}
+.site-link:hover,.site-link[aria-expanded='true']{color:var(--v-ink)}
+.site-dropdown{position:relative}
+.site-dropdown__menu{display:none;position:absolute;top:calc(100% + 16px);left:-18px;z-index:60;min-width:250px;padding:12px;border:1px solid var(--v-line);border-radius:16px;background:var(--v-surface);box-shadow:0 18px 50px rgba(20,40,25,.12)}
+.site-dropdown__link{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 12px;border-radius:9px;color:var(--v-ink-soft);font-family:var(--v-font);font-size:13px;text-decoration:none;transition:background .16s ease,color .16s ease}
+.site-dropdown__link:hover{background:rgba(17,17,16,.035);color:var(--v-ink)}
+.site-header__actions{display:flex;align-items:center;gap:14px;flex:none}
+.site-icon-btn,.site-header__actions .v-theme-toggle{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid var(--v-line);border-radius:999px;background:transparent;color:var(--v-ink-soft);text-decoration:none;cursor:pointer;transition:color .2s ease,border-color .2s ease}
+.site-icon-btn:hover,.site-header__actions .v-theme-toggle:hover{color:var(--v-ink);border-color:var(--v-line-strong);background:transparent}
+.site-cart-count{position:absolute;top:-5px;right:-6px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--v-green);color:var(--v-bg);font-family:var(--v-font);font-size:10px;font-weight:800;line-height:17px;text-align:center}
+.site-header__cta{min-height:38px;padding:10px 18px;border-radius:999px;font-family:var(--v-font);font-size:12px;letter-spacing:.04em;white-space:nowrap}
+.site-header__toggle{display:none}
+.site-mobile{position:fixed;inset:56px 0 auto 0;z-index:49;display:grid;gap:4px;padding:18px 24px 26px;border-bottom:1px solid var(--v-line);background:var(--v-bg);box-shadow:0 18px 50px rgba(20,40,25,.12)}
+.site-mobile[hidden]{display:none!important}
+.site-mobile__inner{display:grid;gap:4px;width:min(1200px,100%);margin:0 auto}
+.site-mobile__link{display:flex;align-items:center;justify-content:space-between;width:100%;padding:12px 0;border:0;border-bottom:1px solid var(--v-line);background:none;color:var(--v-ink);font-family:var(--v-font);font-size:15px;font-weight:600;text-align:left;text-decoration:none;cursor:pointer}
+.site-mobile__link:last-child{border-bottom:0}
+.site-mobile__products{display:none;padding:4px 0 8px 14px}
+.site-mobile__products .site-dropdown__link{padding:10px 0}
+.site-mobile .site-header__cta{justify-content:center;margin-top:14px}
+.site-footer{margin-top:clamp(60px,8vw,110px);padding:56px 0 30px;background:#111110;color:rgba(248,247,244,.5)}
+.site-footer__inner{max-width:1200px}
+.site-footer__grid{display:grid;grid-template-columns:1.35fr repeat(4,minmax(0,1fr));gap:32px}
+.site-footer__brand img,.site-footer__logo{display:block;width:auto;height:26px;margin-bottom:16px}
+.site-footer__tagline{max-width:34ch;margin:0 0 16px;color:rgba(248,247,244,.42);font-family:var(--v-font);font-size:13px;line-height:1.7}
+.site-footer__socials{display:flex;flex-wrap:wrap;gap:16px}
+.site-footer__social-link{color:rgba(248,247,244,.42);font-family:var(--v-font);font-size:12px;text-decoration:none;transition:color .18s ease}
+.site-footer__social-link:hover{color:#f8f7f4}
+.site-footer__heading{margin:0 0 16px;color:rgba(248,247,244,.36);font-family:var(--v-font);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.site-footer__link{display:block;margin:0 0 9px;color:rgba(248,247,244,.58);font-family:var(--v-font);font-size:13px;line-height:1.55;text-decoration:none;transition:color .18s ease}
+.site-footer__link:hover{color:#f8f7f4}
+.site-footer__bottom{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08)}
+.site-footer__bottom-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.site-footer__copyright{color:rgba(248,247,244,.36);font-family:var(--v-font);font-size:12px}
+@media(max-width:900px){.site-header__inner{width:calc(100% - 32px);gap:14px}.site-header__right{gap:14px}.site-header__nav{gap:18px}.site-footer__grid{grid-template-columns:repeat(3,minmax(0,1fr))}.site-footer__brand{grid-column:1/-1}}
+@media(max-width:767px){.site-header__nav{display:none}.site-header__right{gap:10px}.site-header__toggle{display:inline-flex}.site-header__inner{width:calc(100% - 32px)}.site-footer{margin-top:60px;padding:44px 0 26px}.site-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 22px}.site-footer__brand{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){.site-link,.site-icon-btn,.site-dropdown__link,.site-footer__link,.site-footer__social-link{transition:none}}
