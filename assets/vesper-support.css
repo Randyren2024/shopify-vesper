@@ -454,3 +454,22 @@ body.template-page .site-header__logo .v-logo--on-dark { display: none; }
 [data-theme='dark'] .vesper-support .hours-icon {
   color: var(--v-green);
 }
+
+
+/* Full-bleed footer: the page content may be constrained, the global footer
+   must span the viewport edge-to-edge just like it does on the homepage. */
+body.template-page .shopify-section-group-footer-group,
+body.template-page .shopify-section-group-footer-group > .shopify-section {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+body.template-page .shopify-section-group-footer-group .site-footer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  border-radius: 0;
+}
