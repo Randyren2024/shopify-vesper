@@ -166,3 +166,9 @@ html[data-theme='dark'] body.template-index textarea {
     transition: background-color 220ms ease, color 220ms ease;
   }
 }
+
+/* The homepage CTA is the final content section; the shared footer's generic
+   top margin creates an unintended blank band directly below it. */
+body.template-index .site-footer {
+  margin-top: 0;
+}
