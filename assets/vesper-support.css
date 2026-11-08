@@ -325,3 +325,132 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+
+/* Support page — use the same shared chrome and theme tokens as every template.
+   Keep this stylesheet scoped to the page body; header/footer are rendered by
+   the global header-group/footer-group and must never get a second local skin. */
+body.template-page .site-header {
+  background: color-mix(in srgb, var(--v-bg) 88%, transparent);
+  border-bottom-color: var(--v-line);
+  color: var(--v-ink);
+}
+
+body.template-page .site-footer {
+  background: #111110;
+  color: rgba(248, 247, 244, 0.5);
+  border-top: 1px solid var(--v-line);
+}
+
+body.template-page .site-footer__link,
+body.template-page .site-footer__social-link {
+  color: rgba(248, 247, 244, 0.58);
+}
+
+body.template-page .site-footer__link:hover,
+body.template-page .site-footer__social-link:hover {
+  color: #f1f4ee;
+}
+
+[data-theme='dark'] body.template-page .site-footer {
+  background: #050806;
+  border-top-color: var(--v-line);
+}
+
+/* Prevent the two responsive logo assets from being visible simultaneously.
+   The logo img rule in the shared header has higher specificity than .v-logo. */
+body.template-page .site-header__logo .v-logo--on-light { display: block; }
+body.template-page .site-header__logo .v-logo--on-dark { display: none; }
+[data-theme='dark'] body.template-page .site-header__logo .v-logo--on-light { display: none; }
+[data-theme='dark'] body.template-page .site-header__logo .v-logo--on-dark { display: block; }
+
+/* Support content follows the storefront light/dark token palette. */
+.vesper-support {
+  background: var(--v-bg);
+  color: var(--v-ink);
+}
+
+.vesper-support__lead-wrap {
+  padding-block: 18px 10px;
+  background: linear-gradient(180deg, var(--v-bg-alt), var(--v-bg));
+}
+
+.vesper-support__lead {
+  color: var(--v-green);
+}
+
+.vesper-support .support-section,
+.vesper-support .service-section,
+.vesper-support .warranty-section {
+  background: var(--v-bg);
+}
+
+.vesper-support .hours-section {
+  background: var(--v-bg-alt);
+}
+
+.vesper-support .support-card,
+.vesper-support .service-card,
+.vesper-support .hours-card,
+.vesper-support .warranty-content .v-accordion__item {
+  border-color: var(--v-line);
+  background: var(--v-surface);
+  color: var(--v-ink);
+  box-shadow: var(--v-shadow-sm);
+}
+
+.vesper-support .support-card h3,
+.vesper-support .service-card h3,
+.vesper-support .hours-card h3,
+.vesper-support .hours-info strong {
+  color: var(--v-ink);
+}
+
+.vesper-support .support-phone,
+.vesper-support .service-icon .v-icon,
+.vesper-support .hours-icon {
+  color: var(--v-green);
+}
+
+.vesper-support .support-icon,
+.vesper-support .service-icon,
+.vesper-support .hours-icon {
+  border-color: var(--v-line);
+  background: var(--v-tile);
+  color: var(--v-green);
+}
+
+.vesper-support .service-card p,
+.vesper-support .service-desc,
+.vesper-support .hours-info p {
+  color: var(--v-ink-soft);
+}
+
+.vesper-support .warranty-content .v-accordion__item {
+  border-color: var(--v-line);
+}
+
+.vesper-support .warranty-content .v-accordion__trigger {
+  color: var(--v-ink);
+}
+
+.vesper-support .warranty-content .v-accordion__panel {
+  color: var(--v-ink-soft);
+}
+
+[data-theme='dark'] .vesper-support .support-card,
+[data-theme='dark'] .vesper-support .service-card,
+[data-theme='dark'] .vesper-support .hours-card,
+[data-theme='dark'] .vesper-support .warranty-content .v-accordion__item {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+  box-shadow: var(--v-shadow-sm);
+}
+
+[data-theme='dark'] .vesper-support .hours-section {
+  background: var(--v-bg-alt);
+}
+
+[data-theme='dark'] .vesper-support .hours-icon {
+  color: var(--v-green);
+}
