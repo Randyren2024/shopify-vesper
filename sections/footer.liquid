@@ -80,11 +80,9 @@
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
-      </div>
 
-      <div>
         <div
-          class="site-footer__heading"
+          class="site-footer__heading site-footer__heading--secondary"
         >{{ section.settings.legal_heading }}</div>
 
         {%- assign legal_links = section.settings.legal_more | newline_to_br | split: '<br />' -%}
