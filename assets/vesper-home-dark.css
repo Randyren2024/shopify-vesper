@@ -94,6 +94,14 @@ html[data-theme='dark'] body.template-index [style*="color: rgb(200, 90, 10)"] {
   color: var(--v-orange, #f08a3c) !important;
 }
 
+html[data-theme='dark'] body.template-index [style*="background: rgb(200, 90, 10)"] {
+  background: var(--v-orange, #f08a3c) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="border: 1px solid rgb(17, 17, 16)"] {
+  border-color: var(--v-line-strong, rgba(255, 255, 255, 0.22)) !important;
+}
+
 html[data-theme='dark'] body.template-index [style*="border: 1px solid rgba(17, 17, 16, 0.1)"],
 html[data-theme='dark'] body.template-index [style*="border-top: 1px solid rgba(17, 17, 16, 0.1)"],
 html[data-theme='dark'] body.template-index [style*="border-bottom: 1px solid rgba(17, 17, 16, 0.1)"] {
