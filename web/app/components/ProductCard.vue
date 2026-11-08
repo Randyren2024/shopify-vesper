@@ -3,11 +3,16 @@ import type { ShopProduct } from '#shared/types'
 
 const props = defineProps<{ product: ShopProduct }>()
 
-const price = computed(() => formatMoney(props.product.priceRange.minVariantPrice))
+const price = computed(() =>
+  props.product.priceRange
+    ? formatMoney(props.product.priceRange.minVariantPrice)
+    : 'Request a quote',
+)
 const compareAt = computed(() => {
   const value = props.product.compareAtPrice
-  if (!value) return null
-  return Number(value.amount) > Number(props.product.priceRange.minVariantPrice.amount)
+  const range = props.product.priceRange
+  if (!value || !range) return null
+  return Number(value.amount) > Number(range.minVariantPrice.amount)
     ? formatMoney(value)
     : null
 })

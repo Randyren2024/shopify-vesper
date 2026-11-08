@@ -7,8 +7,6 @@ import type {
   ShopVariant,
 } from '#shared/types'
 
-const CURRENCY = 'AUD'
-
 export const CATEGORY_META: CatalogCategory[] = [
   {
     id: 'lawn-mower',
@@ -54,8 +52,6 @@ interface Seed {
   name: string
   category: string
   categoryLabel: string
-  price: string
-  compareAt?: string
   image: string
   tagline: string
   badges: string[]
@@ -73,8 +69,6 @@ const SEEDS: Seed[] = [
     name: '119% Slope (50°)',
     category: 'lawn-mower',
     categoryLabel: 'Lawn Mower',
-    price: '2499.00',
-    compareAt: '2899.00',
     image: '/brand/products/products-vesper-s1-4wd-50.webp',
     tagline:
       'Remember the joy of RC cars as a kid? We brought that feeling back to your lawn — with the climbing ability of a commercial slope mower.',
@@ -397,7 +391,6 @@ const SEEDS: Seed[] = [
     name: '85% Slope (40°)',
     category: 'lawn-mower',
     categoryLabel: 'Lawn Mower',
-    price: '1999.00',
     image: '/brand/products/products-vesper-s1-4wd-40.webp',
     tagline:
       'The same all-wheel-drive platform with wide TPU tread tyres — built for 40° banks and rough ground.',
@@ -437,7 +430,6 @@ const SEEDS: Seed[] = [
     name: 'Autosteering System',
     category: 'precision-agriculture',
     categoryLabel: 'Precision Agriculture',
-    price: '3499.00',
     image: '/brand/products/products-af718.webp',
     tagline: 'Frontier — pioneering the future of smart farming with a full precision-agriculture ecosystem.',
     badges: [
@@ -517,7 +509,6 @@ const SEEDS: Seed[] = [
     name: 'Automated Steering System',
     category: 'precision-agriculture',
     categoryLabel: 'Precision Agriculture',
-    price: '2199.00',
     image: '/brand/products/products-af305-main.png',
     tagline: 'An advanced steering solution for precision agriculture, installed in about 20 minutes.',
     badges: ['Efficient', 'Stable', 'Premium', 'Accurate', 'Upgradable'],
@@ -553,7 +544,6 @@ const SEEDS: Seed[] = [
     name: 'Terminal',
     category: 'precision-agriculture',
     categoryLabel: 'Precision Agriculture',
-    price: '1299.00',
     image: '/brand/products/products-isobus-main.png',
     tagline:
       'A one-stop ISOBUS solution for smart implements — fully compatible with mainstream agricultural equipment.',
@@ -589,7 +579,6 @@ const SEEDS: Seed[] = [
     name: 'Spray Control System',
     category: 'precision-spraying',
     categoryLabel: 'Precision Spraying',
-    price: '4999.00',
     image: '/brand/products/products-vs100-main.png',
     tagline:
       'Satellite-guided spray control that cuts chemical waste by up to 15% with section-level precision.',
@@ -627,7 +616,6 @@ const SEEDS: Seed[] = [
     name: 'Land Leveling System',
     category: 'land-leveling',
     categoryLabel: 'Land Leveling',
-    price: '8999.00',
     image: '/brand/products/products-w20-main.png',
     tagline:
       'A GNSS-based smart land leveling system designed to replace inefficient manual methods.',
@@ -670,7 +658,6 @@ const SEEDS: Seed[] = [
     name: 'Orchard Spraying Robot',
     category: 'agricultural-robotics',
     categoryLabel: 'Agricultural Robots',
-    price: '5999.00',
     image: '/brand/products/products-aries300n-main.png',
     tagline:
       'A hybrid-powered orchard spraying robot combining GNSS navigation, autonomous driving and obstacle avoidance.',
@@ -707,7 +694,6 @@ const SEEDS: Seed[] = [
     name: 'Smart Lawn Mowing Robot',
     category: 'agricultural-robotics',
     categoryLabel: 'Agricultural Robots',
-    price: '3999.00',
     image: '/brand/products/products-80e-1.webp',
     tagline: 'Autonomous electric mowing for professional operations.',
     badges: ['Efficient', 'Stable', 'Premium', 'Accurate', 'Upgradable'],
@@ -741,7 +727,6 @@ const SEEDS: Seed[] = [
     name: 'Intelligent Excavator Guidance System',
     category: 'machine-control',
     categoryLabel: 'Machine Control',
-    price: '2499.00',
     image: '/brand/products/products-egs101-main.png',
     tagline:
       'Real-time bucket guidance for digging and grading, across a wide range of excavator models.',
@@ -777,7 +762,6 @@ const SEEDS: Seed[] = [
     name: 'Auto Mower',
     category: 'lawn-mower',
     categoryLabel: 'Lawn Mower',
-    price: '1999.99',
     image: '/brand/media/categories-lawn-mower.webp',
     tagline:
       'Triple-camera AI vision mowing — no boundary wire, no RTK antenna, no signal dropouts.',
@@ -1027,7 +1011,6 @@ const SEEDS: Seed[] = [
     name: 'Auto Mower',
     category: 'lawn-mower',
     categoryLabel: 'Lawn Mower',
-    price: '2499.99',
     image: '/brand/media/categories-lawn-mower.webp',
     tagline:
       'Triple-camera AI vision mowing with a larger working area — no boundary wire, no RTK antenna, no signal dropouts.',
@@ -1078,20 +1061,23 @@ function toImage(url: string, alt: string): ShopImage {
   return { url, altText: alt, width: 1200, height: 1200 }
 }
 
+/**
+ * Seeds are marketing content only — pricing and purchasability always come
+ * from Shopify. Preview products are therefore not sellable and carry no
+ * price, so the storefront renders a "request a quote" state instead of ever
+ * showing a stale number.
+ */
 function toProduct(seed: Seed): ShopProduct {
   const image = toImage(seed.image, `${seed.code} ${seed.name}`)
   const variantId = `gid://shopify/ProductVariant/fallback-${seed.handle}`
-  const compareAt = seed.compareAt
-    ? { amount: Number(seed.compareAt).toFixed(2), currencyCode: CURRENCY }
-    : null
 
   const variant: ShopVariant = {
     id: variantId,
     title: 'Default Title',
-    availableForSale: true,
-    quantityAvailable: 12,
-    price: { amount: Number(seed.price).toFixed(2), currencyCode: CURRENCY },
-    compareAtPrice: compareAt,
+    availableForSale: false,
+    quantityAvailable: null,
+    price: null,
+    compareAtPrice: null,
     selectedOptions: [{ name: 'Title', value: 'Default Title' }],
     image,
   }
@@ -1109,14 +1095,11 @@ function toProduct(seed: Seed): ShopProduct {
     productType: seed.categoryLabel,
     vendor: 'Vesper',
     tags,
-    availableForSale: true,
+    availableForSale: false,
     featuredImage: image,
     images: [image],
-    priceRange: {
-      minVariantPrice: variant.price,
-      maxVariantPrice: variant.price,
-    },
-    compareAtPrice: compareAt,
+    priceRange: null,
+    compareAtPrice: null,
     variants: [variant],
   }
 }
@@ -1268,9 +1251,4 @@ export function fallbackLanding(handle: string): LandingContent | null {
   }
 
   return withDedicatedDefaults({ ...base, ...seed.landing }, seed.image)
-}
-
-export function seedHandleForVariant(variantId: string): string | null {
-  const match = variantId.match(/fallback-(.+)$/)
-  return match?.[1] ?? null
 }

@@ -1,5 +1,5 @@
 import type { Cart, CartLine } from '#shared/types'
-import { fallbackProducts, seedHandleForVariant } from '../data/catalog'
+import { fallbackProducts } from '../data/catalog'
 
 /**
  * In-memory cart used only when Storefront credentials are absent. It exists so
@@ -32,7 +32,7 @@ function resolveLine(line: DemoLine): CartLine | null {
   )
   if (!product) return null
   const variant = product.variants.find((item) => item.id === line.variantId)
-  if (!variant) return null
+  if (!variant?.price) return null
 
   return {
     id: line.id,
@@ -86,7 +86,11 @@ export function demoAddLine(id: string, variantId: string, quantity: number): Ca
   if (existing) {
     existing.quantity += quantity
   } else {
-    if (!seedHandleForVariant(variantId)) throw new Error('Unknown product variant')
+    // Preview-catalogue variants carry no price and cannot be purchased.
+    const sellable = fallbackProducts().some((product) =>
+      product.variants.some((variant) => variant.id === variantId && variant.price),
+    )
+    if (!sellable) throw new Error('This product is not purchasable in preview mode')
     lines.push({ id: nextId('demo-line'), variantId, quantity })
   }
   carts.set(id, lines)

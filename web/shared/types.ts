@@ -15,7 +15,8 @@ export interface ShopVariant {
   title: string
   availableForSale: boolean
   quantityAvailable: number | null
-  price: Money
+  /** Null only in the bundled preview catalogue — Shopify variants always carry a price. */
+  price: Money | null
   compareAtPrice: Money | null
   selectedOptions: { name: string; value: string }[]
   image: ShopImage | null
@@ -33,7 +34,8 @@ export interface ShopProduct {
   availableForSale: boolean
   featuredImage: ShopImage | null
   images: ShopImage[]
-  priceRange: { minVariantPrice: Money; maxVariantPrice: Money }
+  /** Null only in the bundled preview catalogue — Shopify products always carry a price range. */
+  priceRange: { minVariantPrice: Money; maxVariantPrice: Money } | null
   compareAtPrice: Money | null
   variants: ShopVariant[]
 }

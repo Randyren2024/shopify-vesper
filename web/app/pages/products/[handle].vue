@@ -62,18 +62,22 @@ const variant = computed(
   () => variants.value.find((item) => item.id === selectedId.value) ?? variants.value[0] ?? null,
 )
 
-const price = computed(() =>
-  formatMoney(variant.value?.price ?? product.value.priceRange.minVariantPrice),
+const priceMoney = computed(
+  () => variant.value?.price ?? product.value.priceRange?.minVariantPrice ?? null,
 )
+
+const price = computed(() => (priceMoney.value ? formatMoney(priceMoney.value) : null))
 
 const compareAt = computed(() => {
   const value = variant.value?.compareAtPrice ?? product.value.compareAtPrice
-  if (!value) return null
-  const now = variant.value?.price ?? product.value.priceRange.minVariantPrice
-  return Number(value.amount) > Number(now.amount) ? formatMoney(value) : null
+  if (!value || !priceMoney.value) return null
+  return Number(value.amount) > Number(priceMoney.value.amount) ? formatMoney(value) : null
 })
 
 const inStock = computed(() => variant.value?.availableForSale ?? product.value.availableForSale)
+
+/** Only Shopify-backed variants carry a price and can be purchased. */
+const purchasable = computed(() => Boolean(variant.value?.price))
 
 const whatsappHref = computed(() => {
   const message = `Hello! I'm interested in the ${landing.value.code} ${landing.value.name}. Could you send me pricing and lead time?`
@@ -81,20 +85,21 @@ const whatsappHref = computed(() => {
 })
 
 async function addToCart() {
-  if (!variant.value) return
+  if (!variant.value?.price) return
+  const variantPrice = variant.value.price
   cartError.value = ''
   try {
     await add(variant.value.id, quantity.value)
     added.value = true
     trackEvent('add_to_cart', {
-      currency: variant.value.price.currencyCode,
-      value: Number(variant.value.price.amount) * quantity.value,
+      currency: variantPrice.currencyCode,
+      value: Number(variantPrice.amount) * quantity.value,
       items: [
         {
           item_id: product.value.handle,
           item_name: pageTitle.value,
           item_variant: variant.value.title,
-          price: Number(variant.value.price.amount),
+          price: Number(variantPrice.amount),
           quantity: quantity.value,
         },
       ],
@@ -113,15 +118,16 @@ function trackWhatsApp() {
 
 /* GA4 ecommerce: view_item fires once the product data is on the client. */
 onMounted(() => {
-  const currency = product.value.priceRange.minVariantPrice.currencyCode
+  const money = product.value.priceRange?.minVariantPrice
+  if (!money) return
   trackEvent('view_item', {
-    currency,
-    value: Number(product.value.priceRange.minVariantPrice.amount),
+    currency: money.currencyCode,
+    value: Number(money.amount),
     items: [
       {
         item_id: product.value.handle,
         item_name: pageTitle.value,
-        price: Number(product.value.priceRange.minVariantPrice.amount),
+        price: Number(money.amount),
       },
     ],
   })
@@ -162,16 +168,18 @@ const productLd = computed(() => ({
   sku: landing.value.code,
   category: landing.value.categoryLabel,
   brand: { '@type': 'Brand', name: 'Vesper' },
-  offers: {
-    '@type': 'Offer',
-    url: `${config.public.siteUrl}/products/${product.value.handle}`,
-    priceCurrency: product.value.priceRange.minVariantPrice.currencyCode,
-    price: product.value.priceRange.minVariantPrice.amount,
-    availability: product.value.availableForSale
-      ? 'https://schema.org/InStock'
-      : 'https://schema.org/OutOfStock',
-    seller: { '@type': 'Organization', name: 'Vesper' },
-  },
+  offers: product.value.priceRange
+    ? {
+        '@type': 'Offer',
+        url: `${config.public.siteUrl}/products/${product.value.handle}`,
+        priceCurrency: product.value.priceRange.minVariantPrice.currencyCode,
+        price: product.value.priceRange.minVariantPrice.amount,
+        availability: product.value.availableForSale
+          ? 'https://schema.org/InStock'
+          : 'https://schema.org/OutOfStock',
+        seller: { '@type': 'Organization', name: 'Vesper' },
+      }
+    : undefined,
 }))
 
 const breadcrumbLd = computed(() => ({
@@ -295,9 +303,9 @@ if (faqLd.value) {
             <p class="dl-eyebrow" style="margin-bottom: 0">Order</p>
 
             <div class="dl-buy__price">
-              <strong>{{ price }}</strong>
+              <strong>{{ price ?? 'Request a quote' }}</strong>
               <s v-if="compareAt">{{ compareAt }}</s>
-              <a-tag :color="inStock ? 'success' : 'default'" class="dl-stock-tag">{{ inStock ? 'In stock' : 'Out of stock' }}</a-tag>
+              <a-tag v-if="price" :color="inStock ? 'success' : 'default'" class="dl-stock-tag">{{ inStock ? 'In stock' : 'Out of stock' }}</a-tag>
             </div>
 
             <div v-if="variants.length > 1" class="dl-form">
@@ -325,10 +333,11 @@ if (faqLd.value) {
                 block
                 class="dl-ant-buy"
                 :loading="pending"
-                :disabled="!inStock"
+                :disabled="!inStock || !purchasable"
                 @click="addToCart"
               >
                 <template v-if="added">Added to cart</template>
+                <template v-else-if="!purchasable">Request a quote</template>
                 <template v-else-if="!inStock">Out of stock</template>
                 <template v-else>Add to cart — {{ price }}</template>
               </a-button>

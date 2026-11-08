@@ -78,8 +78,9 @@ export async function listProducts(): Promise<{
 }> {
   if (isShopifyConfigured()) {
     try {
-      const products = await fetchProducts()
-      if (products.length) return { source: 'shopify', products }
+      // Shopify is the source of truth — an empty shopify list is a valid
+      // result, never a reason to show the bundled catalogue.
+      return { source: 'shopify', products: await fetchProducts() }
     } catch (error) {
       console.warn('[shopify] product list failed, using bundled catalogue:', error)
     }
@@ -95,9 +96,10 @@ export async function getProductDetail(handle: string): Promise<{
   if (isShopifyConfigured()) {
     try {
       const product = await fetchProduct(handle)
-      if (product) {
-        return { source: 'shopify', product, landing: landingFromProduct(product) }
-      }
+      // A handle Shopify does not know is a 404 — falling back to the bundled
+      // catalogue would resurrect products that were deliberately removed.
+      if (!product) return null
+      return { source: 'shopify', product, landing: landingFromProduct(product) }
     } catch (error) {
       console.warn(`[shopify] product "${handle}" failed, using bundled catalogue:`, error)
     }
