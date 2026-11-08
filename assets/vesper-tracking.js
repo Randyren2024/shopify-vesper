@@ -71,6 +71,17 @@
     });
 
     document.addEventListener('click', function (event) {
+      var demoButton = event.target.closest('[data-request-demo]');
+      if (demoButton) {
+        var productRoot = demoButton.closest('[data-ga4-product]');
+        trackEvent('contact', {
+          method: 'whatsapp',
+          source: productRoot ? 'product_page' : 'demo_cta',
+          item_id: productRoot ? productRoot.dataset.itemId : undefined,
+          item_name: productRoot ? productRoot.dataset.itemName : undefined,
+        });
+      }
+
       var whatsapp = event.target.closest('a[href*="wa.me"]');
       if (whatsapp) {
         trackEvent('contact', {
