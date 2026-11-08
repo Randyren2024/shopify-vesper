@@ -103,25 +103,7 @@
           {%- endif -%}
         {%- endfor -%}
 
-        <div
-          class="site-footer__heading site-footer__heading--secondary"
-        >{{ section.settings.legal_heading }}</div>
 
-        {%- assign legal_links = section.settings.legal_more | newline_to_br | split: '<br />' -%}
-
-        {%- for row in legal_links -%}
-          {%- if row != blank -%}
-            {%- assign row_parts = row | strip | split: '|' -%}
-            {%- assign row_label = row_parts[0] | strip -%}
-            {%- assign row_link = row_parts[1] | strip -%}
-            {%- if row_link != blank -%}
-              <a
-                href="{{ row_link }}"
-                class="site-footer__link"
-              >{{ row_label }}</a>
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
       </div>
 
       <div>
