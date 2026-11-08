@@ -3069,3 +3069,15 @@
     transform: none;
   }
 }
+
+
+/* Consistent in-page anchor behaviour across product content templates. */
+.vpd-page .vpd-section[id] {
+  scroll-margin-top: 104px;
+}
+
+@media (max-width: 600px) {
+  .vpd-page .vpd-section[id] {
+    scroll-margin-top: 84px;
+  }
+}
