@@ -15,6 +15,7 @@
     assign card_category = product.type | default: 'Vesper'
     assign card_price = product.price
     assign card_compare_at = product.compare_at_price
+    assign card_image_alt = product.featured_image.alt | default: card_title
     assign card_flag = blank
 
     if product.tags contains 'New Release' or product.tags contains 'New'
@@ -56,7 +57,7 @@
           class: 'v-product-card__img',
           widths: '320, 480, 640, 800, 1000',
           sizes: '(min-width: 1200px) 360px, (min-width: 768px) 33vw, 50vw',
-          alt: product.featured_image.alt | default: card_title,
+          alt: card_image_alt,
           loading: 'lazy',
           decoding: 'async'
       }}
