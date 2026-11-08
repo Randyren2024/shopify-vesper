@@ -1,7 +1,7 @@
 /*
  * Vesper typography foundation
  * Mirrors the Nuxt storefront's Barlow + Barlow Condensed font pairing.
- * Loaded globally so the landing page and Shopify commerce templates share
+ * Loaded globally so the landing page and commerce templates share
  * the same real web fonts instead of silently falling back to system fonts.
  */
 
@@ -74,7 +74,7 @@ body.vesper-theme h4 {
   letter-spacing: var(--v-tracking-display);
 }
 
-/* Match Nuxt's 1200px content frame and section rhythm exactly. */
+/* Match Nuxt's 1200px content frame and desktop section rhythm. */
 body.vesper-theme .v-container {
   width: min(var(--v-max, 1200px), calc(100% - 48px));
   max-width: var(--v-max, 1200px);
@@ -85,6 +85,14 @@ body.vesper-theme .v-container {
 body.vesper-theme .v-container--wide {
   width: min(1320px, calc(100% - 48px));
   max-width: 1320px;
+}
+
+/* Keep the 16px mobile gutters used by Nuxt and the existing Shopify header. */
+@media (max-width: 767px) {
+  body.vesper-theme .v-container,
+  body.vesper-theme .v-container--wide {
+    width: calc(100% - 32px);
+  }
 }
 
 body.vesper-theme .v-section {
