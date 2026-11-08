@@ -905,3 +905,83 @@ body.template-article #MainContent .shopify-section > div h3 {
 [data-theme='dark'] .ab-cta-section {
   background: #10160f;
 }
+
+
+/* ==========================================================================
+   Nuxt storefront parity — shared site chrome (phase 1)
+   Keep the Liquid header/footer and Shopify-native navigation/cart routes,
+   while matching the Nuxt storefront's 56px translucent header and 1200px grid.
+   ========================================================================== */
+
+.v-headerbar {
+  height: var(--v-nav-height, 56px);
+  background: color-mix(in srgb, var(--v-bg, #f8f7f4) 88%, transparent);
+  border-bottom: 1px solid var(--v-line, rgba(17, 17, 16, 0.1));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.v-headerbar > .max-w-7xl {
+  width: min(1200px, calc(100% - 48px));
+  max-width: 1200px;
+  height: 100%;
+  padding-inline: 0;
+}
+
+.v-headerbar .v-logo {
+  height: 26px;
+}
+
+.v-headerbar .v-header-link {
+  color: var(--v-ink-soft, #6b6b68);
+  font-family: var(--v-font, "Barlow", system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.v-headerbar .v-header-link:hover {
+  color: var(--v-ink, #111110);
+}
+
+.v-headerbar .v-pmenu {
+  min-width: 250px;
+  padding: 12px;
+  border: 1px solid var(--v-line, rgba(17, 17, 16, 0.1));
+  border-radius: 16px;
+  background: var(--v-surface, #fff);
+  box-shadow: var(--v-shadow, 0 18px 50px rgba(20, 40, 25, 0.1));
+}
+
+.v-headerbar .v-pmenu__link {
+  padding: 9px 12px;
+  border: 0;
+  border-radius: 9px;
+  color: var(--v-ink-soft, #6b6b68);
+  font-family: var(--v-font, "Barlow", system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.v-headerbar .v-pmenu__link:hover {
+  background: var(--v-surface-2, rgba(17, 17, 16, 0.04));
+  color: var(--v-ink, #111110);
+}
+
+.v-headerbar .v-theme-toggle {
+  width: 34px;
+  height: 34px;
+}
+
+@media (max-width: 767px) {
+  .v-headerbar > .max-w-7xl {
+    width: calc(100% - 32px);
+  }
+
+  .v-headerbar .v-logo {
+    height: 24px;
+  }
+}
