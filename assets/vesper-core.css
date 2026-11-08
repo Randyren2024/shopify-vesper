@@ -1036,7 +1036,7 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
    ========================================================================== */
 .v-btn--primary{background:var(--v-green);border-color:var(--v-green);color:var(--v-bg)}
 .v-btn--primary:hover{background:var(--v-green-hover);border-color:var(--v-green-hover);color:var(--v-bg)}
-.site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:56px;background:rgba(248,247,244,.92);border-bottom:1px solid var(--v-line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:56px;background:color-mix(in srgb,var(--v-bg) 88%,transparent);border-bottom:1px solid var(--v-line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .site-header__inner{width:min(1200px,calc(100% - 48px));max-width:1200px;height:100%;margin:0 auto;padding:0;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .site-header__logo{display:flex;align-items:center;flex:none}
 .site-header__logo img{display:block;width:auto;height:26px}
@@ -1064,7 +1064,7 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
 .site-mobile .site-header__cta{justify-content:center;margin-top:14px}
 .site-footer{margin-top:clamp(60px,8vw,110px);padding:56px 0 30px;background:#111110;color:rgba(248,247,244,.5)}
 .site-footer__inner{max-width:1200px}
-.site-footer__grid{display:grid;grid-template-columns:1.35fr repeat(4,minmax(0,1fr));gap:32px}
+.site-footer__grid{display:grid;grid-template-columns:1.35fr repeat(3,minmax(0,1fr));gap:40px}
 .site-footer__brand img,.site-footer__logo{display:block;width:auto;height:26px;margin-bottom:16px}
 .site-footer__tagline{max-width:34ch;margin:0 0 16px;color:rgba(248,247,244,.42);font-family:var(--v-font);font-size:13px;line-height:1.7}
 .site-footer__socials{display:flex;flex-wrap:wrap;gap:16px}
@@ -1079,3 +1079,37 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
 @media(max-width:900px){.site-header__inner{width:calc(100% - 32px);gap:14px}.site-header__right{gap:14px}.site-header__nav{gap:18px}.site-footer__grid{grid-template-columns:repeat(3,minmax(0,1fr))}.site-footer__brand{grid-column:1/-1}}
 @media(max-width:767px){.site-header__nav{display:none}.site-header__right{gap:10px}.site-header__toggle{display:inline-flex}.site-header__inner{width:calc(100% - 32px)}.site-footer{margin-top:60px;padding:44px 0 26px}.site-footer__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 22px}.site-footer__brand{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){.site-link,.site-icon-btn,.site-dropdown__link,.site-footer__link,.site-footer__social-link{transition:none}}
+
+
+/* Nuxt theme tokens for the Liquid storefront's existing theme toggle. */
+[data-theme='dark']{
+  color-scheme:dark;
+  --v-bg:#070a08;
+  --v-bg-alt:#0d1210;
+  --v-surface:#101713;
+  --v-ink:#f1f4ee;
+  --v-ink-soft:#a6b0a7;
+  --v-ink-faint:rgba(241,244,238,.45);
+  --v-line:rgba(255,255,255,.12);
+  --v-line-strong:rgba(255,255,255,.22);
+  --v-green:#8de600;
+  --v-green-hover:#a5f02e;
+  --v-green-deep:#0b0f0c;
+  --v-orange:#f08a3c;
+  --v-on-green:#0b0f0c;
+  --v-shadow:0 22px 70px rgba(0,0,0,.45);
+  --v-shadow-sm:0 8px 24px rgba(0,0,0,.35);
+  --v-card:#101713;
+  --v-tile:#0b1013;
+  --v-tile-img:#0a0d0f;
+  --v-pattern:rgba(255,255,255,.025);
+  --v-pattern-2:rgba(255,255,255,.018);
+  --v-glow-1:rgba(141,230,0,.1);
+  --v-glow-2:rgba(141,230,0,.05);
+  --v-badge-bg:rgba(15,22,18,.92);
+  --v-surface-1:rgba(255,255,255,.035);
+  --v-surface-2:rgba(255,255,255,.025);
+}
+[data-theme='dark'] .site-footer{background:#050806;border-top:1px solid var(--v-line)}
+[data-theme='dark'] .site-footer__link:hover,[data-theme='dark'] .site-footer__social-link:hover{color:#f1f4ee}
+.site-footer__heading--secondary{margin-top:22px}
