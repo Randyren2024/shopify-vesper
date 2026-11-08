@@ -1,0 +1,88 @@
+name: Deploy Shopify theme to Live
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'assets/**'
+      - 'blocks/**'
+      - 'config/**'
+      - 'layout/**'
+      - 'locales/**'
+      - 'sections/**'
+      - 'snippets/**'
+      - 'templates/**'
+      - '.shopifyignore'
+      - '.github/workflows/deploy-shopify-live.yml'
+  workflow_dispatch:
+    inputs:
+      deploy_live:
+        description: 'Publish the current master theme files to the Live theme'
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: shopify-live-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  theme-check:
+    name: Shopify Theme Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Shopify CLI
+        run: npm install --global @shopify/cli@latest
+
+      - name: Run Theme Check
+        run: shopify theme check
+
+  deploy-live:
+    name: Deploy to Shopify Live
+    needs: theme-check
+    if: >-
+      (github.event_name == 'push' && vars.SHOPIFY_LIVE_DEPLOY_ENABLED == 'true') ||
+      (github.event_name == 'workflow_dispatch' && inputs.deploy_live == true)
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Shopify CLI
+        run: npm install --global @shopify/cli@latest
+
+      - name: Push theme files to the existing Live theme
+        env:
+          SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_LIVE_THEME_ID: ${{ vars.SHOPIFY_LIVE_THEME_ID }}
+        run: |
+          test -n "$SHOPIFY_STORE_URL" || (echo "Missing SHOPIFY_STORE_URL secret" && exit 1)
+          test -n "$SHOPIFY_CLI_THEME_TOKEN" || (echo "Missing SHOPIFY_CLI_THEME_TOKEN secret" && exit 1)
+          test -n "$SHOPIFY_LIVE_THEME_ID" || (echo "Missing SHOPIFY_LIVE_THEME_ID variable" && exit 1)
+
+          shopify theme push \
+            --path . \
+            --store "$SHOPIFY_STORE_URL" \
+            --password "$SHOPIFY_CLI_THEME_TOKEN" \
+            --theme "$SHOPIFY_LIVE_THEME_ID" \
+            --allow-live \
+            --strict \
+            --json
