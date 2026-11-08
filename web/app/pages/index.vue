@@ -45,6 +45,7 @@ const demoForm = reactive({
 // Names are resolved by the browser's locale data; dial codes follow the
 // maintained intl-tel-input country dataset.
 const demoCountries = [
+  { code: 'au', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AU') ?? 'Australia', dial: 61 },
   { code: 'af', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AF') ?? 'Afghanistan', dial: 93 },
   { code: 'ax', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AX') ?? 'Åland Islands (AKA Aland Islands)', dial: 358 },
   { code: 'al', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AL') ?? 'Albania', dial: 355 },
@@ -58,7 +59,6 @@ const demoCountries = [
   { code: 'am', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AM') ?? 'Armenia', dial: 374 },
   { code: 'aw', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AW') ?? 'Aruba', dial: 297 },
   { code: 'ac', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AC') ?? 'Ascension Island', dial: 247 },
-  { code: 'au', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AU') ?? 'Australia', dial: 61 },
   { code: 'at', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AT') ?? 'Austria', dial: 43 },
   { code: 'az', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('AZ') ?? 'Azerbaijan', dial: 994 },
   { code: 'bs', name: new Intl.DisplayNames(['en'], { type: 'region' }).of('BS') ?? 'Bahamas', dial: 1 },
