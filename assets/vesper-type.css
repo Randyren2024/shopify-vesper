@@ -19,6 +19,8 @@
   --v-tracking-display: -0.035em;
   --v-max: 1200px;
   --v-nav-h: 56px;
+  --v-radius: 22px;
+  --v-radius-lg: 28px;
   --v-bg-soft: var(--v-bg-alt, #eeecea);
   --vesper-font-body: var(--v-font);
   --vesper-font-title: var(--v-font-display);
@@ -70,6 +72,27 @@ h4 {
   font-weight: var(--v-font-weight-extrabold);
   line-height: var(--v-leading-heading);
   letter-spacing: var(--v-tracking-display);
+}
+
+/* Match Nuxt's 1200px content frame and section rhythm exactly. */
+.v-container {
+  width: min(var(--v-max, 1200px), calc(100% - 48px));
+  max-width: var(--v-max, 1200px);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+.v-container--wide {
+  width: min(1320px, calc(100% - 48px));
+  max-width: 1320px;
+}
+
+.v-section {
+  padding: clamp(64px, 9vw, 110px) 0;
+}
+
+.v-section--tight {
+  padding: 40px 0;
 }
 
 /* Keep the compact technical-label treatment consistent across templates. */
