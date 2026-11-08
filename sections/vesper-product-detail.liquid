@@ -438,22 +438,34 @@
     </div>
   </section>
 
-  {%- if product.handle == 'v600' or product.handle == 'v1000' -%}
+  {%- if product.handle == 'v600' or product.handle == 'v1000' or product.handle == 'vesper-s1-4wd-40' or product.handle == 'vesper-s1-4wd-50' or product.handle == 'af718' or product.handle == 'af305' or product.handle == 'isobus' or product.handle == 'vs100' or product.handle == 'w20' or product.handle == 'aries300n' or product.handle == 'taurus80e' -%}
     <nav class="vpd-anchor-nav" aria-label="Product page sections">
       <div class="v-container">
         <a href="#overview">Overview</a>
         <a href="#specifications">Specifications</a>
-        <a href="#faq">FAQ</a>
+        {%- unless product.handle == 'taurus80e' -%}<a href="#faq">FAQ</a>{%- endunless -%}
         <a href="#vpd-quote">Request a quote</a>
       </div>
     </nav>
 
     <section class="vpd-metrics" aria-label="Product highlights">
       <div class="v-container vpd-metrics__grid">
-        <div class="vpd-metric"><strong>0 m</strong><span>Boundary wire</span></div>
-        <div class="vpd-metric"><strong>3</strong><span>AI cameras</span></div>
-        <div class="vpd-metric"><strong>1&quot;–3&quot;</strong><span>Cutting height</span></div>
-        <div class="vpd-metric"><strong>15 cm</strong><span>Adjustable edge offset</span></div>
+        {%- if product.handle == 'v600' or product.handle == 'v1000' -%}
+          <div class="vpd-metric"><strong>0 m</strong><span>Boundary wire</span></div>
+          <div class="vpd-metric"><strong>3</strong><span>AI cameras</span></div>
+          <div class="vpd-metric"><strong>1&quot;–3&quot;</strong><span>Cutting height</span></div>
+          <div class="vpd-metric"><strong>15 cm</strong><span>Adjustable edge offset</span></div>
+        {%- elsif product.handle == 'vesper-s1-4wd-40' -%}
+          <div class="vpd-metric"><strong>40°</strong><span>Maximum slope</span></div>
+          <div class="vpd-metric"><strong>53 cm</strong><span>Cutting width</span></div>
+          <div class="vpd-metric"><strong>1,985 W</strong><span>Peak cutting power</span></div>
+          <div class="vpd-metric"><strong>2.25 h</strong><span>Runtime (18Ah)</span></div>
+        {%- else -%}
+          <div class="vpd-metric"><strong>50°</strong><span>Maximum slope</span></div>
+          <div class="vpd-metric"><strong>53 cm</strong><span>Cutting width</span></div>
+          <div class="vpd-metric"><strong>1,985 W</strong><span>Peak cutting power</span></div>
+          <div class="vpd-metric"><strong>2.25 h</strong><span>Runtime (18Ah)</span></div>
+        {%- endif -%}
       </div>
     </section>
   {%- endif -%}

@@ -1,21 +1,20 @@
-<footer class="py-12" style="background: rgb(17, 17, 16); border-top: 1px solid rgba(255, 255, 255, 0.06);">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
-      <div class="col-span-2 md:col-span-1">
+<footer class="site-footer">
+  <div class="v-container site-footer__inner">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
         <img
+          class="site-footer__logo"
           alt="{{ shop.name | escape }}"
           src="{{ 'vesper-logo-white.svg' | asset_url }}"
           width="557"
           height="83"
-          style="height: 28px; width: auto; display: block;"
         >
 
         <p
-          class="mb-4"
-          style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.4); line-height: 1.6;"
+          class="site-footer__tagline"
         >{{ section.settings.tagline }}</p>
 
-        <div class="flex gap-5">
+        <div class="site-footer__socials">
           {%- for i in (1..3) -%}
             {%- case i -%}
               {%- when 1 -%}
@@ -34,8 +33,7 @@
                 href="{{ social_url }}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="hover:text-[rgba(248,247,244,0.7)] transition-colors"
-                style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.3); cursor: pointer;"
+                class="site-footer__social-link"
               >{{ social }}</a>
             {%- endif -%}
           {%- endfor -%}
@@ -44,7 +42,7 @@
 
       <div>
         <div
-          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+          class="site-footer__heading"
         >{{ section.settings.products_heading }}</div>
 
         {%- assign items = section.settings.products_items | newline_to_br | split: '<br />' -%}
@@ -52,8 +50,7 @@
         {%- for item in items -%}
           {%- if item != blank -%}
             <div
-              class="hover:text-[rgba(248,247,244,0.8)] cursor-pointer transition-colors"
-              style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+              class="site-footer__link"
             >{{ item | strip }}</div>
           {%- endif -%}
         {%- endfor -%}
@@ -61,7 +58,7 @@
 
       <div>
         <div
-          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+          class="site-footer__heading"
         >{{ section.settings.company_heading }}</div>
 
         {%- assign items = section.settings.company_items | newline_to_br | split: '<br />' -%}
@@ -74,22 +71,18 @@
             {%- if item_link != blank -%}
               <a
                 href="{{ item_link }}"
-                class="block hover:text-[rgba(248,247,244,0.8)] transition-colors"
-                style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+                class="site-footer__link"
               >{{ item_label }}</a>
             {%- else -%}
               <div
-                class="hover:text-[rgba(248,247,244,0.8)] transition-colors"
-                style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+                class="site-footer__link"
               >{{ item_label }}</div>
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
-      </div>
 
-      <div>
         <div
-          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+          class="site-footer__heading site-footer__heading--secondary"
         >{{ section.settings.legal_heading }}</div>
 
         {%- assign legal_links = section.settings.legal_more | newline_to_br | split: '<br />' -%}
@@ -102,8 +95,7 @@
             {%- if row_link != blank -%}
               <a
                 href="{{ row_link }}"
-                class="block hover:text-[rgba(248,247,244,0.8)] transition-colors"
-                style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+                class="site-footer__link"
               >{{ row_label }}</a>
             {%- endif -%}
           {%- endif -%}
@@ -112,7 +104,7 @@
 
       <div>
         <div
-          style="font-family: Barlow, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: rgba(248, 247, 244, 0.3); text-transform: uppercase; margin-bottom: 16px;"
+          class="site-footer__heading"
         >{{ section.settings.contact_heading }}</div>
 
         {%- assign items = section.settings.contact_items | newline_to_br | split: '<br />' -%}
@@ -120,8 +112,7 @@
         {%- for item in items -%}
           {%- if item != blank -%}
             <div
-              class="hover:text-[rgba(248,247,244,0.8)] cursor-pointer transition-colors"
-              style="font-family: Barlow, sans-serif; font-size: 13px; color: rgba(248, 247, 244, 0.5); margin-bottom: 8px;"
+              class="site-footer__link"
             >{{ item | strip }}</div>
           {%- endif -%}
         {%- endfor -%}
@@ -129,14 +120,13 @@
     </div>
 
     <div
-      class="pt-6"
-      style="border-top: 1px solid rgba(255, 255, 255, 0.06);"
+      class="site-footer__bottom"
     >
       <div
-        style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;"
+        class="site-footer__bottom-inner"
       >
         <div
-          style="font-family: Barlow, sans-serif; font-size: 12px; color: rgba(248, 247, 244, 0.25);"
+          class="site-footer__copyright"
         >{{ section.settings.copyright }}</div>
 
         {%- if shop.enabled_payment_types.size > 0 -%}

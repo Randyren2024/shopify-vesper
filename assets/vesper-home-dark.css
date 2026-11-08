@@ -1,0 +1,168 @@
+/*
+ * Vesper homepage dark theme
+ * Loaded after the original landing bundle. The homepage sections predate the
+ * shared token system and contain inline light colours; these scoped overrides
+ * map those legacy values onto the same tokens used by the Nuxt storefront.
+ */
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+html[data-theme='dark'] body.template-index {
+  min-height: 100%;
+  background: var(--v-bg, #070a08);
+  color: var(--v-ink, #f1f4ee);
+}
+
+html[data-theme='dark'] body.template-index #main-content {
+  background: var(--v-bg, #070a08);
+}
+
+/* Main section surfaces */
+html[data-theme='dark'] body.template-index #home-hero,
+html[data-theme='dark'] body.template-index #problem,
+html[data-theme='dark'] body.template-index #products,
+html[data-theme='dark'] body.template-index #why-vesper,
+html[data-theme='dark'] body.template-index #how-it-works,
+html[data-theme='dark'] body.template-index #faq,
+html[data-theme='dark'] body.template-index #demo {
+  background-color: var(--v-bg, #070a08) !important;
+}
+
+html[data-theme='dark'] body.template-index #products,
+html[data-theme='dark'] body.template-index #how-it-works {
+  background-color: var(--v-bg-alt, #0d1210) !important;
+}
+
+/* The hero image stays photographic; only its text-protection overlays change. */
+html[data-theme='dark'] body.template-index #home-hero > div:first-child > div:nth-child(2) {
+  background: linear-gradient(
+    100deg,
+    rgba(7, 10, 8, 0.94) 0%,
+    rgba(7, 10, 8, 0.78) 42%,
+    rgba(7, 10, 8, 0.28) 68%,
+    rgba(7, 10, 8, 0.08) 100%
+  ) !important;
+}
+
+html[data-theme='dark'] body.template-index #home-hero > div:first-child > div:nth-child(3) {
+  background: linear-gradient(transparent, rgba(7, 10, 8, 0.96)) !important;
+}
+
+/* Replace hard-coded light section/card surfaces with dark design tokens. */
+html[data-theme='dark'] body.template-index [style*="background: rgb(248, 247, 244)"],
+html[data-theme='dark'] body.template-index [style*="background: rgba(248, 247, 244, 0.85)"] {
+  background: var(--v-surface, #101713) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="background: rgb(238, 236, 234)"] {
+  background: var(--v-bg-alt, #0d1210) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="background: rgb(17, 17, 16)"] {
+  background: var(--v-bg, #070a08) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="background: rgb(30, 30, 28)"] {
+  background: var(--v-tile, #0b1013) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="background: rgb(30, 61, 30)"] {
+  background: var(--v-green-deep, #0b0f0c) !important;
+}
+
+html[data-theme='dark'] body.template-index #products [style*="background: #EEECEA"],
+html[data-theme='dark'] body.template-index #products [style*="background: #D6E8EA"] {
+  background: var(--v-tile-img, #0a0d0f) !important;
+}
+
+/* Text and dividers embedded as inline styles in the original homepage sections. */
+html[data-theme='dark'] body.template-index [style*="color: rgb(17, 17, 16)"] {
+  color: var(--v-ink, #f1f4ee) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="color: rgb(107, 107, 104)"] {
+  color: var(--v-ink-soft, #a6b0a7) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="color: rgba(17, 17, 16, 0.12)"] {
+  color: var(--v-ink-faint, rgba(241, 244, 238, 0.45)) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="color: rgb(200, 90, 10)"] {
+  color: var(--v-orange, #f08a3c) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="background: rgb(200, 90, 10)"] {
+  background: var(--v-orange, #f08a3c) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="border: 1px solid rgb(17, 17, 16)"] {
+  border-color: var(--v-line-strong, rgba(255, 255, 255, 0.22)) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="border: 1px solid rgba(17, 17, 16, 0.1)"],
+html[data-theme='dark'] body.template-index [style*="border-top: 1px solid rgba(17, 17, 16, 0.1)"],
+html[data-theme='dark'] body.template-index [style*="border-bottom: 1px solid rgba(17, 17, 16, 0.1)"] {
+  border-color: var(--v-line, rgba(255, 255, 255, 0.12)) !important;
+}
+
+/* Strong primary actions use the lime accent against the dark canvas. */
+html[data-theme='dark'] body.template-index #home-hero [data-hero-cta],
+html[data-theme='dark'] body.template-index #demonstrations a,
+html[data-theme='dark'] body.template-index #why-vesper a,
+html[data-theme='dark'] body.template-index #cta a:first-of-type {
+  background: var(--v-green, #8de600) !important;
+  border-color: var(--v-green, #8de600) !important;
+  color: var(--v-on-green, #0b0f0c) !important;
+}
+
+html[data-theme='dark'] body.template-index #home-hero a:not([data-hero-cta]) {
+  border-color: var(--v-line-strong, rgba(255, 255, 255, 0.22)) !important;
+  color: var(--v-ink, #f1f4ee) !important;
+}
+
+html[data-theme='dark'] body.template-index #cta {
+  background: var(--v-surface, #101713) !important;
+}
+
+html[data-theme='dark'] body.template-index #demo > div > div:last-child {
+  border: 1px solid var(--v-line, rgba(255, 255, 255, 0.12));
+  border-radius: 18px;
+  box-shadow: var(--v-shadow, 0 22px 70px rgba(0, 0, 0, 0.45));
+}
+
+/* Header, dropdown, mobile panel and footer all follow the shared tokens. */
+html[data-theme='dark'] body.template-index .site-header {
+  background: color-mix(in srgb, var(--v-bg) 88%, transparent);
+  border-bottom-color: var(--v-line);
+}
+
+html[data-theme='dark'] body.template-index .site-dropdown__menu {
+  background: var(--v-surface);
+  border-color: var(--v-line);
+}
+
+html[data-theme='dark'] body.template-index .site-footer {
+  background: #050806;
+  border-top: 1px solid var(--v-line);
+}
+
+/* Native form controls outside embedded app iframes should remain legible. */
+html[data-theme='dark'] body.template-index input,
+html[data-theme='dark'] body.template-index select,
+html[data-theme='dark'] body.template-index textarea {
+  color-scheme: dark;
+  background-color: var(--v-surface);
+  border-color: var(--v-line);
+  color: var(--v-ink);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.template-index,
+  body.template-index #main-content,
+  body.template-index #main-content > .shopify-section {
+    transition: background-color 220ms ease, color 220ms ease;
+  }
+}

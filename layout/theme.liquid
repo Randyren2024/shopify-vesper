@@ -3,33 +3,27 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8f7f4">
+    <meta name="theme-color" content="#070a08">
     <script>document.documentElement.classList.add('js');</script>
 
     {%- comment -%}
-      Dark mode bootstrap. Runs before the stylesheets so the stored theme is
-      applied on the first paint (no white flash). The landing page is excluded
-      for now: its sections still carry hard-coded inline colours.
+      Default to dark mode on every storefront template. A visitor can switch
+      to light mode with the header control; that explicit choice is persisted.
+      This runs before CSS to prevent a light flash on first paint.
     {%- endcomment -%}
-    {%- liquid
-      assign dark_enabled = false
-      if template.name != 'index'
-        assign dark_enabled = true
-      endif
-    -%}
     <script>
       (function () {
-        var darkEnabled = {{ dark_enabled | json }};
         var root = document.documentElement;
         var stored = null;
-        try { stored = localStorage.getItem('vesper-theme'); } catch (e) {}
+        try { stored = localStorage.getItem('vesper-theme-v2'); } catch (e) {}
 
-        var wantsDark = darkEnabled && (stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var wantsDark = stored !== 'light';
         if (wantsDark) root.setAttribute('data-theme', 'dark');
+        else root.removeAttribute('data-theme');
 
         function syncMeta() {
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute('content', root.getAttribute('data-theme') === 'dark' ? '#0b0f0c' : '#f8f7f4');
+          if (meta) meta.setAttribute('content', root.getAttribute('data-theme') === 'dark' ? '#070a08' : '#f8f7f4');
         }
         syncMeta();
 
@@ -43,12 +37,9 @@
           var trigger = event.target.closest ? event.target.closest('[data-theme-toggle]') : null;
           if (!trigger) return;
           var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-          if (next === 'dark') {
-            root.setAttribute('data-theme', 'dark');
-          } else {
-            root.removeAttribute('data-theme');
-          }
-          try { localStorage.setItem('vesper-theme', next); } catch (e) {}
+          if (next === 'dark') root.setAttribute('data-theme', 'dark');
+          else root.removeAttribute('data-theme');
+          try { localStorage.setItem('vesper-theme-v2', next); } catch (e) {}
           document.querySelectorAll('[data-theme-toggle]').forEach(function (button) {
             button.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
           });
@@ -63,17 +54,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800&display=swap"
+    >
 
     {%- if template.name == 'index' -%}
       {%- comment -%}
         Home page — Vesper Robot landing page (ported from vesper-robot-theme).
         Keeps the compiled landing bundle and the Barlow font stack.
       {%- endcomment -%}
-      {%- comment -%}
-        No web font on the landing page: Barlow/Barlow Condensed were a
-        third-party request on the critical path (up to 10 s on some networks).
-        The CSS stacks fall back to the system UI font.
-      {%- endcomment -%}
+      {%- comment -%} Barlow and Barlow Condensed are loaded globally to match Nuxt. {%- endcomment -%}
 
       <title>{{ shop.name }}</title>
 
@@ -84,6 +75,7 @@
 
       {{ 'vesper-robot.css' | asset_url | stylesheet_tag }}
       {{ 'vesper-core.css' | asset_url | stylesheet_tag }}
+      {{ 'vesper-home-dark.css' | asset_url | stylesheet_tag }}
 
       {%- comment -%}
         Mobile-only overrides for the landing page. Kept inline on purpose: it is
@@ -208,6 +200,8 @@
 
       {% render 'meta-tags' %}
     {%- endif -%}
+
+    {{ 'vesper-type.css' | asset_url | stylesheet_tag }}
 
     {{ content_for_header }}
   </head>
