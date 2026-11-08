@@ -76,15 +76,19 @@
   display: block;
 }
 
-.v-logo--on-dark {
+.site-header__logo .v-logo--on-light {
+  display: block;
+}
+
+.site-header__logo .v-logo--on-dark {
   display: none;
 }
 
-[data-theme='dark'] .v-logo--on-light {
+[data-theme='dark'] .site-header__logo .v-logo--on-light {
   display: none;
 }
 
-[data-theme='dark'] .v-logo--on-dark {
+[data-theme='dark'] .site-header__logo .v-logo--on-dark {
   display: block;
 }
 
