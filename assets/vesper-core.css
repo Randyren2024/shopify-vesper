@@ -1064,7 +1064,7 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
 .site-mobile .site-header__cta{justify-content:center;margin-top:14px}
 .site-footer{margin-top:clamp(60px,8vw,110px);padding:56px 0 30px;background:#111110;color:rgba(248,247,244,.5)}
 .site-footer__inner{max-width:1200px}
-.site-footer__grid{display:grid;grid-template-columns:1.35fr repeat(4,minmax(0,1fr));gap:32px}
+.site-footer__grid{display:grid;grid-template-columns:1.35fr repeat(3,minmax(0,1fr));gap:40px}
 .site-footer__brand img,.site-footer__logo{display:block;width:auto;height:26px;margin-bottom:16px}
 .site-footer__tagline{max-width:34ch;margin:0 0 16px;color:rgba(248,247,244,.42);font-family:var(--v-font);font-size:13px;line-height:1.7}
 .site-footer__socials{display:flex;flex-wrap:wrap;gap:16px}
@@ -1112,3 +1112,5 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
 }
 [data-theme='dark'] .site-footer{background:#050806;border-top:1px solid var(--v-line)}
 [data-theme='dark'] .site-footer__link:hover,[data-theme='dark'] .site-footer__social-link:hover{color:#f1f4ee}
+
+.site-footer__heading--secondary{margin-top:22px}
