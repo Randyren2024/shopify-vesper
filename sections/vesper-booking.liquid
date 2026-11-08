@@ -36,7 +36,7 @@
 
           {%- form 'contact' -%}
             {%- if form.posted_successfully? -%}
-              <p class="booking-success" role="status">{{ section.settings.form_success }}</p>
+              <p class="booking-success" role="status" data-lead-success data-lead-form="demo_booking">{{ section.settings.form_success }}</p>
             {%- endif -%}
 
             {%- if form.errors -%}
