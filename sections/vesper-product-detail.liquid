@@ -184,7 +184,7 @@
 
 <div
   class="vpd-page"
-  {% if product != blank %}
+  {% if product != blank and product.price_min > 0 %}
     data-ga4-product
     data-item-id="{{ product.handle | escape }}"
     data-item-name="{{ product.title | escape }}"
