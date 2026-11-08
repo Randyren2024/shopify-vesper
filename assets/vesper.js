@@ -738,15 +738,6 @@
       var message = el.getAttribute('data-message') || 'Hello! I would like to request a demo of Vesper Robot Mowers products.';
 
       if (!phone) return;
-      var productRoot = el.closest('[data-ga4-product]');
-      if (Vesper.trackEvent) {
-        Vesper.trackEvent('contact', {
-          method: 'whatsapp',
-          source: productRoot ? 'product_page' : 'demo_cta',
-          item_id: productRoot ? productRoot.getAttribute('data-item-id') : undefined,
-          item_name: productRoot ? productRoot.getAttribute('data-item-name') : undefined,
-        });
-      }
       window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(message), '_blank', 'noopener');
     });
   }
