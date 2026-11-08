@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}" data-currency="{{ cart.currency.iso_code | default: shop.currency }}">
+<html lang="{{ request.locale.iso_code }}" data-currency="{{ cart.currency | default: shop.currency }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
