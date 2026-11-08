@@ -115,18 +115,16 @@
       </div>
 
       <div class="site-header__actions">
-      {%- if template.name != 'index' -%}
-        <button
-          type="button"
-          class="v-theme-toggle site-icon-btn"
-          data-theme-toggle
-          aria-label="{{ 'accessibility.theme_toggle' | t }}"
-          aria-pressed="false"
-        >
-          <span class="v-theme-toggle__icon v-theme-toggle__icon--moon">{% render 'vesper-icons', icon: 'moon' %}</span>
-          <span class="v-theme-toggle__icon v-theme-toggle__icon--sun">{% render 'vesper-icons', icon: 'sun' %}</span>
-        </button>
-      {%- endif -%}
+      <button
+        type="button"
+        class="v-theme-toggle site-icon-btn"
+        data-theme-toggle
+        aria-label="{{ 'accessibility.theme_toggle' | t }}"
+        aria-pressed="false"
+      >
+        <span class="v-theme-toggle__icon v-theme-toggle__icon--moon">{% render 'vesper-icons', icon: 'moon' %}</span>
+        <span class="v-theme-toggle__icon v-theme-toggle__icon--sun">{% render 'vesper-icons', icon: 'sun' %}</span>
+      </button>
 
       {%- comment -%} 购物车 / 账号入口：主页与全站共用同一个 header，保证每个页面都能进购物车 {%- endcomment -%}
       <a
