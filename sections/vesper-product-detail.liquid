@@ -438,6 +438,26 @@
     </div>
   </section>
 
+  {%- if product.handle == 'v600' or product.handle == 'v1000' -%}
+    <nav class="vpd-anchor-nav" aria-label="Product page sections">
+      <div class="v-container">
+        <a href="#overview">Overview</a>
+        <a href="#specifications">Specifications</a>
+        <a href="#faq">FAQ</a>
+        <a href="#vpd-quote">Request a quote</a>
+      </div>
+    </nav>
+
+    <section class="vpd-metrics" aria-label="Product highlights">
+      <div class="v-container vpd-metrics__grid">
+        <div class="vpd-metric"><strong>0 m</strong><span>Boundary wire</span></div>
+        <div class="vpd-metric"><strong>3</strong><span>AI cameras</span></div>
+        <div class="vpd-metric"><strong>1&quot;–3&quot;</strong><span>Cutting height</span></div>
+        <div class="vpd-metric"><strong>15 cm</strong><span>Adjustable edge offset</span></div>
+      </div>
+    </section>
+  {%- endif -%}
+
   {%- case product.handle -%}
     {%- when 'vesper-s1-4wd-50' -%}
       {% render 'vesper-product-content-vesper-s1-4wd-50', code: 'Mowrator S1 4WD', name: '119% SLOPE(50°)' %}
@@ -466,7 +486,7 @@
   {%- endcase -%}
 
   {%- if vpd_code != blank -%}
-    <section class="vpd-cta-section">
+    <section class="vpd-cta-section" id="vpd-quote">
       <div class="vpd-cta-inner">
         <h2>Interested in {{ vpd_code }} {{ vpd_name }}?</h2>
         <p>Contact us today for more information or request a demo</p>
