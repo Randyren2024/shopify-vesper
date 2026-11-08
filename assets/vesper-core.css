@@ -29,6 +29,18 @@
   --v-font: "Barlow", system-ui, sans-serif;
   --v-font-display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
   --v-nav-height: 56px;
+
+  /* Light-mode defaults for the shared product/catalogue design tokens. */
+  --v-card: #ffffff;
+  --v-tile: #f7f7f4;
+  --v-tile-img: #f2f1ed;
+  --v-surface-1: rgba(17, 17, 16, 0.025);
+  --v-surface-2: rgba(17, 17, 16, 0.045);
+  --v-on-green: #ffffff;
+  --v-glow-1: rgba(30, 61, 30, 0.075);
+  --v-glow-2: rgba(200, 90, 10, 0.035);
+  --v-shadow: 0 22px 70px rgba(17, 17, 16, 0.08);
+  --v-shadow-sm: 0 8px 24px rgba(17, 17, 16, 0.05);
 }
 
 .v-page {
