@@ -35,9 +35,11 @@ User manual=1
 Quick guide=1
 {%- endcapture -%}
 
-<section class="vpd-section" data-reveal>
+<section class="vpd-section vpd-overview" id="overview" data-reveal>
   <div class="v-container">
-    <h2 class="vpd-section-title">Learn More About {{ vpd_code }} {{ vpd_name }}</h2>
+    <p class="vpd-eyebrow">Overview</p>
+    <h2 class="vpd-section-title">A mower that reads the lawn instead of following a wire</h2>
+    <p class="vpd-overview__lead">Three cameras and an on-board vision system map the lawn as the mower works. There is no boundary wire to bury, no RTK antenna to install and no satellite signal to depend on. AI vision and CMOS sensors recognise obstacles as they appear, while adjustable cutting height and edge control help keep the finish consistent.</p>
     <div class="vpd-learn__cards">
       <article class="vpd-learn-card">
         <div class="vpd-learn-card__image">
@@ -163,9 +165,10 @@ Quick guide=1
   </div>
 </section>
 
-<section class="vpd-section" data-reveal>
+<section class="vpd-section" id="faq" data-reveal>
   <div class="v-container">
-    <h2 class="vpd-section-title">Frequently Asked Questions</h2>
+    <p class="vpd-eyebrow">Questions</p>
+    <h2 class="vpd-section-title">Before you choose {{ vpd_code }}</h2>
     <div class="v-accordion vpd-faq__accordion" data-accordion>
       <div class="v-accordion__item" data-open="false">
         <button type="button" class="v-accordion__trigger" data-accordion-trigger aria-expanded="false">
