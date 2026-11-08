@@ -573,13 +573,13 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] body.vesper-theme .v-carousel__btn {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
   color: var(--v-ink);
 }
 
 [data-theme='dark'] body.vesper-theme .v-qty button {
-  background: #151b16;
+  background: var(--v-surface);
   color: var(--v-ink);
 }
 
@@ -605,14 +605,14 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] body.template-search .v-search-card__media {
-  background: #0f1511;
+  background: var(--v-bg-alt);
 }
 
 /* ---------- Product detail ---------- */
 [data-theme='dark'] .vpd-page {
   background:
     radial-gradient(ellipse at 85% 0%, rgba(141, 230, 0, 0.05), transparent 36%),
-    #0b0f0c;
+    var(--v-bg);
 }
 
 [data-theme='dark'] .vpd-hero__container {
@@ -623,11 +623,11 @@ body.template-article #MainContent .shopify-section > div h3 {
 
 [data-theme='dark'] .vpd-gallery,
 [data-theme='dark'] .vpd-gallery__carousel {
-  background: #0f1511;
+  background: var(--v-bg-alt);
 }
 
 [data-theme='dark'] .vpd-thumb {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
 }
 
@@ -658,13 +658,13 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .vpd-feature-badge {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
   color: var(--v-ink);
 }
 
 [data-theme='dark'] .vpd-feature-badge:hover {
-  background: #1a221b;
+  background: var(--v-surface);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
@@ -676,7 +676,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 
 [data-theme='dark'] .vpd-accordion .v-accordion__trigger:hover,
 [data-theme='dark'] .vpd-faq__accordion .v-accordion__trigger:hover {
-  background: #1a221b;
+  background: var(--v-surface);
 }
 
 [data-theme='dark'] .vpd-check-list .v-icon {
@@ -684,7 +684,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .vpd-ecommerce {
-  background: #0f1511;
+  background: var(--v-bg-alt);
   border-color: var(--v-line);
 }
 
@@ -699,7 +699,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .vpd-section--tint {
-  background: #10160f;
+  background: var(--v-bg-alt);
 }
 
 [data-theme='dark'] .vpd-learn-card,
@@ -713,7 +713,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 [data-theme='dark'] .vpd-learn-card__image,
 [data-theme='dark'] .vpd-app-card__img,
 [data-theme='dark'] .vpd-related-card__cover {
-  background: #0f1511;
+  background: var(--v-bg-alt);
 }
 
 [data-theme='dark'] .vpd-learn-card__title {
@@ -728,21 +728,21 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .vpd-specs .v-specs-table th {
-  background: #151b16;
+  background: var(--v-surface);
   color: var(--v-ink);
 }
 
 [data-theme='dark'] .vpd-specs .v-specs-table tr:nth-child(even) td {
-  background: #0f1511;
+  background: var(--v-bg-alt);
 }
 
 [data-theme='dark'] .vpd-share__btn:hover {
-  background: #1a221b;
+  background: var(--v-surface);
   color: #a5f02e;
 }
 
 [data-theme='dark'] .vpd-buybar {
-  background: rgba(11, 15, 12, 0.96);
+  background: rgba(7, 10, 8, 0.96);
   border-top-color: var(--v-line);
   box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45);
 }
@@ -752,7 +752,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .vpd-payments .v-payment-icons__item {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
 }
 
@@ -760,7 +760,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 [data-theme='dark'] .vesper-contact {
   background:
     radial-gradient(ellipse at 4% 0%, rgba(141, 230, 0, 0.05), transparent 44%),
-    #0b0f0c;
+    var(--v-bg);
 }
 
 [data-theme='dark'] .vcp-heading,
@@ -779,7 +779,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .vcp-item__icon {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
   color: #a5f02e;
 }
@@ -803,7 +803,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 [data-theme='dark'] .vesper-contact .vcp-form .v-input,
 [data-theme='dark'] .vesper-contact .vcp-form .v-select,
 [data-theme='dark'] .vesper-contact .vcp-form .v-textarea {
-  background: #0f1511;
+  background: var(--v-bg-alt);
   border-color: var(--v-line);
   color: var(--v-ink);
 }
@@ -847,11 +847,11 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .ab-section--tint {
-  background: #10160f;
+  background: var(--v-bg-alt);
 }
 
 [data-theme='dark'] .ab-section--white {
-  background: #0d120e;
+  background: var(--v-bg-alt);
 }
 
 [data-theme='dark'] .ab-head__title,
@@ -876,7 +876,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .ab-story__figure {
-  background: #0f1511;
+  background: var(--v-bg-alt);
   border-color: var(--v-line);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
 }
@@ -889,7 +889,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .ab-step__logo {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
 }
 
@@ -898,12 +898,12 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .ab-profile {
-  background: #0f1511;
+  background: var(--v-bg-alt);
   border-color: var(--v-line);
 }
 
 [data-theme='dark'] .ab-profile__photo {
-  background: #151b16;
+  background: var(--v-surface);
 }
 
 [data-theme='dark'] .ab-value {
@@ -912,7 +912,7 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .ab-value__icon {
-  background: #151b16;
+  background: var(--v-surface);
   border-color: var(--v-line);
 }
 
@@ -921,5 +921,5 @@ body.template-article #MainContent .shopify-section > div h3 {
 }
 
 [data-theme='dark'] .ab-cta-section {
-  background: #10160f;
+  background: var(--v-bg-alt);
 }
