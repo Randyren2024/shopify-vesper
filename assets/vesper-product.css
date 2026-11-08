@@ -1784,3 +1784,23 @@
     padding-block: 48px;
   }
 }
+
+
+.vpd-page .vpd-eyebrow {
+  margin: 0 0 12px;
+  color: #6b806f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.vpd-page .vpd-overview__lead {
+  max-width: 780px;
+  margin: -18px auto 42px;
+  color: #68736a;
+  font-size: clamp(0.98rem, 1.35vw, 1.1rem);
+  line-height: 1.8;
+  text-align: center;
+}
