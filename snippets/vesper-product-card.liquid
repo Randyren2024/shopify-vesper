@@ -1,66 +1,66 @@
 {%- comment -%}
-  Product card — ported from the <a-card> markup used in
-  src/views/ProductsSolutionsView.vue (and ProductCard.vue).
+  Product card — aligned with Nuxt web/app/components/ProductCard.vue.
 
-  Two ways to use it:
+  Dynamic Shopify product usage:
+    {% render 'vesper-product-card', product: product %}
 
-  1. Dynamic — pass a Shopify product object (used by the collection
-     template, so new products show up automatically):
-       {% render 'vesper-product-card', product: product %}
-
-  2. Static — pass the parallel-array fields of the hand-authored
-     Products & Solutions grid:
-       {% render 'vesper-product-card',
-          id: pid,
-          code: product_codes[i],
-          name: product_names[i],
-          description: product_descriptions[i],
-          category: product_categories[i],
-          category_name: product_category_names[i],
-          image: product_images[i],
-          bestseller: p_best,
-          is_new: p_new,
-          price: product_prices[i],
-          tagline: product_taglines[i] %}
+  The optional static arguments remain supported for legacy/manual sections.
 {%- endcomment -%}
 
 {%- liquid
   if product
     assign card_url = product.url
     assign card_title = product.title
-    assign card_desc = product.description | strip_html | truncatewords: 24
-    assign card_category = category | default: product.type | handleize
-    assign card_category_label = category_name | default: product.type
+    assign card_desc = product.description | strip_html | strip | truncate: 118
+    assign card_category = product.type | default: 'Vesper'
     assign card_price = product.price
+    assign card_compare_at = product.compare_at_price
+    assign card_flag = blank
+
+    if product.tags contains 'New Release' or product.tags contains 'New'
+      assign card_flag = 'New'
+    elsif product.tags contains 'Best Seller'
+      assign card_flag = 'Best seller'
+    endif
   else
     assign card_url = '/products/' | append: id
     assign card_title = code | append: ' ' | append: name
-    assign card_desc = description
-    assign card_category = category
-    assign card_category_label = category_name
+    assign card_desc = description | strip_html | strip | truncate: 118
+    assign card_category = category_name | default: 'Vesper'
     assign card_price = price
+    assign card_compare_at = blank
+    assign card_flag = blank
+
+    if is_new
+      assign card_flag = 'New'
+    elsif bestseller
+      assign card_flag = 'Best seller'
+    endif
   endif
 -%}
 
-<article
-  class="v-product-card v-card v-card-hover"
-  data-category="{{ card_category }}"
+<a
+  class="p-card v-product-card v-card v-card-hover"
+  href="{{ card_url }}"
+  data-category="{{ category | default: card_category | handleize }}"
   data-price="{{ card_price }}"
-  {%- unless product %}
-  data-tagline="{{ tagline | escape }}"
-  {%- endunless %}
   data-reveal
+  aria-label="{{ card_title | escape }}"
 >
-  <a class="v-product-card__media" href="{{ card_url }}" aria-label="{{ card_title | escape }}">
-    {%- if product -%}
-      {%- if product.featured_image -%}
-        {{
-          product.featured_image
-          | image_url: width: 800
-          | image_tag: class: 'v-product-card__img', widths: '320, 480, 640, 800', alt: card_title, loading: 'lazy', decoding: 'async'
-        }}
-      {%- endif -%}
-    {%- else -%}
+  <div class="p-card__media v-product-card__media">
+    {%- if product and product.featured_image -%}
+      {{
+        product.featured_image
+        | image_url: width: 1000
+        | image_tag:
+          class: 'v-product-card__img',
+          widths: '320, 480, 640, 800, 1000',
+          sizes: '(min-width: 1200px) 360px, (min-width: 768px) 33vw, 50vw',
+          alt: product.featured_image.alt | default: card_title,
+          loading: 'lazy',
+          decoding: 'async'
+      }}
+    {%- elsif image != blank -%}
       <img
         class="v-product-card__img"
         src="{{ image | asset_url }}"
@@ -69,41 +69,48 @@
         decoding="async"
       >
     {%- endif -%}
-    {%- if bestseller or is_new -%}
-      <span class="v-product-card__badges">
-        {%- if bestseller -%}
-          <span class="v-product-card__badge v-product-card__badge--best">Best Seller</span>
-        {%- endif -%}
-        {%- if is_new -%}
-          <span class="v-product-card__badge v-product-card__badge--new">New</span>
-        {%- endif -%}
+
+    {%- if card_flag != blank -%}
+      <span class="v-badge v-badge--solid p-card__flag v-product-card__badge">
+        {{ card_flag }}
       </span>
     {%- endif -%}
-  </a>
+  </div>
 
-  <div class="v-product-card__body">
-    <h3 class="v-product-card__title">
-      <a href="{{ card_url }}">{{ card_title }}</a>
-    </h3>
+  <div class="p-card__body v-product-card__body">
+    <span class="p-card__cat v-product-card__category">
+      {{ card_category | default: 'Vesper' }}
+    </span>
+
+    <h3 class="p-card__title v-product-card__title">{{ card_title | escape }}</h3>
 
     {%- if card_desc != blank -%}
-      <p class="v-product-card__desc">{{ card_desc }}</p>
+      <p class="p-card__desc v-product-card__desc">{{ card_desc | escape }}</p>
     {%- endif -%}
 
-    {%- if card_category_label != blank -%}
-      <span class="v-product-card__category v-badge">{{ card_category_label }}</span>
-    {%- endif -%}
+    <div class="p-card__foot v-product-card__foot">
+      <span class="p-card__price v-product-card__price">
+        {%- if product -%}
+          {%- if card_price > 0 -%}
+            {{ card_price | money }}
+          {%- else -%}
+            Request a quote
+          {%- endif -%}
+        {%- elsif card_price != blank -%}
+          {{ card_price }}
+        {%- else -%}
+          Request a quote
+        {%- endif -%}
 
-    <div class="v-product-card__actions">
-      <a class="v-btn v-btn--primary v-btn--sm" href="{{ card_url }}">Learn More</a>
-      <button
-        type="button"
-        class="v-btn v-btn--ghost v-btn--sm"
-        data-request-demo
-        data-message="Hello! I'm interested in getting a quote for the {{ card_title | escape }}. Could you please provide more information?"
-      >
-        Get Quote
-      </button>
+        {%- if product and card_compare_at > card_price -%}
+          <small class="p-card__was v-product-card__was">{{ card_compare_at | money }}</small>
+        {%- endif -%}
+      </span>
+
+      <span class="p-card__cta v-product-card__cta">
+        View details
+        <span aria-hidden="true">→</span>
+      </span>
     </div>
   </div>
-</article>
+</a>
