@@ -3,8 +3,8 @@
  * IMPORTANT: The contents of this file are auto-generated.
  *
  * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
+ * or related systems. Please exercise caution as changes may
+ * be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -14,53 +14,45 @@
     "header": {
       "type": "header",
       "blocks": {
-        "nav_link_9Prpre": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Book Free Demo",
-            "link": "https://www.vesperrobot.au/pages/book-demo"
-          }
-        },
         "nav-products": {
           "type": "nav_link",
           "settings": {
             "label": "Products",
-            "link": "#products"
+            "link": "/collections/all"
           }
         },
-        "nav_link_iLECy8": {
+        "nav-about": {
+          "type": "nav_link",
+          "settings": {
+            "label": "About",
+            "link": "/pages/about-us"
+          }
+        },
+        "nav-support": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Support",
+            "link": "/pages/support"
+          }
+        },
+        "nav-contact": {
           "type": "nav_link",
           "settings": {
             "label": "Contact",
             "link": "/pages/contact"
           }
-        },
-        "nav-why-vesper": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Home",
-            "link": "/"
-          }
-        },
-        "nav-faq": {
-          "type": "nav_link",
-          "settings": {
-            "label": "FAQ",
-            "link": "#faq"
-          }
         }
       },
       "block_order": [
-        "nav_link_9Prpre",
         "nav-products",
-        "nav_link_iLECy8",
-        "nav-why-vesper",
-        "nav-faq"
+        "nav-about",
+        "nav-support",
+        "nav-contact"
       ],
       "custom_css": [],
       "settings": {
-        "cta_label": "WhatsApp for Demo",
-        "cta_link": "https://wa.me/61448290926?text=Hi%2C%20I%20want%20to%20book%20a%20demo%20for%20robot%20mower.",
+        "cta_label": "",
+        "cta_link": "",
         "products_menu": "product"
       }
     }
