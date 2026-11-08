@@ -54,17 +54,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@500;600;700;800&display=swap"
+    >
 
     {%- if template.name == 'index' -%}
       {%- comment -%}
         Home page — Vesper Robot landing page (ported from vesper-robot-theme).
         Keeps the compiled landing bundle and the Barlow font stack.
       {%- endcomment -%}
-      {%- comment -%}
-        No web font on the landing page: Barlow/Barlow Condensed were a
-        third-party request on the critical path (up to 10 s on some networks).
-        The CSS stacks fall back to the system UI font.
-      {%- endcomment -%}
+      {%- comment -%} Barlow and Barlow Condensed are loaded globally to match Nuxt. {%- endcomment -%}
 
       <title>{{ shop.name }}</title>
 
@@ -200,6 +200,8 @@
 
       {% render 'meta-tags' %}
     {%- endif -%}
+
+    {{ 'vesper-type.css' | asset_url | stylesheet_tag }}
 
     {{ content_for_header }}
   </head>
