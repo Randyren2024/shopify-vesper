@@ -1589,3 +1589,218 @@
     padding-bottom: 84px;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   Nuxt product-page parity — navigation, metrics and editorial rhythm
+   -------------------------------------------------------------------------- */
+.vpd-page {
+  color: #171a17;
+}
+
+.vpd-page [id] {
+  scroll-margin-top: calc(var(--v-nav-h, 76px) + 28px);
+}
+
+.vpd-anchor-nav {
+  position: sticky;
+  top: var(--v-nav-h, 76px);
+  z-index: 8;
+  border-top: 1px solid rgba(30, 61, 30, 0.08);
+  border-bottom: 1px solid rgba(30, 61, 30, 0.12);
+  background: rgba(248, 249, 246, 0.92);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.vpd-anchor-nav .v-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 38px);
+  min-height: 58px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.vpd-anchor-nav .v-container::-webkit-scrollbar {
+  display: none;
+}
+
+.vpd-anchor-nav a {
+  flex: 0 0 auto;
+  color: #5c665e;
+  font-size: 0.82rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.vpd-anchor-nav a:hover,
+.vpd-anchor-nav a:focus-visible {
+  color: #24613a;
+}
+
+.vpd-metrics {
+  padding: clamp(28px, 4vw, 48px) 0;
+  background: #f1f4ef;
+  border-bottom: 1px solid rgba(30, 61, 30, 0.08);
+}
+
+.vpd-metrics__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.vpd-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 6px clamp(14px, 2.5vw, 32px);
+  border-right: 1px solid rgba(30, 61, 30, 0.14);
+}
+
+.vpd-metric:first-child {
+  padding-left: 0;
+}
+
+.vpd-metric:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.vpd-metric strong {
+  color: #1e3d1e;
+  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.vpd-metric span {
+  color: #667168;
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.vpd-page .vpd-section {
+  padding-block: clamp(54px, 7vw, 92px);
+}
+
+.vpd-page .vpd-section-title {
+  max-width: 820px;
+  margin: 0 auto clamp(28px, 4vw, 46px);
+  color: #171a17;
+  font-size: clamp(1.8rem, 3.3vw, 2.8rem);
+  font-weight: 780;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  text-align: center;
+}
+
+.vpd-page .vpd-section--tint {
+  background: #f3f5f1;
+}
+
+.vpd-page .vpd-learn-card {
+  border: 1px solid rgba(30, 61, 30, 0.1);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 10px 34px rgba(24, 42, 30, 0.045);
+}
+
+.vpd-page .vpd-learn-card__image {
+  overflow: hidden;
+  background: #f4f5f1;
+}
+
+.vpd-page .vpd-learn-card__image img {
+  transition: transform 0.55s ease;
+}
+
+.vpd-page .vpd-learn-card:hover .vpd-learn-card__image img {
+  transform: scale(1.035);
+}
+
+.vpd-page .vpd-specs {
+  max-width: 980px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgba(30, 61, 30, 0.12);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 36px rgba(24, 42, 30, 0.045);
+}
+
+.vpd-page .vpd-faq__accordion {
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.vpd-page .vpd-faq__accordion .v-accordion__item {
+  border-color: rgba(30, 61, 30, 0.14);
+}
+
+.vpd-page .vpd-faq__accordion .v-accordion__trigger {
+  padding-block: 22px;
+  font-size: 1rem;
+}
+
+.vpd-page .vpd-cta-section {
+  scroll-margin-top: calc(var(--v-nav-h, 76px) + 28px);
+}
+
+@media (max-width: 720px) {
+  .vpd-anchor-nav .v-container {
+    min-height: 50px;
+    gap: 22px;
+  }
+
+  .vpd-metrics__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 22px;
+  }
+
+  .vpd-metric {
+    padding: 4px 14px;
+  }
+
+  .vpd-metric:nth-child(2) {
+    border-right: 0;
+  }
+
+  .vpd-metric:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .vpd-metric:nth-child(3),
+  .vpd-metric:nth-child(4) {
+    padding-top: 18px;
+    border-top: 1px solid rgba(30, 61, 30, 0.14);
+  }
+
+  .vpd-page .vpd-section {
+    padding-block: 48px;
+  }
+}
+
+
+.vpd-page .vpd-eyebrow {
+  margin: 0 0 12px;
+  color: #6b806f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.vpd-page .vpd-overview__lead {
+  max-width: 780px;
+  margin: -18px auto 42px;
+  color: #68736a;
+  font-size: clamp(0.98rem, 1.35vw, 1.1rem);
+  line-height: 1.8;
+  text-align: center;
+}
