@@ -1,0 +1,72 @@
+/*
+ * Vesper typography foundation
+ * Mirrors the Nuxt storefront's Barlow + Barlow Condensed font pairing.
+ * Loaded globally so the landing page and Shopify commerce templates share
+ * the same real web fonts instead of silently falling back to system fonts.
+ */
+
+:root {
+  --v-font: "Barlow", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --v-font-display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+  --vesper-font-body: var(--v-font);
+  --vesper-font-title: var(--v-font-display);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--v-font);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.v-product__title,
+.v-card__title,
+.v-cart__name,
+.v-price,
+.v-summary__row--total {
+  font-family: var(--v-font-display);
+}
+
+/* Keep the compact technical-label treatment consistent across templates. */
+.v-eyebrow,
+.v-label,
+.v-field label,
+.v-card__eyebrow,
+.v-price--from,
+.v-sold-out {
+  font-family: var(--v-font);
+}
+
+/* Shared icon geometry for the Liquid SVG icon set and header controls. */
+.v-icon {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  flex: 0 0 auto;
+  vertical-align: -0.16em;
+}
+
+.site-icon-btn > svg,
+.site-icon-btn > .v-icon,
+.site-icon-btn .v-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.site-dropdown svg,
+.site-mobile__toggle svg {
+  flex: 0 0 auto;
+}
