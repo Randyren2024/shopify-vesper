@@ -182,7 +182,15 @@
   assign vpd_alt = vpd_code | append: ' ' | append: vpd_name
 -%}
 
-<div class="vpd-page">
+<div
+  class="vpd-page"
+  {% if product != blank %}
+    data-ga4-product
+    data-item-id="{{ product.handle | escape }}"
+    data-item-name="{{ product.title | escape }}"
+    data-item-price="{{ product.price_min | divided_by: 100.0 }}"
+  {% endif %}
+>
   {%- if vpd_code != blank -%}
     <div class="vpd-breadcrumb">
       <div class="v-container">
