@@ -198,3 +198,24 @@ html[data-theme='dark'] body.template-index #demo > div > div:last-child [type='
   color: #0b0f0c;
   border-color: #8de600;
 }
+
+
+/* Homepage dark-mode contrast pass for legacy inline copy. */
+html[data-theme='dark'] body.template-index [style*="color: rgba(248, 247, 244, 0.5)"] {
+  color: rgba(248, 247, 244, 0.82) !important;
+}
+
+html[data-theme='dark'] body.template-index [style*="color: rgba(248, 247, 244, 0.42)"],
+html[data-theme='dark'] body.template-index [style*="color: rgba(248, 247, 244, 0.36)"] {
+  color: rgba(248, 247, 244, 0.72) !important;
+}
+
+/* Keep secondary navigation/footer copy readable without competing with headings. */
+html[data-theme='dark'] body.template-index :is(.site-footer__tagline, .site-footer__social-link,
+  .site-footer__heading, .site-footer__copyright, .site-footer__link) {
+  color: #aeb9af;
+}
+
+html[data-theme='dark'] body.template-index :is(p, li, label, small) {
+  text-decoration-color: rgba(244, 247, 242, 0.55);
+}
