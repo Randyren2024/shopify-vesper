@@ -486,10 +486,26 @@
     },
 
     add: function (variantId, quantity, properties) {
+      var requestedQuantity = quantity || 1;
       return Cart.request('add', {
-        items: [{ id: Number(variantId), quantity: quantity || 1, properties: properties || undefined }],
+        items: [{ id: Number(variantId), quantity: requestedQuantity, properties: properties || undefined }],
       })
-        .then(function () {
+        .then(function (added) {
+          var addedItem = added && added.items && added.items[0] ? added.items[0] : added;
+          if (Vesper.trackEvent && addedItem) {
+            var unitPrice = Number(addedItem.final_price || addedItem.price || 0) / 100;
+            Vesper.trackEvent('add_to_cart', {
+              currency: document.documentElement.dataset.currency || 'AUD',
+              value: unitPrice * requestedQuantity,
+              items: [{
+                item_id: addedItem.handle || String(addedItem.product_id || variantId),
+                item_name: addedItem.product_title || addedItem.title || '',
+                item_variant: addedItem.variant_title || '',
+                price: unitPrice,
+                quantity: requestedQuantity,
+              }],
+            });
+          }
           return Cart.refresh();
         })
         .then(function (cart) {
@@ -507,8 +523,32 @@
        string. /cart/add.js and /cart/update.js accept numbers, this one
        does not. */
     change: function (variantId, quantity) {
+      var previous = Cart.state && Cart.state.items
+        ? Cart.state.items.find(function (item) { return String(item.variant_id) === String(variantId); })
+        : null;
+
       return Cart.request('change', { id: String(variantId), quantity: quantity })
         .then(function (cart) {
+          var current = cart.items.find(function (item) { return String(item.variant_id) === String(variantId); });
+          if (previous && Vesper.trackEvent) {
+            var previousQuantity = Number(previous.quantity || 0);
+            var currentQuantity = current ? Number(current.quantity || 0) : 0;
+            var difference = Math.abs(previousQuantity - currentQuantity);
+            if (difference > 0) {
+              var unitPrice = Number(previous.final_price || previous.price || 0) / 100;
+              Vesper.trackEvent(currentQuantity < previousQuantity ? 'remove_from_cart' : 'add_to_cart', {
+                currency: document.documentElement.dataset.currency || 'AUD',
+                value: unitPrice * difference,
+                items: [{
+                  item_id: previous.handle || String(previous.product_id || variantId),
+                  item_name: previous.product_title || previous.title || '',
+                  item_variant: previous.variant_title || '',
+                  price: unitPrice,
+                  quantity: difference,
+                }],
+              });
+            }
+          }
           Cart.state = cart;
           Cart.render();
           return cart;
@@ -643,7 +683,11 @@
     var cartTrigger = document.querySelector('[data-drawer-open="vesper-cart-drawer"]');
     if (cartTrigger) {
       cartTrigger.addEventListener('click', function () {
-        Cart.refresh();
+        Cart.refresh().then(function (cart) {
+          if (!document.querySelector('[data-cart-page]') && Vesper.trackCartEvent) {
+            Vesper.trackCartEvent('view_cart', cart);
+          }
+        });
       });
     }
   }
@@ -714,7 +758,11 @@
     bindDemoCta();
 
     if (document.querySelector('[data-cart-count]')) {
-      Cart.refresh().catch(function () {});
+      Cart.refresh().then(function (cart) {
+        if (document.querySelector('[data-cart-page]') && Vesper.trackCartEvent) {
+          Vesper.trackCartEvent('view_cart', cart);
+        }
+      }).catch(function () {});
     }
   }
 
