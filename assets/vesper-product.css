@@ -3081,3 +3081,89 @@
     scroll-margin-top: 84px;
   }
 }
+
+/* ---------- Product quote form (mirrors the Nuxt product_quote form) ---------- */
+.vpd-quote-form {
+  max-width: 760px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+.vpd-quote-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.vpd-quote-form__full {
+  grid-column: 1 / -1;
+}
+
+.vpd-quote-form .v-field {
+  margin-bottom: 0;
+}
+
+.vpd-quote-form .v-field__label {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.vpd-quote-form .v-input,
+.vpd-quote-form .v-textarea {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.vpd-quote-form .v-input::placeholder,
+.vpd-quote-form .v-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.vpd-quote-form .v-input:focus,
+.vpd-quote-form .v-textarea:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16);
+}
+
+.vpd-quote-form .v-textarea {
+  min-height: 120px;
+}
+
+.vpd-quote-form__actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.vpd-quote-form__actions .v-btn {
+  background: #fff;
+  color: #1e3d1e;
+  border-color: #fff;
+}
+
+.vpd-quote-form__success {
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 15px;
+}
+
+.vpd-quote-form__errors {
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(255, 120, 120, 0.16);
+  color: #ffdede;
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  .vpd-quote-form {
+    margin-top: 28px;
+  }
+
+  .vpd-quote-form__grid {
+    grid-template-columns: 1fr;
+  }
+}

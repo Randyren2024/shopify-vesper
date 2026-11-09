@@ -26,7 +26,7 @@
       {%- endif -%}
 
       <div class="booking-layout">
-        <div class="booking-form-card" data-reveal>
+        <div class="booking-form-card" data-reveal data-lead-form="home_demo">
           <div class="booking-form-head">
             <h2>{{ section.settings.form_heading }}</h2>
             {%- if section.settings.form_subtitle != blank -%}
@@ -36,7 +36,7 @@
 
           {%- form 'contact' -%}
             {%- if form.posted_successfully? -%}
-              <p class="booking-success" role="status" data-lead-success data-lead-form="demo_booking">{{ section.settings.form_success }}</p>
+              <p class="booking-success" role="status" data-lead-success data-lead-form="home_demo">{{ section.settings.form_success }}</p>
             {%- endif -%}
 
             {%- if form.errors -%}

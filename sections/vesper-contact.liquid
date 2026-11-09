@@ -104,7 +104,7 @@
         </aside>
 
         {%- comment -%} Contact form (native Shopify contact form) {%- endcomment -%}
-        <div class="vcp-form" data-reveal="right">
+        <div class="vcp-form" data-reveal="right" data-lead-form="contact_page">
           <header class="vcp-form__head">
             <h2 class="vcp-form__title">{{ section.settings.form_heading }}</h2>
             <p class="vcp-form__sub">{{ section.settings.form_subtitle }}</p>
@@ -112,7 +112,7 @@
 
           {%- form 'contact' -%}
             {%- if form.posted_successfully? -%}
-              <p class="form-success" role="status" data-lead-success data-lead-form="contact_page">{{ section.settings.form_success }}</p>
+              <p class="form-success" role="status" data-lead-success data-lead-form="contact_page" data-lead-product="{{ form.product | escape }}">{{ section.settings.form_success }}</p>
             {%- endif -%}
 
             {%- if form.errors -%}
