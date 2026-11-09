@@ -2,11 +2,34 @@
    Vesper tracking bridge
    Mirrors the Nuxt storefront's GA4 event contract through GTM dataLayer.
    Consent and tag routing remain controlled by the connected GTM container.
+
+   Lead events (`generate_lead`) follow the Nuxt contract in
+   web/app/composables/useTrack.ts:
+     - home_demo      -> { form: 'home_demo' }                     (no product)
+     - contact_page   -> { form: 'contact_page', product: <value|null> }
+     - product_quote  -> { form: 'product_quote', product: <code> }
+   The native Shopify contact form reloads the page on submit, so the event is
+   reported from the reloaded success page, not from the submit callback. A
+   one-shot sessionStorage marker keeps that to exactly one event per
+   submission instead of one per page view of the success markup.
    ========================================================================== */
 (function () {
   'use strict';
 
   var Vesper = (window.Vesper = window.Vesper || {});
+  var LEAD_PENDING_KEY = 'vesper:lead:pending';
+  var LEAD_PENDING_TTL = 15 * 60 * 1000;
+
+  var leadStore = (function () {
+    try {
+      var store = window.sessionStorage;
+      store.setItem(LEAD_PENDING_KEY + ':probe', '1');
+      store.removeItem(LEAD_PENDING_KEY + ':probe');
+      return store;
+    } catch (error) {
+      return null;
+    }
+  })();
 
   function trackEvent(name, params) {
     if (!name) return;
@@ -47,6 +70,65 @@
   Vesper.trackCartEvent = trackCartEvent;
   Vesper.toGa4Item = toGa4Item;
 
+  /* ---------------------------------------------------------------- leads */
+
+  function rememberPendingLead(scope) {
+    if (!leadStore) return;
+    try {
+      leadStore.setItem(LEAD_PENDING_KEY, JSON.stringify({
+        form: scope.getAttribute('data-lead-form') || '',
+        ts: Date.now(),
+      }));
+    } catch (error) {
+      // Storage unavailable: fall back to reporting from the success markup.
+    }
+  }
+
+  function takePendingLead() {
+    if (!leadStore) return null;
+    try {
+      var raw = leadStore.getItem(LEAD_PENDING_KEY);
+      if (!raw) return null;
+      leadStore.removeItem(LEAD_PENDING_KEY);
+      var pending = JSON.parse(raw);
+      if (!pending || !pending.form) return null;
+      if (Date.now() - Number(pending.ts || 0) > LEAD_PENDING_TTL) return null;
+      return pending;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function leadParams(node) {
+    var params = { form: node.getAttribute('data-lead-form') };
+    var product = node.getAttribute('data-lead-product');
+    // Nuxt omits `product` for forms without product context (home_demo) and
+    // sends null for an empty selection (contact_page), so mirror both cases.
+    if (product !== null) params.product = product || null;
+    return params;
+  }
+
+  function reportPendingLeads() {
+    var successes = Array.prototype.slice.call(
+      document.querySelectorAll('[data-lead-success]')
+    );
+    if (!successes.length) return;
+
+    var pending = takePendingLead();
+    // Without a submission marker the markup was re-rendered (refresh, back
+    // navigation) and the lead has already been counted: skip it.
+    if (!pending && leadStore) return;
+
+    successes.forEach(function (node) {
+      var form = node.getAttribute('data-lead-form');
+      if (!form) return;
+      if (pending && form !== pending.form) return;
+      trackEvent('generate_lead', leadParams(node));
+    });
+  }
+
+  /* --------------------------------------------------------------- startup */
+
   function initTracking() {
     var product = document.querySelector('[data-ga4-product]');
     if (product && product.dataset.itemId) {
@@ -63,12 +145,14 @@
       });
     }
 
-    document.querySelectorAll('[data-lead-success]').forEach(function (success) {
-      trackEvent('generate_lead', {
-        form: success.dataset.leadForm || 'shopify_contact',
-        product: success.dataset.leadProduct || null,
-      });
-    });
+    reportPendingLeads();
+
+    document.addEventListener('submit', function (event) {
+      var form = event.target;
+      if (!form || !form.closest) return;
+      var scope = form.closest('[data-lead-form]');
+      if (scope) rememberPendingLead(scope);
+    }, true);
 
     document.addEventListener('click', function (event) {
       var demoButton = event.target.closest('[data-request-demo]');

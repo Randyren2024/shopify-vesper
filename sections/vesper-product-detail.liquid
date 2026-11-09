@@ -509,7 +509,7 @@
     <section class="vpd-cta-section" id="vpd-quote">
       <div class="vpd-cta-inner">
         <h2>Interested in {{ vpd_code }} {{ vpd_name }}?</h2>
-        <p>Contact us today for more information or request a demo</p>
+<p>Contact us today for more information or request a demo</p>
         <div class="vpd-cta-actions">
           <button type="button" class="v-btn v-btn--pill-primary v-btn--lg" data-request-demo data-whatsapp="{{ vpd_whatsapp }}" data-message="Hello! I'm interested in getting a quote for the {{ vpd_code }} {{ vpd_name }}. Could you please provide more information?">
             {%- render 'vesper-icons', icon: 'whatsapp' -%}
@@ -518,6 +518,102 @@
           <a class="v-btn v-btn--lg vpd-cta-contact" href="/pages/contact">
             <span>Contact Us</span>
           </a>
+        </div>
+
+        {%- comment -%}
+          Native quote form. Mirrors the Nuxt product page QuoteForm so both
+          storefronts report the same generate_lead / product_quote event:
+          { form: 'product_quote', product: <product code> }.
+        {%- endcomment -%}
+        <div class="vpd-quote-form" data-lead-form="product_quote">
+          {%- form 'contact', id: 'vpd_quote_form', class: 'vpd-quote-form__el' -%}
+            {%- if form.posted_successfully? -%}
+              <p
+                class="vpd-quote-form__success"
+                role="status"
+                data-lead-success
+                data-lead-form="product_quote"
+                data-lead-product="{{ form.product | default: vpd_code | escape }}"
+              >Thanks — your quote request is on its way. We will reply within one business day.</p>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <div class="vpd-quote-form__errors" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
+
+            <input type="hidden" name="contact[product]" value="{{ form.product | default: vpd_code | escape }}">
+
+            <div class="vpd-quote-form__grid">
+              <div class="v-field">
+                <label class="v-field__label" for="vpd-quote-name">Name *</label>
+                <input
+                  id="vpd-quote-name"
+                  class="v-input"
+                  type="text"
+                  name="contact[name]"
+                  value="{{ form.name }}"
+                  placeholder="Your name"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="vpd-quote-email">Email *</label>
+                <input
+                  id="vpd-quote-email"
+                  class="v-input"
+                  type="email"
+                  name="contact[email]"
+                  value="{{ form.email }}"
+                  placeholder="you@company.com"
+                  autocomplete="email"
+                  required
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="vpd-quote-phone">Phone</label>
+                <input
+                  id="vpd-quote-phone"
+                  class="v-input"
+                  type="tel"
+                  name="contact[phone]"
+                  value="{{ form.phone }}"
+                  placeholder="Your phone number"
+                  autocomplete="tel"
+                >
+              </div>
+
+              <div class="v-field">
+                <label class="v-field__label" for="vpd-quote-company">Company</label>
+                <input
+                  id="vpd-quote-company"
+                  class="v-input"
+                  type="text"
+                  name="contact[company]"
+                  value="{{ form.company }}"
+                  placeholder="Company name"
+                  autocomplete="organization"
+                >
+              </div>
+
+              <div class="v-field vpd-quote-form__full">
+                <label class="v-field__label" for="vpd-quote-message">Message</label>
+                <textarea
+                  id="vpd-quote-message"
+                  class="v-textarea"
+                  name="contact[body]"
+                  rows="4"
+                  placeholder="Tell us about your site, timeline or questions..."
+                >{{ form.body }}</textarea>
+              </div>
+            </div>
+
+            <div class="vpd-quote-form__actions">
+              <button type="submit" class="v-btn v-btn--primary v-btn--lg">Request a quote</button>
+            </div>
+          {%- endform -%}
         </div>
       </div>
     </section>
