@@ -64,7 +64,7 @@
     {%- elsif image != blank -%}
       <img
         class="v-product-card__img"
-        src="{{ image | asset_url }}"
+        src="{{ image | asset_url }}" width="800" height="800"
         alt="{{ card_title | escape }}"
         loading="lazy"
         decoding="async"

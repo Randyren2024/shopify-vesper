@@ -212,7 +212,7 @@
       <div class="vpd-hero__container">
         <div class="vpd-gallery" data-reveal="left">
           {%- if product == blank -%}
-            <img class="vpd-gallery__image" src="{{ vpd_image | asset_url }}" alt="{{ vpd_alt | escape }}" loading="eager">
+            <img class="vpd-gallery__image" src="{{ vpd_image | asset_url }}" width="1600" height="1600" alt="{{ vpd_alt | escape }}" loading="eager">
           {%- elsif product.images.size > 1 -%}
             <div class="v-carousel vpd-gallery__carousel" data-carousel>
               <div class="v-carousel__track" data-carousel-track>
@@ -264,7 +264,7 @@
               height="{{ product.featured_image.height }}"
               loading="eager">
           {%- else -%}
-            <img class="vpd-gallery__image" src="{{ vpd_image | asset_url }}" alt="{{ vpd_alt | escape }}" loading="eager">
+            <img class="vpd-gallery__image" src="{{ vpd_image | asset_url }}" width="1600" height="1600" alt="{{ vpd_alt | escape }}" loading="eager">
           {%- endif -%}
 
           {%- if vpd_code != blank -%}
