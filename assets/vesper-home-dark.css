@@ -172,3 +172,29 @@ html[data-theme='dark'] body.template-index textarea {
 body.template-index .site-footer {
   margin-top: 0;
 }
+
+
+/* Shopify Forms inline block: keep the form readable on the dark homepage. */
+html[data-theme='dark'] body.template-index #demo > div > div:last-child {
+  background: #f8f7f4 !important;
+  color: #202020;
+  padding: clamp(22px, 3vw, 36px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme='dark'] body.template-index #demo > div > div:last-child :is(p, label, legend, span, small) {
+  color: #202020;
+}
+
+html[data-theme='dark'] body.template-index #demo > div > div:last-child a {
+  color: #1878b9;
+}
+
+html[data-theme='dark'] body.template-index #demo > div > div:last-child button,
+html[data-theme='dark'] body.template-index #demo > div > div:last-child [type='submit'] {
+  background: #8de600;
+  color: #0b0f0c;
+  border-color: #8de600;
+}
