@@ -29,6 +29,18 @@
   --v-font: "Barlow", system-ui, sans-serif;
   --v-font-display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
   --v-nav-height: 56px;
+
+  /* Light-mode defaults for the shared product/catalogue design tokens. */
+  --v-card: #ffffff;
+  --v-tile: #f7f7f4;
+  --v-tile-img: #f2f1ed;
+  --v-surface-1: rgba(17, 17, 16, 0.025);
+  --v-surface-2: rgba(17, 17, 16, 0.045);
+  --v-on-green: #ffffff;
+  --v-glow-1: rgba(30, 61, 30, 0.075);
+  --v-glow-2: rgba(200, 90, 10, 0.035);
+  --v-shadow: 0 22px 70px rgba(17, 17, 16, 0.08);
+  --v-shadow-sm: 0 8px 24px rgba(17, 17, 16, 0.05);
 }
 
 .v-page {
@@ -64,15 +76,19 @@
   display: block;
 }
 
-.v-logo--on-dark {
+.site-header__logo .v-logo--on-light {
+  display: block;
+}
+
+.site-header__logo .v-logo--on-dark {
   display: none;
 }
 
-[data-theme='dark'] .v-logo--on-light {
+[data-theme='dark'] .site-header__logo .v-logo--on-light {
   display: none;
 }
 
-[data-theme='dark'] .v-logo--on-dark {
+[data-theme='dark'] .site-header__logo .v-logo--on-dark {
   display: block;
 }
 
@@ -1114,3 +1130,65 @@ html:not([data-theme='dark']) .v-theme-toggle__icon--moon,
 [data-theme='dark'] .site-footer__link:hover,[data-theme='dark'] .site-footer__social-link:hover{color:#f1f4ee}
 
 .site-footer__heading--secondary{margin-top:22px}
+
+
+/* Footer payment marks: keep Shopify's enabled payment methods in a compact
+   horizontal row; allow wrapping only when the available width requires it. */
+.site-footer .v-payment-icons {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer .v-payment-icons__item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  min-height: 25px;
+  padding: 3px 5px;
+  line-height: 0;
+}
+
+.site-footer .v-payment-icons__svg {
+  display: block;
+  width: auto;
+  max-width: 48px;
+  height: 19px;
+}
+
+@media (max-width: 767px) {
+  .site-footer .v-payment-icons {
+    justify-content: center;
+    gap: 6px;
+  }
+}
+
+/* Keep the Support page footer background full-bleed even if a theme wrapper
+   applies a constrained width to footer-group sections. */
+body.template-page .shopify-section-group-footer-group,
+body.template-page .shopify-section-group-footer-group > .shopify-section {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+body.template-page .shopify-section-group-footer-group .site-footer {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  border-radius: 0;
+}
