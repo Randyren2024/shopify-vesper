@@ -36,7 +36,7 @@
         {%- if section.settings.intro_image != blank -%}
           <figure class="ab-story__figure" data-reveal="right">
             <img
-              src="{{ section.settings.intro_image | asset_url }}"
+              src="{{ section.settings.intro_image | asset_url }}" width="1200" height="679"
               alt="{{ section.settings.intro_image_alt | escape }}"
               loading="lazy"
             >
@@ -63,7 +63,7 @@
             <span class="ab-step__logo">
               {%- if block.settings.logo_asset != blank -%}
                 <img
-                  src="{{ block.settings.logo_asset | asset_url }}"
+                  src="{{ block.settings.logo_asset | asset_url }}" width="240" height="240"
                   alt="{{ block.settings.title | escape }}"
                   loading="lazy"
                 >
@@ -97,7 +97,7 @@
             {%- if block.settings.photo_asset != blank -%}
               <div class="ab-profile__photo">
                 <img
-                  src="{{ block.settings.photo_asset | asset_url }}"
+                  src="{{ block.settings.photo_asset | asset_url }}" width="840" height="1050"
                   alt="{{ block.settings.photo_alt | escape }}"
                   loading="lazy"
                 >
