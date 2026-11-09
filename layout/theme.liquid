@@ -4,6 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#070a08">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      (function(w,d,s,l,i){
+        w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PHDJJ744');
+    </script>
     <script>document.documentElement.classList.add('js');</script>
 
     {%- comment -%}
@@ -208,6 +222,7 @@
 
   {%- if template.name == 'index' -%}
     <body class="template-index">
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHDJJ744" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="v-visually-hidden" href="#main-content">{{ 'accessibility.skip_to_content' | t }}</a>
 
       {% sections 'header-group' %}
@@ -224,6 +239,7 @@
     </body>
   {%- else -%}
     <body class="vesper-theme template-{{ template.name | handle }}">
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHDJJ744" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {% sections 'header-group' %}
 
       <main id="MainContent" class="v-main" role="main" tabindex="-1">
