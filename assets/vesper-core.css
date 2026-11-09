@@ -1192,3 +1192,36 @@ body.template-page .shopify-section-group-footer-group .site-footer {
   margin-inline: 0;
   border-radius: 0;
 }
+
+
+/* Dark-mode contrast baseline: keep secondary copy readable on dark surfaces. */
+[data-theme='dark'] {
+  --v-ink: #f4f7f2;
+  --v-ink-soft: #bac5bb;
+  --v-ink-faint: #9aa69b;
+  --v-line: rgba(230, 240, 232, 0.18);
+  --v-line-strong: rgba(230, 240, 232, 0.32);
+}
+
+[data-theme='dark'] :is(.v-lead, .v-muted, .v-product__meta, .v-price--from,
+  .v-form-message, .vcp-sub, .vcp-form__sub, .vcp-item__label,
+  .vcp-item__note, .vcp-facts dt, .ab-head__sub, .ab-step__desc,
+  .ab-profile__bio, .ab-value__desc, .ab-stat__desc) {
+  color: var(--v-ink-soft);
+}
+
+[data-theme='dark'] :is(.v-price--compare, .v-sold-out, .v-swatch-label,
+  .v-pagination__info, .v-breadcrumbs, .site-footer__tagline,
+  .site-footer__social-link, .site-footer__heading, .site-footer__copyright) {
+  color: var(--v-ink-faint);
+}
+
+[data-theme='dark'] :is(input, select, textarea)::placeholder {
+  color: #9aa69b;
+  opacity: 1;
+}
+
+[data-theme='dark'] :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #a5f02e;
+  outline-offset: 3px;
+}
