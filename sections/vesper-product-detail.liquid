@@ -533,7 +533,7 @@
                 role="status"
                 data-lead-success
                 data-lead-form="product_quote"
-                data-lead-product="{{ form.product | default: vpd_code | escape }}"
+                data-lead-product="{{ vpd_code | escape }}"
               >Thanks — your quote request is on its way. We will reply within one business day.</p>
             {%- endif -%}
 
@@ -541,7 +541,15 @@
               <div class="vpd-quote-form__errors" role="alert">{{ form.errors | default_errors }}</div>
             {%- endif -%}
 
-            <input type="hidden" name="contact[product]" value="{{ form.product | default: vpd_code | escape }}">
+            <div class="v-field vpd-quote-form__full">
+              <label class="v-field__label" for="vpd-quote-interest">Interest</label>
+              <select id="vpd-quote-interest" class="v-select" name="contact[product]">
+                <option value="{{ product.title | default: vpd_code | escape }}">{{ product.title | default: vpd_code | escape }}</option>
+                <option value="{{ vpd_code | escape }} — pricing and lead time">{{ vpd_code }} — pricing and lead time</option>
+                <option value="{{ vpd_code | escape }} — demo or site visit">{{ vpd_code }} — demo or site visit</option>
+                <option value="Service, parts or warranty">Service, parts or warranty</option>
+              </select>
+            </div>
 
             <div class="vpd-quote-form__grid">
               <div class="v-field">
