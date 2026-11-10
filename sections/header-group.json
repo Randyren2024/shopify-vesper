@@ -35,6 +35,13 @@
             "link": "/pages/support"
           }
         },
+        "nav-news": {
+          "type": "nav_link",
+          "settings": {
+            "label": "News",
+            "link": "/blogs/news"
+          }
+        },
         "nav-contact": {
           "type": "nav_link",
           "settings": {
@@ -47,6 +54,7 @@
         "nav-products",
         "nav-about",
         "nav-support",
+        "nav-news",
         "nav-contact"
       ],
       "custom_css": [],
