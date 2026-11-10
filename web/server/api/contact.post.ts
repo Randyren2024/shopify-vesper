@@ -5,6 +5,7 @@ interface Body {
   company?: string
   product?: string
   message?: string
+  leadType?: 'home_demo' | 'contact_page' | 'product_quote'
 }
 
 interface CustomerNode {
@@ -39,7 +40,11 @@ const UPDATE_CUSTOMER = `#graphql
   }
 `
 
-const LEAD_TAGS = ['website-lead', 'home-demo']
+const LEAD_TAGS_BY_TYPE: Record<NonNullable<Body['leadType']>, string> = {
+  home_demo: 'home-demo',
+  contact_page: 'contact-page',
+  product_quote: 'product-quote',
+}
 
 /**
  * Creates (or appends to) a Shopify customer so enquiries land in the same
@@ -53,6 +58,7 @@ export default defineEventHandler(async (event) => {
   const email = String(body?.email ?? '').trim().toLowerCase()
   const message = String(body?.message ?? '').trim()
   const phone = String(body?.phone ?? '').trim()
+  const leadTags = ['website-lead', ...(body?.leadType && LEAD_TAGS_BY_TYPE[body.leadType] ? [LEAD_TAGS_BY_TYPE[body.leadType]] : [])]
 
   if (!name || !email || !message) {
     throw createError({
@@ -94,7 +100,7 @@ export default defineEventHandler(async (event) => {
 
     if (customer) {
       const mergedNote = [customer.note, note].filter(Boolean).join('\n\n---\n\n')
-      const mergedTags = Array.from(new Set([...(customer.tags ?? []), ...LEAD_TAGS]))
+      const mergedTags = Array.from(new Set([...(customer.tags ?? []), ...leadTags]))
       const updated = await adminGraphql<{
         customerUpdate: { userErrors: { field: string[]; message: string }[] }
       }>(event, UPDATE_CUSTOMER, { input: { id: customer.id, note: mergedNote, tags: mergedTags } })
@@ -113,7 +119,7 @@ export default defineEventHandler(async (event) => {
           // Admin API only accepts E.164; otherwise the raw value lives in the note.
           ...(/^\+[1-9]\d{6,14}$/.test(phone) ? { phone } : {}),
           note,
-          tags: LEAD_TAGS,
+          tags: leadTags,
         },
       })
 
