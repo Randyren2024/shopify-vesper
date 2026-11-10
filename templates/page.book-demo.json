@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "vesper-booking",
+      "settings": {
+        "hero_title": "Book an In-Home Demo",
+        "hero_subtitle": "Tell us about your home and the equipment you'd like to see. Our team will get back to you within one business day.",
+        "lead": "Request a free in-home demo in Melbourne East and surrounding suburbs."
+      },
+      "blocks": {
+        "service-demo": { "type": "service", "settings": { "label": "In-home product demo" } },
+        "service-survey": { "type": "service", "settings": { "label": "On-site survey" } },
+        "step-1": { "type": "step", "settings": { "title": "Send your request", "description": "Tell us what you'd like to see and where you're located." } },
+        "step-2": { "type": "step", "settings": { "title": "We confirm a time", "description": "Our team will contact you within one business day." } },
+        "step-3": { "type": "step", "settings": { "title": "See it at home", "description": "We'll arrange a suitable time to demonstrate the equipment at your property." } }
+      },
+      "block_order": ["service-demo", "service-survey", "step-1", "step-2", "step-3"]
+    }
+  },
+  "order": ["main"]
+}
