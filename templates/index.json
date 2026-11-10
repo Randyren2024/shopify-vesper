@@ -4,7 +4,7 @@
  *
  * This file may be updated by the Shopify admin theme editor
  * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
+ * made here may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -376,12 +376,28 @@
         "secondary_label": "Visit Us in Melbourne East",
         "secondary_link": "#"
       }
+    },
+    "news": {
+      "type": "vesper-home-news",
+      "settings": {
+        "blog": "新闻",
+        "article_count": 3,
+        "eyebrow": "From Vesper",
+        "heading": "Latest News",
+        "description": "Product updates, field notes and practical advice for smarter outdoor living.",
+        "default_category": "Vesper News",
+        "view_all_label": "View all news",
+        "read_more_label": "Read story",
+        "empty_heading": "News and updates are on the way.",
+        "empty_text": "Publish your first post in the News blog to feature stories, product updates and field reports here."
+      }
     }
   },
   "order": [
     "hero",
     "demo",
     "products",
+    "news",
     "problem",
     "demonstrations",
     "why",
