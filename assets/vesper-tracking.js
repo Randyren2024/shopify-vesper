@@ -151,11 +151,33 @@
       var form = event.target;
       if (!form || !form.closest) return;
       var scope = form.closest('[data-lead-form]');
-      if (scope) rememberPendingLead(scope);
+      if (!scope) return;
+
+      var formName = scope.getAttribute('data-lead-form') || '';
+      // This diagnostic event confirms the browser accepted the form submit.
+      // It is not a conversion: generate_lead is emitted only on Shopify success.
+      trackEvent('lead_form_submit', { form: formName });
+      rememberPendingLead(scope);
+
+      var submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+      if (submitButton && !submitButton.disabled) {
+        submitButton.disabled = true;
+        submitButton.setAttribute('aria-busy', 'true');
+        if (submitButton.tagName === 'INPUT') {
+          submitButton.dataset.originalValue = submitButton.value;
+          submitButton.value = 'Sending...';
+        } else {
+          submitButton.dataset.originalText = submitButton.textContent;
+          submitButton.textContent = 'Sending...';
+        }
+      }
     }, true);
 
     document.addEventListener('click', function (event) {
-      var demoButton = event.target.closest('[data-request-demo]');
+      var target = event.target && event.target.closest ? event.target : null;
+      if (!target) return;
+
+      var demoButton = target.closest('[data-request-demo]');
       if (demoButton) {
         var productRoot = demoButton.closest('[data-ga4-product]');
         trackEvent('contact', {
@@ -166,7 +188,7 @@
         });
       }
 
-      var whatsapp = event.target.closest('a[href*="wa.me"]');
+      var whatsapp = target.closest('a[href*="wa.me"]');
       if (whatsapp) {
         trackEvent('contact', {
           method: 'whatsapp',
@@ -174,7 +196,7 @@
         });
       }
 
-      var checkout = event.target.closest('a[href*="/checkout"]');
+      var checkout = target.closest('a[href*="/checkout"]');
       if (checkout && Vesper.cart && Vesper.cart.state) {
         trackCartEvent('begin_checkout', Vesper.cart.state);
       }
