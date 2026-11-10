@@ -3,8 +3,8 @@
  * IMPORTANT: The contents of this file are auto-generated.
  *
  * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made here may be overwritten.
+ * or related systems. Please exercise caution as changes
+ * here may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -27,160 +27,37 @@
     "products": {
       "type": "vesper-products",
       "blocks": {
-        "products-feature": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/4WD-DT-1.webp",
-            "image_alt": "Vesper S1 4WD Grip Tread",
-            "image_position": "35% center",
-            "badge": "GRIP TREAD",
-            "eyebrow": "Smart Lawn Mower",
-            "title": "Vesper S1 4WD",
-            "stats": "50° | Slope | 119% Grade\n3000 | m² | Per Charge\n4WD | Drive | All Terrain",
-            "bullets": "One-button automatic mowing\nNo base station required\nNo network needed\nMowrator platform",
-            "link_label": "See It Work →",
-            "link": "#demo"
-          }
-        },
-        "products-card-1": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/4WD-WW-1_20107b08-335f-4779-8855-6374a5dc851b.webp",
-            "image_url": "",
-            "image_alt": "Vesper S1 4WD Wide Wheel",
-            "image_position": "60% center",
-            "image_filter": "saturate(0.85)",
-            "image_background": "#EEECEA",
-            "badge": "WIDE WHEEL",
-            "eyebrow": "Smart Lawn Mower",
-            "title": "Vesper S1 4WD",
-            "stats": "40° | Slope\n85% | Grade\n3000 m² | Per Charge",
-            "bullets": "",
-            "link_label": "See It Work →",
-            "link": "#demo"
-          }
-        },
-        "products-card-2": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/V1000_Left45_W_PCWELT.webp",
-            "image_url": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&h=420&fit=crop&auto=format",
-            "image_alt": "Cordless pool robot",
-            "image_position": "center",
-            "image_filter": "saturate(0.9)",
-            "image_background": "#D6E8EA",
-            "badge": "",
-            "eyebrow": "Smart Lawn Robot",
-            "title": "Terramow V1000",
-            "stats": "",
-            "bullets": "No Wires. No Antennas. No Signal Issues. \nOne-Click Auto Mapping\nEdge-to-Edge Perfection",
-            "link_label": "See It Work →",
-            "link": "#demo"
-          }
-        }
+        "products-feature": { "type": "feature", "settings": { "image": "shopify://shop_images/4WD-DT-1.webp", "image_alt": "Vesper S1 4WD Grip Tread", "image_position": "35% center", "badge": "GRIP TREAD", "eyebrow": "Smart Lawn Mower", "title": "Vesper S1 4WD", "stats": "50° | Slope | 119% Grade\n3000 | m² | Per Charge\n4WD | Drive | All Terrain", "bullets": "One-button automatic mowing\nNo base station required\nNo network needed\nMowrator platform", "link_label": "See It Work →", "link": "#demo" } },
+        "products-card-1": { "type": "card", "settings": { "image": "shopify://shop_images/4WD-WW-1_20107b08-335f-4779-8855-6374a5dc851b.webp", "image_url": "", "image_alt": "Vesper S1 4WD Wide Wheel", "image_position": "60% center", "image_filter": "saturate(0.85)", "image_background": "#EEECEA", "badge": "WIDE WHEEL", "eyebrow": "Smart Lawn Mower", "title": "Vesper S1 4WD", "stats": "40° | Slope\n85% | Grade\n3000 m² | Per Charge", "bullets": "", "link_label": "See It Work →", "link": "#demo" } },
+        "products-card-2": { "type": "card", "settings": { "image": "shopify://shop_images/V1000_Left45_W_PCWELT.webp", "image_url": "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=700&h=420&fit=crop&auto=format", "image_alt": "Cordless pool robot", "image_position": "center", "image_filter": "saturate(0.9)", "image_background": "#D6E8EA", "badge": "", "eyebrow": "Smart Lawn Robot", "title": "Terramow V1000", "stats": "", "bullets": "No Wires. No Antennas. No Signal Issues. \nOne-Click Auto Mapping\nEdge-to-Edge Perfection", "link_label": "See It Work →", "link": "#demo" } }
       },
-      "block_order": [
-        "products-feature",
-        "products-card-1",
-        "products-card-2"
-      ],
-      "settings": {
-        "eyebrow": "Products",
-        "heading": "Don't Choose From a Screen. See It Work."
-      }
+      "block_order": ["products-feature", "products-card-1", "products-card-2"],
+      "settings": { "eyebrow": "Products", "heading": "Don't Choose From a Screen. See It Work." }
     },
     "problem": {
       "type": "vesper-problem",
       "blocks": {
-        "problem-1": {
-          "type": "item",
-          "settings": {
-            "title": "Will it suit my home?",
-            "body": "Every yard, pool and floor is different. Specs on a screen don't tell you what actually works."
-          }
-        },
-        "problem-2": {
-          "type": "item",
-          "settings": {
-            "title": "Is it easy to use?",
-            "body": "Setup and day-to-day operation can be more complex than a product video suggests."
-          }
-        },
-        "problem-3": {
-          "type": "item",
-          "settings": {
-            "title": "Who helps me after I buy?",
-            "body": "Online-only retailers can't answer your calls. We can — in person, in Melbourne."
-          }
-        }
+        "problem-1": { "type": "item", "settings": { "title": "Will it suit my home?", "body": "Every yard, pool and floor is different. Specs on a screen don't tell you what actually works." } },
+        "problem-2": { "type": "item", "settings": { "title": "Is it easy to use?", "body": "Setup and day-to-day operation can be more complex than a product video suggests." } },
+        "problem-3": { "type": "item", "settings": { "title": "Who helps me after I buy?", "body": "Online-only retailers can't answer your calls. We can — in person, in Melbourne." } }
       },
-      "block_order": [
-        "problem-1",
-        "problem-2",
-        "problem-3"
-      ],
-      "settings": {
-        "eyebrow": "The Problem",
-        "heading": "Choosing a Robot Shouldn't Require a Research Project."
-      }
+      "block_order": ["problem-1", "problem-2", "problem-3"],
+      "settings": { "eyebrow": "The Problem", "heading": "Choosing a Robot Shouldn't Require a Research Project." }
     },
     "demonstrations": {
       "type": "vesper-demonstrations",
-      "settings": {
-        "eyebrow": "Live Demonstrations",
-        "heading": "Don't ChooseFrom a Screen.",
-        "body": "Visit our Melbourne East showroom. See the robots work in person. Ask our team anything.",
-        "button_label": "Book Free Demo",
-        "button_link": "https://www.vesperrobot.au/pages/book-demo",
-        "image_alt": "Vesper robot in action",
-        "image_position": "30% center"
-      }
+      "settings": { "eyebrow": "Live Demonstrations", "heading": "Don't ChooseFrom a Screen.", "body": "Visit our Melbourne East showroom. See the robots work in person. Ask our team anything.", "button_label": "Book Free Demo", "button_link": "https://www.vesperrobot.au/pages/book-demo", "image_alt": "Vesper robot in action", "image_position": "30% center" }
     },
     "why": {
       "type": "vesper-why",
       "blocks": {
-        "why-1": {
-          "type": "item",
-          "settings": {
-            "title": "DJI & Mowrator R&D Background",
-            "body": "Our team has hands-on robotics R&D experience across drone and autonomous mower development."
-          }
-        },
-        "why-2": {
-          "type": "item",
-          "settings": {
-            "title": "Founded by Former Mowrator CTO",
-            "body": "Our founder co-founded Mowrator and served as CTO — we know autonomous mowers from the ground up."
-          }
-        },
-        "why-3": {
-          "type": "item",
-          "settings": {
-            "title": "Based in Melbourne East",
-            "body": "We're here for setup, guidance and ongoing support — not just the transaction."
-          }
-        },
-        "why-4": {
-          "type": "item",
-          "settings": {
-            "title": "Curated for Australian Conditions",
-            "body": "We select products that actually work in Australian yards, pools and homes."
-          }
-        }
+        "why-1": { "type": "item", "settings": { "title": "DJI & Mowrator R&D Background", "body": "Our team has hands-on robotics R&D experience across drone and autonomous mower development." } },
+        "why-2": { "type": "item", "settings": { "title": "Founded by Former Mowrator CTO", "body": "Our founder co-founded Mowrator and served as CTO — we know autonomous mowers from the ground up." } },
+        "why-3": { "type": "item", "settings": { "title": "Based in Melbourne East", "body": "We're here for setup, guidance and ongoing support — not just the transaction." } },
+        "why-4": { "type": "item", "settings": { "title": "Curated for Australian Conditions", "body": "We select products that actually work in Australian yards, pools and homes." } }
       },
-      "block_order": [
-        "why-1",
-        "why-2",
-        "why-3",
-        "why-4"
-      ],
-      "settings": {
-        "eyebrow": "Why Vesper",
-        "heading": "Robotics Expertise.Local Support.",
-        "body": "We understand the technology from the inside — and we explain it in a way that helps you make the right decision for your home.",
-        "button_label": "BOOK FREE DEMO",
-        "button_link": "https://www.vesperrobot.au/pages/book-demo"
-      }
+      "block_order": ["why-1", "why-2", "why-3", "why-4"],
+      "settings": { "eyebrow": "Why Vesper", "heading": "Robotics Expertise.Local Support.", "body": "We understand the technology from the inside — and we explain it in a way that helps you make the right decision for your home.", "button_label": "BOOK FREE DEMO", "button_link": "https://www.vesperrobot.au/pages/book-demo" }
     },
     "1791268772f7af4e36": {
       "type": "_blocks",
@@ -191,219 +68,64 @@
             "desktop_width_percent": 100,
             "heading": "Expert Reviews",
             "intro": "TerraMow has been reviewed and tested by creators and technology channels around the world.",
-            "review_1_name": "Enoylity Technology",
-            "review_1_subs": "730K subscribers",
-            "review_1_quote": "No wire, no RTK. Its tri-camera AI vision lets the mower navigate on its own.",
-            "review_1_video": "gaQ0U2Jm0m8",
-            "review_2_name": "TechMagnet",
-            "review_2_subs": "463K subscribers",
-            "review_2_quote": "One of the simplest smart mowers, with solid vision navigation and real mowing performance.",
-            "review_2_video": "QpnGPYCdZGg",
-            "review_3_name": "Florians Gartenwelt",
-            "review_3_subs": "119K subscribers",
-            "review_3_quote": "TerraMow as an easy AI vision mower, with wire-free setup and straightforward installation.",
-            "review_3_video": "dWlxpxP7574",
-            "review_4_name": "TESTSIEGER TV",
-            "review_4_subs": "31.7K subscribers",
-            "review_4_quote": "Camera-based navigation, easy setup, and strong obstacle detection make TerraMow stand out.",
-            "review_4_video": "AG96kXhsuss",
-            "review_5_name": "Valentine Lewis",
-            "review_5_subs": "269K subscribers",
-            "review_5_quote": "A wire-free, RTK-free mower that makes lawn care much easier and more hands-off.",
-            "review_5_video": "9XuiPMaMltY",
-            "review_6_name": "Wittmanns Welt",
-            "review_6_subs": "57.1K subscribers",
-            "review_6_quote": "Set up in minutes, TerraMow makes wire-free mowing feel simple and intuitive.",
-            "review_6_video": "-54GCkNfvQo"
+            "review_1_name": "Enoylity Technology", "review_1_subs": "730K subscribers", "review_1_quote": "No wire, no RTK. Its tri-camera AI vision lets the mower navigate on its own.", "review_1_video": "gaQ0U2Jm0m8",
+            "review_2_name": "TechMagnet", "review_2_subs": "463K subscribers", "review_2_quote": "One of the simplest smart mowers, with solid vision navigation and real mowing performance.", "review_2_video": "QpnGPYCdZGg",
+            "review_3_name": "Florians Gartenwelt", "review_3_subs": "119K subscribers", "review_3_quote": "TerraMow as an easy AI vision mower, with wire-free setup and straightforward installation.", "review_3_video": "dWlxpxP7574",
+            "review_4_name": "TESTSIEGER TV", "review_4_subs": "31.7K subscribers", "review_4_quote": "Camera-based navigation, easy setup, and strong obstacle detection make TerraMow stand out.", "review_4_video": "AG96kXhsuss",
+            "review_5_name": "Valentine Lewis", "review_5_subs": "269K subscribers", "review_5_quote": "A wire-free, RTK-free mower that makes lawn care much easier and more hands-off.", "review_5_video": "9XuiPMaMltY",
+            "review_6_name": "Wittmanns Welt", "review_6_subs": "57.1K subscribers", "review_6_quote": "Set up in minutes, TerraMow makes wire-free mowing feel simple and intuitive.", "review_6_video": "-54GCkNfvQo"
           },
           "blocks": {}
         }
       },
-      "block_order": [
-        "ai_gen_block_5c9cab1_dqmtLR"
-      ],
+      "block_order": ["ai_gen_block_5c9cab1_dqmtLR"],
       "name": "Feature",
       "settings": {}
     },
     "process": {
       "type": "vesper-process",
       "blocks": {
-        "process-1": {
-          "type": "step",
-          "settings": {
-            "title": "Tell Us About Your Home",
-            "body": "Yard size, pool shape, floor type — the details that matter."
-          }
-        },
-        "process-2": {
-          "type": "step",
-          "settings": {
-            "title": "See the Robots Work",
-            "body": "Watch live demos at our Melbourne East showroom."
-          }
-        },
-        "process-3": {
-          "type": "step",
-          "settings": {
-            "title": "Get Personal Advice",
-            "body": "Our team recommends exactly what suits your situation."
-          }
-        },
-        "process-4": {
-          "type": "step",
-          "settings": {
-            "title": "Book an In-Home Demo",
-            "body": "See the robot perform in your actual environment."
-          }
-        }
+        "process-1": { "type": "step", "settings": { "title": "Tell Us About Your Home", "body": "Yard size, pool shape, floor type — the details that matter." } },
+        "process-2": { "type": "step", "settings": { "title": "See the Robots Work", "body": "Watch live demos at our Melbourne East showroom." } },
+        "process-3": { "type": "step", "settings": { "title": "Get Personal Advice", "body": "Our team recommends exactly what suits your situation." } },
+        "process-4": { "type": "step", "settings": { "title": "Book an In-Home Demo", "body": "See the robot perform in your actual environment." } }
       },
-      "block_order": [
-        "process-1",
-        "process-2",
-        "process-3",
-        "process-4"
-      ],
-      "settings": {
-        "eyebrow": "Process",
-        "heading": "See It. Ask. Try. Decide."
-      }
+      "block_order": ["process-1", "process-2", "process-3", "process-4"],
+      "settings": { "eyebrow": "Process", "heading": "See It. Ask. Try. Decide." }
     },
     "demo": {
       "type": "vesper-demo-form",
-      "blocks": {
-        "forms_inline_p4WD3c": {
-          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
-          "settings": {
-            "form_id": "1170323",
-            "text_color": "#202020",
-            "button_background_color": "#8de600",
-            "button_label_color": "#0b0f0c",
-            "links_color": "#1878b9",
-            "errors_color": "#e02229",
-            "text_alignment": "center",
-            "form_alignment": "center",
-            "padding_top": 0,
-            "padding_bottom": 24,
-            "padding_right": 0,
-            "padding_left": 0
-          }
-        }
-      },
-      "block_order": [
-        "forms_inline_p4WD3c"
-      ],
       "settings": {
         "eyebrow": "In-Home Demo",
         "heading": "Want to See If It Works In Your Home?",
         "body": "Book an in-home demo and see how the robot performs in your actual yard, pool, or floors.",
-        "bullets": "Free for Melbourne East area\nNo commitment required\nExpert visits your home"
+        "bullets": "Free for Melbourne East area\nNo commitment required\nExpert visits your home",
+        "form_success": "Thanks! Your demo request has been received. We'll contact you within one business day.",
+        "submit_label": "REQUEST MY FREE DEMO"
       }
     },
     "faq": {
       "type": "vesper-faq",
       "blocks": {
-        "faq-1": {
-          "type": "question",
-          "settings": {
-            "question": "Do I need Wi-Fi?",
-            "answer": "Most of our lawn mowers and pool robots work completely offline — no Wi-Fi or app required. Some smart vacuum models offer optional app control, but it's never mandatory."
-          }
-        },
-        "faq-2": {
-          "type": "question",
-          "settings": {
-            "question": "Do I need a base station?",
-            "answer": "Our current smart lawn mowers do not require a base station. This is one of the key advantages of the range we carry."
-          }
-        },
-        "faq-3": {
-          "type": "question",
-          "settings": {
-            "question": "Can I see the robots before buying?",
-            "answer": "Absolutely. Visit our Melbourne East showroom and see every robot in action before committing."
-          }
-        },
-        "faq-4": {
-          "type": "question",
-          "settings": {
-            "question": "Can I book an in-home demo?",
-            "answer": "Yes. Fill in the form above and we'll be in touch to arrange a visit to your home."
-          }
-        },
-        "faq-5": {
-          "type": "question",
-          "settings": {
-            "question": "What areas do you service?",
-            "answer": "We are based in Melbourne East and service surrounding suburbs. Contact us to confirm your area."
-          }
-        },
-        "faq-6": {
-          "type": "question",
-          "settings": {
-            "question": "Do you provide support after purchase?",
-            "answer": "Yes — phone, email and in-person. We want the robot to work for you long-term."
-          }
-        },
-        "faq-7": {
-          "type": "question",
-          "settings": {
-            "question": "Can someone help me choose the right robot?",
-            "answer": "That's our speciality. Come in, tell us about your home, and we'll walk you through the options that make sense for your situation."
-          }
-        }
+        "faq-1": { "type": "question", "settings": { "question": "Do I need Wi-Fi?", "answer": "Most of our lawn mowers and pool robots work completely offline — no Wi-Fi or app required. Some smart vacuum models offer optional app control, but it's never mandatory." } },
+        "faq-2": { "type": "question", "settings": { "question": "Do I need a base station?", "answer": "Our current smart lawn mowers do not require a base station. This is one of the key advantages of the range we carry." } },
+        "faq-3": { "type": "question", "settings": { "question": "Can I see the robots before buying?", "answer": "Absolutely. Visit our Melbourne East showroom and see every robot in action before committing." } },
+        "faq-4": { "type": "question", "settings": { "question": "Can I book an in-home demo?", "answer": "Yes. Fill in the form above and we'll be in touch to arrange a visit to your home." } },
+        "faq-5": { "type": "question", "settings": { "question": "What areas do you service?", "answer": "We are based in Melbourne East and service surrounding suburbs. Contact us to confirm your area." } },
+        "faq-6": { "type": "question", "settings": { "question": "Do you provide support after purchase?", "answer": "Yes — phone, email and in-person. We want the robot to work for you long-term." } },
+        "faq-7": { "type": "question", "settings": { "question": "Can someone help me choose the right robot?", "answer": "That's our speciality. Come in, tell us about your home, and we'll walk you through the options that make sense for your situation." } }
       },
-      "block_order": [
-        "faq-1",
-        "faq-2",
-        "faq-3",
-        "faq-4",
-        "faq-5",
-        "faq-6",
-        "faq-7"
-      ],
-      "settings": {
-        "eyebrow": "FAQ",
-        "heading": "Common Questions."
-      }
+      "block_order": ["faq-1", "faq-2", "faq-3", "faq-4", "faq-5", "faq-6", "faq-7"],
+      "settings": { "eyebrow": "FAQ", "heading": "Common Questions." }
     },
     "cta": {
       "type": "vesper-cta",
-      "settings": {
-        "heading": "Not Sure What Fits Your Home?",
-        "body": "Come see the robots work. Talk to our team. Find the right solution.",
-        "primary_label": "Book Free Demo",
-        "primary_link": "https://www.vesperrobot.au/pages/book-demo",
-        "secondary_label": "Visit Us in Melbourne East",
-        "secondary_link": "#"
-      }
+      "settings": { "heading": "Not Sure What Fits Your Home?", "body": "Come see the robots work. Talk to our team. Find the right solution.", "primary_label": "Book Free Demo", "primary_link": "https://www.vesperrobot.au/pages/book-demo", "secondary_label": "Visit Us in Melbourne East", "secondary_link": "#" }
     },
     "news": {
       "type": "vesper-home-news",
-      "settings": {
-        "blog": "新闻",
-        "article_count": 3,
-        "eyebrow": "From Vesper",
-        "heading": "Latest News",
-        "description": "Product updates, field notes and practical advice for smarter outdoor living.",
-        "default_category": "Vesper News",
-        "view_all_label": "View all news",
-        "read_more_label": "Read story",
-        "empty_heading": "News and updates are on the way.",
-        "empty_text": "Publish your first post in the News blog to feature stories, product updates and field reports here."
-      }
+      "settings": { "blog": "新闻", "article_count": 3, "eyebrow": "From Vesper", "heading": "Latest News", "description": "Product updates, field notes and practical advice for smarter outdoor living.", "default_category": "Vesper News", "view_all_label": "View all news", "read_more_label": "Read story", "empty_heading": "News and updates are on the way.", "empty_text": "Publish your first post in the News blog to feature stories, product updates and field reports here." }
     }
   },
-  "order": [
-    "hero",
-    "demo",
-    "products",
-    "news",
-    "problem",
-    "demonstrations",
-    "why",
-    "1791268772f7af4e36",
-    "process",
-    "faq",
-    "cta"
-  ]
+  "order": ["hero", "demo", "products", "news", "problem", "demonstrations", "why", "1791268772f7af4e36", "process", "faq", "cta"]
 }
