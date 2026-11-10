@@ -371,6 +371,7 @@ async function submitDemo() {
         email: demoForm.email,
         phone: demoForm.phone,
         message,
+        leadType: 'home_demo',
       },
     })
     demoSent.value = true

@@ -41,6 +41,7 @@ async function submit() {
         phone: form.phone,
         company: form.company,
         product: form.interest || props.product,
+        leadType: 'product_quote',
         message: [
           form.region ? `Region: ${form.region}` : '',
           form.interest ? `Interest: ${form.interest}` : '',

@@ -18,7 +18,7 @@ async function submit() {
   error.value = ''
   sending.value = true
   try {
-    await $fetch('/api/contact', { method: 'POST', body: { ...form } })
+    await $fetch('/api/contact', { method: 'POST', body: { ...form, leadType: 'contact_page' } })
     sent.value = true
     trackEvent('generate_lead', { form: 'contact_page', product: form.product || null })
     form.name = ''
