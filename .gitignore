@@ -12,6 +12,9 @@ node_modules/
 # Shopify CLI files
 .shopify/
 
+# Google API credentials (service account keys must never be committed)
+google_api/*.json
+
 # Agent skill files may contain store credentials
 .trae/
 
