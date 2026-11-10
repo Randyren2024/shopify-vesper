@@ -162,6 +162,11 @@
               </div>
 
               <div class="v-field">
+                <label class="v-field__label" for="contact-company">Company</label>
+                <input id="contact-company" class="v-input" type="text" name="contact[company]" value="{{ form.company | escape }}" placeholder="Company name" autocomplete="organization">
+              </div>
+
+              <div class="v-field">
                 <label class="v-field__label" for="contact-product">Product Interest</label>
                 <select id="contact-product" class="v-select" name="contact[product]">
                   <option value="">Select a product or category</option>
