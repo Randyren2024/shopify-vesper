@@ -1,0 +1,75 @@
+{% liquid
+  assign news_blog = section.settings.blog
+  assign article_limit = section.settings.article_count
+%}
+<section class="vnews" id="latest-news" aria-labelledby="vnews-heading">
+  <div class="vnews__inner">
+    <div class="vnews__header">
+      <div class="vnews__intro">
+        <p class="vnews__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        <h2 class="vnews__title" id="vnews-heading">{{ section.settings.heading | escape }}</h2>
+        {% if section.settings.description != blank %}<p class="vnews__description">{{ section.settings.description | escape }}</p>{% endif %}
+      </div>
+      {% if news_blog != blank and news_blog.articles_count > 0 %}
+        <a class="vnews__all" href="{{ news_blog.url }}">{{ section.settings.view_all_label | escape }} <span aria-hidden="true">↗</span></a>
+      {% endif %}
+    </div>
+    {% if news_blog != blank and news_blog.articles_count > 0 %}
+      <div class="vnews__grid">
+        {% for article in news_blog.articles limit: article_limit %}
+          <article class="vnews-card">
+            <a class="vnews-card__media" href="{{ article.url }}" aria-label="{{ article.title | escape }}">
+              {% if article.image %}
+                {{ article.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', sizes: '(min-width: 990px) 33vw, (min-width: 650px) 50vw, 100vw', alt: article.image.alt | default: article.title }}
+              {% else %}
+                <span class="vnews-card__placeholder" aria-hidden="true">VESPER JOURNAL</span>
+              {% endif %}
+              <span class="vnews-card__arrow" aria-hidden="true">↗</span>
+            </a>
+            <div class="vnews-card__content">
+              <div class="vnews-card__meta">
+                <span class="vnews-card__category">{% if article.tags.first != blank %}{{ article.tags.first | escape }}{% else %}{{ section.settings.default_category | escape }}{% endif %}</span>
+                <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%d %b %Y' }}</time>
+              </div>
+              <h3 class="vnews-card__title"><a href="{{ article.url }}">{{ article.title | escape }}</a></h3>
+              <p class="vnews-card__excerpt">{{ article.excerpt | default: article.content | strip_html | truncate: 150 }}</p>
+              <a class="vnews-card__read" href="{{ article.url }}">{{ section.settings.read_more_label | escape }} <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="vnews__empty">
+        <span class="vnews__empty-mark" aria-hidden="true">V.</span>
+        <div><h3>{{ section.settings.empty_heading | escape }}</h3><p>{{ section.settings.empty_text | escape }}</p></div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% stylesheet %}
+.vnews{--vnews-bg:var(--v-bg,#070a08);--vnews-surface:var(--v-surface,#101713);--vnews-ink:var(--v-ink,#f4f7f2);--vnews-muted:var(--v-ink-soft,#bac5bb);--vnews-accent:var(--v-green,#8de600);background:var(--vnews-bg);color:var(--vnews-ink);padding:clamp(64px,8vw,112px) max(24px,calc((100vw - 1320px)/2)}
+.vnews__inner{max-width:1320px;margin:0 auto}.vnews__header{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:34px}.vnews__intro{max-width:720px}.vnews__eyebrow{margin:0 0 12px;color:var(--vnews-accent);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.vnews__title{margin:0;color:var(--vnews-ink);font-size:clamp(30px,4vw,48px);font-weight:650;letter-spacing:-.035em;line-height:1.08}.vnews__description{margin:14px 0 0;color:var(--vnews-muted);font-size:16px;line-height:1.65}.vnews__all{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;padding:12px 0;color:var(--vnews-ink);font-size:14px;font-weight:650;text-decoration:none;border-bottom:1px solid rgba(244,247,242,.35)}.vnews__all:hover,.vnews-card__read:hover,.vnews-card__title a:hover{color:var(--vnews-accent)}.vnews__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.vnews-card{min-width:0;overflow:hidden;background:var(--vnews-surface);border:1px solid rgba(244,247,242,.1);border-radius:14px;transition:transform .25s,border-color .25s,box-shadow .25s}.vnews-card:hover{transform:translateY(-5px);border-color:rgba(141,230,0,.42);box-shadow:0 18px 44px rgba(0,0,0,.28)}.vnews-card__media{position:relative;display:block;overflow:hidden;aspect-ratio:16/9;background:#151d17}.vnews-card__media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s}.vnews-card:hover .vnews-card__media img{transform:scale(1.045)}.vnews-card__placeholder{display:grid;width:100%;height:100%;place-items:center;color:rgba(244,247,242,.4);font-size:13px;font-weight:700;letter-spacing:.22em;background:radial-gradient(circle at 75% 20%,rgba(141,230,0,.16),transparent 42%),linear-gradient(135deg,#18221a,#090d0a)}.vnews-card__arrow{position:absolute;right:14px;bottom:14px;display:grid;width:36px;height:36px;place-items:center;color:#0b0f0c;background:var(--vnews-accent);border-radius:50%;opacity:0;transform:translateY(5px);transition:opacity .2s,transform .2s}.vnews-card:hover .vnews-card__arrow{opacity:1;transform:none}.vnews-card__content{display:flex;min-height:238px;flex-direction:column;align-items:flex-start;padding:22px}.vnews-card__meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;color:var(--vnews-muted);font-size:12px}.vnews-card__category{color:var(--vnews-accent);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.vnews-card__title{margin:16px 0 10px;font-size:clamp(18px,1.7vw,22px);font-weight:650;line-height:1.3}.vnews-card__title a{color:var(--vnews-ink);text-decoration:none}.vnews-card__excerpt{margin:0 0 18px;color:var(--vnews-muted);font-size:14px;line-height:1.65}.vnews-card__read{display:inline-flex;align-items:center;gap:9px;margin-top:auto;color:var(--vnews-ink);font-size:13px;font-weight:700;text-decoration:none}.vnews__empty{display:flex;align-items:center;gap:24px;padding:34px;background:var(--vnews-surface);border:1px solid rgba(244,247,242,.1);border-radius:14px}.vnews__empty-mark{display:grid;width:64px;height:64px;flex:0 0 auto;place-items:center;color:#0b0f0c;background:var(--vnews-accent);border-radius:50%;font-size:25px;font-weight:800}.vnews__empty h3{margin:0 0 6px;color:var(--vnews-ink);font-size:20px}.vnews__empty p{margin:0;color:var(--vnews-muted);font-size:14px;line-height:1.6}
+@media(max-width:900px){.vnews__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vnews-card:last-child:nth-child(odd){grid-column:1/-1}}
+@media(max-width:620px){.vnews{padding:58px 20px}.vnews__header{align-items:flex-start;flex-direction:column;gap:16px;margin-bottom:26px}.vnews__grid{grid-template-columns:1fr;gap:16px}.vnews-card:last-child:nth-child(odd){grid-column:auto}.vnews-card__content{min-height:0;padding:19px}.vnews__empty{align-items:flex-start;padding:24px}}
+@media(prefers-reduced-motion:reduce){.vnews-card,.vnews-card__media img,.vnews-card__arrow{transition:none}.vnews-card:hover{transform:none}}
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "Vesper latest news",
+  "tag": "section",
+  "class": "section-vesper-news",
+  "settings": [
+    {"type":"blog","id":"blog","label":"News blog"},
+    {"type":"range","id":"article_count","min":1,"max":6,"step":1,"default":3,"label":"Articles to show"},
+    {"type":"text","id":"eyebrow","label":"Eyebrow","default":"From Vesper"},
+    {"type":"text","id":"heading","label":"Heading","default":"Latest News"},
+    {"type":"textarea","id":"description","label":"Description","default":"Product updates, field notes and practical advice for smarter outdoor living."},
+    {"type":"text","id":"default_category","label":"Fallback category","default":"Vesper News"},
+    {"type":"text","id":"view_all_label","label":"View all label","default":"View all news"},
+    {"type":"text","id":"read_more_label","label":"Read more label","default":"Read story"},
+    {"type":"text","id":"empty_heading","label":"Empty state heading","default":"News and updates are on the way."},
+    {"type":"textarea","id":"empty_text","label":"Empty state text","default":"Publish your first post in the News blog to feature stories, product updates and field reports here."}
+  ],
+  "presets":[{"name":"Vesper latest news"}]
+}
+{% endschema %}
