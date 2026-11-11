@@ -38,7 +38,7 @@
                       <p class="v-cart-line__variant">{{ item.variant.title }}</p>
                     {%- endunless -%}
 
-                    <p class="v-cart-page__unit-price">{{ item.final_price | money }}</p>
+                    <p class="v-cart-page__unit-price">{{ item.final_price | money_with_currency }}</p>
                   </div>
 
                   <div class="v-cart-page__qty" data-qty>
@@ -71,7 +71,7 @@
                   </div>
 
                   <div class="v-cart-page__line-actions">
-                    <div class="v-cart-line__price">{{ item.final_line_price | money }}</div>
+                    <div class="v-cart-line__price">{{ item.final_line_price | money_with_currency }}</div>
                     <a
                       class="v-cart-page__remove"
                       href="{{ item.url_to_remove }}"
@@ -92,7 +92,7 @@
           <aside class="v-cart-page__summary v-card">
             <div class="v-cart-summary">
               <span>Subtotal</span>
-              <span>{{ cart.total_price | money }}</span>
+              <span>{{ cart.total_price | money_with_currency }}</span>
             </div>
             <div class="v-cart-page__row">
               <span>Shipping</span>
@@ -103,7 +103,7 @@
 
             <div class="v-cart-page__total">
               <span>Total</span>
-              <span>{{ cart.total_price | money }}</span>
+              <span>{{ cart.total_price | money_with_currency }}</span>
             </div>
 
             <a class="v-btn v-btn--primary v-btn--block v-btn--lg" href="{{ routes.cart_url }}/checkout">
