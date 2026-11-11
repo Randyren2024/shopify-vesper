@@ -93,7 +93,7 @@
       <span class="p-card__price v-product-card__price">
         {%- if product -%}
           {%- if card_price > 0 -%}
-            {{ card_price | money }}
+            {{ card_price | money_with_currency }}
           {%- else -%}
             Request a quote
           {%- endif -%}
@@ -104,7 +104,7 @@
         {%- endif -%}
 
         {%- if product and card_compare_at > card_price -%}
-          <small class="p-card__was v-product-card__was">{{ card_compare_at | money }}</small>
+          <small class="p-card__was v-product-card__was">{{ card_compare_at | money_with_currency }}</small>
         {%- endif -%}
       </span>
 
