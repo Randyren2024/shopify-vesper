@@ -71,7 +71,7 @@
               </div>
 
               <div>
-                <div class="v-cart-line__price">{{ item.final_line_price | money }}</div>
+                <div class="v-cart-line__price">{{ item.final_line_price | money_with_currency }}</div>
                 <button
                   type="button"
                   class="v-cart-line__remove"
@@ -92,7 +92,7 @@
       {%- if cart.item_count > 0 -%}
         <div class="v-cart-summary">
           <span>Subtotal</span>
-          <span>{{ cart.total_price | money }}</span>
+          <span>{{ cart.total_price | money_with_currency }}</span>
         </div>
         <p class="v-cart-note">Taxes and shipping calculated at checkout.</p>
         <a class="v-btn v-btn--primary v-btn--block v-btn--lg" href="{{ routes.cart_url }}/checkout">Checkout</a>
