@@ -17,11 +17,13 @@
     var whole = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     var decimal = parts[1];
 
-    return format
+    var formatted = format
       .replace(/\{\{\s*amount\s*\}\}/, whole + '.' + decimal)
       .replace(/\{\{\s*amount_no_decimals\s*\}\}/, whole)
       .replace(/\{\{\s*amount_with_comma_separator\s*\}\}/, whole.replace(/,/g, '.') + ',' + decimal)
       .replace(/\{\{\s*amount_no_decimals_with_comma_separator\s*\}\}/, whole.replace(/,/g, '.'));
+    var currency = document.documentElement.dataset.currency || 'AUD';
+    return formatted + ' ' + currency;
   }
 
   Vesper.money = money;
