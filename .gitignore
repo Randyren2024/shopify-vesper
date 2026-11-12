@@ -8,6 +8,7 @@
 ehthumbs.db
 Thumbs.db
 node_modules/
+google_api/
 
 # Shopify CLI files
 .shopify/
